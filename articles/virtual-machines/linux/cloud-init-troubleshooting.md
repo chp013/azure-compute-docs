@@ -88,7 +88,7 @@ While the VM is running, you will need the logs from the VM to understand why pr
 
 - [Serial Console](/troubleshoot/azure/virtual-machines/serial-console-grub-single-user-mode)
 
-- [Run AZ VM Repair](/troubleshoot/azure/virtual-machines/repair-linux-vm-using-azure-virtual-machine-repair-commands) to attach and mount the OS disk ([*lvm*](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/linux/troubleshoot-recovery-disks-portal-linux#mount-the-attached-data-disk), [*no lvm*](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/linux/troubleshoot-recovery-disks-portal-linux#mount-the-attached-data-disk)), which will allow you to collect and examine these logs:
+- [Run AZ VM Repair](/troubleshoot/azure/virtual-machines/repair-linux-vm-using-azure-virtual-machine-repair-commands) to attach and mount the OS disk ([*lvm*](https://learn.microsoft.com/troubleshoot/azure/virtual-machines/linux/troubleshoot-recovery-disks-portal-linux#mount-the-attached-data-disk), [*no lvm*](https://learn.microsoft.com/troubleshoot/azure/virtual-machines/linux/troubleshoot-recovery-disks-portal-linux#mount-the-attached-data-disk)), which will allow you to collect and examine these logs:
 
 ```bash
 /rescue/var/log/waagent*
@@ -109,7 +109,7 @@ To start initial troubleshooting, begin with the serial logs and cloud-init logs
 
 * /var/log/cloud-init.log
 * /var/log/cloud-init-output.log
-* [Serial/boot logs](https://learn.microsoft.com/en-us/azure/virtual-machines/boot-diagnostics#boot-diagnostics-view)
+* [Serial/boot logs](https://learn.microsoft.com/azure/virtual-machines/boot-diagnostics#boot-diagnostics-view)
 
 In all logs, start searching for "Failed", "WARNING", "WARN", "err", "error", "ERROR". Setting configuration to ignore case-sensitive searches is recommended.
 
