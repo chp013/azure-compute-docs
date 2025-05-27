@@ -407,7 +407,7 @@ To learn more, go to [AzCapacityReservationGroupUpdate](/cli/azure/capacity/rese
 
 You can remove a subscriptions ID from the sharing profile of an existing capacity reservation group using  `Update-AzCapacityReservationGroup`.  
 
-The following example is to remove 2 subscriptions IDs from the sharing profile of an existing capacity reservation group named 'myCapacityReservationGroup' that was shared with three subscriptions IDs. 
+The following example is to remove two subscriptions IDs from the sharing profile of an existing capacity reservation group named 'myCapacityReservationGroup' that was shared with three subscriptions IDs. 
 
 ```powershell-interactive
 Update-AzCapacityReservationGroup
