@@ -124,11 +124,11 @@ The Capacity Reservation Group can be shared with subscriptions who are in the s
 
 ### Add sharing profile on CRG creation
 
-To share a Capacity Reservation Group on creation, Subscriptions can be added in the sharing profile of new or existing Capacity Reservation Group by the Subscription which created the Capacity Reservation Group. Once shared, the subscriptions which are part of the sharing profile can deploy Virtual Machines or Virtual Machine Scale Sets in the shared Capacity Reservation Group. 
+You can share a Capacity Reservation Group on creation by adding subscriptions in the sharing profile.
 
 #### [API](#tab/api-1)
 
-To create a Capacity Reservation group, construct the following PUT request on Microsoft.Compute provider: 
+To share a Capacity Reservation group on creation, construct the following PUT request on Microsoft.Compute provider: 
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01 
