@@ -17,12 +17,12 @@ ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell
 > [!IMPORTANT]
 > This feature is currently in **Preview**, see the [Preview Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability. 
 
-On-demand Capacity Reservation Group can be shared with other subscriptions. Using this option can make it easier to manage some common configuration needs: 
+On-demand Capacity Reservation Group (CRG) can be shared with other subscriptions. Using this option can make it easier to manage some common configuration needs: 
 
 1. Reuse of capacity reserved if there is disaster recovery –  customers often want assurance of capacity in another region or zone if their main region or zones become unavailable. On-demand capacity reservation is the primary method to gain such assurance. Now the reserved capacity can be shared with subscriptions hosting less critical workloads such as development and testing or batch. When the capacity is not needed for disaster recovery, reuse by less critical workloads saves on total capacity costs and drives more value from the reserved capacity. 
 
 
-2. Central management of capacity – quota requests and term commitments are often administered by a central operations team as part of cost management. Now reserved capacity needs can be assessed and managed more centrally to align all three aspects of capacity cost management. 
+2. Central management of capacity – a central operations team often administers quota requests and term commitments as part of cost management. Now reserved capacity needs can be assessed and managed more centrally to align all three aspects of capacity cost management. 
 
  
 3. Separate security and capacity concerns - applications implemented with multiple subscriptions for security reasons can operate from a common pool of capacity. This pattern is common with service providers serving their own end customers. 
@@ -33,10 +33,10 @@ On-demand Capacity Reservation Group can be shared with other subscriptions. Usi
 
 ## How to share a Capacity Reservation Group
 
-Sharing a Capacity Reservation Group with other subscriptions requires configuration of rights to share the CRG to a target subscription and then rights in the target subscription to see and use a shared CRG. Once completed, a user in the target subscription can reference the shared Capacity Reservation Group in a VM or VMSS deployment to obtain Capacity Reservation SLAs.
+Sharing a Capacity Reservation Group with other subscriptions requires configuration of rights to share the CRG to a target subscription and then rights in the target subscription to see and use a shared CRG. Once completed, a user in the target subscription can reference the shared Capacity Reservation Group in a virtual machine (VM) or virtual machine scale set (VMSS) deployment to obtain Capacity Reservation Service Level Agreement (SLA).
 
 > [!NOTE]
-> There are no additional charges for using the shared Capacity Reservation Group feature. Unused reservations are charged to the subscription that owns the reservation and any VM usage is charged to the subscription that uses the capacity as it does today. For details on how RI applies to the feature, please refer to the [Use of Reserved Instances with shared Capacity Reservation Groups](#use-of-reserved-instances-with-shared-capacity-reservation-groups) section below.
+> There are no extra charges for using the shared Capacity Reservation Group feature. Unused reservations are charged to the subscription that owns the reservation and any VM usage is charged to the subscription that uses the capacity as it does today. For details on how Reserved Instance (RI) applies to the feature, please refer to the [Use of Reserved Instances with shared Capacity Reservation Groups](#use-of-reserved-instances-with-shared-capacity-reservation-groups) section below.
 
 Example: 
 
@@ -100,7 +100,7 @@ The subscription sharing a Capacity Reservation Group can allow:
 ## Pre-requisites for sharing CRG:  
 
 - For a subscription to share a CRG with cross subscription they must have sufficient rights
-- Subscriptions with whom CRGs have been shared with must have sufficient rights to be able to make deployments in CRs in shared CRG
+- Subscriptions with whom CRGs have been shared with must have sufficient rights to be able to make deployments in capacity reservation (CR) in shared CRG
 - The VMs being deployed in the shared CRG must match the VM SKU, region, and zone if applicable 
 
 ## Limitations of sharing a Capacity Reservation Group
