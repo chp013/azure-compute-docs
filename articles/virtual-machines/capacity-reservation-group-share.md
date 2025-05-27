@@ -93,7 +93,6 @@ The subscription sharing a Capacity Reservation Group can allow:
 - All subscriptions in a specific Management Group to access the Capacity Reservation Group
 
 > [!NOTE]
-
 > Azure strongly recommends using one master subscription to host Capacity Reservation Groups for each application, workload or usage scope to share across other subscriptions. Creating Capacity Reservation Groups in many different subscriptions and then cross-sharing in a matrix fashion will create management challenges and lead to confusion at VM deployment.
 
 
