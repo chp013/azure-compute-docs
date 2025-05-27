@@ -591,19 +591,19 @@ To share Reserved Instance discounts between a Capacity Reservation Group and VM
 
 #### Associate or create a single Virtual Machine with shared Capacity Reservation Group
 
-Single Virtual Machine can be deployed in shared Capacity Reservation Group using Powershell, CLI, or REST API. See [Associate a virtual machine to a Capacity Reservation group](/azure/virtual-machines/capacity-reservation-associate-vm).
+Single Virtual Machine can be deployed in shared Capacity Reservation Group using PowerShell, CLI, or REST API. See [Associate a virtual machine to a Capacity Reservation group](/azure/virtual-machines/capacity-reservation-associate-vm).
 
 #### Remove a single Virtual Machine from Shared Capacity Reservation Group 
 
-Single Virtual Machine can be removed from Shared Capacity Reservation Group using Powershell, CLI, or REST API. See [Remove a virtual machine association from a Capacity Reservation group](/azure/virtual-machines/capacity-reservation-remove-vm)
+Single Virtual Machine can be removed from Shared Capacity Reservation Group using PowerShell, CLI, or REST API. See [Remove a virtual machine association from a Capacity Reservation group](/azure/virtual-machines/capacity-reservation-remove-vm)
 
 #### Associate or create a Virtual Machine Scale Set with shared Capacity Reservation Group 
 
-VMSS Flex and Uniform can be deployed in shared Capacity Reservation Group using Powershell, CLI, or REST API. To learn more, see [Associate a scale set-Flexible](/azure/virtual-machines/capacity-reservation-associate-virtual-machine-scale-set-flex) and [Associate a scale set-Uniform](/azure/virtual-machines/capacity-reservation-associate-virtual-machine-scale-set)
+VMSS Flex and Uniform can be deployed in shared Capacity Reservation Group using PowerShell, CLI, or REST API. To learn more, see [Associate a scale set-Flexible](/azure/virtual-machines/capacity-reservation-associate-virtual-machine-scale-set-flex) and [Associate a scale set-Uniform](/azure/virtual-machines/capacity-reservation-associate-virtual-machine-scale-set)
 
 #### Remove Virtual Machine Scale Set from Shared Capacity Reservation Group
 
-Virtual Machine Scale Set- Flex and Uniform can be removed from shared Capacity Reservation Group using Powershell, CLI, or REST API. To learn more, see [Remove a scale set](/azure/virtual-machines/capacity-reservation-remove-virtual-machine-scale-set).
+Virtual Machine Scale Set- Flex and Uniform can be removed from shared Capacity Reservation Group using PowerShell, CLI, or REST API. To learn more, see [Remove a scale set](/azure/virtual-machines/capacity-reservation-remove-virtual-machine-scale-set).
 
 ## View shared Capacity Reservation Group
 
@@ -665,19 +665,19 @@ The list of all Capacity Reservation Groups that are created locally or shared w
 
 ### [API](#tab/api-6)
 
-Enables fetching Resource Ids for all capacity reservation group resources shared with the subscription.  
+Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription.  
 
 ```rest
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/capacityReservationGroups?api-version=2023-09-01&resourceIdsOnly=sharedwithsubscription 
 ``` 
 
-Enables fetching Resource Ids for all capacity reservation group resources shared with the subscription and created in the subscription: 
+Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription and created in the subscription: 
 
 ```rest
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/capacityReservationGroups?api-version=2023-09-01&resourceIdsOnly=All 
 ``` 
 
-Enables fetching Resource Ids for all capacity reservation group resources shared with the subscription and created in the subscription: 
+Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription and created in the subscription: 
 
 ```rest
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/capacityReservationGroups?api-version=2023-09-01&resourceIdsOnly=CreatedInSubscription 
@@ -706,21 +706,21 @@ To learn more, see [Capacity Reservation Group-List by subscription](/rest/api/c
  
 ### [CLI](#tab/cli-6)
 
-Enables fetching Resource Ids for all capacity reservation group resources shared with the subscription and created in the subscription
+Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription and created in the subscription
 
  ```azurecli-interactive
  az capacity reservation group list
  --resource-ids-only all 
  ```
 
-Enables fetching Resource Ids for all capacity reservation group resources created in the subscription 
+Enables fetching Resource IDs for all capacity reservation group resources created in the subscription 
 
  ```azurecli-interactive
  az capacity reservation group list
  --resource-ids-only CreatedInSubscription
  ```
 
-Enables fetching Resource Ids for all capacity reservation group resources shared with the subscription 
+Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription 
 
  ```azurecli-interactive
  az capacity reservation group list
@@ -732,14 +732,14 @@ To learn more, go to [AzCapacityReservationGroupList](/cli/azure/capacity/reserv
 
 ### [PowerShell](#tab/powershell-6)
 
-Enables fetching Resource Ids for all capacity reservation group resources shared with the subscription and created in the subscription
+Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription and created in the subscription
 
 ```powershell-interactive
 Get-AzCapacityReservationGroup
 -ResourceIdsOnly All 
 ```
 
-Enables fetching Resource Ids for all capacity reservation group resources created in the subscription 
+Enables fetching Resource IDs for all capacity reservation group resources created in the subscription 
 
 ```powershell-interactive
 Get-AzCapacityReservationGroup
