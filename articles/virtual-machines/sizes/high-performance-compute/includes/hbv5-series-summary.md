@@ -15,7 +15,7 @@ HBv5-series VMs are optimized for the most memory bandwidth-intensive HPC applic
 * Running computational fluid dynamics
 * Performing automotive simulations
 * Conducting aerospace simulations
-* Modeling weather systems
+* Supporting weather system models
 * Advancing energy research
 * Simulating molecular dynamics
 * Supporting computer-aided engineering
