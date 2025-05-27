@@ -1090,6 +1090,8 @@
     - name: Modify a capacity reservation
       displayName: on-demand capacity reservation
       href: capacity-reservation-modify.md
+    - name: Share a capacity reservation group
+      href: capacity-reservation-group-share.md
     - name: Associate a VM
       displayName: on-demand capacity reservation
       href: capacity-reservation-associate-vm.md
