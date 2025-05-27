@@ -36,7 +36,6 @@ On-demand Capacity Reservation Group can be shared with other subscriptions. Usi
 Sharing a Capacity Reservation Group with other subscriptions requires configuration of rights to share the CRG to a target subscription and then rights in the target subscription to see and use a shared CRG. Once completed, a user in the target subscription can reference the shared Capacity Reservation Group in a VM or VMSS deployment to obtain Capacity Reservation SLAs.
 
 > [!NOTE]
-
 > There are no additional charges for using the shared Capacity Reservation Group feature. Unused reservations are charged to the subscription that owns the reservation and any VM usage is charged to the subscription that uses the capacity as it does today. For details on how RI applies to the feature, please refer to the “Use of Reserved Instances with shared Capacity Reservation Groups” section below.
 
 Example: 
