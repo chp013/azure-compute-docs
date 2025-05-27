@@ -28,7 +28,7 @@ On-demand Capacity Reservation Group (CRG) can be shared with other subscription
 3. Separate security and capacity concerns - applications implemented with multiple subscriptions for security reasons can operate from a common pool of capacity. This pattern is common with service providers serving their own end customers. 
  
 
-4. More cost-effective scale out with capacity assurance – applications that scale at different rates and times can share one pool of reserved capacity.
+4. More cost-effective scale-out with capacity assurance – applications that scale at different rates and times can share one pool of reserved capacity.
 
 
 ## How to share a Capacity Reservation Group
@@ -36,37 +36,37 @@ On-demand Capacity Reservation Group (CRG) can be shared with other subscription
 Sharing a Capacity Reservation Group with other subscriptions requires configuration of rights to share the CRG to a target subscription and then rights in the target subscription to see and use a shared CRG. Once completed, a user in the target subscription can reference the shared Capacity Reservation Group in a virtual machine (VM) or virtual machine scale set (VMSS) deployment to obtain Capacity Reservation Service Level Agreement (SLA).
 
 > [!NOTE]
-> There are no extra charges for using the shared Capacity Reservation Group feature. Unused reservations are charged to the subscription that owns the reservation. VM usage is charged to the subscription that uses the capacity reservation as it does today. For details on how Reserved Instance (RI) applies to the feature, refer to the [Use of Reserved Instances with shared Capacity Reservation Groups](#use-of-reserved-instances-with-shared-capacity-reservation-groups) section.
+> There are no extra charges for using the shared Capacity Reservation Group feature. Unused reservations are charged to the subscription that owns the reservation. VM usage is charged to the subscription that uses the capacity reservation as it does today. For details on how Reserved Instance (RI) applies to the feature, see [Use of Reserved Instances with shared Capacity Reservation Groups](#use-of-reserved-instances-with-shared-capacity-reservation-groups) section.
 
 Example: 
 
 Consider this example: 
 
-User “A” creates and manages Capacity Reservation Groups in Subscription A. 
+User 'A' creates and manages Capacity Reservation Groups in Subscription A. 
 
-User “B” creates and deploys Virtual Machines in Subscription B.  
+User 'B' creates and deploys Virtual Machines in Subscription B.  
 
-The goal is for User “A” to share Capacity Reservation Group X with Subscription B such that User “B” can deploy VMs using Capacity Reservation Group X. 
+The goal is for User 'A' to share Capacity Reservation Group X with Subscription B such that User 'B' can deploy VMs using Capacity Reservation Group X. 
 
  
 
 Step 1: Share Capacity Reservation Group X 
 
-1. A rights administrator in Subscription B must grant User “A” capacity reservation group **share** permissions. The specific access required is Microsoft.Compute/capacityReservationGroups/share/action. 
+1. A rights administrator in Subscription B must grant User 'A' capacity reservation group **share** permissions. The specific access required is Microsoft.Compute/capacityReservationGroups/share/action. 
 
- :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-grant-access-share.png" alt-text="A screenshot showing subscription B rights admin granting share permissions to User A in Subscription A to share a Caapcity Reservation Group with Subscription B.":::
+ :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-grant-access-share.png" alt-text="A screenshot showing subscription B rights admin granting share permissions to User A in Subscription A to share a Capacity Reservation Group with Subscription B.":::
 
 
-2. User “A” must then update the “sharing profile” of CRG X to include Subscription B. The specific access right required by User “A” to perform such action is Microsoft.Compute/capacityReservationGroups/write. 
+2. User 'A' must then update the 'sharing profile' of CRG X to include Subscription B. The specific access right required by User 'A' to perform such action is Microsoft.Compute/capacityReservationGroups/write. 
 
-  :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-subscription-share.png" alt-text="A screenshot showing subscription A sharing a Caapcity Reservation Group with Subscription B.":::
+  :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-subscription-share.png" alt-text="A screenshot showing subscription A sharing a Capacity Reservation Group with Subscription B.":::
 
 
 At this point, CRG X and all member Capacity Reservations are visible to Subscription B. 
 
-Step 2: Grant user “B” access to CRG X 
+Step 2: Grant user 'B' access to CRG X 
 
-1. A rights administrator in Subscription A must grant user “B” read and deploy rights to CRG X.  
+1. A rights administrator in Subscription A must grant user 'B' read and deploy rights to CRG X.  
 
 The specific access rights are: 
 
@@ -78,17 +78,17 @@ The specific access rights are:
  :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-grant-access-read-deploy.png" alt-text="A screenshot showing subscription A rights admin granting User B read and deploy rights for making deployments in the shared Capacity Reservation Group.":::
 
 
-2. User “B” can now add CRG X as the capacityReservationGroup property on Virtual Machines. The usual rules on the VM matching a Capacity Reservation apply. VM B must match a capacity reservation in CRG X on region, size and zone (if zone is specificed).  
+2. User 'B' can now add CRG X as the capacityReservationGroup property on Virtual Machines. The usual rules on the VM matching a Capacity Reservation apply. VM B must match a capacity reservation in CRG X on region, size, and zone (if zone is specified).  
 
   :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-deploy-vm-shared.png" alt-text="A screenshot showing subscription B deploying Virtual Machine in the shared Capacity Reservation Group.":::
 
 
-User “B” was not granted write permissions to CRG X. User “B” is not allowed to create more reservations in Capacity Reservation Group X, change reserved quantities, or make any other changes to the definition of Capacity Reservation Group X. 
+User 'B' was not granted write permissions to CRG X. User 'B' is not allowed to create more reservations in Capacity Reservation Group X, change reserved quantities, or make any other changes to the definition of Capacity Reservation Group X. 
 
 ## Usage patterns: 
 
 The subscription sharing a Capacity Reservation Group can allow: 
-- Cross subscriptions to access a specific Capacity reservation Group in in the subscription
+- Cross subscriptions to access a specific Capacity reservation Group in the subscription
 - Cross subscription to access all Capacity reservation Groups created in the subscription
 - All subscriptions in a specific Management Group to access the Capacity Reservation Group
 
@@ -97,17 +97,17 @@ The subscription sharing a Capacity Reservation Group can allow:
 > Azure strongly recommends using one master subscription to host Capacity Reservation Groups for each application, workload or usage scope to share across other subscriptions. Creating Capacity Reservation Groups in many different subscriptions and then cross-sharing in a matrix fashion will create management challenges and lead to confusion at VM deployment.
 
 
-## Pre-requisites for sharing CRG:  
+## Prerequisites for sharing CRG:  
 
-- For a subscription to share a CRG with cross subscription they must have sufficient rights
-- Subscriptions with whom CRGs are shared with must have sufficient rights to be able to make deployments in capacity reservation (CR) in shared CRG
-- The VMs being deployed in the shared CRG must match the VM SKU, region, and zone if applicable 
+- A subscription must have sufficient rights to be able to share a CRG
+- A Subscription with whom a CRG is shared must have sufficient rights to be able to make deployments in capacity reservation (CR) in shared CRG
+- A VM being deployed in the shared CRG must match the VM SKU, region, and zone if applicable 
 
 ## Limitations of sharing a Capacity Reservation Group
 
 Limitations by design:
 - Sharing works with an explicit list of target subscriptions. Azure does not support wildcard or tenant level sharing
-- Maximum number of subscriptions a CRG can be shared with is 100
+- A CRG can be shared with a maximum of 100 subscriptions
 - Sharing is per Capacity Reservation Group which grants access to all member Capacity Reservations. Individual Capacity Reservations cannot be shared. To isolate specific Capacity Reservations, create multiple Capacity Reservation Groups and share only those CRs that contain shared capacity. 
 - By default, Capacity Reservation Group administrators in the subscription owning a Capacity Reservation Group cannot modify VM instances deployed by other subscriptions. If such VM access is desired such as to force VM deallocation, more rights to VMs on the shared subscriptions must be granted separately. 
   
@@ -202,7 +202,7 @@ An [ARM template](/azure/azure-resource-manager/templates/overview) is a JavaS
 
 ARM templates let you deploy groups of related resources. In a single template, you can share Capacity Reservation group. You can deploy templates through the Azure portal, Azure CLI, or Azure PowerShell, or from continuous integration/continuous delivery (CI/CD) pipelines. 
 
-The following ARM template creates a capacity reservation group shared with subscriptions SharedSubscriptionID1 and SharedSubscriptionID2. Alternatively, you can remove the *zone* information if you would like to deploy a regional shared apacity reservation group.
+The following ARM template creates a capacity reservation group shared with subscriptions SharedSubscriptionID1 and SharedSubscriptionID2. Alternatively, you can remove the *zone* information if you would like to deploy a regional shared capacity reservation group.
 
 If your environment meets the prerequisites and you're familiar with using ARM templates, use the following template.
 
@@ -253,7 +253,7 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 ## Modify sharing profile of an existing Capacity Reservation Group 
 
-After creating a Capacity Reservation group, you may want to modify the sharing profile. This article explains how to do the following actions using API, CLI and PowerShell. 
+After creating a Capacity Reservation group, you may want to modify the sharing profile. This article explains how to do the following actions using API, CLI, and PowerShell. 
 
 ### Add sharing profile to an existing CRG 
 
@@ -263,7 +263,7 @@ Add sharing profile and share with subscriptions for an existing Capacity Reserv
 
 To add sharing profile to an existing Capacity Reservation group, construct the following PUT request on Microsoft.Compute provider.  
 
-Following example adds sharing profile to an existing Capacity Reservation group called “myCapacityReservationGroup” and shared with 3 subscription IDs: 
+Following example adds sharing profile to an existing Capacity Reservation group called 'myCapacityReservationGroup' and shared with three subscription IDs: 
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01 
@@ -319,7 +319,7 @@ To learn more, go to Azure PowerShell command [AzCapacityReservationGroupUpdate]
 #### [PowerShell](#tab/powershell-2)
 
 Update Capacity Reservation group with sharing profile using `Update-AzCapacityReservationGroup`
-The following example is to update an existing capacity reservation group named myCapacityReservationGroup with sharing profile having one subscription ID and later adding a new subscriptions IDs. 
+The following example is to update an existing capacity reservation group named 'myCapacityReservationGroup' with sharing profile having one subscription ID and later adding a new subscription ID. 
 
 ```powershell-interactive
 Update-AzCapacityReservationGroup
@@ -338,22 +338,22 @@ To learn more, see Azure PowerShell command [Update-AzCapacityReservation](/powe
 
 The Capacity Reservation Group owner can stop sharing a Capacity Reservation Group with a subscription or all subscriptions anytime. 
 
-Un-sharing of Capacity Reservation Group with cross subscription ID can be done while a Virtual Machine or Virtual Machine Scale Set from cross subscriptions remain associated with the Capacity Reservation Group. The associated resources get SLA until deallocated or reallocated. 
+Unsharing of Capacity Reservation Group with cross subscription ID can be done while a Virtual Machine or Virtual Machine Scale Set from cross subscriptions remain associated with the Capacity Reservation Group. The associated resources get SLA until deallocated or reallocated. 
 
-Once un-sharing happens, any virtual machine or virtual machine scale set previously associated to CRG would fail to associate upon deallocation or reallocation. You can avoid this failure by removing the assocation from the capacity reservation group.
+Once unsharing happens, any virtual machine or virtual machine scale set previously associated to CRG would fail to associate upon deallocation or reallocation. You can avoid this failure by removing the association from the capacity reservation group.
 
-### Un-sharing a Capacity Reservation Group with a subscription
+### Unsharing a Capacity Reservation Group with a subscription
 
 To un-share a capacity Reservation Group with a subscription from Sharing profile, the subscription has to be removed from sharing profile. 
 
-Consider an example where a Caapcity Reservation Group was shared with Subscription ID 1, Subscription ID 2 and Subscription ID 3. The goal is to remove Subscription ID 3 only from the shatring profile. 
+Consider an example where a Capacity Reservation Group was shared with Subscription ID 1, Subscription ID 2, and Subscription ID 3. The goal is to remove Subscription ID 3 only from the sharing profile. 
 When updating the sharing profile of the Capacity Reservation Group, only Subscription ID 3 must be removed and not Subscription ID 1 and Subscription ID 2.
 
 #### [API](#tab/api-3)
 
 To remove a subscription from the sharing profile of an existing Capacity Reservation group, construct the following PUT request on Microsoft.Compute provider.  
 
-Following example removes subscription ID3 from sharing profile to an existing Capacity Reservation group called “myCapacityReservationGroup” that was shared with 3 subscription IDs previously: 
+Following example removes subscription ID3 from sharing profile to an existing Capacity Reservation group called 'myCapacityReservationGroup' that was shared with three subscription IDs previously: 
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01
@@ -392,7 +392,7 @@ To learn more, see [Capacity Reservation Groups - Create Or Update](/rest/api/co
 #### [CLI](#tab/cli-3)
 
 You can remove a subscription ID from the sharing profile of an existing Capacity Reservation group  using `az capacity reservation group update`. 
-Following example removes 2 subscription IDs from sharing profile of an existing Capacity Reservation  that was shared with 3 subscription IDs: 
+Following example removes two subscription IDs from sharing profile of an existing Capacity Reservation  that was shared with three subscription IDs: 
 
  ```azurecli-interactive
  az capacity reservation group update
@@ -406,9 +406,9 @@ To learn more, go to [AzCapacityReservationGroupUpdate](/cli/azure/capacity/rese
 
 #### [PowerShell](#tab/powershell-3)
 
-You can remove a subscriptions ID from the sharing proifle of an existing capacity reservation group using  `Update-AzCapacityReservationGroup`.  
+You can remove a subscriptions ID from the sharing profile of an existing capacity reservation group using  `Update-AzCapacityReservationGroup`.  
 
-The following example is to remove 2 subscriptions IDs from the sharing profile of an existing capacity reservation group named myCapacityReservationGroup that was shared with 3 subscriptions IDs. 
+The following example is to remove 2 subscriptions IDs from the sharing profile of an existing capacity reservation group named 'myCapacityReservationGroup' that was shared with three subscriptions IDs. 
 
 ```powershell-interactive
 Update-AzCapacityReservationGroup
@@ -423,7 +423,7 @@ To learn more, see [Update-AzCapacityReservation](/powershell/module/az.compute/
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
 
-### Un-sharing a Capacity Reservation Group with all subscriptions
+### Unsharing a Capacity Reservation Group with all subscriptions
 
 To un-share a Capacity Reservation Group with all subscriptions, remove all subscriptions from the sharing profile. 
 
@@ -431,7 +431,7 @@ To un-share a Capacity Reservation Group with all subscriptions, remove all subs
 
 To remove all subscriptions from the sharing profile of an existing Capacity Reservation group, construct the following PUT request on Microsoft.Compute provider.  
 
-Following example removes all subscriptions from sharing profile to an existing Capacity Reservation group called “myCapacityReservationGroup”
+Following example removes all subscriptions from sharing profile to an existing Capacity Reservation group called 'myCapacityReservationGroup'
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01 
@@ -502,7 +502,7 @@ The following ARM template unshared a capacity reservation group shared with all
 #### [CLI](#tab/cli-4)
 
 You can remove all subscription ID from the sharing profile of an existing Capacity Reservation group  using `az capacity reservation group update`.
-Following example removes all subscription IDs from sharing profile of an existing Capacity Reservation  that was prevously shared with one or more subscription IDs:
+Following example removes all subscription IDs from sharing profile of an existing Capacity Reservation  that was previously shared with one or more subscription IDs:
 
  ```azurecli-interactive
  az capacity reservation group update
@@ -516,9 +516,9 @@ To learn more, [AzCapacityReservationGroup](/cli/azure/capacity/reservation/grou
 
 #### [PowerShell](#tab/powershell-4)
 
-You can remove all subscriptions ID from the sharing proifle of an existing capacity reservation group using  `Update-AzCapacityReservationGroup`.
+You can remove all subscriptions ID from the sharing profile of an existing capacity reservation group using  `Update-AzCapacityReservationGroup`.
 
-The following example removes all subscriptions IDs from the sharing profile of an existing capacity reservation group named myCapacityReservationGroup that was shared with one or more subscriptions IDs.  
+The following example removes all subscriptions IDs from the sharing profile of an existing capacity reservation group named 'myCapacityReservationGroup' that was shared with one or more subscriptions IDs.  
 
 
 ```powershell-interactive
@@ -540,7 +540,7 @@ To learn more, see [Update-AzCapacityReservation](/powershell/module/az.compute/
 - Users from shared subscriptions cannot delete the shared Capacity Reservation Group
 - Azure allows a capacity reservation group to be deleted when all the member capacity reservations are deleted
 - Azure allows a capacity reservation to be deleted when no VMs are associated to the CR
-- Un-sharing of CRG with shared subscription happens as part of shared Capacity Reservation Group deletion process
+- Unsharing of CRG with shared subscription happens as part of shared Capacity Reservation Group deletion process
 
 See [Modify a capacity reservation](/azure/virtual-machines/capacity-reservation-modify) for deletion guidance.
 
@@ -567,7 +567,7 @@ Now consider a Capacity Reservation deployed by Subscription A to logical AZ1. T
 :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-reservation.png" alt-text="A screenshot showing subscription A creating a capacity reservation in logical zone 1.":::
 
 If Subscription B deployed a VM to logical AZ1 using the shared Capacity Reservation Group, the deployment would fail because Sub B AZ1 resolves to physical zone 2. And there is no reserved capacity in physical zone 2. 
-:::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-b-not-aligned.png" alt-text="A screenshot showing subscription A capacity reservation and subscription B VM are in two differnt logical zones resulting in failure.":::
+:::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-b-not-aligned.png" alt-text="A screenshot showing subscription A capacity reservation and subscription B VM are in two different logical zones resulting in failure.":::
 
 
 The solution is to reconcile the logical to physical mappings for Subscription A and Subscription B. Which shows Subscription B should deploy to AZ2 to access reserved capacity in physical zone 1. 
@@ -579,33 +579,33 @@ When using a shared Capacity Reservation Group with zones, all subscriptions hav
 To check the Physical Zone and Logical Zone mapping for your subscription: 
 
 - Open [Subscriptions - List Locations - REST API (Azure Resource Management)](/rest/api/resources/subscriptions/list-locations)
-- Enter your subscription name in the field “subscriptionId” in the Parameters section
-- Execute “Run”
+- Enter your subscription name in the field 'subscriptionId' in the Parameters section
+- Execute 'Run'
 - Check the logical to physical zone mapping information in the JSON returned 
 
-For more information, refer to [Physical and Logical availability zones](/azure/reliability/availability-zones-overview?tabs=azure-cli#physical-and-logical-availability-zones).
+For more information, see [Physical and Logical availability zones](/azure/reliability/availability-zones-overview?tabs=azure-cli#physical-and-logical-availability-zones).
 
 ### Use of Reserved Instances with shared Capacity Reservation Groups 
 
-Sharing a Capacity Reservation Group does not alter the scope of any Reserved Instances or Savings Plans. If either the CRG or the VM is deployed from a scope not covered by pre-paid discounts, the pay-as-you-go price is charged. 
+Sharing a Capacity Reservation Group does not alter the scope of any Reserved Instances or Savings Plans. If either the CRG or the VM is deployed from a scope not covered by prepaid discounts, the pay-as-you-go price is charged. 
 
 To share Reserved Instance discounts between a Capacity Reservation Group and VMs deployed from another subscription, the CRG subscription and the VM subscription must share the same RI scope. If the two subscriptions share an enrollment or a management group, then Reserved Instances set to the corresponding scope works automatically. 
 
 #### Associate or create a single Virtual Machine with shared Capacity Reservation Group
 
-Single Virtual Machine can be deployed in shared Capacity Reservation Group using Poweshell, CLI or REST API. Refer to [Associate a virtual machine to a Capacity Reservation group](/azure/virtual-machines/capacity-reservation-associate-vm).
+Single Virtual Machine can be deployed in shared Capacity Reservation Group using Powershell, CLI, or REST API. See [Associate a virtual machine to a Capacity Reservation group](/azure/virtual-machines/capacity-reservation-associate-vm).
 
 #### Remove a single Virtual Machine from Shared Capacity Reservation Group 
 
-Single Virtual Machine can be removed from Shared Capacity Reservation Group using Poweshell, CLI or REST API. Refer to [Remove a virtual machine association from a Capacity Reservation group](/azure/virtual-machines/capacity-reservation-remove-vm)
+Single Virtual Machine can be removed from Shared Capacity Reservation Group using Powershell, CLI, or REST API. See [Remove a virtual machine association from a Capacity Reservation group](/azure/virtual-machines/capacity-reservation-remove-vm)
 
 #### Associate or create a Virtual Machine Scale Set with shared Capacity Reservation Group 
 
-VMSS Flex and Uniform can be deployed in shared Capacity Reservation Group using Poweshell, CLI or REST API. To learn more, see [Associate a scale set-Flexible](/azure/virtual-machines/capacity-reservation-associate-virtual-machine-scale-set-flex) and [Associate a scale set-Uniform](/azure/virtual-machines/capacity-reservation-associate-virtual-machine-scale-set)
+VMSS Flex and Uniform can be deployed in shared Capacity Reservation Group using Powershell, CLI, or REST API. To learn more, see [Associate a scale set-Flexible](/azure/virtual-machines/capacity-reservation-associate-virtual-machine-scale-set-flex) and [Associate a scale set-Uniform](/azure/virtual-machines/capacity-reservation-associate-virtual-machine-scale-set)
 
 #### Remove Virtual Machine Scale Set from Shared Capacity Reservation Group
 
-Vitual Machine Scale Set- Flex and Uniform can be removed from shared Capacity Reservation Group using Poweshell, CLI or REST API. To learn more, see [Remove a scale set](/azure/virtual-machines/capacity-reservation-remove-virtual-machine-scale-set).
+Virtual Machine Scale Set- Flex and Uniform can be removed from shared Capacity Reservation Group using Powershell, CLI, or REST API. To learn more, see [Remove a scale set](/azure/virtual-machines/capacity-reservation-remove-virtual-machine-scale-set).
 
 ## View shared Capacity Reservation Group
 
@@ -663,7 +663,7 @@ See [Get-AzCapacityReservationGroup](/powershell/module/az.compute/get-azcapacit
 
 ## View the list of Capacity Reservation Groups for a subscription
 
-The list of all Capacity Reservation Groups that are created locally or shared with by other subscriptions, can be viewed for a given subscription. Extra parameter “resourceIdsonly” needs to be passed to view the shared Capacity Reservation Groups.
+The list of all Capacity Reservation Groups that are created locally or shared with by other subscriptions, can be viewed for a given subscription. Extra parameter 'resourceIdsonly' needs to be passed to view the shared Capacity Reservation Groups.
 
 ### [API](#tab/api-6)
 
