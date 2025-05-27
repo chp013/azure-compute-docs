@@ -11,14 +11,15 @@ ms.reviewer: mattmcinnes
 ms.custom: include file
 ---
 
-HBv5-series VMs are optimized for the most memory bandwidth-intensive HPC applications. These include:
-* Computational fluid dynamics
-* Automotive and aerospace simulation
-* Weather modeling
-* Energy research
-* Molecular dynamics
-* Computer-aided engineering
-* And more
+HBv5-series VMs are optimized for the most memory bandwidth-intensive HPC applications. These include workloads such as:
+* Running computational fluid dynamics
+* Performing automotive simulations
+* Conducting aerospace simulations
+* Modeling weather systems
+* Advancing energy research
+* Simulating molecular dynamics
+* Supporting computer-aided engineering
+* And handling other demanding HPC tasks
 
 HBv5 VMs feature 6.7 TB/s of memory bandwidth across 438 GiB (450 GB) of memory (HBM), and up to 368 4th Generation AMD EPYC™ processor cores with 4 GHz max frequencies and no simultaneous multithreading. HBv5-series VMs also provide 800 Gb/s of InfiniBand connectivity from NVIDIA Networking. This enables supercomputer-scale MPI workloads. In addition, they offer 15 TiB of local NVMe SSD storage, delivering up to 50 GB/s read and 30 GB/s write performance for block devices.
 
