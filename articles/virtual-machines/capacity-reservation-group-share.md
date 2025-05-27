@@ -611,7 +611,7 @@ Vitual Machine Scale Set- Flex and Uniform can be removed from shared Capacity R
 
 Once a Capacity Reservation Group is shared successfully, the reservations are immediately available for use with single Virtual Machines and Virtual Machine Scale Sets. 
 
-You can view the subscription IDs the Capacity Reservation Group have been shared with from the sharing profile. 
+You can view the subscription IDs the Capacity Reservation Group are shared with from the sharing profile. 
 
 To learn more, see [Create a Capacity Reservation](/azure/virtual-machines/capacity-reservation-create).
 
@@ -645,25 +645,25 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 
-To learn more, please see [Capacity Reservation Group-GET](/rest/api/compute/capacity-reservation-groups/get)
+To learn more, see [Capacity Reservation Group-GET](/rest/api/compute/capacity-reservation-groups/get)
 
  
 ### [CLI](#tab/cli-5)
 
-Please see [az capacity reservation group show](/cli/azure/capacity/reservation/group).
+See [az capacity reservation group show](/cli/azure/capacity/reservation/group).
 
 
 ### [PowerShell](#tab/powershell-5)
 
 
-Please see [Get-AzCapacityReservationGroup](/powershell/module/az.compute/get-azcapacityreservationgroup).
+See [Get-AzCapacityReservationGroup](/powershell/module/az.compute/get-azcapacityreservationgroup).
 
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
 
 ## View the list of Capacity Reservation Groups for a subscription
 
-The list of all Capacity Reservation Groups that have been created locally or shared with by other subscriptions, can be viewed for a given subscription. Extra parameter “resourceIdsonly” needs to be passed to view the shared Capacity Reservation Groups.
+The list of all Capacity Reservation Groups that are created locally or shared with by other subscriptions, can be viewed for a given subscription. Extra parameter “resourceIdsonly” needs to be passed to view the shared Capacity Reservation Groups.
 
 ### [API](#tab/api-6)
 
