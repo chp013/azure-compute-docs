@@ -15,7 +15,7 @@ ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs :heavy_check_mark: Uniform scale set :heavy_check_mark: Flexible scale sets
 
 > [!IMPORTANT]
-> Please note, the feature is curently in **Preview**, see the [Preview Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability. 
+> This feature is currently in **Preview**, see the [Preview Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability. 
 
 On-demand Capacity Reservation Group can be shared with other subscriptions. Using this option can make it easier to manage some common configuration needs: 
 
