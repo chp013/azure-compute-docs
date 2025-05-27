@@ -607,6 +607,11 @@
             href: ./sizes/high-performance-compute/hbv4-series.md
           - name: Performance
             href: hbv4-performance.md
+        - name: HBv5 series
+          items:
+          - name: HBv5 series
+            href: ./sizes/high-performance-compute/hbv5-series.md
+         
       - name: HC family
         items:
         - name: HC series
