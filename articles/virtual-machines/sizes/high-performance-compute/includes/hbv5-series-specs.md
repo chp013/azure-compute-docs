@@ -1,0 +1,22 @@
+---
+title: HBv5 series specs include
+description: Include file containing specifications of HBv5-series VM sizes.
+author: mattmcinnes
+ms.topic: include
+ms.service: azure-virtual-machines
+ms.subservice: sizes
+ms.date: 05/27/2025
+ms.author: padmalathas
+ms.reviewer: mattmcinnes
+ms.custom: include file
+---
+
+| Part | Quantity <br><sup>Count Units | Specs <br><sup>SKU ID, Performance Units, etc.  |
+|---|---|---|
+| Processor      | 48 - 368 vCPUs     | 4th Generation AMD EPYC [x86-64] |
+| L3 Cache       | 1.5 GB       |    |
+| Memory         | 450 GB        | 6.7 TB/s   |
+| Local Storage  | 1 Temp Disk <br>8 NVMe Disks         |  960 GiB <br>15 TiB  |
+| Remote Storage | 32 Disks        |  |
+| Network        | 8 vNICs <br> 2 InfiniBand NDR NIC       | 180 Gb/s <br> 800 Gb/s |
+| Accelerators   | None            |     |
