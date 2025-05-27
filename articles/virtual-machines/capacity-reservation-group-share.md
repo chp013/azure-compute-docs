@@ -117,17 +117,17 @@ Limitations for Public Preview:
 - Reprovisioning of Virtual Machine Scale Set VMs using a shared Capacity Reservation Group is not supported during a zone outage
 - Azure Kubernetes Service does not currently support deployment to a shared Capacity Reservation Group. 
 
-# Share a Capacity Reservation Group: 
+## Share a Capacity Reservation Group: 
 
 To share a Capacity Reservation Group, Subscriptions can be added in the sharing profile of new or existing Capacity Reservation Group by the Subscription which created the Capacity Reservation Group. Once shared, the subscriptions which are part of the sharing profile can deploy Virtual Machines or Virtual Machine Scale Sets in the shared Capacity Reservation Group. 
 
 The Capacity Reservation Group can be shared with subscriptions who are in the same or different Entra ID of the subscription who creates the Capacity Reservation Group. 
 
-## Add sharing profile on CRG creation
+### Add sharing profile on CRG creation
 
 To share a Capacity Reservation Group on creation, Subscriptions can be added in the sharing profile of new or existing Capacity Reservation Group by the Subscription which created the Capacity Reservation Group. Once shared, the subscriptions which are part of the sharing profile can deploy Virtual Machines or Virtual Machine Scale Sets in the shared Capacity Reservation Group. 
 
-### [API](#tab/api-1)
+#### [API](#tab/api-1)
 
 To create a Capacity Reservation group, construct the following PUT request on Microsoft.Compute provider: 
 
@@ -164,7 +164,7 @@ This example is to create shared CRG in zone 1 of Region West US.
 To learn more, see [Capacity Reservation Groups - Create Or Update](/rest/api/compute/capacity-reservation-groups/create-or-update)
 
  
-### [CLI](#tab/cli-1)
+#### [CLI](#tab/cli-1)
 
 Create a Capacity Reservation group with sharing profile using `az capacity reservation group create`. 
 
@@ -180,7 +180,7 @@ The following example creates a shared capacity reservation group in the West Eu
 To learn more, go to Azure PowerShell command [AzCapacityReservation](/cli/azure/capacity/reservation/group)
 
 
-### [PowerShell](#tab/powershell-1)
+#### [PowerShell](#tab/powershell-1)
 
 Create a shared Capacity Reservation group with `New-AzCapacityReservationGroup`. The following example creates a shared Capacity Reservation group in the East US location. 
 
@@ -197,7 +197,7 @@ To learn more, see Azure PowerShell command [New-AzCapacityReservation](/powersh
 To learn more on how to create a Capacity Reservation, see [Create a Capacity Reservation in Azure](capacity-reservation-create.md)
 
 
-### [ARM Template](#tab/armtemplatesample-1)
+#### [ARM Template](#tab/armtemplatesample-1)
 
 An [ARM template](/azure/azure-resource-manager/templates/overview) is a JavaScript Object Notation (JSON) file that defines the infrastructure and configuration for your project. The template uses declarative syntax. In declarative syntax, you describe your intended deployment without writing the sequence of programming commands to create the deployment. 
 
@@ -582,7 +582,7 @@ To check the Physical Zone and Logical Zone mapping for your subscription:
 - Execute “Run”
 - Check the logical to physical zone mapping information in the JSON returned 
 
-For more information, please refer to https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview?tabs=azure-cli#physical-and-logical-availability-zones.
+For more information, refer to [Physical and Logical availability zones](/azure/reliability/availability-zones-overview?tabs=azure-cli#physical-and-logical-availability-zones).
 
 ### Use of Reserved Instances with shared Capacity Reservation Groups 
 
