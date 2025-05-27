@@ -344,7 +344,7 @@ Once unsharing happens, any virtual machine or virtual machine scale set previou
 
 ### Unsharing a Capacity Reservation Group with a subscription
 
-To un-share a capacity Reservation Group with a subscription from Sharing profile, the subscription has to be removed from sharing profile. 
+To unshare a capacity Reservation Group with a subscription from Sharing profile, the subscription has to be removed from sharing profile. 
 
 Consider an example where a Capacity Reservation Group was shared with Subscription ID 1, Subscription ID 2, and Subscription ID 3. The goal is to remove Subscription ID 3 only from the sharing profile. 
 When updating the sharing profile of the Capacity Reservation Group, only Subscription ID 3 must be removed and not Subscription ID 1 and Subscription ID 2.
@@ -425,7 +425,7 @@ To learn more, see [Update-AzCapacityReservation](/powershell/module/az.compute/
 
 ### Unsharing a Capacity Reservation Group with all subscriptions
 
-To un-share a Capacity Reservation Group with all subscriptions, remove all subscriptions from the sharing profile. 
+To unshare a Capacity Reservation Group with all subscriptions, remove all subscriptions from the sharing profile. 
 
 #### [API](#tab/api-4)
 
@@ -549,7 +549,6 @@ See [Modify a capacity reservation](/azure/virtual-machines/capacity-reservation
 Once the Capacity Reservation Group is successfully shared, users with sufficient rights from shared subscription can deploy Virtual Machines or Virtual Machine Scale Set in shared Capacity Reservation Group.
 
 > [!NOTE]
-
 > The subscription deploying the shared CRG will need to hold their own quota for deploying the CRG. Subscription making a deployment in the shared reservation will need to hold its own quota
 
 
