@@ -36,7 +36,7 @@ On-demand Capacity Reservation Group can be shared with other subscriptions. Usi
 Sharing a Capacity Reservation Group with other subscriptions requires configuration of rights to share the CRG to a target subscription and then rights in the target subscription to see and use a shared CRG. Once completed, a user in the target subscription can reference the shared Capacity Reservation Group in a VM or VMSS deployment to obtain Capacity Reservation SLAs.
 
 > [!NOTE]
-> There are no additional charges for using the shared Capacity Reservation Group feature. Unused reservations are charged to the subscription that owns the reservation and any VM usage is charged to the subscription that uses the capacity as it does today. For details on how RI applies to the feature, please refer to the “Use of Reserved Instances with shared Capacity Reservation Groups” section below.
+> There are no additional charges for using the shared Capacity Reservation Group feature. Unused reservations are charged to the subscription that owns the reservation and any VM usage is charged to the subscription that uses the capacity as it does today. For details on how RI applies to the feature, please refer to the [Use of Reserved Instances with shared Capacity Reservation Groups](#use-of-reserved-instances-with-shared-capacity-reservation-groups) section below.
 
 Example: 
 
@@ -560,16 +560,17 @@ For example, subscription A and subscription B can have different logical mappin
 Consider the example below: 
 
 If Sub A deploys to AZ1, the deployment goes to physical zone 1. But if Sub B deploys to AZ1, the deployment goes to physical zone 2:
-(insert diagram)
+:::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-b-mapping.png" alt-text="A screenshot showing subscription A and subscription B having different physical to logical zone mapping.":::
 
 Now consider a Capacity Reservation deployed by Subscription A to logical AZ1. The result is reserved capacity in physical zone 1.  
-(insert diagram)
+:::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-reservation.png" alt-text="A screenshot showing subscription A creating a capacity reservation in logical zone 1.":::
 
 If Subscription B deployed a VM to logical AZ1 using the shared Capacity Reservation Group, the deployment would fail because Sub B AZ1 resolves to physical zone 2. And there is no reserved capacity in physical zone 2. 
-(insert diagram)
+:::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-b-not-aligned.png" alt-text="A screenshot showing subscription A capacity reservation and subscription B VM are in two differnt logical zones resulting in failure.":::
+
 
 The solution is to reconcile the logical to physical mappings for Subscription A and Subscription B. Which shows Subscription B should deploy to AZ2 to access reserved capacity in physical zone 1. 
-(insert diagram)
+:::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-b-aligned.png" alt-text="A screenshot showing subscription A capacity reservation and subscription B VM are in same logical zones resulting in success.":::
 
 When using a shared Capacity Reservation Group with zones, all subscriptions have the logical view of availability zones from the CRG subscription which is likely different than the logical view of availability zones from the target subscription. When deploying a VM or VMSS to a shared CRG, the user must remap the zones. To ensure that the Azure resources are efficiently distributed across Availability zones in a Region, each subscription has independent logical zone mapping for Availability zones. This means that logical to physical zone mapping may or may not be the same across subscriptions. 
 
