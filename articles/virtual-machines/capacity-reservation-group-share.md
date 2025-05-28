@@ -19,7 +19,7 @@ ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell
 
 On-demand Capacity Reservation Group (CRG) can be shared with other subscriptions. Using this option can make it easier to manage some common configuration needs: 
 
-1. Reuse of capacity reserved if there is disaster recovery –  customers often want assurance of capacity in another region or zone if their main region or zones become unavailable. On-demand capacity reservation is the primary method to gain such assurance. Now the reserved capacity can be shared with subscriptions hosting less critical workloads such as development and testing or batch. When the capacity is not needed for disaster recovery, reuse by less critical workloads saves on total capacity costs and drives more value from the reserved capacity. 
+1. Reuse of capacity reserved if there's disaster recovery –  customers often want assurance of capacity in another region or zone if their main region or zones become unavailable. On-demand capacity reservation is the primary method to gain such assurance. Now the reserved capacity can be shared with subscriptions hosting less critical workloads such as development and testing or batch. When the capacity isn't needed for disaster recovery, reuse by less critical workloads saves on total capacity costs and drives more value from the reserved capacity. 
 
 
 2. Central management of capacity – a central operations team often administers quota requests and term commitments as part of cost management. Now reserved capacity needs can be assessed and managed more centrally to align all three aspects of capacity cost management. 
@@ -83,7 +83,7 @@ The specific access rights are:
   :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-deploy-vm-shared.png" alt-text="A screenshot showing subscription B deploying Virtual Machine in the shared Capacity Reservation Group.":::
 
 
-User 'B' was not granted write permissions to CRG X. User 'B' is not allowed to create more reservations in Capacity Reservation Group X, change reserved quantities, or make any other changes to the definition of Capacity Reservation Group X. 
+User 'B' wasn't granted write permissions to CRG X. User 'B' isn't allowed to create more reservations in Capacity Reservation Group X, change reserved quantities, or make any other changes to the definition of Capacity Reservation Group X. 
 
 ## Usage patterns: 
 
@@ -105,15 +105,15 @@ The subscription sharing a Capacity Reservation Group can allow:
 ## Limitations of sharing a Capacity Reservation Group
 
 Limitations by design:
-- Sharing works with an explicit list of target subscriptions. Azure does not support wildcard or tenant level sharing
+- Sharing works with an explicit list of target subscriptions. Azure doesn't support wildcard or tenant level sharing
 - A CRG can be shared with a maximum of 100 subscriptions
-- Sharing is per Capacity Reservation Group which grants access to all member Capacity Reservations. Individual Capacity Reservations cannot be shared. To isolate specific Capacity Reservations, create multiple Capacity Reservation Groups and share only those CRs that contain shared capacity. 
-- By default, Capacity Reservation Group administrators in the subscription owning a Capacity Reservation Group cannot modify VM instances deployed by other subscriptions. If such VM access is desired such as to force VM deallocation, more rights to VMs on the shared subscriptions must be granted separately. 
+- Sharing is per Capacity Reservation Group which grants access to all member Capacity Reservations. Individual Capacity Reservations can't be shared. To isolate specific Capacity Reservations, create multiple Capacity Reservation Groups and share only those CRs that contain shared capacity. 
+- By default, Capacity Reservation Group administrators in the subscription owning a Capacity Reservation Group can't modify VM instances deployed by other subscriptions. If such VM access is desired such as to force VM deallocation, more rights to VMs on the shared subscriptions must be granted separately. 
   
 Limitations for Public Preview:
-- Portal support is not yet available; API and other Azure clients are available.  
-- Reprovisioning of Virtual Machine Scale Set VMs using a shared Capacity Reservation Group is not supported during a zone outage
-- Azure Kubernetes Service does not currently support deployment to a shared Capacity Reservation Group. 
+- Portal support isn't yet available; API and other Azure clients are available.  
+- Reprovisioning of Virtual Machine Scale Set VMs using a shared Capacity Reservation Group isn't supported during a zone outage
+- Azure Kubernetes Service doesn't currently support deployment to a shared Capacity Reservation Group. 
 
 ## Share a Capacity Reservation Group: 
 
@@ -536,7 +536,7 @@ To learn more, see [Update-AzCapacityReservation](/powershell/module/az.compute/
 ## Deletion of shared Capacity Reservation Group
 
 - Users with sufficient rights only within the subscription creating the shared Capacity Reservation Group can delete the Capacity Reservation Group
-- Users from shared subscriptions cannot delete the shared Capacity Reservation Group
+- Users from shared subscriptions can't delete the shared Capacity Reservation Group
 - Azure allows a capacity reservation group to be deleted when all the member capacity reservations are deleted
 - Azure allows a capacity reservation to be deleted when no VMs are associated to the CR
 - Unsharing of CRG with shared subscription happens as part of shared Capacity Reservation Group deletion process
@@ -564,7 +564,7 @@ If Sub A deploys to AZ1, the deployment goes to physical zone 1. But if Sub B de
 Now consider a Capacity Reservation deployed by Subscription A to logical AZ1. The result is reserved capacity in physical zone 1.  
 :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-reservation.png" alt-text="A screenshot showing subscription A creating a capacity reservation in logical zone 1.":::
 
-If Subscription B deployed a VM to logical AZ1 using the shared Capacity Reservation Group, the deployment would fail because Sub B AZ1 resolves to physical zone 2. And there is no reserved capacity in physical zone 2. 
+If Subscription B deployed a VM to logical AZ1 using the shared Capacity Reservation Group, the deployment would fail because Sub B AZ1 resolves to physical zone 2. And there's no reserved capacity in physical zone 2. 
 :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-b-not-aligned.png" alt-text="A screenshot showing subscription A capacity reservation and subscription B VM are in two different logical zones resulting in failure.":::
 
 
@@ -585,7 +585,7 @@ For more information, see [Physical and Logical availability zones](/azure/relia
 
 ### Use of Reserved Instances with shared Capacity Reservation Groups 
 
-Sharing a Capacity Reservation Group does not alter the scope of any Reserved Instances or Savings Plans. If either the CRG or the VM is deployed from a scope not covered by prepaid discounts, the pay-as-you-go price is charged. 
+Sharing a Capacity Reservation Group doesn't alter the scope of any Reserved Instances or Savings Plans. If either the CRG or the VM is deployed from a scope not covered by prepaid discounts, the pay-as-you-go price is charged. 
 
 To share Reserved Instance discounts between a Capacity Reservation Group and VMs deployed from another subscription, the CRG subscription and the VM subscription must share the same RI scope. If the two subscriptions share an enrollment or a management group, then Reserved Instances set to the corresponding scope works automatically. 
 
