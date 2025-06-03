@@ -5,7 +5,7 @@ author: ju-shim
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.custom:
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/12/2023
 ms.author: jushiman
 ---

@@ -4,7 +4,7 @@ description: Information on and specifications of the Esv6-series sizes
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/01/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
@@ -39,7 +39,7 @@ vCPUs (Qty.) and Memory for each size
 | Standard_E64s_v6 | 64 | 512 |
 | Standard_E96s_v6 | 96 | 768 |
 | Standard_E128s_v6 | 128 | 1024 |
-| Standard_E192is_v6 | 128 | 1832 |
+| Standard_E192is_v6 | 192 | 1832 |
 
 > [!NOTE]
 > - The E128 and E192i sizes will be available later in GA

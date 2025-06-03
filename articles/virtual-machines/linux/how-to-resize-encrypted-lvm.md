@@ -1,5 +1,5 @@
 ---
-title: How to resize disks encrypted using Azure Disk Encryption
+title: How to resize disks encrypted using Azure Disk Encryption (Traditional LVM)
 description: This article provides instructions for resizing ADE encrypted disks by using logical volume management.
 author: jofrance
 ms.service: azure-virtual-machines
@@ -7,10 +7,10 @@ ms.subservice: disks
 ms.custom: linux-related-content
 ms.topic: how-to
 ms.author: jofrance
-ms.date: 11/18/2024
+ms.date: 06/03/2025
 ---
 
-# How to resize logical volume management devices that use Azure Disk Encryption
+# How to resize logical volume management devices that use Azure Disk Encryption (Traditional LVM)
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 
@@ -42,14 +42,9 @@ This article assumes that you have:
 
 The procedures in this article apply to the following scenarios:
 
-- Traditional LVM and LVM-on-crypt configurations
+- Traditional LVM configurations
 - Traditional LVM encryption
-- LVM-on-crypt
 - Data disks only. OS disk resizing is not supported.
-
-### Traditional LVM and LVM-on-crypt configurations
-
-Traditional LVM and LVM-on-crypt configurations extend a logical volume (LV) when the volume group (VG) has available space.
 
 ### Traditional LVM encryption
 
@@ -57,17 +52,10 @@ In traditional LVM encryption, LVs are encrypted. The whole disk isn't encrypted
 
 By using traditional LVM encryption, you can:
 
+- Extend a logical volume (LV) when the volume group (VG) has available space.
 - Extend the LV when you add a new physical volume (PV).
 - Extend the LV when you resize an existing PV.
 
-### LVM-on-crypt
-
-The recommended method for disk encryption is LVM-on-encrypt. This method encrypts the entire disk, not just the LV.
-
-By using LVM-on-crypt, you can:
-
-- Extend the LV when you add a new PV.
-- Extend the LV when you resize an existing PV.
 
 > [!NOTE]
 > We don't recommend mixing traditional LVM encryption and LVM-on-crypt on the same VM.
@@ -453,6 +441,8 @@ Im some scenarios, your limitations might require you to resize an existing disk
     ```
 
     :::image type="content" source="./media/disk-encryption/resize-lvm/032-resize-lvm-scenarioc-check-df3.png" alt-text="Screenshot showing the code that checks the size of the file system with the result highlighted.":::
+
+----
 
 #### Extend an LVM-on-crypt volume by adding a new PV
 

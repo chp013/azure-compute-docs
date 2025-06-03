@@ -1,7 +1,7 @@
 ---
 title: Security considerations for container instances
 description: Recommendations to secure images and secrets for Azure Container Instances, and general security considerations for any container platform
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
@@ -18,8 +18,6 @@ This article introduces security considerations for using Azure Container Instan
 > * **Considerations for the container ecosystem** throughout the container lifecycle, for any container platform
 
 For comprehensive recommendations that help you improve the security posture of your deployment, see the [Azure security baseline for Container Instances](security-baseline.md).
-
-Azure Container Instances provides Hyper-v level isolation for your container groups, for more on that see [Hypervisor-level security](/azure/container-instances/container-instances-overview#hypervisor-level-security).
 
 ## Security recommendations for Azure Container Instances
 

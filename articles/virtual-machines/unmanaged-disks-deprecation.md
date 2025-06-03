@@ -3,7 +3,7 @@ title: We're retiring Azure unmanaged disks by September 30, 2025
 description: This article provides a high-level overview of the retirement of Azure unmanaged disks and how to migrate to Azure managed disks.
 author: roygara
 ms.service: azure-disk-storage
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 06/28/2023
 ms.author: rogarana
 ---

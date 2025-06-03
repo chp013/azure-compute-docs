@@ -5,7 +5,7 @@ author: mingjiongz
 ms.author: zhangjay
 ms.reviewer: mattmcinnes
 ms.service: azure-virtual-machines
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/11/2024
 ---
 

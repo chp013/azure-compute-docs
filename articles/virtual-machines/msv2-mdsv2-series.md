@@ -4,7 +4,7 @@ description: Specifications for the Msv2-series VMs.
 author: ju-shim
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/20/2022
 ms.author: jushiman
 ---

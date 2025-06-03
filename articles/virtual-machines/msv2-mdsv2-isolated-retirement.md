@@ -4,7 +4,7 @@ description: Migration guide for sizes
 author:      iamwilliew # GitHub alias
 ms.author: wwilliams
 ms.service: azure-virtual-machines
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date:     01/10/2024
 ms.subservice: sizes
 ---

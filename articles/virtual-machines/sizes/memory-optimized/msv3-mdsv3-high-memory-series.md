@@ -8,7 +8,7 @@ description: Overview of Msv3 and Mdsv3 High Memory virtual machines
 author: leebanhassen
 ms.author: leebanhassen
 ms.service: virtual-machines-windows
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date:  10/15/2024
 ---
 

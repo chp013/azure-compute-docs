@@ -4,7 +4,7 @@ description: Information on and specifications of the Ddv4-series sizes
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 07/29/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
@@ -54,7 +54,7 @@ Local (temp) storage info for each size
 
 | Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Temp Disk Random Read (RR)<sup>1</sup> IOPS | Temp Disk Random Read (RR)<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- |
-| Standard_D2d_v41 | 1 | 75 | 9000 | 125 |
+| Standard_D2d_v4 | 1 | 75 | 9000 | 125 |
 | Standard_D4d_v4 | 1 | 150 | 19000 | 250 |
 | Standard_D8d_v4 | 1 | 300 | 38000 | 500 |
 | Standard_D16d_v4 | 1 | 600 | 75000 | 1000 |
@@ -79,7 +79,7 @@ Remote (uncached) storage info for each size
 
 | Size Name | Max Remote Storage Disks (Qty.) | Uncached Premium SSD Disk IOPS | Uncached Premium SSD Throughput (MB/s) | Uncached Premium SSD Burst<sup>1</sup> IOPS | Uncached Premium SSD Burst<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- | --- |
-| Standard_D2d_v41 | 4 | 3200 | 48 | 4000 | 200 |
+| Standard_D2d_v4 | 4 | 3200 | 48 | 4000 | 200 |
 | Standard_D4d_v4 | 8 | 6400 | 96 | 8000 | 200 |
 | Standard_D8d_v4 | 16 | 12800 | 192 | 16000 | 400 |
 | Standard_D16d_v4 | 32 | 25600 | 384 | 32000 | 800 |
@@ -107,7 +107,7 @@ Network interface info for each size
 
 | Size Name | Max NICs (Qty.) | Max Network Bandwidth (Mb/s) |
 | --- | --- | --- |
-| Standard_D2d_v41 | 2 | 5000 |
+| Standard_D2d_v4 | 2 | 5000 |
 | Standard_D4d_v4 | 2 | 10000 |
 | Standard_D8d_v4 | 4 | 12500 |
 | Standard_D16d_v4 | 8 | 12500 |

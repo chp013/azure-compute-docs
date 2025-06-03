@@ -37,7 +37,7 @@ Azure Container Instances also supports executing a command in a running contain
 
 ### Hypervisor-level security
 
-Historically, containers offered application dependency isolation and resource governance but were insufficiently hardened for hostile multitenant usage. Azure Container Instances guarantees your application is as isolated in a container as it would be in a VM. Learn more about [Hypervisor security on the Azure Fleet](/azure/security/fundamentals/hypervisor).
+Historically, containers offered application dependency isolation and resource governance but were insufficiently hardened for hostile multitenant usage. Azure Container Instances guarantees your application is as isolated in a container as it would be in a VM.
 
 ### Customer data
 
