@@ -17,7 +17,9 @@ Users that are more familiar how their workload uses metadata services can harde
 
 ### Register the feature flags
 
-To use MSP in preview, register the following flag using the `az feature register` command.
+You can register to use the MSP feature via Azure portal by first searching "Preview Features" in the search bar, followed by "Metadata Security Protocol" in the "Filter by Name" search bar. You can also register using CLI:
+
+To use MSP in Public Preview, register the following flag using the `az feature register` command.
 
 ```azurecli-interactive
 az feature register --namespace Microsoft.Compute --name ProxyAgentPreview
@@ -38,7 +40,7 @@ Once you are registered in the feature flag you can configure MSP via:
 
 - [ARM Templates](./other-examples/arm-templates.md)
 - REST API 
-- PowerShell
+- [CLI](./other-examples/cli.md)
 - [Azure portal](./other-examples/portal.md)
 
 

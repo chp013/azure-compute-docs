@@ -73,6 +73,20 @@ A simple rules schema would look like:
     - Host Endpoint type (Wireserver or IMDS)
 1. Create a specific version
 
+Templates for the above:
+
+1. Create gallery template: [CreateGalleryTemplate.json](../samples/create-sig/CreateGalleryTemplate-d408ae07-7bcc-4a7b-bd37-3b194cff81d5.json)
+2. InVMAccessControlProfile definition template: [CreateInVMAccessControlProfileTemplate.json](../samples/create-sig/CreateInVMAccessControlProfileTemplate-0239e5dc-9074-45d2-a845-2fd4225d9c69.json)
+3. InVMAccessControlProfile version template: [CreateInVMAccessControlProfileVersionTemplate.json](../samples/create-sig/CreateInVMAccessControlProfileVersionTemplate-b9a2aa55-49ce-4443-8db3-4ef9e9d867d9.json)
+
+Parameter Files:
+
+- Windows Wireserver: [InVMAccessControlProfileParameter-WindowsWireServer.json](../samples/create-sig/InVMAccessControlProfileParameter-WindowsWireServer-6df07a8f-a789-4137-8a93-23e4e3379777.json)
+- Windows IMDS: [InVMAccessControlProfileParameter-WindowsIMDS.json](../samples/create-sig/InVMAccessControlProfileParameter-WindowsIMDS-3174ebb2-a67b-48b9-8f15-e9f7793e987d.json)
+- Linux Wireserver:[InVMAccessControlProfileParameter-LinuxWireServer.json](../samples/create-sig/InVMAccessControlProfileParameter-LinuxWireServer-9e269e26-6256-4b60-a9e5-7486d815f499.json)
+- Linux IMDS: [InVMAccessControlProfileParameter-LinuxIMDS.json](../samples/create-sig/InVMAccessControlProfileParameter-LinuxIMDS-9526e42b-5f89-4d88-a066-0efd10b05fa7.json)
+
+
 ## Sample InVMAccessControlProfile
 
 ```

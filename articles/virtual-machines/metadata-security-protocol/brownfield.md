@@ -26,6 +26,8 @@ See [examples](./other-examples/portal.md).
 
 ### With ARM template
 
+See [examples](./other-examples/arm-templates.md)
+
 ### With REST API
 
 Enable with both services protected in `Audit` mode:
