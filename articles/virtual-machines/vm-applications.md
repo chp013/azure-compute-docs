@@ -26,7 +26,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 
 ## Key Benefits: 
 - **Centralized and Flexible Application Management**: 
-  - Package Once, Deploy Anywhere: Package applications in ZIP, MSI (Microsoft Package Installed), or EXE formats and manage them centrally in Azure Compute Gallery.
+  - Package Once, Deploy Anywhere: Package windows & linux applications & scripts in .zip, .msi (Microsoft Package Installed), .exe, .tar.gz, .deb, .rpm, or .sh formats and manage them centrally in Azure Compute Gallery.
   - Version Control: Deploy either the latest or a specific version by maintaining multiple versions of each application. 
 - **Seamless Sharing and Access Control**
   - Tenant-Wide Sharing: Share applications within teams or across your entire organization (tenant).
@@ -46,7 +46,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
   - Block Blob Support: Efficiently handle large application packages (upto 2 GB) using Azure Block Blobs for chunked uploads and background streaming.
 
 
-## VM Applications & VM Applications version resource
+## Create VM Applications & VM Applications version resource
 
 The VM application resource defines the following about your VM application:
 - Azure Compute Gallery where the VM application is stored
@@ -240,6 +240,166 @@ VM application versions are the deployable resource. Versions are defined with t
 ```
 ---
 
+## Deploy Azure VM Applications
+After the VM Application and VM Application version is published to Azure Compute Gallery, you can deploy the version across Azure Virtual Machines (VM) and Azure Virtual Machine Scale Sets (VMSS). 
+
+The applicationProfile in Azure VM and VMSS defines the following:
+- galleryApplications: Gallery Applications to deploy
+- packageReferenceId: Reference to application version to deploy 
+- order: Order in which to deploy applications
+- treatFailureAsDeploymentFailure: Mark application failure as VM deployment failure for failure handling
+
+#### [Deploy on VMSS](#tab/VMSS)
+```json
+
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmssName": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "subscriptionId": {
+      "type": "string"
+    },
+    "resourceGroupName": {
+      "type": "string"
+    },
+    "galleryName": {
+      "type": "string"
+    },
+    "applicationName1": {
+      "type": "string"
+    },
+    "applicationVersion1": {
+      "type": "string",
+      "defaultValue": "latest"
+    },
+    "configurationReference1": {
+      "type": "string",
+      "metadata": {
+        "description": "Optional path to configuration file from Storage Account. Overrides default configuration file."
+      }
+    },
+    "applicationName2": {
+      "type": "string"
+    },
+    "applicationVersion2": {
+      "type": "string",
+      "defaultValue": "latest"
+    }
+  },
+  "variables": {
+    "packageReferenceId1": "[format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/galleries/{2}/applications/{3}/versions/{4}', parameters('subscriptionId'), parameters('resourceGroupName'), parameters('galleryName'), parameters('applicationName1'), parameters('applicationVersion1'))]",
+    "packageReferenceId2": "[format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/galleries/{2}/applications/{3}/versions/{4}', parameters('subscriptionId'), parameters('resourceGroupName'), parameters('galleryName'), parameters('applicationName2'), parameters('applicationVersion2'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachineScaleSets",
+      "apiVersion": "2024-03-03",
+      "name": "[parameters('vmssName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "virtualMachineProfile": {
+          "applicationProfile": {
+            "galleryApplications": [
+              {
+                "order": 1,
+                "packageReferenceId": "[variables('packageReferenceId1')]",
+                "configurationReference": "[parameters('configurationReference1')]",
+                "treatFailureAsDeploymentFailure": true
+              },
+              {
+                "order": 2,
+                "packageReferenceId": "[variables('packageReferenceId2')]",
+                "treatFailureAsDeploymentFailure": false
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+#### [Deploy on VM](#tab/VM)
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "subscriptionId": {
+      "type": "string"
+    },
+    "resourceGroupName": {
+      "type": "string"
+    },
+    "galleryName": {
+      "type": "string"
+    },
+    "applicationName1": {
+      "type": "string"
+    },
+    "applicationVersion1": {
+      "type": "string",
+      "defaultValue": "latest"
+    },
+    "configurationReference1": {
+      "type": "string",
+      "metadata": {
+        "description": "Optional path to configuration blob for application 1"
+      }
+    },
+    "applicationName2": {
+      "type": "string"
+    },
+    "applicationVersion2": {
+      "type": "string",
+      "defaultValue": "latest"
+    }
+  },
+ packageReferenceId1": "[format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/galleries/{2}/applications/{3}/versions/{4}', parameters('subscriptionId'), parameters('resourceGroupName'), parameters('galleryName'), parameters('applicationName1'), parameters('applicationVersion1'))]",
+    "packageReferenceId2": "[format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Compute/galleries/{2}/applications/{3}/versions/{4}', parameters('subscriptionId'), parameters('resourceGroupName'), parameters('galleryName'), parameters('applicationName2'), parameters('applicationVersion2'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2024-03-03",
+      "name": "[parameters('vmName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "applicationProfile": {
+          "galleryApplications": [
+            {
+              "order": 1,
+              "packageReferenceId": "[variables('packageReferenceId1')]",
+              "configurationReference": "[parameters('configurationReference1')]",
+              "treatFailureAsDeploymentFailure": true
+            },
+            {
+              "order": 2,
+              "packageReferenceId": "[variables('packageReferenceId2')]",
+              "treatFailureAsDeploymentFailure": false
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+---
+
 ## Cost
 
 There's no extra charge for using VM Application Packages, but you're charged for the following resources:
@@ -317,7 +477,7 @@ Update commands should be written with the expectation that it could be updating
 
 The VM Application extension always returns a *success* regardless of whether any VM app failed while being installed/updated/removed. The VM Application extension only reports the extension status as failure when there's a problem with the extension or the underlying infrastructure. This behavior is triggered by the "treat failure as deployment failure" flag, which is set to `$false` by default and can be changed to `$true`. The failure flag can be configured in [PowerShell](/powershell/module/az.compute/add-azvmgalleryapplication#parameters) or [CLI](/cli/azure/vm/application#az-vm-application-set).
 
-## Creating VM Applications on Linux
+## Package and Install VM Applications on Linux
 To create a VM Application, you need application package and scripts to properly install, update, and delete the application.  
 Third party applications for Linux can be packaged in a few ways. Let's explore how to handle creating the install commands for some of the most common.
 
