@@ -15,7 +15,7 @@ Metadata Security Protocol (MSP) offers customization to maximally restrict meta
 
 Users that are more familiar how their workload uses metadata services can harden access further by following the [Advanced Configuration guide](./advanced-configuration.md).
 
-### Register the feature flags
+## Register the feature flags
 
 You can register to use the MSP feature via Azure portal by first searching "Preview Features" in the search bar, followed by "Metadata Security Protocol" in the "Filter by Name" search bar. You can also register using CLI:
 
@@ -157,7 +157,7 @@ The `inVMAccessControlProfiles` resource type defines a per-service configuratio
 ```
 
 
-## Getting Audit Logs
+## Get Audit Logs
 
 In `Audit` and `Enforce` modes, audit logs are generated on the local disk.
 
