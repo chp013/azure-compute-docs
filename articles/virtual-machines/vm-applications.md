@@ -50,23 +50,23 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 
 The VM application resource defines the following about your VM application:
 - Azure Compute Gallery where the VM application is stored
-- Name of the application
-- Supported OS type like Linux or Windows
-- A description of the VM application
+- name: Name of the application
+- supportedOSType: Supported OS type like Linux or Windows
+- description: A description of the VM application
+- eula: Link to End User License Agreement
 
 VM application versions are the deployable resource. Versions are defined with the following properties:
-- Version number
-- Link to the application package file in a storage account
-- Install string to properly install the application
-- Remove string to properly remove the application
-- Update string to properly update the VM application to a newer version
-- Package file name to use when the package is downloaded to the VM.
-- Configuration file name to be used to configure the application on the VM
-- A link to the configuration file for the VM application, which you can include license files
-- End-of-life date. End-of-life dates are informational; you're still able to deploy VM Application versions past the end-of-life date.
-- Exclude from latest. You can keep a version from being used as the latest version of the application.
-- Target regions for replication
-- Replica count per region
+- mediaLink: Link to the application package file in a storage account
+- defaultConfigurationLink: A link to the configuration file for the VM application, where you can include license files
+- install: Install script as string to properly install the application
+- remove: Remove script as string to properly remove the application
+- update: Update script as string to properly update the VM application to a newer version
+- packageFileName: Package file name to use when the package is downloaded to the VM.
+- configFileName: Configuration file name to be use when the configuration is downloaded to the VM.
+- targetRegions: Target regions for replication. Improves resiliency to region failure and create latency.
+- regionalReplica: Number of replicas per region distributed across zones. Improves resiliency to region or cluster failure and create latency during high scale.
+- excludeFromLatest: Exclude version from being used as the latest version of the application when 'latest' keyword is used in applicationProfile.
+- endOfLifeDate: End-of-life dates are informational; VM Application version can be deployed past the end-of-life date.
 
 #### [Template](#tab/template)
 ```json
@@ -96,7 +96,10 @@ VM application versions are the deployable resource. Versions are defined with t
       "allowedValues": ["Windows", "Linux"]
     },
     "endOfLifeDate": {
-      "type": "string"
+      "type": "string",
+      "metadata": {
+        "description": "Optional. This property is for information only and doesn't block app deployment."
+      }
     },
     "description": {
       "type": "string",
@@ -241,7 +244,7 @@ VM application versions are the deployable resource. Versions are defined with t
 ---
 
 ## Deploy Azure VM Applications
-After the VM Application and VM Application version is published to Azure Compute Gallery, you can deploy the version across Azure Virtual Machines (VM) and Azure Virtual Machine Scale Sets (VMSS). 
+After the VM Application version is published to Azure Compute Gallery, you can deploy the version across Azure Virtual Machines (VM) and Azure Virtual Machine Scale Sets (VMSS). 
 
 The applicationProfile in Azure VM and VMSS defines the following:
 - galleryApplications: Gallery Applications to deploy
@@ -443,7 +446,7 @@ The install/update/remove commands should be written assuming the application pa
 
 ### File naming
 
-When the application file gets downloaded to the VM, the file is renamed as "MyVmApp" and has no file extension (E.g. .exe, .msi). The VM is unaware of the file's original name and extension . 
+When the application file gets downloaded to the VM, the file is renamed as "MyVmApp" and has no file extension (E.g. .exe, .msi). The VM is unaware of the file's original name and extension. 
 
 Here are a few alternatives to navigate this issue:
 
@@ -456,7 +459,7 @@ You can also use the `packageFileName` (and the corresponding `configFileName`) 
 MyAppe.exe /S
 ```
 > [!TIP]
-> If your blob is originally named as "myApp.exe" instead of "myapp", then the script works without setting the `packageFileName` property.
+> If your blob is originally named as 'myApp.exe' instead of 'myapp', then the script works without setting the `packageFileName` property.
 
 ### Command interpreter
 
@@ -508,7 +511,7 @@ Figuring out the dependencies can be a bit tricky. There are third party tools t
 In Ubuntu, you can run `sudo apt show <package_name> | grep Depends` to show all the packages that are installed when executing the `sudo apt-get install <packge_name>` command. Then you can use that output to download all `.deb` files to create an archive that can be used as the application package.
 
 To create a VM Application package for installing PowerShell on Ubuntu, perform the following steps: 
-1. Run the following commands to enable the repository for downloading PowerShell and to identify package dependencies on a new Ubuntu VM
+1. Run the following commands to enable the repository to download PowerShell and to identify package dependencies on a new Ubuntu VM
    
 ```bash
 # Download the Microsoft repository GPG keys
@@ -848,7 +851,7 @@ $resultSummary | convertto-json -depth 5
 | More than one VM Application was specified with the same packageReferenceId. | The same application was specified more than once. |
 | Subscription not authorized to access this image. | The subscription doesn't have access to this application version. |
 | Storage account in the arguments doesn't exist. | There are no applications for this subscription. |
-| The platform image {image} isn't available. Verify that all fields in the storage profile are correct. For more details about storage profile information, see https://aka.ms/storageprofile. | The application doesn't exist. |
+| The platform image {image} isn't available. Verify that all fields in the storage profile are correct. For more information about storage profile, see https://aka.ms/storageprofile. | The application doesn't exist. |
 | The gallery image {image} isn't available in {region} region. Contact image owner to replicate to this region, or change your requested region. | The gallery application version exists, but it wasn't replicated to this region. |
 | The SAS isn't valid for source uri {uri}. | A `Forbidden` error was received from storage when attempting to retrieve information about the url (either mediaLink or defaultConfigurationLink). |
 | The blob referenced by source uri {uri} doesn't exist. | The blob provided for the mediaLink or defaultConfigurationLink properties doesn't exist. |
