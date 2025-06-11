@@ -26,7 +26,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 
 ## Key Benefits: 
 - **Centralized and Flexible Application Management**: 
-  - Package Once, Deploy Anywhere: Package windows & linux applications & scripts in .zip, .msi (Microsoft Package Installed), .exe, .tar.gz, .deb, .rpm, or .sh formats and manage them centrally in Azure Compute Gallery.
+  - Package Anyhithig Once, Deploy Anywhere: Package windows & linux applications, scripts, files as blobs, deploy it across Azure VM or VMSS, and manage them centrally in Azure Compute Gallery. Blobs could be in .zip, .msi (Microsoft Package Installed), .exe, .tar.gz, .deb, .rpm, .sh or any other format.
   - Version Control: Deploy either the latest or a specific version by maintaining multiple versions of each application. 
 - **Seamless Sharing and Access Control**
   - Tenant-Wide Sharing: Share applications within teams or across your entire organization (tenant).
@@ -44,7 +44,6 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 - **Broad Platform Support**
   - VMs and Scale Sets: Deploy to individual VMs, flexible scale sets, or uniform scale sets with full support.
   - Block Blob Support: Efficiently handle large application packages (upto 2 GB) using Azure Block Blobs for chunked uploads and background streaming.
-
 
 ## Create VM Applications & VM Applications version resource
 
