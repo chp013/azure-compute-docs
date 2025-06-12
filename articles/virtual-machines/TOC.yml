@@ -460,6 +460,12 @@
         - name: Overview
           displayName: L-series, sizes, size, vm size
           href: ./sizes/storage-optimized/l-family.md
+        - name: Laosv4 series
+          href: ./sizes/storage-optimized/laosv4-series.md
+        - name: Lasv4 series
+          href: ./sizes/storage-optimized/lasv4-series.md
+        - name: Lsv4 series
+          href: ./sizes/storage-optimized/lsv4-series.md    
         - name: Lsv3 series
           href: ./sizes/storage-optimized/lsv3-series.md
         - name: Lasv3 series

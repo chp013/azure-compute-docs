@@ -5,25 +5,12 @@ author: brittanyrowe
 ms.author: brittanyrowe
 ms.topic: concept-article
 ms.service: azure-virtual-machine-scale-sets
-ms.date: 1/10/2025
+ms.date: 06/10/2025
 ms.reviewer: jushiman
 ---
 
 # Create a scale set using instance mix
 The article walks through how to deploy a scale set using instance mix, using different virtual machine (VM) sizes and an allocation strategy.
-
-## Prerequisites
-Before using instance mix, complete feature registration for the `FlexVMScaleSetSkuProfileEnabled` feature flag using the [az feature register](/cli/azure/feature#az-feature-register) command:
-
-```azurecli-interactive
-az feature register --namespace "Microsoft.Compute" --name "FlexVMScaleSetSkuProfileEnabled"
-```
-
-It takes a few moments for the feature to register. Verify the registration status by using the [az feature show](/cli/azure/feature#az-feature-register) command:
-
-```azurecli-interactive
-az feature show --namespace "Microsoft.Compute" --name "FlexVMScaleSetSkuProfileEnabled"
-```
 
 ## Create a scale set using instance mix
 ### [Azure portal](#tab/portal-1)

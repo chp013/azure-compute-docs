@@ -4,7 +4,7 @@ description: include file
 author: roygara
 ms.service: azure-disk-storage
 ms.topic: include
-ms.date: 06/03/2025
+ms.date: 06/09/2025
 ms.author: rogarana
 ms.custom: include file
 ---
@@ -15,7 +15,7 @@ The following list contains Ultra Disk's limitations:
 - Currently, Ultra Disks only support Single VM and Availability zone infrastructure options.
 - Ultra Disks don't support availability sets.
 - Existing disks currently can't change their type to an Ultra Disk. They must be [migrated](/azure/virtual-machines/disks-convert-types?tabs=azure-powershell#migrate-to-premium-ssd-v2-or-ultra-disk-using-snapshots).
-- Encrypting Ultra Disks with customer-managed keys using Azure Key Vaults stored in a different Microsoft Entra ID tenant isn't currently supported.
+- (Preview) You can encrypt Ultra Disks with customer-managed keys using Azure Key Vaults stored in a different Microsoft Entra ID tenant.
 - Azure Disk Encryption isn't supported for VMs with Ultra Disks. Instead, you should use encryption at rest with platform-managed or customer-managed keys.
 - Azure Site Recovery isn't supported for VMs with Ultra Disks.
 - Ultra Disks don't support disk caching.
