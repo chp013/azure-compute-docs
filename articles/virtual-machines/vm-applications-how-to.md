@@ -17,6 +17,9 @@ VM Application are a resource type in Azure Compute Gallery that simplifies mana
 
 
 ## Prerequisites
+1. Create Azure Storage account
+2. Create [Azure Compute Gallery] 
+
 
 1. Create [Azure Compute Gallery for storing and sharing application resources](create-gallery.md).
 1. Upload your application to a container in an [Azure storage account](/azure/storage/common/storage-account-create). Your application can be stored in a block or page blob. If you choose to use a page blob, you need to byte align the files before you upload them. Use the following sample to byte align your file.
@@ -64,7 +67,54 @@ If you're using PowerShell, you need to be using version 3.11.0 of the Az.Storag
 
 To learn more about the installation mechanism, see the [command interpreter.](vm-applications.md#command-interpreter)
 
-## Create the VM Application
+## Step 1: Package the application & upload it to storage account
+
+### 1. Package the application files
+   - If your application installation requires a single file (.exe, .msi, .sh, .ps, etc.) then you can use it as is.
+   - If your application installation requests multiple files (Executable file with configuration file, dependencies, manifest files, etc), then you must archive it (using .zip, .tar, .rpm, .tar.gz, etc) into a single file.
+   - For microservice application, you can package and publish each microservices as a separate Azure VM Application. This facilitates application reusability, cross-team development and sequential installation of microservices using `order` property in the [applicationProfile](#deploy-the-vm-apps).
+     
+### 2. (Optional) Package the application configuration file
+   - You can optionally provide the configuration file separately. This reduces the overhead of archiving and unarchiving application packages. Configuration files can also be passed during app deployment enabling customized installation per VM.
+     
+### 3. Create the install script
+After the application and configuration blob is downloaded on the VM, Azure executes the provided install script to install the application. The install script is provided as a string and has a maximum character limit of 4096 chars. The install commands should be written assuming the application package and the configuration file are in the current directory.
+
+There may be few operations required to be performed in the install script
+
+1. **Use the right command interpreter**
+   
+	The default command interpreter used by Azure are `/bin/bash` on Linux OS and `cmd.exe` on Windows OS. It is possible to use a different interpreter like Chocolatey or PowerShell, if its installed on the machine. Call the executable and pass the commands to it. E.g. `powershell.exe -command '<powershell command>'`
+
+2. **Rename application blob and configuration blob**
+   
+	Azure cannot retain the original file name and the file extensions. Therefore, the downloaded application file and the configuration file has a default name as "MyVMApp" and "MyVMApp-config" without a file extension. You must rename the file with the file extension using the install script. You can also pass the names in `packageFileName` and `configFileName` properties in the [`publishingProfile` of VM Application version resource](#create-the-vm-application).
+    
+3. **Move application and configuraiton blob to appropriate location**
+
+	Azure downloads the application blob and configuration blob to following locations. The install script must move the files to appropriate locations when necessary.
+
+	Linux: `/var/lib/waagent/Microsoft.CPlat.Core.VMApplicationManagerLinux/<application name>/<application version>`
+
+	Windows: `C:\Packages\Plugins\Microsoft.CPlat.Core.VMApplicationManagerWindows\1.0.9\Downloads\<application name>\<application version>`
+   
+5. **Unarchive application blob**
+
+	For archived application packages, it needs to be unarchived before installating the application. It is recommeded to use .zip or .tar since most OS has built-in support for unarchiving these format. For other formats, make sure the Guest OS provides support.     
+   
+6. **Set right execution policy and permissions**
+
+	After unarchiving, file permissions could be reset. Its a good practice to set the right permissions before executing the files.      	
+
+
+### 1. Create the delete script
+
+### 1. Upload application package and configuration file to Azure Storage Account
+
+### 1. Generate SAS URL for the application package and the configuration file. 
+
+
+## Step 2: Create the VM Application
 
 ### [Portal](#tab/portal1)
 
@@ -267,7 +317,7 @@ PUT
 
 ----
 
-## Deploy the VM Apps
+## Step 3: Deploy the VM Apps
 
 ### [Portal](#tab/portal2)
 
