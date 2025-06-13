@@ -31,7 +31,7 @@ However, depending on the workload being run, regional affinity, and cost prefer
 **After September 30th, any remaining NVv3-series virtual machines (VMs) subscriptions will be set to a deallocated state. They'll stop working and no longer incur billing charges. NVv3 will no longer be under SLA or have support included.** 
 
 > [!NOTE]
-> This retirement only impacts the virtual machine sizes in the NVv3-series powered by NVIDIA Tesla M60 GPUs. For NVv4-series virtual machines, please refer to the NVv4-series virtual machines retirement guide. This retirement announcement does not apply to NVadsA10_v5-series virtual machines. 
+> This retirement only impacts the virtual machine sizes in the NVv3-series powered by NVIDIA Tesla M60 GPUs. For NVv4-series virtual machines, please refer to the NVv4-series virtual machines retirement guide. This retirement announcement does not apply to NVadsA10_v5 or NVadsV710_v5 series virtual machines. 
 
 ## What action do I need to take before the retirement date? 
 
