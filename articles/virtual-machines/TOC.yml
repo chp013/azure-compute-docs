@@ -538,8 +538,6 @@
           href: ./sizes/gpu-accelerated/ngadsv620-series.md
       - name: NV family
         items:
-        - name: NVv3 series retirement
-          href: ./sizes/gpu-accelerated/nvv3-retirement.md
         - name: Overview
           displayName: NV-series, sizes, size, vm size
           href: ./sizes/gpu-accelerated/nv-family.md
@@ -551,6 +549,8 @@
           href: nv-series-migration-guide.md
         - name: NVv3 series
           href: ./sizes/gpu-accelerated/nvv3-series.md
+        - name: NVv3 series retirement
+          href: ./sizes/gpu-accelerated/nvv3-retirement.md
         - name: NVv4 series
           href: ./sizes/gpu-accelerated/nvv4-series.md
         - name: NVadsA10_v5 series
