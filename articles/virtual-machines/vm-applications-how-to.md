@@ -106,10 +106,70 @@ There may be few operations required to be performed in the install script
 
 	After unarchiving, file permissions could be reset. Its a good practice to set the right permissions before executing the files.      	
 
+Here are sample install scripts based on the file extension of the application blob
+#### [TAR](tab/TAR)
+```cli-interactive
+#!/bin/bash
+
+# Rename blobs
+mv MyVMApp app.tar
+mv MyVMApp-config app-config.yaml
+
+# Unarchive application
+mkdir -p app
+tar -xf app.tar -C app
+
+# Set permissions
+chmod -R +x app
+chmod -R +r app
+
+# Install the script (example: install.sh with config)
+bash ./app/install.sh --config app-config.yaml
+
+# OR Install the .deb package (example: install.deb without config)
+sudo dpkg -i ./app/install.deb
+
+# OR Install the .rpm package (example: install.rpm without config)
+sudo rpm -ivh ./app/install.rpm
+```
+
+#### [ZIP with Powershell](tab/ZIPPowershell)
+```powershell-interactive
+
+powershell.exe -command "
+# Rename blobs
+Rename-Item -Path '.\MyVMApp' -NewName 'app.zip'
+Rename-Item -Path '.\MyVMApp-config' -NewName 'app-config.json'
+
+# Unzip application package
+Expand-Archive -Path '.\app.zip' -DestinationPath '.\app'
+
+# Set execution policy
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+
+# Run installer (example: setup.exe with config)
+Start-Process -FilePath '.\app\setup.exe' -ArgumentList '/config app-config.json' -Wait
+
+# OR Run PowerShell installer (example: install.ps1 with config)
+powershell.exe -ExecutionPolicy Bypass -File '.\app\install.ps1' -ConfigFile 'app-config.json'
+"
+```
+#### [EXE](tab/EXE)
+```cli-interactive
+
+:: Rename blobs
+rename MyVMApp app.exe
+rename MyVMApp-config app-config.json
+
+:: Run the installer with config
+app.exe /config app-config.json
+```
+
 
 ### 1. Create the delete script
 
 ### 1. Upload application package and configuration file to Azure Storage Account
+
 
 ### 1. Generate SAS URL for the application package and the configuration file. 
 
