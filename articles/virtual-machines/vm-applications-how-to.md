@@ -107,7 +107,7 @@ There may be few operations required to be performed in the install script
 	After unarchiving, file permissions could be reset. Its a good practice to set the right permissions before executing the files.      	
 
 Here are sample install scripts based on the file extension of the application blob
-#### [TAR](tab/TAR)
+#### [.TAR](tab/TAR)
 ```cli-interactive
 #!/bin/bash
 
@@ -127,15 +127,14 @@ chmod -R +r app
 bash ./app/install.sh --config app-config.yaml
 
 # OR Install the .deb package (example: install.deb without config)
-sudo dpkg -i ./app/install.deb
+# sudo dpkg -i ./app/install.deb
 
 # OR Install the .rpm package (example: install.rpm without config)
-sudo rpm -ivh ./app/install.rpm
+# sudo rpm -ivh ./app/install.rpm
 ```
 
-#### [ZIP with Powershell](tab/ZIPPowershell)
+#### [.ZIP with Powershell](tab/ZIPPowershell)
 ```powershell-interactive
-
 powershell.exe -command "
 # Rename blobs
 Rename-Item -Path '.\MyVMApp' -NewName 'app.zip'
@@ -147,16 +146,45 @@ Expand-Archive -Path '.\app.zip' -DestinationPath '.\app'
 # Set execution policy
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
 
-# Run installer (example: setup.exe with config)
+# Install the .exe application (example: setup.exe with config)
 Start-Process -FilePath '.\app\setup.exe' -ArgumentList '/config app-config.json' -Wait
 
-# OR Run PowerShell installer (example: install.ps1 with config)
-powershell.exe -ExecutionPolicy Bypass -File '.\app\install.ps1' -ConfigFile 'app-config.json'
+# Install PowerShell script (example: setup.ps1 with config)
+# powershell.exe -ExecutionPolicy Bypass -File '.\app\setup.ps1' -ConfigFile 'app-config.json'
+
+# Install .msi application (example: setup.msi without config)
+# Start-Process -FilePath 'msiexec.exe' -ArgumentList '/i .\app\setup.msi /qn /l*v install.log' -Wait
 "
 ```
-#### [EXE](tab/EXE)
-```cli-interactive
 
+#### [.ZIP with CMD](tab/ZIPCmd)
+```cli-interactive
+:: Rename blobs
+rename MyVMApp app.zip
+rename MyVMApp-config app-config.json
+
+:: Unzip using built-in tar (available on Windows 10+)
+mkdir app
+tar -xf app.zip -C app
+
+:: Install .exe application (example: setup.exe with config)
+app\setup.exe /config app-config.json
+
+:: install .msi application (example: setup.exe without config)
+:: msiexec /i app\setup.msi /qn /l*v install.log
+
+:: Install JavaScript (example: setup.js with config)
+:: cscript //nologo app\setup.js app-config.json
+
+:: Install python script (example: install.py with config) - Needs python pre-installed
+:: python app\install.py app-config.json
+
+:: Install ruby application  (example: install.rb with config) - Needs Ruby pre-installed
+:: ruby app\install.rb app-config.json
+```
+
+#### [.EXE](tab/EXE)
+```cli-interactive
 :: Rename blobs
 rename MyVMApp app.exe
 rename MyVMApp-config app-config.json
@@ -165,6 +193,108 @@ rename MyVMApp-config app-config.json
 app.exe /config app-config.json
 ```
 
+```powershell-interactive
+powershell.exe -command "
+# Rename blobs
+Rename-Item -Path '.\MyVMApp' -NewName 'app.exe'
+Rename-Item -Path '.\MyVMApp-config' -NewName 'app-config.json'
+
+# Set execution policy
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+
+# Install the .exe application (example: setup.exe with config)
+Start-Process -FilePath '.\app.exe' -ArgumentList '/config app-config.json' -Wait
+"
+```
+
+#### [.MSI](tab/MSI)
+```cli-interactive
+:: Rename blobs
+rename MyVMApp app.msi
+rename MyVMApp-config app-config.json
+
+:: install .msi application (example: setup.exe without config)
+msiexec /i app.msi /qn /l*v install.log
+```
+
+```powershell-interactive
+powershell.exe -command "
+# Rename blobs
+Rename-Item -Path '.\MyVMApp' -NewName 'app.zip'
+Rename-Item -Path '.\MyVMApp-config' -NewName 'app-config.json'
+
+# Set execution policy
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+
+# Install .msi application (example: setup.msi without config)
+# Start-Process -FilePath 'msiexec.exe' -ArgumentList '/i .\app\setup.msi /qn /l*v install.log' -Wait
+"
+```
+
+#### [.DEB](tab/Deb)
+```cli-interactive
+#!/bin/bash
+
+# Rename blobs
+mv MyVMApp app.deb
+mv MyVMApp-config app-config.yaml
+
+# Set permissions
+chmod -R +x app.deb
+chmod -R +r app.deb
+
+# Install .deb package (example: install.deb without config)
+# sudo dpkg -i ./app.deb
+```
+
+#### [.RPM](tab/Rpm)
+```cli-interactive
+#!/bin/bash
+
+# Rename blobs
+mv MyVMApp app.rpm
+mv MyVMApp-config app-config.yaml
+
+# Set permissions
+chmod -R +x app.rpm
+chmod -R +r app.rpm
+
+# Install .rpm package (example: install.rpm without config)
+sudo rpm -ivh ./app.rpm
+```
+
+#### [.SH](tab/sh)
+```cli-interactive
+#!/bin/bash
+
+# Rename blobs
+mv MyVMApp app.sh
+mv MyVMApp-config app-config.yaml
+
+# Set permissions
+chmod -R +x app.sh
+chmod -R +r app.sh
+
+# Install the script (example: install.sh with config)
+bash ./app.sh --config app-config.yaml
+```
+
+#### [.PS](tab/PS)
+```powershell-interactive
+powershell.exe -command "
+# Rename blobs
+Rename-Item -Path '.\MyVMApp' -NewName 'app.ps1'
+Rename-Item -Path '.\MyVMApp-config' -NewName 'app-config.json'
+
+# Set execution policy
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+
+# Install PowerShell script (example: setup.ps1 with config)
+# powershell.exe -ExecutionPolicy Bypass -File '.\app.ps1' -ConfigFile 'app-config.json'
+"
+```
+
+---
 
 ### 1. Create the delete script
 
