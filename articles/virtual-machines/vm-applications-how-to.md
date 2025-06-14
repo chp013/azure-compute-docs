@@ -19,17 +19,17 @@ VM Application are a resource type in Azure Compute Gallery that simplifies mana
 1. Create [Azure storage account](/azure/storage/common/storage-account-create#create-a-storage-account) and [storage container](/azure/storage/blobs/blob-containers-portal#create-a-container). This container is used to upload your application files. It is recommended to use storage account with anonymous access disabled for added security. 
 1. Create [Azure Compute Gallery for storing and sharing application resources](create-gallery.md).
 
-## Step 1: Package the application & upload it to storage account
+## Step 1: Package the application
 
-### 1. Package the application files
+#### 1. Package the application files
    - If your application installation requires a single file (.exe, .msi, .sh, .ps, etc.) then you can use it as is.
-   - If your application installation requests multiple files (Executable file with configuration file, dependencies, manifest files, etc), then you must archive it (using .zip, .tar, .rpm, .tar.gz, etc) into a single file.
+   - If your application installation requires multiple files (Executable file with configuration file, dependencies, manifest files, scripts, etc), then you must archive it (using .zip, .tar, .tar.gz, etc) into a single file.
    - For microservice application, you can package and publish each microservices as a separate Azure VM Application. This facilitates application reusability, cross-team development and sequential installation of microservices using `order` property in the [applicationProfile](#step-3-deploy-the-vm-apps).
      
-### 2. (Optional) Package the application configuration file
+#### 2. (Optional) Package the application configuration file
    - You can optionally provide the configuration file separately. This reduces the overhead of archiving and unarchiving application packages. Configuration files can also be passed during app deployment enabling customized installation per VM.
      
-### 3. Create the install script
+#### 3. Create the install script
 After the application and configuration blob is downloaded on the VM, Azure executes the provided install script to install the application. **The install script is provided as a string** and has a maximum character limit of 4096 chars. The install commands should be written assuming the application package and the configuration file are in the current directory.
 
 There may be few operations required to be performed in the install script
@@ -299,53 +299,225 @@ Script as string:
 
 ---
 
-### 1. Create the delete script
+#### 4. Create the delete script
 
-### 1. Upload application package and configuration file to Azure Storage Account
+## Step 2: Upload the application files to Azure storage account
+1. **[Upload your application and configuration files to a container](/azure/storage/blobs/storage-quickstart-blobs-portal) in an [Azure storage account](/azure/storage/common/storage-account-create)**.
 
-1. [Upload your application and configuration files to a container](/azure/storage/blobs/storage-quickstart-blobs-portal) in an [Azure storage account](/azure/storage/common/storage-account-create). Your application can be stored in a block or page blob. If you choose to use a page blob, you need to byte align the files before you upload them. Use the following sample to byte align your file.
+   Your application can be stored in a block or page blob. If you choose to use a page blob, you need to byte align the files before you upload them. Use the following sample to byte align your file.
 
-### [PowerShell](#tab/powershell)
-```azurepowershell-interactive
-$inputFile = <the file you want to pad>
+	### [PowerShell](#tab/powershell)
+	```azurepowershell-interactive
+	$inputFile = <the file you want to pad>
+	
+	$fileInfo = Get-Item -Path $inputFile
+	
+	$remainder = $fileInfo.Length % 512
+	
+	if ($remainder -ne 0){
+	
+	    $difference = 512 - $remainder
+	
+	    $bytesToPad = [System.Byte[]]::CreateInstance([System.Byte], $difference)
+	
+	    Add-Content -Path $inputFile -Value $bytesToPad -Encoding Byte
+	    }
+	```
+	### [CLI](#tab/cli)
+	```azurecli-interactive
+	inputFile="<the file you want to pad>"
+	
+	# Get the file size
+	fileSize=$(stat -c %s "$inputFile")
+	
+	# Calculate the remainder when divided by 512
+	remainder=$((fileSize % 512))
+	
+	if [ "$remainder" -ne 0 ]; then
+	    # Calculate how many bytes to pad
+	    difference=$((512 - remainder))
+	    
+	    # Create padding (empty bytes)
+	    dd if=/dev/zero bs=1 count=$difference >> "$inputFile"
+	fi
+	```
+	----
 
-$fileInfo = Get-Item -Path $inputFile
+2. **Generate SAS URL for the application package and the configuration file** 
 
-$remainder = $fileInfo.Length % 512
+	Once the application and configuration files are uploaded to the storage account, you need to [generate a SAS URL](/azure/storage/common/storage-sas-overview#get-started-with-sas) with read privilege for these blobs. These SAS URLs are then provided as reference while creating the VM Application version resource. For Storage accounts enabled for anonymous access, blob URL can also be used. However, its recommended to use SAS URL for improved security. You can use [Storage Explorer](/azure/vs-azure-tools-storage-explorer-blobs) to quickly create a SAS URI if you don't already have one.
 
-if ($remainder -ne 0){
+#### [Portal](#tab/portal1)
 
-    $difference = 512 - $remainder
+#### [CLI](#tab/cli1)
+```shell-session
 
-    $bytesToPad = [System.Byte[]]::CreateInstance([System.Byte], $difference)
+#!/bin/bash
 
-    Add-Content -Path $inputFile -Value $bytesToPad -Encoding Byte
-    }
+# === CONFIGURATION ===
+STORAGE_ACCOUNT="yourstorageaccount"
+CONTAINER_NAME="yourcontainer"
+LOCAL_FOLDER="./your-local-folder"
+SAS_EXPIRY_HOURS=24
+
+# === LOGIN (if not already logged in) ===
+az login --only-show-errors
+
+# === CREATE CONTAINER IF NOT EXISTS ===
+az storage container create \
+  --name $CONTAINER_NAME \
+  --account-name $STORAGE_ACCOUNT \
+  --auth-mode login \
+  --only-show-errors
+
+# === UPLOAD FILES ===
+az storage blob upload-batch \
+  --account-name $STORAGE_ACCOUNT \
+  --destination $CONTAINER_NAME \
+  --source $LOCAL_FOLDER \
+  --auth-mode login \
+  --only-show-errors
+
+# === GENERATE SAS URLs ===
+echo "Generating SAS URLs..."
+FILES=$(find $LOCAL_FOLDER -type f)
+
+for FILE in $FILES; do
+  BLOB_NAME="${FILE#$LOCAL_FOLDER/}"
+  EXPIRY=$(date -u -d "+$SAS_EXPIRY_HOURS hours" '+%Y-%m-%dT%H:%MZ')
+
+  SAS_TOKEN=$(az storage blob generate-sas \
+    --account-name $STORAGE_ACCOUNT \
+    --container-name $CONTAINER_NAME \
+    --name "$BLOB_NAME" \
+    --permissions r \
+    --expiry $EXPIRY \
+    --auth-mode login \
+    -o tsv)
+
+  SAS_URL="https://${STORAGE_ACCOUNT}.blob.core.windows.net/${CONTAINER_NAME}/${BLOB_NAME}?${SAS_TOKEN}"
+  echo "$BLOB_NAME: $SAS_URL"
+done
 ```
-### [CLI](#tab/cli)
-```azurecli-interactive
-inputFile="<the file you want to pad>"
 
-# Get the file size
-fileSize=$(stat -c %s "$inputFile")
+#### [PS](#tab/ps1)
+```powershell-interactive
+# === CONFIGURATION ===
+$storageAccount = "yourstorageaccount"
+$containerName = "yourcontainer"
+$localFolder = "C:\path\to\your\local\folder"
+$sasExpiryHours = 24
 
-# Calculate the remainder when divided by 512
-remainder=$((fileSize % 512))
+# === LOGIN (if not already logged in) ===
+az login | Out-Null
 
-if [ "$remainder" -ne 0 ]; then
-    # Calculate how many bytes to pad
-    difference=$((512 - remainder))
-    
-    # Create padding (empty bytes)
-    dd if=/dev/zero bs=1 count=$difference >> "$inputFile"
-fi
+# === CREATE CONTAINER IF NOT EXISTS ===
+az storage container create `
+    --name $containerName `
+    --account-name $storageAccount `
+    --auth-mode login `
+    --only-show-errors | Out-Null
+
+# === UPLOAD FILES ===
+az storage blob upload-batch `
+    --account-name $storageAccount `
+    --destination $containerName `
+    --source $localFolder `
+    --auth-mode login `
+    --only-show-errors
+
+# === GENERATE SAS URLs ===
+Write-Host "`nGenerating SAS URLs..."
+$files = Get-ChildItem -Recurse -File -Path $localFolder
+
+foreach ($file in $files) {
+    $relativePath = $file.FullName.Substring($localFolder.Length + 1).Replace("\", "/")
+    $expiry = (Get-Date).ToUniversalTime().AddHours($sasExpiryHours).ToString("yyyy-MM-ddTHH:mmZ")
+
+    $sasToken = az storage blob generate-sas `
+        --account-name $storageAccount `
+        --container-name $containerName `
+        --name $relativePath `
+        --permissions r `
+        --expiry $expiry `
+        --auth-mode login `
+        -o tsv
+
+    $sasUrl = "https://$storageAccount.blob.core.windows.net/$containerName/$relativePath`?$sasToken"
+    Write-Host "$relativePath:`n$sasUrl`n"
+}
 ```
-----
 
-### 1. Generate SAS URL for the application package and the configuration file. 
-Once the application and configuration files are uploaded to the storage account, you need to [generate a SAS URL](/azure/storage/common/storage-sas-overview#get-started-with-sas) with read privilege for these blobs. These SAS URLs are then provided as reference while creating the VM Application version resource. For Storage accounts enabled for anonymous access, blob URL can also be used. However, its recommended to use SAS URL for improved security. You can use [Storage Explorer](/azure/vs-azure-tools-storage-explorer-blobs) to quickly create a SAS URI if you don't already have one.
+#### [Github Actions](#tab/ga1)
+```yaml
+name: Upload to Azure Blob Storage
 
-## Step 2: Create the VM Application
+on:
+  push:
+    branches:
+      - main  # or your deployment branch
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Azure Login with OIDC
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Upload files to Blob Storage
+        run: |
+          az storage container create \
+            --name ${{ secrets.AZURE_CONTAINER_NAME }} \
+            --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+            --auth-mode login \
+            --only-show-errors
+
+          az storage blob upload-batch \
+            --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+            --destination ${{ secrets.AZURE_CONTAINER_NAME }} \
+            --source . \
+            --auth-mode login \
+            --only-show-errors
+
+      - name: Generate SAS URLs
+        run: |
+          EXPIRY=$(date -u -d "+24 hours" '+%Y-%m-%dT%H:%MZ')
+          echo "Generating SAS URLs:"
+          for file in $(find . -type f); do
+            BLOB_NAME=$(realpath --relative-to=. "$file" | sed 's|^\./||' | sed 's| |%20|g')
+            SAS=$(az storage blob generate-sas \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --container-name ${{ secrets.AZURE_CONTAINER_NAME }} \
+              --name "$BLOB_NAME" \
+              --permissions r \
+              --expiry $EXPIRY \
+              --auth-mode login \
+              -o tsv)
+            echo "https://${{ secrets.AZURE_STORAGE_ACCOUNT }}.blob.core.windows.net/${{ secrets.AZURE_CONTAINER_NAME }}/$BLOB_NAME?$SAS"
+          done
+```
+
+#### [Terraform](#tab/terraform1)
+
+
+#### [Azure Pipeline](#tab/pipeline1)
+
+#### [Azure DevOps](#tab/devops1)
+
+
+## Step 3: Create the VM Application
 
 ### [Portal](#tab/portal1)
 
@@ -548,7 +720,7 @@ PUT
 
 ----
 
-## Step 3: Deploy the VM Apps
+## Step 4: Deploy the VM Apps
 
 ### [Portal](#tab/portal2)
 
