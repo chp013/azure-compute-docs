@@ -11,17 +11,21 @@ ms.reviewer: mattmcinnes
 ms.custom: include file
 ---
 
-HBv5-series VMs are optimized for the most memory bandwidth-intensive HPC applications. These include workloads such as:
+HBv5-series VMs are optimized for the most memory bandwidth-intensive HPC applications, including:
+
 * Running computational fluid dynamics
-* Performing automotive simulations
-* Conducting aerospace simulations
-* Supporting weather system models
-* Advancing energy research
-* Simulating molecular dynamics
-* Supporting computer-aided engineering
-* And handling other demanding HPC tasks
+* Running automotive simulations
+* Running aerospace simulations
+* Running weather system models
+* Running energy research workloads
+* Running molecular dynamics simulations
+* Running computer-aided engineering tasks
+* Running other demanding HPC workloads
 
-HBv5 VMs feature 6.7 TB/s of memory bandwidth across 438 GiB (450 GB) of memory (HBM), and up to 368 4th Generation AMD EPYC™ processor cores with 4 GHz max frequencies and no simultaneous multithreading. HBv5-series VMs also provide 800 Gb/s of InfiniBand connectivity from NVIDIA Networking. This enables supercomputer-scale MPI workloads. In addition, they offer 15 TiB of local NVMe SSD storage, delivering up to 50 GB/s read and 30 GB/s write performance for block devices.
+HBv5 VMs deliver 6.7 TB/s of memory bandwidth across 438 GiB (450 GB) of high-bandwidth memory (HBM) and support up to 368 4th Gen AMD EPYC™ processor cores with up to 4 GHz max frequency, without simultaneous multithreading. 
 
+They also feature 800 Gb/s InfiniBand from NVIDIA Networking, enabling supercomputer-scale MPI workloads. In addition, each VM includes 15 TiB of local NVMe SSD storage, offering up to 50 GB/s read and 30 GB/s write throughput for block devices.
 
-All HBv5-series VMs feature 800 Gbps per node of NDR InfiniBand (2 x 400 Gbps NDR links per node)  from NVIDIA Networking to enable supercomputer-scale MPI workloads. These VMs are connected in a nonblocking fat tree for optimized and consistent RDMA performance. NDR supports features like Adaptive Routing and the Dynamically Connected Transport (DCT), offload of MPI collectives, optimized real-world latencies due to congestion control intelligence, and enhanced adaptive routing capabilities. These features enhance application performance, scalability, and consistency, and their usage is recommended.
+All HBv5-series VMs feature 800 Gbps per node of NDR InfiniBand (2 x 400 Gbps NDR links per node) from NVIDIA Networking to enable supercomputer-scale MPI workloads. These VMs are connected in a nonblocking fat tree for optimized and consistent RDMA performance. 
+
+NDR includes features like Adaptive Routing, Dynamically Connected Transport (DCT), MPI collective offload, and congestion-aware latency optimization. These features improve application performance, scalability, and consistency, and are recommended for use.
