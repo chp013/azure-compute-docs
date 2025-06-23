@@ -18,13 +18,13 @@ On September 30, 2026, Microsoft Azure will retire the Standard_NV4as_v4, Standa
 
 Microsoft is recommending the Azure [NVadsA10_v5-series](/azure/virtual-machines/sizes/gpu-accelerated/nvadsa10v5-series?tabs=sizebasic) VMs, which offer greater GPU memory bandwidth per GPU and improved [live migration](/azure/virtual-machines/maintenance-and-updates). With the NVadsA10_v5-series VMs, Azure introduces VMs with partial NVIDIA GPUs and each VM instance comes with a GRID license. This license gives you the flexibility to use an NV instance as a virtual workstation for a single user or 25 concurrent users can connect to the VM for a virtual application scenario. These VMs are targeted for GPU accelerated graphics applications, virtual desktops, visualizations, or small AI workloads.
 
-However, depending on the workload being run, regional affinity, and cost preferences, other VMs that may be migrated to from the NVv4-series VMs include NCasT4_v3 and NVadsV710_v5:
+Depending on the workload being run, regional affinity, and cost preferences, other VMs that may be migrated to from the NVv4-series VMs include [NCasT4_v3](/azure/virtual-machines/sizes/gpu-accelerated/ncast4v3-series?tabs=sizebasic) and [NVadsV710_v5](/azure/virtual-machines/sizes/gpu-accelerated/nvadsv710-v5-series?tabs=sizebasic):
 
 |Workload|Recommended SKU to Migrate to|
 | -------- | -------- |
 |GPU accelerated graphics applications, virtual desktops, visualizations, or small AI workloads.|NVadsA10_v5|
 |Offline inferencing workloads where latency is not a primary concern, and there is an interest in purchasing smaller VM SKUs or reducing costs.|NCasT4_v3|
-|Graphics, visualization, or small AI workloads where optimal performance is not a priority or there is an interest in reducing costs.|NVadsV710_v5|
+|Graphics, visualization, or small AI workloads such as SLM inferencing and semantic search where optimal performance is not a priority or there is an interest in reducing costs.|NVadsV710_v5|
 
 ## How does the retirement of the NVv4-series virtual machines affect me? 
 
