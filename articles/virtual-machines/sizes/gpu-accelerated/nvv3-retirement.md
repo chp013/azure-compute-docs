@@ -14,7 +14,7 @@ ms.date:     06/13/2025
 
 # Migrate your NVv3-series virtual machines by September 30, 2026
 
-On September 30, 2026, Microsoft Azure will retire the Standard_NV12s_v3, Standard_NV24s_v3, and the Standard_NV48s_v3 virtual machines (VMs) in NVv3-series virtual machines (VMs). To avoid any disruptions to your service, we recommend that you change the VM sizing for your workloads from the current NVv3-series VMs to the newer VM series in the same NV product line. 
+On September 30, 2026, Microsoft Azure will retire the Standard_NV12s_v3, Standard_NV24s_v3, and Standard_NV48s_v3 virtual machines (VMs) in NVv3-series virtual machines (VMs). To avoid any disruptions to your service, we recommend that you change the VM sizing for your workloads from the current NVv3-series VMs to the newer VM series in the same NV product line. 
 
 Microsoft is recommending the Azure [NVadsA10_v5-series](/azure/virtual-machines/sizes/gpu-accelerated/nvadsa10v5-series?tabs=sizebasic) VMs, which offer greater GPU memory bandwidth per GPU and improved [live migration](/azure/virtual-machines/maintenance-and-updates). With the NVadsA10_v5-series VMs, Azure introduces VMs with partial NVIDIA GPUs and each VM instance comes with a GRID license. This license gives you the flexibility to use an NV instance as a virtual workstation for a single user or 25 concurrent users can connect to the VM for a virtual application scenario. These VMs are targeted for GPU accelerated graphics applications, virtual desktops, visualizations, or small AI workloads. 
 
