@@ -518,7 +518,7 @@ jobs:
 
 #### [Azure DevOps](#tab/devops2)
 
-
+---
 ## Step 3: Create the VM Application
 
 ### [Portal](#tab/portal3)
