@@ -24,7 +24,7 @@ VM Application are a resource type in Azure Compute Gallery that simplifies mana
 #### 1. Package the application files
    - If your application installation requires a single file (.exe, .msi, .sh, .ps, etc.) then you can use it as is.
    - If your application installation requires multiple files (Executable file with configuration file, dependencies, manifest files, scripts, etc), then you must archive it (using .zip, .tar, .tar.gz, etc) into a single file.
-   - For microservice application, you can package and publish each microservices as a separate Azure VM Application. This facilitates application reusability, cross-team development and sequential installation of microservices using `order` property in the [applicationProfile](#step-3-deploy-the-vm-apps).
+   - For microservice application, you can package and publish each microservices as a separate Azure VM Application. This facilitates application reusability, cross-team development and sequential installation of microservices using `order` property in the [applicationProfile](#step-4-deploy-the-vm-apps).
      
 #### 2. (Optional) Package the application configuration file
    - You can optionally provide the configuration file separately. This reduces the overhead of archiving and unarchiving application packages. Configuration files can also be passed during app deployment enabling customized installation per VM.
@@ -40,7 +40,7 @@ There may be few operations required to be performed in the install script
 
 2. **Rename application blob and configuration blob**
    
-	Azure cannot retain the original file name and the file extensions. Therefore, the downloaded application file and the configuration file has a default name as "MyVMApp" and "MyVMApp-config" without a file extension. You must rename the file with the file extension using the install script. You can also pass the names azure should assign to the files in `packageFileName` and `configFileName` properties in the [`publishingProfile` of VM Application version resource](#step-2-create-the-vm-application).
+	Azure cannot retain the original file name and the file extensions. Therefore, the downloaded application file and the configuration file has a default name as "MyVMApp" and "MyVMApp-config" without a file extension. You must rename the file with the file extension using the install script. You can also pass the names azure should assign to the files in `packageFileName` and `configFileName` properties in the [`publishingProfile` of VM Application version resource](#step-3-create-the-vm-application).
     
 3. **Move application and configuraiton blob to appropriate location**
 
@@ -300,6 +300,8 @@ Script as string:
 ---
 
 #### 4. Create the delete script
+The delete script enables customers to customize the delete operation for the application. By default, Azure deletes all files in the application source directory and removes the VM application version resource from VM/VMSS applicationProfile.  The delete script is provided as a **string** and has a maximum character limit of 4096 chars. The delete commands should be written assuming the application package and the configuration file are in the current directory.
+
 
 ## Step 2: Upload the application files to Azure storage account
 1. **[Upload your application and configuration files to a container](/azure/storage/blobs/storage-quickstart-blobs-portal) in an [Azure storage account](/azure/storage/common/storage-account-create)**.
