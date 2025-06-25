@@ -40,7 +40,7 @@ There may be few operations required to be performed in the install script
 
 2. **Rename application blob and configuration blob**
    
-	Azure cannot retain the original file name and the file extensions. Therefore, the downloaded application file and the configuration file has a default name as "MyVMApp" and "MyVMApp-config" without a file extension. You must rename the file with the file extension using the install script. You can also pass the names azure should assign to the files in `packageFileName` and `configFileName` properties in the [`publishingProfile` of VM Application version resource](#step-3-create-the-vm-application).
+	Azure cannot retain the original file name and the file extensions. Therefore, the downloaded application file and the configuration file has a default name as "MyVMApp" and "MyVMApp-config" without a file extension. You can rename the file with the file extension using the install script or you can also pass the names in `packageFileName` and `configFileName` properties of the [`publishingProfile` of VM Application version resource](#step-3-create-the-vm-application). Azure will use these names instead of default names while downloading the files. 
     
 3. **Move application and configuraiton blob to appropriate location**
 
@@ -218,7 +218,7 @@ Script as string:
 "powershell.exe -command \"Rename-Item -Path '.\\MyVMApp' -NewName 'app.zip'; Rename-Item -Path '.\\MyVMApp-config' -NewName 'app-config.json'; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force; Start-Process -FilePath 'msiexec.exe' -ArgumentList '/i .\\app\\setup.msi /qn /l*v install.log' -Wait\""
 ```
 
-#### [.DEB](#tab/Deb)
+#### [.DEB](#tab/DEB)
 ```bash
 #!/bin/bash
 
@@ -238,7 +238,7 @@ Scipt as string:
 "#!/bin/bash\nmv MyVMApp app.deb\nmv MyVMApp-config app-config.yaml\nchmod -R +x app.deb\nchmod -R +r app.deb\n# sudo dpkg -i ./app.deb"
 ```
 
-#### [.RPM](#tab/Rpm)
+#### [.RPM](#tab/RPM)
 ```bash
 #!/bin/bash
 
@@ -258,7 +258,7 @@ Script as string:
 "#!/bin/bash\nmv MyVMApp app.rpm\nmv MyVMApp-config app-config.yaml\nchmod -R +x app.rpm\nchmod -R +r app.rpm\nsudo rpm -ivh ./app.rpm"
 ```
 
-#### [.SH](#tab/sh)
+#### [.SH](#tab/SH)
 ```bash
 #!/bin/bash
 
@@ -300,7 +300,7 @@ Script as string:
 ---
 
 #### 4. Create the delete script
-The delete script enables customers to customize the delete operation for the application. By default, Azure deletes all files in the application source directory and removes the VM application version resource from VM/VMSS applicationProfile.  The delete script is provided as a **string** and has a maximum character limit of 4096 chars. The delete commands should be written assuming the application package and the configuration file are in the current directory.
+The delete script enables customers to customize the delete operation for the application. By default, Azure deletes all files in the application source directory and removes the VM application version resource from VM/VMSS applicationProfile.  **The delete script is provided as a string** and has a maximum character limit of 4096 chars. The delete commands should be written assuming the application package and the configuration file are in the current directory.
 
 
 ## Step 2: Upload the application files to Azure storage account
@@ -308,7 +308,7 @@ The delete script enables customers to customize the delete operation for the ap
 
    Your application can be stored in a block or page blob. If you choose to use a page blob, you need to byte align the files before you upload them. Use the following sample to byte align your file.
 
-	### [PowerShell](#tab/powershell)
+	### [PowerShell](#tab/powershell1)
 	```azurepowershell-interactive
 	$inputFile = <the file you want to pad>
 	
@@ -325,7 +325,7 @@ The delete script enables customers to customize the delete operation for the ap
 	    Add-Content -Path $inputFile -Value $bytesToPad -Encoding Byte
 	    }
 	```
-	### [CLI](#tab/cli)
+	### [CLI](#tab/cli1)
 	```azurecli-interactive
 	inputFile="<the file you want to pad>"
 	
@@ -349,9 +349,9 @@ The delete script enables customers to customize the delete operation for the ap
 
 	Once the application and configuration files are uploaded to the storage account, you need to [generate a SAS URL](/azure/storage/common/storage-sas-overview#get-started-with-sas) with read privilege for these blobs. These SAS URLs are then provided as reference while creating the VM Application version resource. For Storage accounts enabled for anonymous access, blob URL can also be used. However, its recommended to use SAS URL for improved security. You can use [Storage Explorer](/azure/vs-azure-tools-storage-explorer-blobs) to quickly create a SAS URI if you don't already have one.
 
-#### [Portal](#tab/portal1)
+#### [Portal](#tab/portal2)
 
-#### [CLI](#tab/cli1)
+#### [CLI](#tab/cli2)
 ```shell-session
 
 #!/bin/bash
@@ -402,7 +402,7 @@ for FILE in $FILES; do
 done
 ```
 
-#### [PS](#tab/ps1)
+#### [PS](#tab/ps2)
 ```powershell-interactive
 # === CONFIGURATION ===
 $storageAccount = "yourstorageaccount"
@@ -450,7 +450,7 @@ foreach ($file in $files) {
 }
 ```
 
-#### [Github Actions](#tab/ga1)
+#### [Github Actions](#tab/ga2)
 ```yaml
 name: Upload to Azure Blob Storage
 
@@ -511,17 +511,17 @@ jobs:
           done
 ```
 
-#### [Terraform](#tab/terraform1)
+#### [Terraform](#tab/terraform2)
 
 
-#### [Azure Pipeline](#tab/pipeline1)
+#### [Azure Pipeline](#tab/pipeline2)
 
-#### [Azure DevOps](#tab/devops1)
+#### [Azure DevOps](#tab/devops2)
 
 
 ## Step 3: Create the VM Application
 
-### [Portal](#tab/portal1)
+### [Portal](#tab/portal3)
 
 1. Go to the [Azure portal](https://portal.azure.com), then search for and select **Azure Compute Gallery**.
 1. Select the gallery you want to use from the list.
@@ -549,7 +549,7 @@ jobs:
 1. When validation shows as passed, select **Create** to deploy your VM application version.
 
 
-### [PowerShell](#tab/powershell1)
+### [PowerShell](#tab/powershell3)
 
 Create the VM Application definition using [`New-AzGalleryApplication`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplication). In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery and in the *myGallery* resource group. Replace the values for variables as needed.
 
@@ -588,7 +588,7 @@ New-AzGalleryApplicationVersion `
    -Remove "rm .\myApp\myApp" `
 ```
 
-### [CLI](#tab/cli1)
+### [CLI](#tab/cli3)
 
 VM applications require [Azure CLI](/cli/azure/install-azure-cli) version 2.30.0 or later.
 
@@ -622,7 +622,7 @@ az sig gallery-application version create \
    --default-configuration-file-link "https://<storage account name>.blob.core.windows.net/<container name>/<filename>"\
 ```
 
-### [REST](#tab/rest1)
+### [REST](#tab/rest3)
 
 Create the VM Application definition using the ['create gallery application API'](https://learn.microsoft.com/rest/api/compute/gallery-applications)
 
@@ -724,7 +724,7 @@ PUT
 
 ## Step 4: Deploy the VM Apps
 
-### [Portal](#tab/portal2)
+### [Portal](#tab/portal4)
 
 Now you can create a VM and deploy the VM application to it using the portal. Just create the VM as usual, and under the **Advanced** tab, choose **Select a VM application to install**.
 
@@ -746,7 +746,7 @@ Select the VM application from the list and then select **Save** at the bottom o
 
 :::image type="content" source="media/vmapps/select-app.png" alt-text="Screenshot showing selecting a VM application to install on the VM.":::
 
-### [CLI](#tab/cli2)
+### [CLI](#tab/cli4)
 Set a VM application to an existing VM using ['az vm application set'](/cli/azure/vm/application#az-vm-application-set) and replace the values of the parameters with your own.
 
 ```azurecli-interactive
@@ -783,7 +783,7 @@ az vmss application set \
 	--treat-deployment-as-failure true
 ```
 
-### [PowerShell](#tab/powershell2)
+### [PowerShell](#tab/powershell4)
 
 To add the application to an existing VM, get the application version and use that to get the VM application version ID. Use the ID to add the application to the VM configuration.
 
@@ -817,7 +817,7 @@ $app = New-AzVmssGalleryApplication -PackageReferenceId $packageId
 Add-AzVmssGalleryApplication -VirtualMachineScaleSetVM $vmss.VirtualMachineProfile -GalleryApplication $app
 Update-AzVmss -ResourceGroupName $rgName -VirtualMachineScaleSet $vmss -VMScaleSetName $vmssName
 ```
-### [REST](#tab/rest2)
+### [REST](#tab/rest4)
 
 
 To add a VM application version to a VM, perform a PUT on the VM.
@@ -920,7 +920,7 @@ relevant parts.
 
 
 ## Monitor the deployed VM Applications
-### [Portal](#tab/portal3)
+### [Portal](#tab/portal5)
 To show the VM application status, go to the Extensions + applications tab/settings and check the status of the VMAppExtension:
 
 :::image type="content" source="media/vmapps/select-app-status.png" alt-text="Screenshot showing VM application status.":::
@@ -929,7 +929,7 @@ To show the VM application status for scale set, go to the Azure portal Virtual 
 
 :::image type="content" source="media/vmapps/select-apps-status-vmss-portal.png" alt-text="Screenshot showing virtual machine scale sets application status.":::
 
-### [CLI](#tab/cli3)
+### [CLI](#tab/cli5)
 
 To verify application deployment status on a VM, use ['az vm get-instance-view'](/cli/azure/vm/#az-vm-get-instance-view):
 
@@ -953,7 +953,7 @@ $ids | Foreach-Object {
 }
 ```
 
-### [PowerShell](#tab/powershell3)
+### [PowerShell](#tab/powershell5)
 
 Verify the application succeeded:
 
@@ -976,7 +976,7 @@ $result | ForEach-Object {
 $resultSummary | ConvertTo-Json -Depth 5
 ```
 
-### [REST](#tab/rest3)
+### [REST](#tab/rest5)
 
 If the VM application isn't installed on the VM, the value is empty. 
 
@@ -1029,7 +1029,7 @@ The output is similar to the VM example earlier.
 To delete the VM Application resource, you need to first delete all its versions. Deleting the application version causes deletion of the application version resource from Azure Compute Gallery and all its replicas. The application blob in Storage Account used to create the application version is unaffected. After deleting the application version, if any VM is using that version, then reimage operation on those VMs will fail. Use 'latest' keyword as the version number in the 'applicationProfile' instead of hard coding the version number to address this failure.  
 However if the application is deleted, then VM fails during reimage operation since there are no versions available for Azure to install. The VM profile needs to be updated to not use the VM Application. 
 
-### [PowerShell](#tab/powershell4)
+### [PowerShell](#tab/powershell56
 Delete the VM Application version: 
 ```azurepowershell-interactive
 Remove-AzGalleryApplicationVersion -ResourceGroupName $rgNmae -GalleryName $galleryName -GalleryApplicationName $galleryApplicationName -Name $name
@@ -1040,7 +1040,7 @@ Delete the VM Application after all its versions are deleted:
 Remove-AzGalleryApplication -ResourceGroupName $rgNmae -GalleryName $galleryName -Name $name
 ```
 
-### [CLI](#tab/cli4)
+### [CLI](#tab/cli6)
 Delete the VM Application version:
 ```azurecli-interactive
 az sig gallery-application version delete --resource-group $rg-name --gallery-name $gallery-name --application-name $app-name --version-name $version-name
@@ -1051,7 +1051,7 @@ Delete the VM Application after all its versions are deleted:
 az sig gallery-application delete --resource-group $rg-name --gallery-name $gallery-name --application-name $app-name
 ```
 
-### [REST](#tab/rest4)
+### [REST](#tab/rest6)
 Delete the VM Application version:
 ```rest
 DELETE
