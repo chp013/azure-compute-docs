@@ -7,6 +7,7 @@ author: tomvcassidy
 ms.service: azure-service-fabric
 services: service-fabric
 ms.date: 02/06/2024
+# Customer intent: "As a compliance officer, I want to utilize Azure Policy built-in compliance controls for Azure Service Fabric, so that I can ensure our Azure resources meet regulatory standards effectively."
 ---
 # Azure Policy Regulatory Compliance controls for Azure Service Fabric
 

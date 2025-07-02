@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 05/19/2025
 ms.reviewer: tomvcassidy
+# Customer intent: As a container orchestrator user, I want to implement config maps in Azure Container Instances so that I can modify container configurations dynamically without restarting the instances, ensuring high availability and minimizing downtime.
 ---
 # Config maps for Azure Container Instances
 

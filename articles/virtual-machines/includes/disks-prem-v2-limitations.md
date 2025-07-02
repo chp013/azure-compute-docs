@@ -9,6 +9,7 @@
 ms.custom:
   - include file
   - ignite-2023
+# Customer intent: "As a cloud architect, I want to understand the limitations of Premium SSD v2 disks, so that I can effectively plan my virtual machine configurations and ensure compatibility with Azure services."
 ---
 - Premium SSD v2 disks can't be used as an OS disk.
 - Premium SSD v2 disks can't be used with Azure Compute Gallery.

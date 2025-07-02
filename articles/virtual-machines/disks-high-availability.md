@@ -6,6 +6,7 @@ ms.author: rogarana
 ms.date: 07/29/2024
 ms.topic: concept-article
 ms.service: azure-disk-storage
+# Customer intent: "As a cloud architect, I want to implement high availability strategies for Azure virtual machines and managed disks, so that I can ensure maximum uptime and resiliency for critical applications in the cloud."
 ---
 
 # Best practices for achieving high availability with Azure virtual machines and managed disks

@@ -5,7 +5,7 @@ author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
-ms.date: 05/28/2025
+ms.date: 06/13/2025
 ms.author: mattmcinnes
 ms.reviewer: iamwilliew
 ---
@@ -37,7 +37,6 @@ To learn more about size series retirement, previous-gen sizes, and the retireme
 | Ds-series         | **Announced**     | [03/31/25](https://azure.microsoft.com/updates?id=485569)         | 05/01/28                | -               |
 | Dv2-series        | **Announced**     | [03/31/25](https://azure.microsoft.com/updates?id=485569)         | 05/01/28                | -               |
 | Dsv2-series       | **Announced**     | [03/31/25](https://azure.microsoft.com/updates?id=485569)         | 05/01/28                | -               |
-| Av1-series        | **Retired**       | 11/02/23                                                          | 8/31/24                 | [Av1-series Retirement](./av1-series-retirement.md)  |
 
 ## Compute optimized retired sizes
 
@@ -55,12 +54,10 @@ Currently there are no memory optimized series retired or announced for retireme
 
 ## GPU accelerated retired sizes
 
-| Series name       | Retirement Status |Retirement Announcement                                            | Planned Retirement Date | Migration Guide
-|-------------------|-------------------|-----------------------------|-------------------------|-----------------|
-| NV-Series         | **Retired**       | -                           | 9/6/23                  | [NV-series Retirement](./nv-series-retirement.md)    |
-| NC-Series         | **Retired**       | -                           | 9/6/23                  | [NC-series Retirement](./nc-series-retirement.md)    |
-| NCv2-Series       | **Retired**       | -                           | 9/6/23                  | [NCv2-series Retirement](./ncv2-series-retirement.md)  |
-| ND-Series         | **Retired**       | -                           | 9/6/23                  | [ND-series Retirement](./nd-series-retirement.md)    |
+| Series name        | Retirement Status |Retirement Announcement      | Planned Retirement Date | Migration Guide |
+|--------------------|-------------------|-----------------------------|-------------------------|-----------------|
+| NCv3-NC24rs Series | **Retired**       | -                           | 30/9/25                 | [NCv3-NC24rs-series Retirement](../../ncv3-nc24rs-retirement.md) |
+| NCv3-Series        | **Retired**       | -                           | 30/9/25                 | [NCv3-series Retirement](../../ncv3-retirement.md)     |
 
 ## FPGA accelerated retired sizes
 
@@ -68,18 +65,12 @@ Currently there are no retired FPGA accelerated series retired or announced for 
 
 ## HPC retired sizes
 
-| Series name       | Retirement Status |Retirement Announcement                                            | Planned Retirement Date | Migration Guide
-|-------------------|-------------------|-----------------------------|-------------------------|-----------------|
-| HB-Series         | **Announced**     | 12/07/23                    | 8/31/24                  | [NV-series Retirement](./nv-series-retirement.md)    |
+Currently there are no retired HPC series retired or announced for retirement.
+
 
 ## ADH retired sizes
 
-| Series name       | Retirement Status |Retirement Announcement                                            | Planned Retirement Date | Migration Guide
-|-------------------|-------------------|-----------------------------|-------------------------|-----------------|
-| Dsv3-Type1        | **Retired**       | -                           | 6/30/23                  | [Dedicated Host SKU Retirement](./dedicated-host-retirement.md)    |
-| Dsv3-Type2        | **Retired**       | -                           | 6/30/23                  | [Dedicated Host SKU Retirement](./dedicated-host-retirement.md)    |
-| Esv3-Type1        | **Retired**       | -                           | 6/30/23                  | [Dedicated Host SKU Retirement](./dedicated-host-retirement.md)    |
-| Esv3-Type2        | **Retired**       | -                           | 6/30/23                  | [Dedicated Host SKU Retirement](./dedicated-host-retirement.md)    |
+Currently there are no retired ADH series retired or announced for retirement.
 
 
 ## Next steps

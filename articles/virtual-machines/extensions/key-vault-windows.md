@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.date: 04/29/2025
 ms.author: mbaldwin 
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
+# Customer intent: "As a cloud administrator managing virtual machines, I want to deploy an Azure Key Vault extension for automatic certificate refresh, so that I can ensure my VM's certificates are up to date without manual intervention."
 ---
 
 # Azure Key Vault virtual machine extension for Windows

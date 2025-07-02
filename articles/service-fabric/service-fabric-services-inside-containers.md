@@ -7,6 +7,7 @@ author: tomvcassidy
 ms.service: azure-service-fabric
 services: service-fabric
 ms.date: 07/11/2022
+# Customer intent: As a developer, I want to containerize my Service Fabric applications on Windows, so that I can deploy and manage them efficiently within a containerized environment.
 ---
 
 # Containerize your Service Fabric Reliable Services and Reliable Actors on Windows

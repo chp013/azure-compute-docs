@@ -9,6 +9,7 @@ ms.topic: troubleshooting
 ms.author: mbaldwin
 ms.date: 05/14/2025
 ms.custom: linux-related-content
+# Customer intent: "As a cloud administrator, I want to troubleshoot Azure Disk Encryption for Linux VMs, so that I can successfully encrypt disk drives while ensuring compliance with security protocols and minimizing downtime."
 ---
 # Azure Disk Encryption for Linux VMs troubleshooting guide
 

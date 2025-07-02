@@ -7,6 +7,7 @@ ms.subservice: sizes
 ms.topic: how-to
 ms.date: 03/04/2024
 ms.author: ajkundna
+# Customer intent: "As a cloud architect, I want to understand the benefits and limitations of Generation 2 VMs in Azure, so that I can make informed decisions when designing scalable and secure virtual machine solutions for my organization."
 ---
 
 # Support for Generation 2 VMs on Azure

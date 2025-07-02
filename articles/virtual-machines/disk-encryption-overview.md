@@ -8,7 +8,7 @@ ms.author: mbaldwin
 ms.service: azure-virtual-machines
 ms.subservice: security
 ms.custom: references_regions
-#Customer intent: The goal of this article is to give a high level overview of the different types of encryption available to managed disks.
+# Customer intent: As a security administrator, I want to understand the different encryption options for managed disks, so that I can implement the most appropriate security measures for protecting data in Azure virtual machines.
 ---
 
 # Overview of managed disk encryption options

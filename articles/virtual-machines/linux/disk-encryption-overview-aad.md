@@ -9,6 +9,7 @@ ms.collection: linux
 ms.topic: concept-article
 ms.author: mbaldwin
 ms.date: 05/14/2025
+# Customer intent: As a cloud administrator, I want to understand the prerequisites for enabling Azure Disk Encryption with Microsoft Entra ID on Linux VMs, so that I can successfully configure and secure my virtual machines without encountering errors during the encryption process.
 ---
 # Azure Disk Encryption with Microsoft Entra ID (previous release)
 

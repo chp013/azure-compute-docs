@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 05/13/2025
 ms.author: padmalathas
+# Customer intent: As a cloud engineer managing Linux VMs with AMD GPUs, I want to install the necessary AMD GPU drivers and configure my NVv5-V710 instances, so that I can optimize performance for AI and graphics workloads.
 ---
 
 # Install AMD GPU drivers on NVads V710-series Linux VMs

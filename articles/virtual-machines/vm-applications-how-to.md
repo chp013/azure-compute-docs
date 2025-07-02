@@ -551,7 +551,7 @@ jobs:
 
 ### [PowerShell](#tab/powershell3)
 
-Create the VM Application definition using [`New-AzGalleryApplication`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplication). In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery and in the *myGallery* resource group. Replace the values for variables as needed.
+Create the VM Application definition using [`New-AzGalleryApplication`](/powershell/module/az.compute/new-azgalleryapplication). In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery and in the *myGallery* resource group. Replace the values for variables as needed.
 
 ```azurepowershell-interactive
 $galleryName = "myGallery"
@@ -567,7 +567,7 @@ New-AzGalleryApplication `
   -Description $description
 ```
 
-Create a version of your VM Application using [`New-AzGalleryApplicationVersion`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplicationversion). Allowed characters for version are numbers and periods. Numbers must be within the range of a 32-bit integer. Format: *MajorVersion*.*MinorVersion*.*Patch*.
+Create a version of your VM Application using [`New-AzGalleryApplicationVersion`](/powershell/module/az.compute/new-azgalleryapplicationversion). Allowed characters for version are numbers and periods. Numbers must be within the range of a 32-bit integer. Format: *MajorVersion*.*MinorVersion*.*Patch*.
 
 In this example, we're creating version number *1.0.0*. Replace the values of the variables as needed.
 
@@ -624,7 +624,7 @@ az sig gallery-application version create \
 
 ### [REST](#tab/rest3)
 
-Create the VM Application definition using the ['create gallery application API'](https://learn.microsoft.com/rest/api/compute/gallery-applications)
+Create the VM Application definition using the ['create gallery application API'](/rest/api/compute/gallery-applications)
 
 
 ```rest
@@ -657,7 +657,7 @@ PUT
 | releaseNoteUri | Optional. Reference to release notes for the application. |
 
 
-Create a VM application version using the ['create gallery application version API'](https://learn.microsoft.com/rest/api/compute/gallery-applications).
+Create a VM application version using the ['create gallery application version API'](/rest/api/compute/gallery-applications).
 
 ```rest
 PUT

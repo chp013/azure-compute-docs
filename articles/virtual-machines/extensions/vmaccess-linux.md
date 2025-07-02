@@ -9,6 +9,7 @@ author: GabstaMSFT
 ms.collection: linux
 ms.date: 04/12/2023
 ms.custom: GGAL-freshness822, devx-track-azurecli, devx-track-azurepowershell, linux-related-content
+# Customer intent: "As a Linux VM administrator, I want to reset access to my virtual machine using the VMAccess extension, so that I can manage administrative users and regain control when I lose access."
 ---
 
 # VMAccess Extension for Linux

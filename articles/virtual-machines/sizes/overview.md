@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
 ms.workload: infrastructure-services
-ms.date: 04/09/2025
+ms.date: 06/30/2025
 ms.author: mattmcinnes
 ---
 
@@ -297,9 +297,9 @@ List of high performance computing optimized VM size families:
 
 | Family | Workloads | Series List |
 |----|---|---|
-| [HB-family](./high-performance-compute/hb-family.md) | High memory bandwidth <br> Fluid Dynamics <br> Weather modeling |  [HB-series](./high-performance-compute/hb-family.md#hb-series-v1) <br> [HBv2-series](./high-performance-compute/hb-family.md#hbv2-series) <br> [HBv3-series](./high-performance-compute/hb-family.md#hbv3-series) <br> [HBv4-series](./high-performance-compute/hb-family.md#hbv4-series) |
-| [HC-family](./high-performance-compute/hc-family.md) | High density compute <br> Finite element analysis <br> Molecular dynamics <br> Computational chemistry | [HC-series](./high-performance-compute/hc-family.md#hc-series) |
-| [HX-family](./high-performance-compute/hx-family.md) | Large memory capacity <br> Electronic Design Automation (EDA) | [HX-series](./high-performance-compute/hx-family.md#hx-series) |
+| [HB-family](./high-performance-compute/hb-family.md) | High memory bandwidth <br> Fluid Dynamics <br> Weather modeling |  [HBv2-series](./high-performance-compute/hbv2-series.md) <br> [HBv3-series](./high-performance-compute/hbv3-series.md) <br> [HBv4-series](./high-performance-compute/hbv4-series.md) |
+| [HC-family](./high-performance-compute/hc-family.md) | High density compute <br> Finite element analysis <br> Molecular dynamics <br> Computational chemistry | [HC-series](./high-performance-compute/hc-series.md) |
+| [HX-family](./high-performance-compute/hx-family.md) | Large memory capacity <br> Electronic Design Automation (EDA) | [HX-series](./high-performance-compute/hx-series.md) |
 
 To learn more about a specific size family or series, click the tab for that family and scroll to find your desired size series. 
 

@@ -10,6 +10,7 @@ ms.collection: linux
 ms.date: 04/04/2023
 ms.custom: devx-track-azurepowershell, devx-track-azurecli, linux-related-content
 ms.devlang: azurecli
+# Customer intent: "As an IT administrator managing Linux VMs, I want to configure the Linux diagnostic extension to collect metrics and logs, so that I can monitor system health and performance effectively."
 ---
 # Use the Linux diagnostic extension 4.0 to monitor metrics and logs
 

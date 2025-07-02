@@ -9,6 +9,7 @@ author: GabstaMSFT
 ms.reviewer: jushiman
 ms.collection: windows
 ms.date: 04/04/2023
+# Customer intent: As a cloud administrator, I want to automate post-deployment configuration and management tasks on Windows VMs using scripts, so that I can ensure efficient and consistent setup without manual intervention.
 ---
 # Custom Script Extension for Windows
 
@@ -162,6 +163,10 @@ You can set the following values in either public or protected settings. The ext
 > This property *must* be specified in protected settings only.
 
 The Custom Script Extension, version 1.10 and later, supports [managed identities](/azure/active-directory/managed-identities-azure-resources/overview) for downloading files from URLs provided in the `fileUris` setting. The property allows the Custom Script Extension to access Azure Storage private blobs or containers without the user having to pass secrets like SAS tokens or storage account keys.
+
+> [!NOTE]
+> The Custom Script Extension does not currently support the use of managed identities on Arc enabled servers
+
 
 To use this feature, add a [system-assigned](/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity) or [user-assigned](/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-user-assigned-identity) identity to the VM or Virtual Machine Scale Set where the Custom Script Extension runs. Then [grant the managed identity access to the Azure Storage container or blob](/azure/active-directory/managed-identities-azure-resources/tutorial-vm-windows-access-storage#grant-access).
 

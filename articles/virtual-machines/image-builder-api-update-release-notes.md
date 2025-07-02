@@ -8,6 +8,7 @@ ms.date: 02/13/2024
 ms.reviewer: mattmcinnes
 ms.subservice: image-builder
 ms.custom: references_regions
+# Customer intent: As a software developer utilizing VM Image Builder, I want to stay informed about the latest API changes and feature updates, so that I can effectively manage and optimize my image creation processes without encountering compatibility issues.
 ---
 
 # What's new in Azure VM Image Builder

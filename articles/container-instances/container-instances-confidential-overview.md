@@ -8,6 +8,7 @@ ms.service: azure-container-instances
 services: container-instances
 ms.date: 08/29/2024
 ms.custom: mvc
+# Customer intent: "As a cloud operator, I want to implement confidential containers on Azure Container Instances, so that I can securely run containerized applications while protecting sensitive data through hardware-based execution environments and verifiable attestation."
 ---
 
 # Confidential containers on Azure Container Instances

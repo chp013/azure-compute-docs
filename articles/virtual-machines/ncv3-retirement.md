@@ -14,7 +14,7 @@ On September 30, 2025, Microsoft Azure will retire the Standard_NC6s_v3, Standar
 
 Microsoft is recommending the Azure [NCadsH100_v5-series ](/azure/virtual-machines/ncads-h100-v5?source=recommendations)VMs, which offer greater GPU memory bandwidth per GPU, improved [accelerated networking](/azure/virtual-network/create-vm-accelerated-networking-cli) capabilities, and larger and faster local solid state drives. These VMs are targeted for GPU accelerated midrange AI training, batch inferencing, and high-performance computing simulation workloads.
 
-However, depending on the workload being run, regional affinity, and cost preferences, other VMs that may be migrated to from the NCv3-series VMs include NVadsA10_v5, NCasT4_v3, and NVadsV710_v5: 
+Depending on the workload being run, regional affinity, and cost preferences, other VMs that may be migrated to from the NCv3-series VMs include [NVadsA10_v5](/azure/virtual-machines/sizes/gpu-accelerated/nvadsa10v5-series?tabs=sizebasic), [NCasT4_v3](/azure/virtual-machines/sizes/gpu-accelerated/ncast4v3-series?tabs=sizebasic), and [NVadsV710_v5](/azure/virtual-machines/sizes/gpu-accelerated/nvadsv710-v5-series?tabs=sizebasic): 
 
 |Workload|Recommended SKU to Migrate to|
 | -------- | -------- |

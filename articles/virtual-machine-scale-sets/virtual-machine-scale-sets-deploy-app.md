@@ -10,6 +10,7 @@ ms.date: 06/14/2024
 ms.reviewer: mimckitt
 ms.custom: avverma, devx-track-azurepowershell, devx-track-azurecli, linux-related-content
 ms.devlang: azurecli
+# Customer intent: As a cloud engineer, I want to deploy applications to Virtual Machine Scale Sets efficiently, so that I can ensure consistent application availability and streamline management across multiple instances.
 ---
 
 # Deploy your application on Virtual Machine Scale Sets

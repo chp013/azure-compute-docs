@@ -6,6 +6,7 @@ ms.subservice: sizes
 ms.date: 05/23/2025
 ms.topic: how-to
 ms.custom: template-how-to-pattern
+# Customer intent: As a cloud architect, I want to access a list of supported operating system images for remote NVMe, so that I can ensure compatibility and optimize performance for my virtual machines.
 ---
 
 # Supported OS images for remote NVMe

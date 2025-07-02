@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 04/08/2025
 ms.author: minnielahoti
 ms.reviewer: azmetadatadev
+# Customer intent: As a cloud administrator, I want to convert audit logs into an allowlist, so that I can define access control rules effectively and enhance the security of my virtual machine environment.
 ---
 
 # Convert audit logs to an allowlist

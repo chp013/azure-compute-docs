@@ -8,6 +8,7 @@ ms.topic: overview
 ms.date: 02/24/2023
 ms.reviewer: cynthn, jushiman, mattmcinnes
 ms.custom: template-how-to
+# Customer intent: "As an IT administrator, I want to create and manage on-demand capacity reservations in Azure, so that I can ensure the availability of compute resources for critical workloads without long-term commitments."
 ---
 
 # On-demand capacity reservation

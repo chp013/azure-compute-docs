@@ -5,7 +5,7 @@ author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
-ms.date: 5/22/2025
+ms.date: 06/30/2025
 ms.author: padmalathas
 ms.reviewer: mattmcinnes
 ---
@@ -28,11 +28,11 @@ vCPUs (Qty.) and Memory for each size
 
 | Size Name | vCPUs (Qty.) | Memory (GB) | L3 Cache (MB) | Memory Bandwidth (GB/s) | Base CPU Frequency (GHz) |  Single-core Frequency Peak (GHz) | All-core Frequency Peak (GHz) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Standard_HX176rs | 176 | 1408 | 2304 | 780 | 2.4 | 3.7 | 3.7 |
-| Standard_HX176-144rs | 144 | 1408 | 2304 | 780 | 2.4 | 3.7 | 3.7 |
-| Standard_HX176-96rs | 96 | 1408 | 2304 | 780 | 2.4 | 3.7 | 3.7 |
-| Standard_HX176-48rs | 48 | 1408 | 2304 | 780 | 2.4 | 3.7 | 3.7 |
-| Standard_HX176-24rs | 24 | 1408 | 2304 | 780 | 2.4 | 3.7 | 3.7 |
+| Standard_HX176rs | 176 | 1408 | 2304 | 780 | 2.55 | 3.7 | 3.7 |
+| Standard_HX176-144rs | 144 | 1408 | 2304 | 780 | 2.55 | 3.7 | 3.7 |
+| Standard_HX176-96rs | 96 | 1408 | 2304 | 780 | 2.55 | 3.7 | 3.7 |
+| Standard_HX176-48rs | 48 | 1408 | 2304 | 780 | 2.55 | 3.7 | 3.7 |
+| Standard_HX176-24rs | 24 | 1408 | 2304 | 780 | 2.55 | 3.7 | 3.7 |
 
 #### VM Basics resources
 - [Check vCPU quotas](../../../virtual-machines/quotas.md)

@@ -1010,7 +1010,7 @@
   - name: Common questions
     href: service-fabric-common-questions.md
   - name: Azure Roadmap
-    href: https://azure.microsoft.com/roadmap/
+    href: https://azure.microsoft.com/updates/
   - name: Microsoft Q&A question page
     href: /answers/topics/azure-service-fabric.html
   - name: Azure Resource Manager Deployment Guardrails

@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 5/10/2025
 ms.reviewer: tomvcassidy
+# Customer intent: "As a cloud administrator, I want to retrieve details about the standby pool for my container instances, so that I can monitor the status and provisioning state of my container groups effectively."
 ---
 
 # Get standby pools for Azure Container instances details

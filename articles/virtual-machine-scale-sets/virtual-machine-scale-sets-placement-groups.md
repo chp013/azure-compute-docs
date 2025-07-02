@@ -10,6 +10,7 @@ ms.date: 06/14/2024
 ms.reviewer: jushiman
 ms.custom: mimckitt, devx-track-azurecli
 
+# Customer intent: As a cloud architect, I want to deploy large Virtual Machine Scale Sets with multiple placement groups, so that I can efficiently manage a scalable infrastructure for applications requiring extensive resources and simple administration.
 ---
 # Virtual Machine Scale Sets and placement groups
 

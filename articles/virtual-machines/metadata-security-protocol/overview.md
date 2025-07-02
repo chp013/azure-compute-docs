@@ -7,6 +7,7 @@ ms.topic: concept-article
 ms.date: 04/22/2025
 ms.author: minnielahoti
 ms.reviewer: azmetadatadev
+# Customer intent: As a cloud administrator, I want to implement the Metadata Security Protocol so that I can enhance the security of instance metadata services against attacks and protect sensitive VM credentials from potential threats.
 ---
 
 # Metadata Security Protocol (MSP)

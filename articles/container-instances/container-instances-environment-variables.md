@@ -9,6 +9,7 @@ services: container-instances
 ms.date: 08/29/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli 
 ms.devlang: azurecli
+# Customer intent: As a container developer, I want to set environment variables when creating container instances, so that I can dynamically configure the application's behavior according to my specific requirements.
 ---
 # Set environment variables in container instances
 

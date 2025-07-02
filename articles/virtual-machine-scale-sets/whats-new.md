@@ -8,6 +8,7 @@ ms.date: 06/14/2024
 ms.reviewer: jushiman
 ms.author: cynthn
 ms.custom: day0
+# Customer intent: "As a cloud architect, I want to learn about the latest features in Virtual Machine Scale Sets, so that I can implement the most secure and efficient configurations in my organization’s cloud infrastructure."
 ---
 
 # What's new for scale sets

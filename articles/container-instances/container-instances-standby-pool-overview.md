@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 5/19/2025
 ms.reviewer: tomvcassidy
+# Customer intent: As a cloud architect, I want to implement standby pools for Azure Container Instances, so that I can reduce scale-out latency and effectively manage container resources in response to fluctuating traffic demands.
 ---
 
 # Standby pools for Azure Container Instances

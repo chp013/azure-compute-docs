@@ -8,6 +8,7 @@ ms.topic: how-to
 ms.author: mbaldwin
 ms.date: 04/29/2025
 ms.custom: linux-related-content
+# Customer intent: "As a system administrator, I want to upgrade Azure Disk Encryption on my virtual machines, so that I can enhance security by using the latest version without relying on Microsoft Entra ID."
 ---
 
 # Upgrading the Azure Disk Encryption version

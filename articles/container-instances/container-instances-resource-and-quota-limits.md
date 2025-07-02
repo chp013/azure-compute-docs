@@ -9,6 +9,7 @@ ms.topic: concept-article
 ms.date: 03/27/2025
 ms.custom: references_regions
 
+# Customer intent: As a cloud architect, I want to understand the resource availability and quota limits for Azure Container Instances so that I can effectively plan and optimize container deployments based on regional capacities and service limitations.
 ---
 # Resource availability & quota limits for ACI
 

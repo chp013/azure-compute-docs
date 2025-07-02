@@ -7,6 +7,7 @@ ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 02/27/2023
 ms.author: vikancha
+# Customer intent: As a cloud administrator, I want to migrate legacy GPU virtual machines to newer NV series, so that I can leverage improved performance and cost efficiency for my graphics-intensive workloads.
 ---
 # NV series migration guide
 

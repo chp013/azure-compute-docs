@@ -8,6 +8,7 @@ ms.topic: how-to
 ms.date: 07/23/2020
 ms.author: viveksingla
 ms.subservice: disks
+# Customer intent: As a cloud engineer, I want to implement ephemeral OS disks for Azure VMs, so that I can achieve lower latency and faster reimaging for stateless applications while optimizing storage costs and performance.
 ---
 
 # Ephemeral OS disks for Azure VMs

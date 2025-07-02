@@ -38,7 +38,7 @@ The following section lists the Guest OS support for Cobalt 100 VMs.
 | Guest OS | Version |
 |---|---|
 | AlmaLinux | 8+ |
-| Azure Linux | 2 |
+| Azure Linux | 3 |
 | Debian | 11+ |
 | Flatcar | N/A |
 | Kali Linux | N/A |

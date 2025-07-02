@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 5/19/2025
 ms.reviewer: tomvcassidy
+# Customer intent: As a cloud administrator, I want to update or delete a standby pool for container instances, so that I can manage resource capacity and configurations effectively in my cloud environment.
 ---
 
 

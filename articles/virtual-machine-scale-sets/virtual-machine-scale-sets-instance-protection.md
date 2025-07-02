@@ -9,6 +9,7 @@ ms.subservice: instance-protection
 ms.date: 06/14/2024
 ms.reviewer: mimckitt
 ms.custom: avverma
+# Customer intent: "As a cloud administrator, I want to protect specific instances in a Virtual Machine Scale Set from scale-in and scale-set actions, so that I can ensure stability for long-running tasks and specialized workloads."
 ---
 # Instance Protection for Azure Virtual Machine Scale Set instances
 

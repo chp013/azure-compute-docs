@@ -8,6 +8,7 @@ ms.date: 1/25/2023
 ms.author: vakavuru
 ms.reviewer: mattmcinnes
 #Customer intent: As an IT administrator, I want to learn more about using a dedicated host for my Azure virtual machines
+# Customer intent: As an IT administrator, I want to understand how Azure Dedicated Hosts function for virtual machine deployment, so that I can effectively utilize dedicated resources for my workloads while optimizing performance, security, and cost.
 ---
 
 # Azure Dedicated Hosts

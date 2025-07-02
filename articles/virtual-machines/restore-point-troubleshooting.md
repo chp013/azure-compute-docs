@@ -208,7 +208,7 @@ Creating a restore point requires enough compute resource to be available. If yo
 
 **Error code**: VMRestorePointClientError
 
-**Error message**: Restore Point creation failed due to no network connectivity on the virtual machine. Ensure that VM has network access. Either allowlist the Azure datacenter IP ranges or set up a proxy server for network access. For more information, see https://go.microsoft.com/fwlink/?LinkId=800034. If you are already using proxy server, make sure that proxy server settings are configured correctly.
+**Error message**: Restore Point creation failed due to no network connectivity on the virtual machine. Ensure that VM has network access. Either allowlist the Azure datacenter IP ranges or set up a proxy server for network access. If you are already using proxy server, make sure that proxy server settings are configured correctly.
 
 After you trigger creation of restore point, the compute service starts communicating with the VM snapshot extension to take a point-in-time snapshot. Any of the following conditions might prevent the snapshot from being triggered. If the snapshot isn't triggered, a restore point failure might occur. Complete the following troubleshooting step, and then retry your operation:
 

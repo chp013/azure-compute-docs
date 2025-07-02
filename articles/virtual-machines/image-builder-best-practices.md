@@ -8,6 +8,7 @@ ms.date: 03/25/2024
 ms.reviewer: mattmcinnes
 ms.subservice: image-builder
 ms.custom: references_regions
+# Customer intent: "As a cloud administrator, I want to implement best practices for Azure VM Image Builder so that I can ensure efficient image management, enhance security, and optimize resource deployment."
 ---
 
 # Best practices for Azure VM Image Builder

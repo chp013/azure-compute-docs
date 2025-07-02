@@ -9,6 +9,7 @@ ms.author: robreed
 ms.reviewer: jushiman
 ms.collection: windows
 ms.date: 11/28/2022
+# Customer intent: As a system administrator, I want to apply a PowerShell DSC configuration to an Azure VM using an extension, so that I can automate the configuration management for consistent and compliant system states.
 ---
 # PowerShell DSC Extension
 

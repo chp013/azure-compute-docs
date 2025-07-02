@@ -7,6 +7,7 @@ ms.topic: concept-article
 ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-service-fabric
+# Customer intent: As a cloud operations engineer, I want to monitor Azure Service Fabric applications and clusters, so that I can ensure their performance, reliability, and health while addressing any issues that may impact user experience.
 ---
 
 # Monitor Azure Service Fabric

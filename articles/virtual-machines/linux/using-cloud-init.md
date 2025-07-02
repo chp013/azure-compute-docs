@@ -9,6 +9,7 @@ ms.collection: linux
 ms.topic: how-to
 ms.date: 03/20/2025
 ms.author: vakavuru
+# Customer intent: "As a cloud engineer, I want to utilize cloud-init to automate the configuration of Linux VMs during provisioning, so that I can streamline deployments and eliminate the need for manual setup processes."
 ---
 # cloud-init support for virtual machines in Azure
 

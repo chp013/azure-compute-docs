@@ -5,7 +5,7 @@ author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
-ms.date: 02/02/2024
+ms.date: 06/17/2025
 ms.author: mattmcinnes
 ms.reviewer: iamwilliew
 ---
@@ -67,9 +67,7 @@ For a list of storage optimized sizes listed as "retired" and "announced for ret
 
 ## GPU accelerated previous-gen sizes
 
-|Series name                 | Status                 | Migration guide   |
-|----------------------------|------------------------|-------------------|
-| NVv2-series                | [Next-gen available](./retirement-overview.md#next-gen-available) |                   |
+Currently there are no previous-gen or capacity limited GPU accelerated sizes.
 
 For a list of GPU accelerated sizes listed as "retired" and "announced for retirement" (sizes that are no longer available or soon to be unavailable for use), see [retired GPU accelerated sizes](./retired-sizes-list.md#gpu-accelerated-retired-sizes).
 

@@ -7,13 +7,13 @@ ms.reviewer: cynthn
 ms.service: azure-virtual-machine-scale-sets
 ms.subservice: trusted-launch
 ms.topic: how-to
-ms.date: 06/10/2024
+ms.date: 06/18/2025
 ms.custom: template-how-to, devx-track-azurepowershell, devx-track-arm-template
 ---
 
-# (Preview) Enable Trusted launch on existing Uniform scale set
+# Enable Trusted launch on existing Uniform scale set
 
-**Applies to:** :heavy_check_mark: Uniform scale set :x: Flex scale set :x: Service fabric
+**Applies to:** :heavy_check_mark: Uniform scale set :heavy_check_mark: Flex scale set :x: Service fabric
 
 Azure Virtual machine Scale sets supports enabling Trusted launch on existing [Uniform Scale sets](../virtual-machine-scale-sets/overview.md) virtual machine (VM) by upgrading to [Trusted launch](trusted-launch.md) security type.
 
@@ -25,12 +25,11 @@ Azure Virtual machine Scale sets supports enabling Trusted launch on existing [U
   - To validate if scale set is configured with data disk, navigate to scale set -> **Disks** under **Settings** menu -> check under heading **Data disks**
     :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-data-disks.png" alt-text="Screenshot of the scale set with data disks." lightbox="./media/trusted-launch/virtual-machine-scale-sets-data-disks.png":::
 
-- Enabling Trusted launch on existing [virtual machine Scale sets Flex](../virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes.md) is currently not supported.
+- Enabling Trusted launch on existing [virtual machine Scale sets Flex](../virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes.md) is currently in preview. [Register for preview of enabling Trusted launch on existing Flex scale set preview](https://aka.ms/TrustedLaunchUpgrade/FlexPreview)
 - Enabling Trusted launch on existing [Service fabric clusters](../service-fabric/service-fabric-overview.md) and [Service fabric managed clusters](../service-fabric/overview-managed-cluster.md) is currently not supported.
 
 ## Prerequisites
 
-- Register Preview Feature `ImageSkuGenUpdateWithVMSS` under `Microsoft.Compute` namespace on scale set subscription. For more information, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features)
 - Scale set isn't dependent on [features currently not supported with Trusted launch](trusted-launch.md#unsupported-features).
 - Scale set should be configured with [Trusted launch supported size family](trusted-launch.md#virtual-machines-sizes)
     > [!NOTE]

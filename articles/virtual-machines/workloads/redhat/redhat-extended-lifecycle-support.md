@@ -26,7 +26,7 @@ This article provides information on Extended Life Cycle Support for the Red Hat
 Microsoft Azure follows the [Red Hat Enterprise Linux Life Cycle](https://access.redhat.com/support/policy/updates/errata/#:~:text=Red%20Hat%20Enterprise%20Linux%20Version%208%20and%209,Support%20Phases%20followed%20by%20an%20Extended%20Life%20Phase.). If you have a valid Extended Update Support agreement from Red Hat or a Red Hat Partner you continue to receive support on Azure, including our integrated customer support  (subject to our [support terms](/troubleshoot/azure/cloud-services/support-linux-open-source-technology)).
 
 ## Red Hat Enterprise Linux 7 Life Cycle
-Starting June 30, 2024, Red Hat Enterprise Linux 7 will reach the end of maintenance support 2 phase. The maintenance phase is followed by the Extended Life Phase. As Red Hat Enterprise Linux 7 transitions out of the Full/Maintenance Phases, upgrading to Red Hat Enterprise Linux 8 or 9. If customers must stay on Red Hat Enterprise Linux 7, it's recommended to add the Red Hat Enterprise Linux Extended Life Cycle Support (ELS) Add-On.
+Starting June 30, 2024, Red Hat Enterprise Linux 7 reached the end of maintenance support 2 phase. The maintenance phase is followed by the Extended Life Phase. As Red Hat Enterprise Linux 7 transitions out of the Full/Maintenance Phases, upgrading to Red Hat Enterprise Linux 8 or higher is recommended. If customers must stay on Red Hat Enterprise Linux 7, it's recommended to add the Red Hat Enterprise Linux Extended Life Cycle Support (ELS) Add-On.
 
 ## Steps to add Extended Life Cycle Support (ELS) through Azure Marketplace
 1. "ELS" can be purchased thru the following Azure Marketplace offers: 
@@ -71,7 +71,7 @@ Yes.
 #### Can I use this offer for any RHEL offer / image deployed in marketplace? (For example, custom image, CIS image, subscription through reseller, etc.) 
 Yes.
 
-#### What about RHEL 7 systems without ELS. Will they stop functioning? 
+#### What about end of life RHEL systems without ELS. Will they stop functioning? 
 They continue to run but will no longer receive security updates and support, leaving customers at risk. Azure customer support will still assist customers with Azure specific issues but may not be able to assist customers further or refer them to Red Hat without active ELS add-on.
 [FAQ: Red Hat Enterprise Linux 7 reaches End of Maintenance Phase and transitions to Extended Life Phase - Red Hat Customer Portal] (https://access.redhat.com/articles/7005471)
 

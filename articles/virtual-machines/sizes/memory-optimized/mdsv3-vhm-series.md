@@ -4,7 +4,7 @@ description: Information on and specifications of the Mdsv3-VHM-series sizes
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/08/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes

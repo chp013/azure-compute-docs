@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 04/15/2025
 ms.author: rogarana
 ms.custom: devx-track-azurepowershell, innovation-engine
+# Customer intent: As an IT administrator, I want to enable performance enhancements on Azure disks, so that I can increase IOPS and throughput for demanding workloads without incurring additional costs.
 ---
 
 # Increase IOPS and throughput limits for Azure Premium SSDs and Standard SSD/HDDs

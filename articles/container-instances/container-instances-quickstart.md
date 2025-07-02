@@ -8,6 +8,7 @@ ms.service: azure-container-instances
 services: container-instances
 ms.date: 08/29/2024
 ms.custom: mvc, devx-track-azurecli, mode-api
+# Customer intent: As a developer, I want to quickly deploy a Docker container using the command line, so that I can run my web application without managing complex orchestration platforms.
 ---
 
 # Quickstart: Deploy a container instance in Azure using the Azure CLI

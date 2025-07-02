@@ -9,6 +9,7 @@ ms.subservice: networking
 ms.date: 06/14/2024
 ms.reviewer: mimckitt
 ms.custom: mimckitt, devx-track-azurepowershell, devx-track-azurecli
+# Customer intent: As a cloud architect, I want to configure advanced networking features for Azure Virtual Machine Scale Sets, so that I can optimize network performance and security for my applications.
 ---
 
 # Networking for Azure Virtual Machine Scale Sets

@@ -8,6 +8,7 @@ ms.date: 05/14/2024
 ms.author: jainan
 ms.reviewer: mattmcinnes
 ms.custom:
+# Customer intent: "As a cloud administrator, I want to hibernate my virtual machine, so that I can save on compute costs while maintaining the state of my applications for quick resumption."
 ---
 
 # Hibernation for Azure virtual machines

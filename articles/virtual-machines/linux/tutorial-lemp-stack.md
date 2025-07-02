@@ -11,6 +11,7 @@ ms.date: 2/29/2024
 ms.author: carols
 ms.reviewer: jushim
 #Customer intent: As an IT administrator, I want to learn how to install the LEMP stack so that I can quickly prepare a Linux VM to run web applications.
+# Customer intent: "As a developer, I want to install a LEMP stack and WordPress on an Azure Linux VM, so that I can quickly set up a web application environment for testing or proof of concept."
 ---
 
 # Tutorial: Install a LEMP stack on an Azure Linux VM

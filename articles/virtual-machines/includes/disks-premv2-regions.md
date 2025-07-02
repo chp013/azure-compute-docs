@@ -7,6 +7,7 @@
  ms.date: 08/09/2024
  ms.author: rogarana
  ms.custom: include file, references_regions
+# Customer intent: "As a cloud architect, I want to find out which regions support Azure Disk Storage options, so that I can plan the deployment of my applications based on availability and redundancy requirements."
 ---
 Currently only available in the following regions:
 

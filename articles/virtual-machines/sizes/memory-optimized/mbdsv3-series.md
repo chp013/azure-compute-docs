@@ -4,7 +4,7 @@ description: Information on and specifications of the Mbdsv3-series sizes
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/24/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes

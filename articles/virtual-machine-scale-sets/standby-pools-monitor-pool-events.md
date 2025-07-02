@@ -7,6 +7,7 @@ ms.service: azure-virtual-machine-scale-sets
 ms.topic: how-to
 ms.date: 5/6/2025
 ms.reviewer: ju-shim
+# Customer intent: As an IT administrator managing Virtual Machine Scale Sets, I want to configure Azure Log Analytics to monitor events from standby pools, so that I can track metrics, analyze trends, and receive alerts for critical operational issues.
 ---
 
 # Use Azure Log Analytics to monitor standby pool events
@@ -197,4 +198,4 @@ To ensure you're notified of critical events, you can set up alerts in Azure Mon
 ### Next steps
 
 - Test your alerts by simulating the events in your standby pool.
-- Review the [Azure Monitor Alerts documentation](https://learn.microsoft.com/azure/azure-monitor/alerts/alerts-overview) for more advanced alerting options.
+- Review the [Azure Monitor Alerts documentation](/azure/azure-monitor/alerts/alerts-overview) for more advanced alerting options.
