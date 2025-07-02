@@ -30,19 +30,18 @@ This document provides guidance to get your service running inside a Windows con
    ```csharp
    namespace MyApplication
    {
-      using StatelessContainer;
-      public class Program
+      internal static class Program
       {
-          public static void Main(string[] args)
+          private static void Main()
           {
               SFBinaryLoader.Initialize();
-              RealMain(args);
+              RealMain();
           }
 
           /// <summary>
           /// This is the entry point of the service host process.
           /// </summary>
-          private static void RealMain(string[] args)
+          private static void RealMain()
           {
    ```
 
