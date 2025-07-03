@@ -357,8 +357,6 @@ There may be few operations that delete script must perform.
 
 	Once the application and configuration files are uploaded to the storage account, you need to [generate a SAS URL](/azure/storage/common/storage-sas-overview#get-started-with-sas) with read privilege for these blobs. These SAS URLs are then provided as reference while creating the VM Application version resource. For Storage accounts enabled for anonymous access, blob URL can also be used. However, its recommended to use SAS URL for improved security. You can use [Storage Explorer](/azure/vs-azure-tools-storage-explorer-blobs) to quickly create a SAS URI if you don't already have one.
 
-#### [Portal](#tab/portal2)
-
 #### [CLI](#tab/cli2)
 ```shell-session
 
@@ -458,76 +456,108 @@ foreach ($file in $files) {
 }
 ```
 
-#### [Github Actions](#tab/ga2)
-```yaml
-name: Upload to Azure Blob Storage
-
-on:
-  push:
-    branches:
-      - main  # or your deployment branch
-
-jobs:
-  upload:
-    runs-on: ubuntu-latest
-
-    permissions:
-      id-token: write
-      contents: read
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Azure Login with OIDC
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-      - name: Upload files to Blob Storage
-        run: |
-          az storage container create \
-            --name ${{ secrets.AZURE_CONTAINER_NAME }} \
-            --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
-            --auth-mode login \
-            --only-show-errors
-
-          az storage blob upload-batch \
-            --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
-            --destination ${{ secrets.AZURE_CONTAINER_NAME }} \
-            --source . \
-            --auth-mode login \
-            --only-show-errors
-
-      - name: Generate SAS URLs
-        run: |
-          EXPIRY=$(date -u -d "+24 hours" '+%Y-%m-%dT%H:%MZ')
-          echo "Generating SAS URLs:"
-          for file in $(find . -type f); do
-            BLOB_NAME=$(realpath --relative-to=. "$file" | sed 's|^\./||' | sed 's| |%20|g')
-            SAS=$(az storage blob generate-sas \
-              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
-              --container-name ${{ secrets.AZURE_CONTAINER_NAME }} \
-              --name "$BLOB_NAME" \
-              --permissions r \
-              --expiry $EXPIRY \
-              --auth-mode login \
-              -o tsv)
-            echo "https://${{ secrets.AZURE_STORAGE_ACCOUNT }}.blob.core.windows.net/${{ secrets.AZURE_CONTAINER_NAME }}/$BLOB_NAME?$SAS"
-          done
-```
-
-#### [Terraform](#tab/terraform2)
-
-
-#### [Azure Pipeline](#tab/pipeline2)
-
-#### [Azure DevOps](#tab/devops2)
+#### [Portal](#tab/portal2)
+[Upload application package and configuration files to Azure Storage Account using Portal](/azure/storage/blobs/storage-quickstart-blobs-portal)
 
 ---
 ## Step 3: Create the VM Application
+### [REST](#tab/rest3)
+
+Create the VM Application definition using the ['create gallery application API'](/rest/api/compute/gallery-applications)
+
+
+```rest
+PUT
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{applicationName}?api-version=2024-03-03
+
+{
+    "location": "West US",
+    "name": "myApp",
+    "properties": {
+        "supportedOSType": "Windows | Linux",
+        "endOfLifeDate": "2020-01-01",
+	"description": "Description of the App",
+	"eula": "Link to End-User License Agreement (EULA)",
+	"privacyStatementUri": "Link to privacy statement for the application",
+	"releaseNoteUri": "Link to release notes for the application"
+    }
+}
+
+```
+
+| Field Name | Description | Limitations |
+|--|--|--|
+| name | A unique name for the VM Application within the gallery. | Max length of 117 characters. Allowed characters are uppercase or lowercase letters, digits, hyphen(-), period (.), underscore (_). Names not allowed to end with period(.). |
+| supportedOSType | Define the supported OS Type. | "Windows" or "Linux" |
+| endOfLifeDate | A future end of life date for the application. The date is for reference only and isn't enforced. | Valid future date |
+| description | Optional. Description of the Application. |
+| eula | Optional. Reference to End-User License Agreement (EULA). |
+| privacyStatementUri | Optional. Reference to privacy statement for the application. |
+| releaseNoteUri | Optional. Reference to release notes for the application. |
+
+
+Create a VM application version using the ['create gallery application version API'](/rest/api/compute/gallery-applications).
+
+```rest
+PUT
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{applicationName}/versions/{versionName}?api-version=2024-03-03
+
+{
+  "location": "$location",
+  "properties": {
+    "publishingProfile": {
+      "source": {
+        "mediaLink": "$mediaLink",
+        "defaultConfigurationLink": "$configLink"
+      },
+      "manageActions": {
+        "install": "echo installed",
+        "remove": "echo removed",
+        "update": "echo update"
+      },
+      "targetRegions": [
+        {
+          "name": "West US",
+          "regionalReplicaCount": 1
+        },
+	{
+	  "name": "East US"
+	}
+      ]
+      "endofLifeDate": "datetime",
+      "replicaCount": 1,
+      "excludeFromLatest": false,
+      "storageAccountType": "PremiumV2_LRS | Premium_LRS | Standard_LRS | Standard_ZRS"
+      "safetyProfile": {
+	"allowDeletionOfReplicatedLocations": false
+      }
+      "settings": {
+	"scriptBehaviorAfterReboot": "None | Rerun",
+	"configFileName": "$appConfigFileName",
+	"packageFileName": "$appPackageFileName"
+      }
+   }
+}
+
+```
+
+| Field Name | Description | Limitations |
+|--|--|--|
+| location | Source location for the VM Application version. | Valid Azure region |
+| mediaLink | The url containing the application version package. | Valid and existing storage url |
+| defaultConfigurationLink | Optional. The url containing the default configuration, which may be overridden at deployment time. | Valid and existing storage url |
+| Install | The command to install the application. | Valid command for the given OS |
+| Remove | The command to remove the application. | Valid command for the given OS |
+| Update | Optional. The command to update the application. If not specified and an update is required, the old version is removed and the new one installed. | Valid command for the given OS |
+| targetRegions/name | The name of a region to which to replicate. | Validate Azure region |
+| targetRegions/regionalReplicaCount | Optional. The number of replicas in the region to create. Defaults to 1. | Integer between 1 and 3 inclusive |
+| replicaCount | Optional. Defines the number of replicas across each region. Takes effect if regionalReplicaCount isn't defined. | Integer between 1 and 3 inclusive |
+| endOfLifeDate | A future end of life date for the application version. This property is for customer reference only and isn't enforced. | Valid future date |
+| storageAccountType | Optional. Type of storage account to use in each region for storing application package. Defaults to Standard_LRS. | This property is nonupdatable. |
+| allowDeletionOfReplicatedLocations | Optional. Indicates whether or not removing this Gallery Image Version from replicated regions is allowed. | |
+| settings/scriptBehaviorAfterReboot | Optional. The action to be taken for installing, updating, or removing gallery application after the VM is rebooted. | | 
+| settings/configFileName | Optional. The name to assign the downloaded package file on the VM. If not specified, the package file is named the same as the Gallery Application name. | This is limited to 4,096 characters. |
+| settings/packageFileName | Optional. The name to assign the downloaded config file on the VM. If not specified, the config file is named as the Gallery Application name appended with '_config'. | This is limited to 4,096 characters. |
 
 ### [Portal](#tab/portal3)
 
@@ -630,103 +660,565 @@ az sig gallery-application version create \
    --default-configuration-file-link "https://<storage account name>.blob.core.windows.net/<container name>/<filename>"\
 ```
 
-### [REST](#tab/rest3)
+#### [Github Actions](#tab/ga3)
+```yaml
+name: Deploy Azure VM Application
 
-Create the VM Application definition using the ['create gallery application API'](/rest/api/compute/gallery-applications)
+on:
+  push:
+    branches:
+      - main
 
+env:
+  # Customize your app and config filenames here
+  APP_FILE: app.exe
+  CONFIG_FILE: app-config.json
 
-```rest
-PUT
-/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{applicationName}?api-version=2024-03-03
+  AZURE_RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+  AZURE_LOCATION: ${{ secrets.AZURE_LOCATION }}
+  AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+  AZURE_CONTAINER_NAME: ${{ secrets.AZURE_CONTAINER_NAME }}
+  GALLERY_NAME: ${{ secrets.GALLERY_NAME }}
+  APPLICATION_NAME: ${{ secrets.AZURE_VM_APPLICATION_NAME }}
 
-{
-    "location": "West US",
-    "name": "myApp",
-    "properties": {
-        "supportedOSType": "Windows | Linux",
-        "endOfLifeDate": "2020-01-01",
-	"description": "Description of the App",
-	"eula": "Link to End-User License Agreement (EULA)",
-	"privacyStatementUri": "Link to privacy statement for the application",
-	"releaseNoteUri": "Link to release notes for the application"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+    # Step 1: Checkout repo
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Step 2: Login to Azure using OIDC
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    # Step 3: Upload app and config files to Azure Blob
+    - name: Upload files to Azure Blob Storage
+      run: |
+        set -euo pipefail
+
+        echo "Creating container if missing..."
+        az storage container create \
+          --name "$AZURE_CONTAINER_NAME" \
+          --account-name "$AZURE_STORAGE_ACCOUNT" \
+          --auth-mode login \
+          --only-show-errors
+
+	echo "Uploading files..."
+        az storage blob upload \
+          --account-name "$AZURE_STORAGE_ACCOUNT" \
+          --container-name "$AZURE_CONTAINER_NAME" \
+          --name "$APP_FILE" \
+          --file "$APP_FILE" \
+          --auth-mode login \
+          --only-show-errors
+
+        az storage blob upload \
+          --account-name "$AZURE_STORAGE_ACCOUNT" \
+          --container-name "$AZURE_CONTAINER_NAME" \
+          --name "$CONFIG_FILE" \
+          --file "$CONFIG_FILE" \
+          --auth-mode login \
+          --only-show-errors
+
+    # Step 4: Create VM Application (if missing)
+    - name: Create VM Application if missing
+      run: |
+        set -euo pipefail
+
+	echo "Checking for existing VM Application..."
+        if ! az sig gallery-application show \
+          --resource-group "$AZURE_RESOURCE_GROUP" \
+          --gallery-name "$GALLERY_NAME" \
+          --name "$APPLICATION_NAME" &>/dev/null; then
+
+          az sig gallery-application create \
+            --resource-group "$AZURE_RESOURCE_GROUP" \
+            --gallery-name "$GALLERY_NAME" \
+            --name "$APPLICATION_NAME" \
+            --location "$AZURE_LOCATION" \
+            --os-type Windows
+        fi
+
+    # Step 5: Generate SAS URLs
+    - name: Generate SAS URLs
+      id: sas
+      run: |
+        set -euo pipefail
+
+	echo "Generating SAS URLs valid for 24 hours..."
+        EXPIRY=$(date -u -d "+1 day" '+%Y-%m-%dT%H:%MZ')
+
+        APP_SAS=$(az storage blob generate-sas \
+          --account-name "$AZURE_STORAGE_ACCOUNT" \
+          --container-name "$AZURE_CONTAINER_NAME" \
+          --name "$APP_FILE" \
+          --permissions r \
+          --expiry "$EXPIRY" \
+          --auth-mode login -o tsv)
+
+        CONFIG_SAS=$(az storage blob generate-sas \
+          --account-name "$AZURE_STORAGE_ACCOUNT" \
+          --container-name "$AZURE_CONTAINER_NAME" \
+          --name "$CONFIG_FILE" \
+          --permissions r \
+          --expiry "$EXPIRY" \
+          --auth-mode login -o tsv)
+
+        echo "APP_SAS=$APP_SAS" >> $GITHUB_ENV
+        echo "CONFIG_SAS=$CONFIG_SAS" >> $GITHUB_ENV
+
+    # Step 6: Create Application Version using semantic versioning
+    - name: Create VM Application Version
+      run: |
+        set -euo pipefail
+
+	# Generate a unique version name
+	MAJOR=1
+	MINOR=0
+	PATCH=$(date +%Y%m%d)
+	VERSION="$MAJOR.$MINOR.$PATCH"
+
+	# Load install/uninstall commands from .txt files as strings
+        INSTALL_CMD=$(jq -Rs '.' < install-script-as-string.txt)
+        REMOVE_CMD=$(jq -Rs '.' < uninstall-script-as-string.txt)
+
+        PACKAGE_URL="https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/${APP_FILE}?${APP_SAS}"
+        CONFIG_URL="https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/${CONFIG_FILE}?${CONFIG_SAS}"
+
+	# Create the version
+        az sig gallery-application version create \
+          --resource-group "$AZURE_RESOURCE_GROUP" \
+          --gallery-name "$GALLERY_NAME" \
+          --gallery-application-name "$APPLICATION_NAME" \
+          --gallery-application-version-name "$VERSION" \
+          --version-name "$VERSION" \
+          --location "$AZURE_LOCATION" \
+          --package-file-link "$PACKAGE_URL" \
+          --default-file-link "$CONFIG_URL" \
+          --install-command "$INSTALL_CMD" \
+          --remove-command "$REMOVE_CMD" \
+          --only-show-errors
+```
+
+#### [Azure DevOps Pipeline](#tab/devops3)
+```yaml
+trigger:
+  branches:
+    include: [ main ]
+
+variables:
+  # 🔧 Customize filenames below
+  APP_FILE: app.exe
+  CONFIG_FILE: app-config.json
+
+  AZURE_RESOURCE_GROUP: $(AZURE_RESOURCE_GROUP)
+  AZURE_LOCATION: $(AZURE_LOCATION)
+  AZURE_STORAGE_ACCOUNT: $(AZURE_STORAGE_ACCOUNT)
+  AZURE_CONTAINER_NAME: $(AZURE_CONTAINER_NAME)
+  GALLERY_NAME: $(GALLERY_NAME)
+  APPLICATION_NAME: $(AZURE_VM_APPLICATION_NAME)
+
+stages:
+  - stage: DeployVMApp
+    displayName: Upload files and deploy Azure VM Application
+    jobs:
+      - job: Deploy
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - checkout: self
+
+          # 1️⃣ Upload files to Blob
+          - task: AzureCLI@2
+            displayName: Upload app (exe, zip, etc) + config to Blob
+            inputs:
+              azureSubscription: 'AzureServiceConnection'
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                set -euo pipefail
+
+                echo "Creating container if it doesn't exist..."
+                az storage container create \
+                  --name "$AZURE_CONTAINER_NAME" \
+                  --account-name "$AZURE_STORAGE_ACCOUNT" \
+                  --auth-mode login \
+                  --only-show-errors
+
+                echo "Uploading files..."
+		az storage blob upload \
+		  --account-name "$AZURE_STORAGE_ACCOUNT" \
+		  --container-name "$AZURE_CONTAINER_NAME" \
+		  --name "$APP_FILE" \
+		  --file "$APP_FILE" \
+		  --auth-mode login \
+		  --only-show-errors
+
+		az storage blob upload \
+		  --account-name "$AZURE_STORAGE_ACCOUNT" \
+            	  --container-name "$AZURE_CONTAINER_NAME" \
+            	  --name "$CONFIG_FILE" \
+            	  --file "$CONFIG_FILE" \
+            	  --auth-mode login --only-show-errors
+
+          # 2️⃣ Create VM Application Definition (if not exists)
+          - task: AzureCLI@2
+            displayName: Create VM Application Definition
+            inputs:
+              azureSubscription: 'AzureServiceConnection'
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                set -euo pipefail
+
+                echo "Checking for existing VM Application..."
+                if ! az sig gallery-application show \
+                    --resource-group "$AZURE_RESOURCE_GROUP" \
+                    --gallery-name "$GALLERY_NAME" \
+                    --name "$APPLICATION_NAME" &>/dev/null; then
+                  echo "Creating new VM Application..."
+                  az sig gallery-application create \
+                    --resource-group "$AZURE_RESOURCE_GROUP" \
+                    --gallery-name "$GALLERY_NAME" \
+                    --application-name "$APPLICATION_NAME" \
+                    --location "$AZURE_LOCATION" \
+                    --os-type Windows
+                else
+                  echo "VM Application definition already exists."
+                fi
+
+          # 3️⃣ Generate SAS URLs
+          - task: AzureCLI@2
+            displayName: Generate SAS URLs
+            inputs:
+              azureSubscription: 'AzureServiceConnection'
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                set -euo pipefail
+
+                echo "Generating SAS URLs valid for 24 hours..."
+                EXPIRY=$(date -u -d "+1 day" '+%Y-%m-%dT%H:%MZ')
+
+                APP_SAS=$(az storage blob generate-sas \
+		  --account-name "$AZURE_STORAGE_ACCOUNT" \
+	          --container-name "$AZURE_CONTAINER_NAME" \
+	          --name "$APP_FILE" \
+	          --permissions r \
+	          --expiry "$EXPIRY" \
+	          --auth-mode login -o tsv)
+	
+		CONFIG_SAS=$(az storage blob generate-sas \
+	          --account-name "$AZURE_STORAGE_ACCOUNT" \
+	          --container-name "$AZURE_CONTAINER_NAME" \
+	          --name "$CONFIG_FILE" \
+	          --permissions r \
+	          --expiry "$EXPIRY" \
+	          --auth-mode login -o tsv)
+
+		echo "##vso[task.setvariable variable=APP_SAS]$APP_SAS"
+	        echo "##vso[task.setvariable variable=CONFIG_SAS]$CONFIG_SAS"
+
+          # 4️⃣ Create VM Application Version
+          - task: AzureCLI@2
+            displayName: Create VM Application Version
+            inputs:
+              azureSubscription: 'AzureServiceConnection'
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                set -euo pipefail
+
+	       	# Generate a unique version name
+                MAJOR=1
+      		MINOR=0
+		PATCH=$(date +%Y%m%d)
+		VERSION="$MAJOR.$MINOR.$PATCH"
+
+                # Load install/uninstall commands from .txt files as strings
+                INSTALL_CMD=$(jq -Rs '.' < install-script-as-string.txt)
+                REMOVE_CMD=$(jq -Rs '.' < uninstall-script-as-string.txt)
+
+		# Load SAS URL for Application and config file
+		PACKAGE_URL="https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/${APP_FILE}?${APP_SAS}"
+          	CONFIG_URL="https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/${CONFIG_FILE}?${CONFIG_SAS}"
+
+                # Create the version
+                az sig gallery-application version create \
+                  --resource-group "$AZURE_RESOURCE_GROUP" \
+                  --gallery-name "$GALLERY_NAME" \
+                  --application-name "$APPLICATION_NAME" \
+                  --name "$VERSION" \
+                  --location "$AZURE_LOCATION" \
+                  --package-file-link "$PACKAGE_URL" \
+                  --default-configuration-file-link "$CONFIG_URL" \
+                  --install-command "$INSTALL_CMD" \
+                  --remove-command "$REMOVE_CMD" \
+                  --version-name $VERSION
+```
+
+#### [GitLab Pipeline](#tab/gitlab3)
+```yaml
+stages:
+  - deploy
+
+variables:
+  # Customize your filenames here
+  APP_FILE: "app.exe"
+  CONFIG_FILE: "app-config.json"
+
+  AZURE_RESOURCE_GROUP: "$AZURE_RESOURCE_GROUP"
+  AZURE_LOCATION: "$AZURE_LOCATION"
+  AZURE_STORAGE_ACCOUNT: "$AZURE_STORAGE_ACCOUNT"
+  AZURE_CONTAINER_NAME: "$AZURE_CONTAINER_NAME"
+  GALLERY_NAME: "$GALLERY_NAME"
+  APPLICATION_NAME: "$AZURE_VM_APPLICATION_NAME"
+
+deploy_vm_app:
+  image: mcr.microsoft.com/azure-cli
+  stage: deploy
+  only:
+    - main
+  script:
+    # Login to Azure using service principal
+    - az login --service-principal -u "$AZURE_CLIENT_ID" -p "$AZURE_CLIENT_SECRET" --tenant "$AZURE_TENANT_ID"
+    - az account set --subscription "$AZURE_SUBSCRIPTION_ID"
+
+    # Step 1: Upload app and config files to Blob Storage
+    - |
+      echo "Uploading $APP_FILE and $CONFIG_FILE to blob..."
+      az storage container create \
+        --name "$AZURE_CONTAINER_NAME" \
+        --account-name "$AZURE_STORAGE_ACCOUNT" \
+        --auth-mode login \
+        --only-show-errors
+
+      az storage blob upload \
+        --account-name "$AZURE_STORAGE_ACCOUNT" \
+        --container-name "$AZURE_CONTAINER_NAME" \
+        --name "$APP_FILE" \
+        --file "$APP_FILE" \
+        --auth-mode login \
+        --only-show-errors
+
+      az storage blob upload \
+        --account-name "$AZURE_STORAGE_ACCOUNT" \
+        --container-name "$AZURE_CONTAINER_NAME" \
+        --name "$CONFIG_FILE" \
+        --file "$CONFIG_FILE" \
+        --auth-mode login \
+        --only-show-errors
+
+    # Step 2: Create VM Application Definition if missing
+    - |
+      echo "Checking for existing VM Application..."
+      if ! az sig gallery-application show \
+          --resource-group "$AZURE_RESOURCE_GROUP" \
+          --gallery-name "$GALLERY_NAME" \
+          --application-name "$APPLICATION_NAME" &>/dev/null; then
+        echo "Creating VM Application definition..."
+        az sig gallery-application create \
+          --resource-group "$AZURE_RESOURCE_GROUP" \
+          --gallery-name "$GALLERY_NAME" \
+          --application-name "$APPLICATION_NAME" \
+          --location "$AZURE_LOCATION" \
+          --os-type Windows \
+          --only-show-errors
+      else
+        echo "VM Application already exists."
+      fi
+
+    # Step 3: Generate SAS URLs
+    - |
+      EXPIRY=$(date -u -d "+1 day" '+%Y-%m-%dT%H:%MZ')
+      APP_SAS=$(az storage blob generate-sas \
+        --account-name "$AZURE_STORAGE_ACCOUNT" \
+        --container-name "$AZURE_CONTAINER_NAME" \
+        --name "$APP_FILE" \
+        --permissions r \
+        --expiry "$EXPIRY" \
+        --auth-mode login -o tsv)
+
+      CONFIG_SAS=$(az storage blob generate-sas \
+        --account-name "$AZURE_STORAGE_ACCOUNT" \
+        --container-name "$AZURE_CONTAINER_NAME" \
+        --name "$CONFIG_FILE" \
+        --permissions r \
+        --expiry "$EXPIRY" \
+        --auth-mode login -o tsv)
+
+    # 🚀 Step 4: Create VM Application Version (semantic version: 1.0.YYYYMMDD)
+    - |
+      MAJOR=1
+      MINOR=0
+      PATCH=$(date +%Y%m%d)
+      VERSION="$MAJOR.$MINOR.$PATCH"
+      echo "Creating VM Application Version: $VERSION"
+
+      INSTALL_CMD=$(jq -Rs '.' < install-script-as-string.txt)
+      REMOVE_CMD=$(jq -Rs '.' < uninstall-script-as-string.txt)
+
+      az sig gallery-application version create \
+        --resource-group "$AZURE_RESOURCE_GROUP" \
+        --gallery-name "$GALLERY_NAME" \
+        --application-name "$APPLICATION_NAME" \
+        --gallery-application-version-name "$VERSION" \
+        --version-name "$VERSION" \
+        --location "$AZURE_LOCATION" \
+        --package-file-link "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/${APP_FILE}?${APP_SAS}" \
+        --default-configuration-file-link "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/${CONFIG_FILE}?${CONFIG_SAS}" \
+        --install-command "$INSTALL_CMD" \
+        --remove-command "$REMOVE_CMD" \
+        --only-show-errors
+
+```
+
+#### [Jenkins](#tab/jenkins3)
+pipeline {
+  agent any
+
+  environment {
+    APP_FILE = 'app.exe'
+    CONFIG_FILE = 'app-config.json'
+
+    AZURE_RESOURCE_GROUP = credentials('AZURE_RESOURCE_GROUP')
+    AZURE_LOCATION = credentials('AZURE_LOCATION')
+    AZURE_STORAGE_ACCOUNT = credentials('AZURE_STORAGE_ACCOUNT')
+    AZURE_CONTAINER_NAME = credentials('AZURE_CONTAINER_NAME')
+    GALLERY_NAME = credentials('GALLERY_NAME')
+    APPLICATION_NAME = credentials('AZURE_VM_APPLICATION_NAME')
+
+    AZURE_CLIENT_ID = credentials('AZURE_CLIENT_ID')
+    AZURE_CLIENT_SECRET = credentials('AZURE_CLIENT_SECRET')
+    AZURE_TENANT_ID = credentials('AZURE_TENANT_ID')
+    AZURE_SUBSCRIPTION_ID = credentials('AZURE_SUBSCRIPTION_ID')
+  }
+
+  stages {
+    stage('Login to Azure') {
+      steps {
+        sh '''
+          az login --service-principal \
+            --username "$AZURE_CLIENT_ID" \
+            --password "$AZURE_CLIENT_SECRET" \
+            --tenant "$AZURE_TENANT_ID"
+          az account set --subscription "$AZURE_SUBSCRIPTION_ID"
+        '''
+      }
     }
+
+    stage('Upload to Blob Storage') {
+      steps {
+        sh '''
+          az storage container create \
+            --name "$AZURE_CONTAINER_NAME" \
+            --account-name "$AZURE_STORAGE_ACCOUNT" \
+            --auth-mode login --only-show-errors
+
+          az storage blob upload \
+            --account-name "$AZURE_STORAGE_ACCOUNT" \
+            --container-name "$AZURE_CONTAINER_NAME" \
+            --name "$APP_FILE" \
+            --file "$APP_FILE" \
+            --auth-mode login --only-show-errors
+
+          az storage blob upload \
+            --account-name "$AZURE_STORAGE_ACCOUNT" \
+            --container-name "$AZURE_CONTAINER_NAME" \
+            --name "$CONFIG_FILE" \
+            --file "$CONFIG_FILE" \
+            --auth-mode login --only-show-errors
+        '''
+      }
+    }
+
+    stage('Create VM Application if Needed') {
+      steps {
+        sh '''
+          if ! az sig gallery-application show \
+            --resource-group "$AZURE_RESOURCE_GROUP" \
+            --gallery-name "$GALLERY_NAME" \
+            --application-name "$APPLICATION_NAME" &>/dev/null; then
+            az sig gallery-application create \
+              --resource-group "$AZURE_RESOURCE_GROUP" \
+              --gallery-name "$GALLERY_NAME" \
+              --application-name "$APPLICATION_NAME" \
+              --location "$AZURE_LOCATION" \
+              --os-type Windows
+          fi
+        '''
+      }
+    }
+
+    stage('Generate SAS URLs') {
+      steps {
+        sh '''
+          export EXPIRY=$(date -u -d "+1 day" '+%Y-%m-%dT%H:%MZ')
+          export APP_SAS=$(az storage blob generate-sas \
+            --account-name "$AZURE_STORAGE_ACCOUNT" \
+            --container-name "$AZURE_CONTAINER_NAME" \
+            --name "$APP_FILE" \
+            --permissions r \
+            --expiry "$EXPIRY" \
+            --auth-mode login -o tsv)
+
+          export CONFIG_SAS=$(az storage blob generate-sas \
+            --account-name "$AZURE_STORAGE_ACCOUNT" \
+            --container-name "$AZURE_CONTAINER_NAME" \
+            --name "$CONFIG_FILE" \
+            --permissions r \
+            --expiry "$EXPIRY" \
+            --auth-mode login -o tsv)
+
+          echo "APP_SAS=$APP_SAS" > sas.env
+          echo "CONFIG_SAS=$CONFIG_SAS" >> sas.env
+        '''
+      }
+    }
+
+    stage('Create Application Version') {
+      steps {
+        sh '''
+          source sas.env
+
+          MAJOR=1
+          MINOR=0
+          PATCH=$(date +%Y%m%d)
+          VERSION="$MAJOR.$MINOR.$PATCH"
+
+          INSTALL_CMD=$(jq -Rs '.' < install-script-as-string.txt)
+          REMOVE_CMD=$(jq -Rs '.' < uninstall-script-as-string.txt)
+
+          az sig gallery-application version create \
+            --resource-group "$AZURE_RESOURCE_GROUP" \
+            --gallery-name "$GALLERY_NAME" \
+            --application-name "$APPLICATION_NAME" \
+            --gallery-application-version-name "$VERSION" \
+            --version-name "$VERSION" \
+            --location "$AZURE_LOCATION" \
+            --package-file-link "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/${APP_FILE}?$APP_SAS" \
+            --default-configuration-file-link "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/${CONFIG_FILE}?$CONFIG_SAS" \
+            --install-command "$INSTALL_CMD" \
+            --remove-command "$REMOVE_CMD" \
+            --only-show-errors
+        '''
+      }
+    }
+  }
 }
 
-```
 
-| Field Name | Description | Limitations |
-|--|--|--|
-| name | A unique name for the VM Application within the gallery. | Max length of 117 characters. Allowed characters are uppercase or lowercase letters, digits, hyphen(-), period (.), underscore (_). Names not allowed to end with period(.). |
-| supportedOSType | Define the supported OS Type. | "Windows" or "Linux" |
-| endOfLifeDate | A future end of life date for the application. The date is for reference only and isn't enforced. | Valid future date |
-| description | Optional. Description of the Application. |
-| eula | Optional. Reference to End-User License Agreement (EULA). |
-| privacyStatementUri | Optional. Reference to privacy statement for the application. |
-| releaseNoteUri | Optional. Reference to release notes for the application. |
-
-
-Create a VM application version using the ['create gallery application version API'](/rest/api/compute/gallery-applications).
-
-```rest
-PUT
-/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{applicationName}/versions/{versionName}?api-version=2024-03-03
-
-{
-  "location": "$location",
-  "properties": {
-    "publishingProfile": {
-      "source": {
-        "mediaLink": "$mediaLink",
-        "defaultConfigurationLink": "$configLink"
-      },
-      "manageActions": {
-        "install": "echo installed",
-        "remove": "echo removed",
-        "update": "echo update"
-      },
-      "targetRegions": [
-        {
-          "name": "West US",
-          "regionalReplicaCount": 1
-        },
-	{
-	  "name": "East US"
-	}
-      ]
-      "endofLifeDate": "datetime",
-      "replicaCount": 1,
-      "excludeFromLatest": false,
-      "storageAccountType": "PremiumV2_LRS | Premium_LRS | Standard_LRS | Standard_ZRS"
-      "safetyProfile": {
-	"allowDeletionOfReplicatedLocations": false
-      }
-      "settings": {
-	"scriptBehaviorAfterReboot": "None | Rerun",
-	"configFileName": "$appConfigFileName",
-	"packageFileName": "$appPackageFileName"
-      }
-   }
-}
-
-```
-
-| Field Name | Description | Limitations |
-|--|--|--|
-| location | Source location for the VM Application version. | Valid Azure region |
-| mediaLink | The url containing the application version package. | Valid and existing storage url |
-| defaultConfigurationLink | Optional. The url containing the default configuration, which may be overridden at deployment time. | Valid and existing storage url |
-| Install | The command to install the application. | Valid command for the given OS |
-| Remove | The command to remove the application. | Valid command for the given OS |
-| Update | Optional. The command to update the application. If not specified and an update is required, the old version is removed and the new one installed. | Valid command for the given OS |
-| targetRegions/name | The name of a region to which to replicate. | Validate Azure region |
-| targetRegions/regionalReplicaCount | Optional. The number of replicas in the region to create. Defaults to 1. | Integer between 1 and 3 inclusive |
-| replicaCount | Optional. Defines the number of replicas across each region. Takes effect if regionalReplicaCount isn't defined. | Integer between 1 and 3 inclusive |
-| endOfLifeDate | A future end of life date for the application version. This property is for customer reference only and isn't enforced. | Valid future date |
-| storageAccountType | Optional. Type of storage account to use in each region for storing application package. Defaults to Standard_LRS. | This property is nonupdatable. |
-| allowDeletionOfReplicatedLocations | Optional. Indicates whether or not removing this Gallery Image Version from replicated regions is allowed. | |
-| settings/scriptBehaviorAfterReboot | Optional. The action to be taken for installing, updating, or removing gallery application after the VM is rebooted. | | 
-| settings/configFileName | Optional. The name to assign the downloaded package file on the VM. If not specified, the package file is named the same as the Gallery Application name. | This is limited to 4,096 characters. |
-| settings/packageFileName | Optional. The name to assign the downloaded config file on the VM. If not specified, the config file is named as the Gallery Application name appended with '_config'. | This is limited to 4,096 characters. |
 
 ----
 
