@@ -300,7 +300,15 @@ Script as string:
 ---
 
 #### 4. Create the delete script
-The delete script enables customers to customize the delete operation for the application. By default, Azure deletes all files in the application source directory and removes the VM application version resource from VM/VMSS applicationProfile.  **The delete script is provided as a string** and has a maximum character limit of 4096 chars. The delete commands should be written assuming the application package and the configuration file are in the current directory.
+The delete script enables customers to define the delete operation for the application. **The delete script is provided as a string** and has a maximum character limit of 4096 chars. The delete commands should be written assuming the application package and the configuration file are in the current directory.
+
+There may be few operations that delete script must perform. 
+
+1. **Uninstall application:**
+	This involves properly uninstalling the application from the VM. For example, executing `uninstall.exe` on Windows or `sudo apt remove app` on Linux. 
+
+3. **Remove residual files:**
+   	This involves deleting residual applications files from the VM. For example, executing `Remove-Item -Path "$PWD\*" -Recurse -Force -ErrorAction SilentlyContinue` on Windows or `sudo rm -rf ./* ./.??*` on Linux.
 
 
 ## Step 2: Upload the application files to Azure storage account
