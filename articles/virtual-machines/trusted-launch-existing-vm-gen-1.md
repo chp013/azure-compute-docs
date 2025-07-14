@@ -9,6 +9,7 @@ ms.subservice: trusted-launch
 ms.topic: how-to
 ms.date: 11/29/2024
 ms.custom: template-how-to, devx-track-azurepowershell
+# Customer intent: As a cloud administrator, I want to upgrade existing Azure Generation 1 VMs to Trusted launch, so that I can enhance security against advanced threats and comply with organizational security policies.
 ---
 
 # (Preview) Upgrade existing Azure Gen1 VMs to Trusted launch

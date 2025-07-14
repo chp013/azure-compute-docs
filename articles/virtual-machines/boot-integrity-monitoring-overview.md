@@ -9,6 +9,7 @@ ms.subservice: trusted-launch
 ms.topic: concept-article
 ms.date: 04/10/2024
 ms.custom: template-concept
+# Customer intent: As a cloud security administrator, I want to implement boot integrity monitoring on my virtual machines using guest attestation, so that I can ensure the security and validity of the boot sequence to protect against rootkit attacks.
 ---
 
 # Boot integrity monitoring overview

@@ -7,6 +7,7 @@ ms.topic: overview
 ms.date: 04/01/2025
 ms.author: rogarana
 #Customer intent: This article provides prospective customers a succinct overview of the features for the service, while providing links to deeper content which contain more information on specific topics.
+# Customer intent: As an IT administrator, I want to understand the features and benefits of Azure managed disks, so that I can effectively manage storage for my virtual machines and ensure high availability and durability for my infrastructure.
 ---
 # Introduction to Azure managed disks
 

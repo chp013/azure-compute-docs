@@ -7,6 +7,7 @@ ms.service: azure-container-instances
 services: container-instances
 ms.topic: concept-article
 ms.date: 03/27/2025
+# Customer intent: As a cloud developer, I want to deploy high-performance container workloads with increased vCPU and memory on Azure Container Instances, so that I can efficiently handle data-intensive applications and scale resources seamlessly according to business demands.
 ---
 # Big Containers on Azure Container Instances (Preview)
 This article outlines the capabilities and benefits of Big Containers on Azure Container Instances. Customers can now deploy workloads with higher vCPU and memory for standard containers, confidential containers, containers with virtual networks, as well as containers utilizing virtual nodes to connect to AKS. This setup supports vCPU counts greater than 4 and memory capacities of 16 GB, with a maximum of 32 vCPU and 256 GB per standard container group and 32 vCPU and 192 GB per confidential container group. This feature removes limitations for compute and memory intensive workloads!   

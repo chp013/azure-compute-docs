@@ -9,9 +9,13 @@ ms.date: 04/06/2025
 ms.author: jushiman
 ms.custom: mvc, devx-track-azurecli, linux-related-content, innovation-engine
 #Customer intent: As an IT administrator, I want to learn about common maintenance tasks so that I can create and manage Linux VMs in Azure
+# Customer intent: "As an IT administrator, I want to learn how to create and manage Linux VMs using the command line, so that I can efficiently deploy and perform maintenance tasks in Azure."
 ---
 
 # Tutorial: Create and Manage Linux VMs with the Azure CLI
+
+> [!div class="nextstepaction"]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321734)
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 

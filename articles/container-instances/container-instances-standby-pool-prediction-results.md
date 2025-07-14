@@ -6,15 +6,17 @@ ms.author: mimckitt
 ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
-ms.topic: conceptual
-ms.date: 5/10/2025
+ms.topic: concept-article
+ms.date: 5/19/2025
 ms.reviewer: tomvcassidy
+# Customer intent: As a cloud administrator, I want to retrieve prediction results for my standby pool, so that I can optimize resource allocation and improve operational efficiency based on forecasted demand.
 ---
 
 # Get prediction results for standby pools for Azure Container Instances (Preview)
 
 > [!IMPORTANT]
 > Prediction results for standby pools is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).
+
 
 To effectively manage and optimize your standby pool for Azure Container Instances, you can use the Standby Pool runtime view APIs to retrieve prediction results. These results are **available 2-3 weeks after creating the standby pool** and provide insights into the predicted number of instances that will be requested from the pool for each hour over a 12-hour period. The predictions include the accuracy of the forecast and a historical view of instances requested from the pool over the past 12 hours, helping you make informed decisions to right-size your standby pool and improve operational efficiency.
 

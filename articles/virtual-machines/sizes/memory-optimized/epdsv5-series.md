@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 08/02/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As an IT infrastructure planner, I want to review the specifications of the Epdsv5 virtual machine sizes, so that I can select the appropriate size to meet my application's performance and resource requirements."
 ---
 
 # Epdsv5 sizes series

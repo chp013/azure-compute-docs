@@ -8,6 +8,7 @@ ms.service: azure-service-fabric
 ms.custom: devx-track-azurecli, linux-related-content
 services: service-fabric
 ms.date: 07/14/2022
+# Customer intent: "As a cloud developer, I want to deploy a Linux Service Fabric cluster into an Azure virtual network using a command line interface, so that I can run my applications in a secure and scalable environment."
 ---
 
 # Deploy a Linux Service Fabric cluster into an Azure virtual network

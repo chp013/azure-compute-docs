@@ -9,6 +9,7 @@ ms.topic: concept-article
 ms.date: 06/29/2020
 ms.service: azure-virtual-machines
 ms.subservice: mainframe-rehosting
+# Customer intent: "As a cloud administrator, I want to deploy Micro Focus Enterprise Server 5.0 in a Docker container on Azure, so that I can leverage containerization for portability and easier management of mainframe applications."
 ---
 
 # Run Micro Focus Enterprise Server 5.0 in a Docker container on Azure

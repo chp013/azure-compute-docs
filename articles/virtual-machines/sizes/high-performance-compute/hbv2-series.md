@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 01/28/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to understand the specifications and feature support of the HBv2 virtual machine sizes, so that I can select the appropriate VM type for my high-performance computing projects."
 ---
 
 # HBv2 sizes series

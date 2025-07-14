@@ -11,6 +11,7 @@ ms.topic: how-to
 ms.reviewer: jushiman
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
+# Customer intent: As a system administrator, I want to execute PowerShell scripts on my Windows virtual machines remotely, so that I can manage and troubleshoot issues without needing direct access.
 ---
 # Run scripts in your Windows VM by using action Run Commands
 

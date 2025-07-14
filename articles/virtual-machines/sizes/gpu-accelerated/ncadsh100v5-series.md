@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/31/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want detailed specifications of the NCads_H100_v5 virtual machine sizes, so that I can evaluate their capabilities for high-performance computing applications and make informed decisions for resource allocation."
 ---
 
 # NCads_H100_v5 sizes series

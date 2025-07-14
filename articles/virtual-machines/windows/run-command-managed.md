@@ -10,6 +10,7 @@ ms.date: 03/10/2023
 ms.topic: how-to
 ms.reviewer: jushiman
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
+# Customer intent: As an IT administrator, I want to execute scripts on Azure Windows VMs using managed Run Commands, so that I can efficiently manage and troubleshoot machine and application issues.
 ---
 # Run scripts in your Windows VM by using managed Run Commands
 

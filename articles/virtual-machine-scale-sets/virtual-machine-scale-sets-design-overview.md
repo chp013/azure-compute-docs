@@ -9,6 +9,7 @@ ms.service: azure-virtual-machine-scale-sets
 ms.date: 06/14/2024
 ms.reviewer: jushiman
 ms.custom: mimckitt
+# Customer intent: "As a cloud architect, I want to understand the design considerations for Virtual Machine Scale Sets, so that I can make informed decisions about using scale sets versus individual VMs for efficient multi-VM deployments."
 ---
 
 # Design Considerations For Scale Sets

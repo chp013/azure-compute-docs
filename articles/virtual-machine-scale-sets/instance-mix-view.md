@@ -5,26 +5,14 @@ author: brittanyrowe
 ms.author: brittanyrowe
 ms.topic: concept-article
 ms.service: azure-virtual-machine-scale-sets
-ms.date: 1/14/2025
+ms.date: 06/10/2025
 ms.reviewer: jushiman
+# Customer intent: As a cloud administrator, I want to view the instance mix configurations of a virtual machine scale set, so that I can assess VM sizes and allocation strategies for effective resource management.
 ---
 
 # View instance mix configurations
 
 This article details how to view your instance mix configuration on a virtual machine scale set, including the virtual machine (VM) sizes and the allocation strategy.
-
-## Prerequisites
-Before using instance mix, complete feature registration for the `FlexVMScaleSetSkuProfileEnabled` feature flag using the [az feature register](/cli/azure/feature#az-feature-register) command:
-
-```azurecli-interactive
-az feature register --namespace "Microsoft.Compute" --name "FlexVMScaleSetSkuProfileEnabled"
-```
-
-It takes a few moments for the feature to register. Verify the registration status by using the [az feature show](/cli/azure/feature#az-feature-register) command:
-
-```azurecli-interactive
-az feature show --namespace "Microsoft.Compute" --name "FlexVMScaleSetSkuProfileEnabled"
-```
 
 ## View the instance mix configurations
 ### [Azure portal](#tab/portal-1)

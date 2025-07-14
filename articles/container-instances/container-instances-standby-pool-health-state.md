@@ -4,9 +4,10 @@ description: Learn how to get and understand the health state of your standby po
 author: mimckitt
 ms.author: mimckitt
 ms.service: azure-container-instances
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 5/6/2025
 ms.reviewer: ju-shim
+# Customer intent: "As a cloud administrator, I want to retrieve and interpret the health status of my standby pool for container instances, so that I can proactively monitor performance and address any issues that may arise."
 ---
 
 # Understand the health state of your standby pool for Azure Container Instances
@@ -113,7 +114,7 @@ Type                         : Microsoft.StandbyPool/standbyContainerGroupPools/
 
 ### [REST API](#tab/rest)
 ```rest
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyVirtualMachinePoolName}/runtimeViews/{runtimeView}?api-version=2025-03-01
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPool}/runtimeViews/{runtimeView}?api-version=2025-03-01
 
 {
   "properties": {

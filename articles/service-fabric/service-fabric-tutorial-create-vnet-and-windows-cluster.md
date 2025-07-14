@@ -8,6 +8,7 @@ ms.service: azure-service-fabric
 ms.custom: devx-track-azurepowershell
 services: service-fabric
 ms.date: 07/14/2022
+# Customer intent: "As a cloud administrator, I want to deploy a secure Windows Service Fabric cluster within an Azure virtual network using PowerShell, so that I can manage and scale applications efficiently in a production environment."
 ---
 
 # Tutorial: Deploy a Service Fabric cluster running Windows into an Azure virtual network

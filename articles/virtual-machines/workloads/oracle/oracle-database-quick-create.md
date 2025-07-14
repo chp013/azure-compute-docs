@@ -9,6 +9,7 @@ ms.date: 10/03/2024
 ms.author: jacobjaygbay
 ms.custom: mode-other, devx-track-azurecli, devx-track-java
 ms.devlang: azurecli
+# Customer intent: As a cloud administrator, I want to deploy an Oracle Database in an Azure VM using the CLI, so that I can quickly set up a scalable database environment without manual configuration.
 ---
 
 # Create an Oracle Database in an Azure VM

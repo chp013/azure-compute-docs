@@ -9,6 +9,7 @@ ms.custom: linux-related-content
 ms.collection: linux
 ms.topic: concept-article
 ms.date: 02/13/2023
+# Customer intent: As a system administrator, I want to deploy OpenShift on Azure Stack Hub, so that I can leverage container orchestration in a hybrid cloud environment with the specific storage configurations needed for my organization.
 ---
 
 # Deploy OpenShift Container Platform or OKD to Azure Stack Hub

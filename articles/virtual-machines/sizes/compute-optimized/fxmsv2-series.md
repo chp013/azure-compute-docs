@@ -5,9 +5,10 @@ author: archatC
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
-ms.date: 05/08/2025
+ms.date: 05/23/2025
 ms.author: archat
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to understand the specifications and features of the FXmsv2 size series, so that I can select the appropriate virtual machine sizes for my organization's diverse workloads.
 ---
 
 # FXmsv2 sizes series
@@ -18,7 +19,7 @@ ms.reviewer: mattmcinnes
 [!INCLUDE [fxmsv2-series-specs](./includes/fxmsv2-series-specs.md)]
 
 ## Feature support
-[Premium Storage](../../premium-storage-performance.md): Supported <br>[Premium Storage caching](../../premium-storage-performance.md): Supported <br>[Live Migration](../../maintenance-and-updates.md): Not Supported <br>[Memory Preserving Updates](../../maintenance-and-updates.md): Supported <br>[Generation 2 VMs](../../generation-2.md): Supported <br>[Generation 1 VMs](../../generation-2.md): Not Supported <br>[Accelerated Networking](/azure/virtual-network/create-vm-accelerated-networking-cli): Supported <br>[Ephemeral OS Disk](../../ephemeral-os-disks.md): Not Supported <br>[Nested Virtualization](/virtualization/hyper-v-on-windows/user-guide/nested-virtualization): Supported <br> [NVMe storage](../../nvme-overview.md): Supported <br> [Constrained core](../../constrained-vcpu.md) : Supported
+[Premium Storage](../../premium-storage-performance.md): Supported <br>[Premium Storage caching](../../premium-storage-performance.md): Supported <br>[Live Migration](../../maintenance-and-updates.md): Supported <br>[Memory Preserving Updates](../../maintenance-and-updates.md): Supported <br>[Generation 2 VMs](../../generation-2.md): Supported <br>[Generation 1 VMs](../../generation-2.md): Not Supported <br>[Accelerated Networking](/azure/virtual-network/create-vm-accelerated-networking-cli): Supported <br>[Ephemeral OS Disk](../../ephemeral-os-disks.md): Not Supported <br>[Nested Virtualization](/virtualization/hyper-v-on-windows/user-guide/nested-virtualization): Supported <br> [NVMe storage](../../nvme-overview.md): Supported <br> [Constrained core](../../constrained-vcpu.md) : Supported
 ## Sizes in series
 
 ### [Basics](#tab/sizebasic)

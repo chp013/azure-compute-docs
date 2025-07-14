@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.custom: devx-track-azurepowershell
 ms.date: 03/12/2025
 ms.author: jushiman
+# Customer intent: As a system administrator, I want to perform an in-place upgrade of Windows Server VMs in Azure, so that I can update the operating system while preserving settings, roles, and data without needing to recreate the VM.
 ---
 
 # In-place upgrade for VMs running Windows Server in Azure

@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.date: 08/27/2024
 ms.author: archat
 ms.reviewer: mattmcinnes, tomcassidy
+# Customer intent: "As a cloud architect, I want to understand the specifications and capabilities of the Epdsv6-series virtual machine sizes, so that I can select the appropriate configuration for my application workloads and optimize performance."
 ---
 
 # Epdsv6 sizes series 

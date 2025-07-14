@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.author: mbaldwin
 ms.date: 05/14/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
+# Customer intent: As a security administrator, I want to implement disk encryption on Windows IaaS VMs using Azure services, so that I can protect sensitive data and comply with security standards without using Microsoft Entra application parameters.
 ---
 
 # Azure Disk Encryption with Microsoft Entra ID for Windows VMs (previous release)

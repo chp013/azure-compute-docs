@@ -8,6 +8,7 @@ ms.service: azure-service-fabric
 ms.custom: devx-track-azurepowershell
 services: service-fabric
 ms.date: 09/20/2022
+# Customer intent: "As a cloud infrastructure engineer, I want to vertically scale a Service Fabric primary node type with minimal downtime, so that I can ensure improved performance and resource utilization without compromising cluster stability."
 ---
 
 # Scale up a Service Fabric cluster primary node type

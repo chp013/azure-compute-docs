@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 09/24/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud administrator, I want to compare the specifications and features of Basv2 virtual machine sizes, so that I can choose the appropriate size for my workloads and optimize performance.
 ---
 
 # Basv2 sizes series

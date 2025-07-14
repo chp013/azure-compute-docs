@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/31/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to evaluate the specifications and capabilities of the NDasrA100_v4 series, so that I can select the appropriate virtual machine size for my high-performance computing workloads.
 ---
 
 # NDasrA100_v4 sizes series

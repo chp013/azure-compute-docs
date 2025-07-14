@@ -9,6 +9,7 @@ ms.topic: reference
 ms.service: azure-virtual-machines
 ms.subservice: image-builder
 ms.custom: references_regions, devx-track-bicep, devx-track-arm-template, linux-related-content, devx-track-azurecli
+# Customer intent: As an IT professional tasked with creating and managing virtual machine images, I want to develop a Bicep file or ARM template for Azure Image Builder, so that I can automate the image creation process with customized configurations efficiently.
 ---
 
 # Create an Azure Image Builder Bicep or ARM template JSON template

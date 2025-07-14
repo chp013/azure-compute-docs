@@ -10,6 +10,7 @@ ms.date: 06/14/2024
 ms.reviewer: mimckitt
 ms.custom: mimckitt
 
+# Customer intent: As a cloud administrator, I want to use the Desired State Configuration with Virtual Machine Scale Sets, so that I can automate the configuration and management of multiple virtual machines efficiently as they scale.
 ---
 # Using Virtual Machine Scale Sets with the Azure DSC Extension
 

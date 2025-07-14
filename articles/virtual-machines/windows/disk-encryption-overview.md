@@ -8,6 +8,7 @@ ms.collection: windows
 ms.topic: concept-article
 ms.author: mbaldwin
 ms.date: 03/03/2025
+# Customer intent: As an IT security professional, I want to enable disk encryption on Windows virtual machines, so that I can protect sensitive data and meet compliance requirements within my organization.
 ---
 
 # Azure Disk Encryption for Windows VMs

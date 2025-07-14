@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 03/18/2025
 ms.author: mattmcinnes
 ms.reviewer: mimckitt, archatc
+# Customer intent: "As a database administrator, I want to select virtual machine sizes with constrained vCPU counts, so that I can optimize licensing costs while maintaining necessary performance for my database workloads."
 ---
 
 # Constrained vCPU sizes for database workloads
@@ -57,6 +58,15 @@ At this time, the VM pricing, remains the same as the original size. For more in
 | Standard_M128-32ms      | 32   | M128ms     |
 | Standard_M416-208s_v2   | 208  | M416s_v2   |
 | Standard_M416-208ms_v2  | 208  | M416ms_v2  |
+| Standard_M64-32bds_1_v3 | 32   | M64bds_1_v3|
+| Standard_M96-48bds_2_v3 | 48   | M96bds_2_v3|
+| Standard_M128-64bds_3_v3| 64   | M128bds_3_v3|
+| Standard_M176-88bds_4_v3| 88   | M176bds_4_v3|
+| Standard_M128-64bds_v3  | 64   | M128bds_v3 |
+| Standard_M176-88bds_v3  | 88   | M176bds_v3 |
+| Standard_M128-64bs_v3   | 64   | M128bs_v3  |
+| Standard_M176-88bs_v3   | 88   | M176bs_v3  |
+
 
 
 #### [E-family sizes](#tab/family-E)
@@ -165,7 +175,7 @@ At this time, the VM pricing, remains the same as the original size. For more in
 | Standard_E16-8ds_v6	| 16 | E16ds_v6 |
 | Standard_E32-8ds_v6	| 32 | E32ds_v6 |
 | Standard_E32-16ds_v6 | 32 | E32ds_v6 |
-| Standard_E64-16ds_v6	| 64 | E64ds_v6 |
+| Standard_E64-16ds_v6	| 16 | E64ds_v6 |
 | Standard_E64-32ds_v6	| 64 | E64ds_v6 |
 | Standard_E96-24ds_v6	| 96 | E96ds_v6 |
 | Standard_E96-48ds_v6	| 96 | E96ds_v6 |

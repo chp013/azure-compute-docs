@@ -10,6 +10,7 @@ ms.date: 11/14/2024
 ms.author: vakavuru
 ms.reviewer: cynthn
 ms.custom: engagement-fy23, linux-related-content
+# Customer intent: As a system administrator, I want to understand the endorsed Linux distributions available on Azure, so that I can choose the most suitable image for deploying and managing my virtual machines effectively.
 ---
 
 # Endorsed Linux distributions on Azure
@@ -47,8 +48,7 @@ Azure Linux images can be grouped into three categories:
 Images published and maintained by either Microsoft or partners. There are a large variety of images from multiple publishers for various use cases (security hardened, full database / application stack, etc.), and can be available free, pay-as-you-go, or BYOL (bring your own license/subscription). 
 
  
-Platform Images are a type of Marketplace images for which Microsoft has partnered with several mainstream publishers (see table below about Partners) to create a set of “platform images” that undergo additional testing and receive predictable updates (see section below on Image Update Cadence). These platform images can be used for building your own custom images and solution stacks. These images are published by the endorsed Linux distribution partners such as Canonical (Ubuntu), Red Hat (RHEL), and Credativ (Debian). 
-
+Platform Images are a type of Marketplace images for which Microsoft has partnered with several mainstream publishers (see table below about Partners) to create a set of “platform images” that undergo additional testing and receive predictable updates (see section below on Image Update Cadence). These platform images can be used for building your own custom images and solution stacks. These images are published by the endorsed Linux distribution partners such as Canonical (Ubuntu), Red Hat (RHEL), CIQ (Rocky) and Credativ (Debian). 
 
 Microsoft provides commercially reasonable customer support for these images. Additionally, Red Hat, Canonical, and SUSE offer integrated vendor support capabilities for their platform images.
 

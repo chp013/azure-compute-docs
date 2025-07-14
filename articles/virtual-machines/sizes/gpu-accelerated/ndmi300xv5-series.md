@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 08/01/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud infrastructure planner, I want to evaluate the ND-MI300X-v5 series specifications and features, so that I can select the appropriate virtual machine size for my organization's workload requirements.
 ---
 
 # ND-MI300X-v5 sizes series

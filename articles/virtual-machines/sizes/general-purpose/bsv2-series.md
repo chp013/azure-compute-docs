@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 09/24/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect evaluating virtual machine options, I want to understand the specifications and performance characteristics of the Bsv2 size series, so that I can make informed decisions for deploying efficient and cost-effective workloads."
 ---
 
 # Bsv2 sizes series

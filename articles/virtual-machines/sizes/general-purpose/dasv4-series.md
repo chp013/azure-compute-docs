@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/29/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to review the specifications and features of the Dasv4 size series, so that I can choose the appropriate virtual machine type to optimize performance for my applications.
 ---
 
 # Dasv4 sizes series

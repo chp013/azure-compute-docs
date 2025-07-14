@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 08/01/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to review the specifications of the Eadsv5 virtual machine sizes, so that I can select the appropriate size for my workload requirements regarding vCPUs, memory, storage, and network capacities.
 ---
 
 # Eadsv5 sizes series

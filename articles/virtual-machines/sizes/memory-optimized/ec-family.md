@@ -7,6 +7,7 @@ ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 04/16/2024
 ms.author: mattmcinnes
+# Customer intent: As a cloud architect, I want to compare different EC family VM sizes, so that I can select the optimal configuration for my memory-intensive applications.
 ---
 
 # 'EC' sub-family memory optimized VM size series

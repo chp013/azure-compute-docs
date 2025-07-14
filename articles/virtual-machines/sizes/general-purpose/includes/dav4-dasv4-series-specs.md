@@ -9,6 +9,7 @@ ms.subservice: sizes
 ms.date: 03/12/2025
 ms.author: mattmcinnes
 ms.custom: include file
+# Customer intent: As a cloud architect, I want to review the specifications for Dav4 and Dasv4-series virtual machine sizes, so that I can select the optimal configuration to meet my application’s performance and resource requirements.
 ---
 
 | Part | Quantity <br><sup>Count <sup>Units | Specs <br><sup>SKU ID, Performance <sup>Units</sup>, etc.  |

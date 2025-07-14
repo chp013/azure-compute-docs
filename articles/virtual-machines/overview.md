@@ -7,6 +7,7 @@ ms.collection: linux
 ms.topic: overview
 ms.date: 03/27/2025
 ms.author: mattmcinnes
+# Customer intent: "As a cloud architect, I want to evaluate the features and management options of Azure virtual machines, so that I can determine the best deployment strategy for my applications and optimize costs and performance."
 ---
 
 # Virtual machines in Azure
@@ -33,6 +34,11 @@ There's always a multitude of [design considerations](/azure/architecture/refere
 * The operating system that the virtual machine runs
 * The configuration of the virtual machine after it starts
 * The related resources that the virtual machine needs
+
+> [!NOTE]
+>
+> Trusted Launch as default (TLaD) is available in preview for new [Generation 2](../virtual-machines/generation-2.md) Virtual machines (VMs). With TLaD, any new Generation 2 VMs created through any client tools defaults to [Trusted Launch](../virtual-machines/trusted-launch.md) with secure boot and vTPM enabled.
+> [Register for the TLaD preview](../virtual-machines/trusted-launch.md#preview-trusted-launch-as-default) to validate the default changes in your respective environment and prepare for the upcoming change.
 
 ## Parts of a VM and how they're billed
 

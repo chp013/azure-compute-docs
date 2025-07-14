@@ -9,9 +9,13 @@ ms.custom: devx-track-azurecli, linux-related-content, innovation-engine
 ms.date: 04/06/2023
 ms.author: mattmcinnes
 ms.reviewer: cynthn
+# Customer intent: "As a cloud engineer, I want to create a Linux VM with multiple network interface cards, so that I can efficiently manage traffic between different subnets and enhance network performance."
 ---
 
 # How to create a Linux virtual machine in Azure with multiple network interface cards
+
+> [!div class="nextstepaction"]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321933)
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 

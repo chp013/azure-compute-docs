@@ -5,14 +5,12 @@ author: mimckitt
 ms.author: mimckitt
 ms.service: azure-container-instances
 ms.topic: how-to
-ms.date: 5/10/2025
+ms.date: 5/19/2025
 ms.reviewer: tomvcassidy
+# Customer intent: "As a cloud admin, I want to configure role-based access control for standby pools in Azure Container Instances, so that I can ensure proper permissions for managing resources and prevent operational issues."
 ---
 
 # Configure role permissions for standby pools in Azure Container Instances
-
-> [!IMPORTANT]
-> Standby pools for Azure Container Instances are currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA). 
 
 Standby pools for Azure Container Instances require specific permissions to create and manage resources in your subscription. Without the correct permissions, standby pools will not function properly. This article explains how to configure role-based access control (RBAC) permissions for standby pools and provides guidance for scenarios where additional permissions may be required.
 
@@ -25,23 +23,24 @@ To allow standby pools to create and manage container instances in your subscrip
 
 To cover as many scenarios as possible, it is suggested to provide the following permissions to the standby pool resource provider:
 
-- **Container Instance Contributor**
+- **Azure Container Instances Contributor**
 - **Network Contributor**
 - **Managed Identity Contributor**
+- **Managed Identity Operator**
 - **Storage Blob Data Contributor** (if using Azure Storage for container data)
-- **Azure Container Registry Reader** (if using images stored in Azure Container Registry)
+- **Container Registry Repository Reader** (if using images stored in Azure Container Registry)
 
 1. In the Azure portal, navigate to your subscriptions.
 1. Select the subscription you want to adjust permissions for.
 1. Select Access Control (IAM).
 1. Select Add and Add role assignment.
-1. Under the Role tab, search for **Container Instance Contributor** and select it.
+1. Under the Role tab, search for **Azure Container Instances Contributor** and select it.
 1. Move to the Members tab.
 1. Select + Select members.
 1. Search for **Standby Pool Resource Provider** and select it.
 1. Move to the Review + assign tab.
 1. Apply the changes.
-1. Repeat the above steps and assign the **Network Contributor** and **Managed Identity Contributor** roles to the Standby Pool Resource Provider. If you're using Azure Container Registry or Azure Storage, assign the **Azure Container Registry Reader** and **Storage Blob Data Contributor** roles as well.
+1. Repeat the above steps and assign the **Network Contributor** and **Managed Identity Contributor** roles to the Standby Pool Resource Provider. If you're using Azure Container Registry or Azure Storage, assign the **Container Registry Repository Reader** and **Storage Blob Data Contributor** roles as well.
 
 For more information on assigning roles, see [assign Azure roles using the Azure portal](/azure/role-based-access-control/quickstart-assign-role-user-portal).
 
@@ -57,7 +56,7 @@ Permission issues are a common cause of problems with standby pools. These issue
 If your pool is not functioning as expected, use Log Analytics to analyze the logs and identify missing permissions:
 
 1. Navigate to the [Azure portal](https://portal.azure.com/).
-2. Go to your Log Analytics workspace associated with the standby pool. Before using log analytics, you first need to configure a log analytics workspace. For more infomation, see [use Azure Log Analytics to monitor standby pool events](container-instances-standby-pools-monitor-pool-events.md).
+2. Go to your Log Analytics workspace associated with the standby pool. Before using log analytics, you first need to configure a log analytics workspace. For more information, see [use Azure Log Analytics to monitor standby pool events](container-instances-standby-pools-monitor-pool-events.md).
 3. Query the `SCGPoolExecutionLog` table to review events related to instance creation and deletion:
 
 ```kusto

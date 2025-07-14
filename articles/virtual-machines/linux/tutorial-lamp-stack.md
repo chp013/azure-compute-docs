@@ -11,9 +11,13 @@ ms.date: 04/06/2025
 ms.author: mattmcinnes
 ms.reviewer: cynthn
 #Customer intent: As an IT administrator, I want to learn how to install the LAMP stack so that I can quickly prepare a Linux VM to run web applications.
+# Customer intent: As an IT administrator, I want to deploy a LAMP stack on a Linux VM, so that I can create a web server environment to host and test applications like WordPress.
 ---
 
 # Tutorial: Install a LAMP stack on an Azure Linux VM
+
+> [!div class="nextstepaction"]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321739)
 
 **Applies to:** :heavy_check_mark: Linux VMs
 

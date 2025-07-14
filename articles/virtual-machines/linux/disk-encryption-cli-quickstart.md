@@ -9,6 +9,7 @@ ms.subservice: disks
 ms.topic: quickstart
 ms.date: 05/14/2025
 ms.custom: devx-track-azurecli, mode-api, linux-related-content
+# Customer intent: As a cloud administrator, I want to create and encrypt a Linux virtual machine using the command line, so that I can enhance security and manage resources efficiently in my Azure environment.
 ---
 
 # Quickstart: Create and encrypt a Linux VM with the Azure CLI

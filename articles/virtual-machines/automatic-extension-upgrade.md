@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.reviewer: jushiman
 ms.date: 11/7/2023
 ms.custom: devx-track-azurepowershell
+# Customer intent: "As an IT administrator, I want to enable Automatic Extension Upgrade for virtual machines and scale sets, so that I can ensure all extensions are automatically updated to the latest versions without manual intervention for improved security and functionality."
 ---
 
 # Automatic Extension Upgrade for virtual machines and scale sets in Azure

@@ -7,6 +7,7 @@ ms.service: azure-virtual-machines
 ms.subservice: proximity-placement-groups
 ms.topic: concept-article
 ms.date: 09/12/2022
+# Customer intent: "As a cloud architect, I want to utilize proximity placement groups for my VMs, so that I can ensure low latency for my applications while optimizing resource allocation within Azure's infrastructure."
 ---
 
 # Proximity placement groups

@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.service: azure-virtual-machines
 title: SCSI to NVMe for Linux VMs
 description: How to convert SCSI to NVMe using Linux
+# Customer intent: As a cloud solutions architect, I want to convert virtual machines running Linux from SCSI to NVMe storage, so that I can enhance their performance and scalability while ensuring compatibility with modern cloud infrastructure.
 ---
 
 # Converting Virtual Machines Running Linux from SCSI to NVMe
@@ -44,7 +45,7 @@ In order to migrate from SCSI to NVMe, some steps need to be followed:
 4. Check your operating system 
 
 ### 1. Check if your virtual machine series supports NVMe
-The supported virtual machines to support NVMe attached disks is described on the [Azure Boost overview site in the availability table](https://learn.microsoft.com/azure/azure-boost/overview#current-availability).
+The supported virtual machines to support NVMe attached disks is described on the [Azure Boost overview site in the availability table](/azure/azure-boost/overview#current-availability).
 
 > [!IMPORTANT]
 > If your VM type is not listed change the VM type.

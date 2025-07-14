@@ -1,5 +1,5 @@
 ---
-title: Standby pools for Azure Container Instances (Preview)
+title: Standby pools for Azure Container Instances
 description: Learn how to utilize standby pools to reduce scale-out latency with Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
@@ -7,14 +7,16 @@ ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
 ms.topic: concept-article
-ms.date: 5/10/2025
+ms.date: 5/19/2025
 ms.reviewer: tomvcassidy
+# Customer intent: As a cloud architect, I want to implement standby pools for Azure Container Instances, so that I can reduce scale-out latency and effectively manage container resources in response to fluctuating traffic demands.
 ---
 
-# Standby pools for Azure Container Instances (Preview)
+# Standby pools for Azure Container Instances
 
 > [!IMPORTANT]
-> Standby pools for Azure Container Instances are currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA). 
+> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](container-instances-standby-pool-configure-permissions.md)**.
+
 
 Standby pools for Azure Container Instances enable you to create a pool of pre-provisioned container groups that can be used in response to incoming traffic. The container groups in the pool are fully provisioned, initialized, and ready to receive work.
 
@@ -25,13 +27,11 @@ Creating and managing a standby pool for Azure Container Instances isn't yet ava
 
 ## Prerequisites
 
-### Feature Registration 
-Register the standby pool resource provider and the standby pool preview feature with your subscription using Azure Cloud Shell. Registration can take up to 30 minutes to successfully show as registered. You can rerun the below commands to determine when the feature is successfully registered. 
+### Provider Registration 
+Register the standby pool resource provider with your subscription using Azure Cloud Shell. Registration can take up to 30 minutes to successfully show as registered. You can rerun the below commands to determine when the feature is successfully registered.
 
 ```azurepowershell-interactive
-Register-AzResourceProvider -ProviderNameSpace Microsoft.ContainerInstance
 Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
-Register-AzProviderFeature -FeatureName StandbyContainerGroupPoolPreview -ProviderNamespace Microsoft.StandbyPool
 ```
 
 ### Configure Role-based Access Control Permissions
@@ -205,7 +205,11 @@ Standby pools for Azure container instances support confidential containers. To 
 ```
 
 ## Availability zones
-Standby pools for Azure Container Instances supports creating and requesting containers across availability zones. To create a standby pool with instances in specific zones, specify the `zones` paramater in the standby pool create request. 
+
+> [!IMPORTANT]
+> Availability zones for Azure Container Instances is currently in preview. Previews are made available to you on the condition that you agree to the supplemental terms of use. Some aspects of this feature may change prior to general availability (GA).
+
+Standby pools for Azure Container Instances supports creating and requesting containers across availability zones. To create a standby pool with instances in specific zones, specify the `zones` parameter in the standby pool create request. 
 
 ### [CLI](#tab/cli)
 
@@ -266,27 +270,6 @@ Request Body
 }
 ```
 ---
-
-Zone support for ACI standby pools is currently available in the following regions:
-
-- AustraliaEast
-- BrazilSouth
-- CanadaCentral
-- CentralUS
-- EastUS
-- EastUS2
-- FranceCentral
-- GermanyWestCentral
-- IndiaCentral
-- JapanEast
-- NorthEurope
-- SoutheastAsia
-- SouthCentralUS
-- SwedenCentral
-- WestEurope
-- WestUS
-- WestUS2
-- WestUS3
 
 ## Next steps
 

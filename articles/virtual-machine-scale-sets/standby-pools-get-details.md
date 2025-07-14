@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 5/6/2025
 ms.reviewer: ju-shim
+# Customer intent: "As a cloud administrator, I want to retrieve details about my standby pool and its instances, so that I can monitor their status and ensure they are correctly provisioned within my virtual machine scale sets."
 ---
 
 # Get standby pool and instance details

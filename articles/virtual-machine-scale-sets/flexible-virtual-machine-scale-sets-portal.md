@@ -8,6 +8,7 @@ ms.service: azure-virtual-machine-scale-sets
 ms.date: 04/24/2025
 ms.reviewer: jushiman
 ms.custom: mimckitt, vmss-flex
+# Customer intent: "As a cloud administrator, I want to create a Virtual Machine Scale Set using the portal, so that I can efficiently manage and scale virtual machine instances according to my application's needs."
 ---
 
 # Create virtual machines in a scale set using Azure portal

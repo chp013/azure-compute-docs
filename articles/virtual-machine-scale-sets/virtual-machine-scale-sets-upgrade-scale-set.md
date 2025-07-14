@@ -8,6 +8,7 @@ ms.service: azure-virtual-machine-scale-sets
 ms.date: 04/18/2025
 ms.reviewer: ju-shim
 ms.custom: upgradepolicy, devx-track-azurecli, devx-track-azurepowershell, ignite-2024
+# Customer intent: As a cloud administrator, I want to modify and update an Azure Virtual Machine Scale Set using REST APIs, PowerShell, or CLI, so that I can ensure my applications run effectively and utilize the latest configurations and features.
 ---
 # Modify a Virtual Machine Scale Set
 
