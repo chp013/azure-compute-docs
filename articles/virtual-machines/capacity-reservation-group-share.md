@@ -663,6 +663,9 @@ See [Get-AzCapacityReservationGroup](/powershell/module/az.compute/get-azcapacit
 
 The list of all Capacity Reservation Groups that are created locally or shared with by other subscriptions, can be viewed for a given subscription. Extra parameter 'resourceIdsonly' needs to be passed to view the shared Capacity Reservation Groups.
 
+> [!NOTE]
+> There is a known issue of this API not giving the right response if there is no Capacity Reservation Group created in the subscription making the call to get the list of shared CRGs. To get the correct response, please ensure you have a local CRG created in the subscription making the API. Alternatively you can also use the Azure Resource Graph query provided.
+
 ### [API](#tab/api-6)
 
 Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription.  
