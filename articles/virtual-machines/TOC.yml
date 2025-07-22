@@ -1827,6 +1827,14 @@
       href: ./linux/azure-to-guest-disk-mapping.md
     - name: Map managed disk to guest disk - Windows
       href: ./windows/azure-to-guest-disk-mapping.md
+    - name: Azure VM utilities - Linux
+      href: ./linux/az-vm-utils.md
+    - name: Identifying disks - Linux
+      href: ./linux/identifying-disks-linux.md
+    - name: Manage remote disks - Linux
+      href: ./linux/manage-remote-disks-linux.md
+    - name: Manage temporary and resource disks - Linux
+      href: ./linux/manage-temp-or-resource-disks-linux.md
     - name: File storage
       items:
       - name: Copy files to a VM
