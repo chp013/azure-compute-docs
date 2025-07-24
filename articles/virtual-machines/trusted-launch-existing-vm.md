@@ -291,7 +291,7 @@ Follow the steps to enable Trusted launch on an existing Azure Generation 2 VM b
 
 ---
 
-## Roll-back
+## Roll back
 
 > [!NOTE]
 >
