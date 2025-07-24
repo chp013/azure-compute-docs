@@ -90,7 +90,7 @@ While the replication is happening, you can view its status per region. After th
 
 ## Trusted Launch validation for Azure Compute Gallery images (preview)
 
-Trusted Launch validation for Azure Compute Gallery images is currently in preview. This preview is intended for testing, evaluation, and feedback purposes only. Production workloads aren't recommended. When registering to preview, you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability (GA).
+Trusted Launch validation for Azure Compute Gallery images is currently in preview. This preview is intended for testing, evaluation, and feedback purposes only. We don't recommend it for production workloads. When you register to preview, you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability (GA).
 
 ### What is changing?
 
@@ -167,13 +167,13 @@ You can choose to explicitly bypass default for new Compute Gallery image defini
 
 ## Sharing
 
-There are three main ways to share images in Azure Compute Gallery, depending on who you want to share with:
+There are three main ways to share images in Azure Compute Gallery, depending on which users you want to share with:
 
-| Sharing with: | People | Groups | Service Principal | All users in a specific   subscription (or) tenant | Publicly with all users in   Azure |
+| Sharing with: | People | Groups | Service principal | All users in a specific subscription or tenant | Publicly with all users in Azure |
 |---|---|---|---|---|---|
-| [RBAC Sharing](#rbac) | Yes | Yes | Yes | No | No |
-| RBAC + [Direct shared gallery](#shared-directly-to-a-tenant-or-subscription)  | Yes | Yes | Yes | Yes | No |
-| RBAC + [Community gallery](#community-gallery) | Yes | Yes | Yes | No | Yes |
+| [RBAC sharing](#rbac) | Yes | Yes | Yes | No | No |
+| RBAC + [direct shared gallery](#shared-directly-to-a-tenant-or-subscription)  | Yes | Yes | Yes | Yes | No |
+| RBAC + [community gallery](#community-gallery) | Yes | Yes | Yes | No | Yes |
 
 > [!NOTE]
 > Please note that Images can be used with read permissions on them to deploy virtual machines and disks.
@@ -182,7 +182,7 @@ There are three main ways to share images in Azure Compute Gallery, depending on
 
 ### RBAC
 
-As the Compute Gallery instance, definition, and version are all resources, they can be shared using the built-in native Azure Roles-based Access Control (RBAC) roles. Using Azure RBAC roles you can share these resources to other users, service principals, and groups. You can even share access to individuals outside of the tenant they were created within. Once a user has access to the resource version, they can use it to deploy a VM or a Virtual Machine Scale Set.  Here's the sharing matrix that helps understand what the user gets access to:
+Because the gallery, definition, and version are all resources, they can be shared using the built-in native Azure Roles-based Access Control (RBAC) roles. Using Azure RBAC roles you can share these resources to other users, service principals, and groups. You can even share access to individuals outside of the tenant they were created within. Once a user has access to the resource version, they can use it to deploy a VM or a Virtual Machine Scale Set.  Here's the sharing matrix that helps understand what the user gets access to:
 
 | Shared with User     | Compute Gallery | Image Definition | Image version |
 |----------------------|----------------------|--------------|----------------------|
@@ -195,10 +195,10 @@ For more information, see [Share using RBAC](./share-gallery.md).
 
 ### Shared directly to a tenant or subscription
 
-Give specific subscriptions or tenants access to a direct shared Compute Gallery instance. Sharing a gallery with tenants and subscriptions give them read-only access to your gallery. For more information, see [Share a gallery with subscriptions or tenants](./share-gallery-direct.md).
+Give specific subscriptions or tenants access to a direct shared gallery. Sharing a gallery with tenants and subscriptions give them read-only access to your gallery. For more information, see [Share a gallery with subscriptions or tenants](./share-gallery-direct.md).
 
 > [!IMPORTANT]
-> An Azure Compute Gallery direct shared gallery is currently in preview and subject to the [Preview Terms for Azure Compute Gallery](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> An Azure Compute Gallery direct shared gallery is currently in preview and is subject to the [preview terms for Azure Compute Gallery](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
 > To publish images to a direct shared gallery during the preview, you need to register at [https://aka.ms/directsharedgallery-preview](https://aka.ms/directsharedgallery-preview). Creating VMs from a direct shared gallery is open to all Azure users.
 >
