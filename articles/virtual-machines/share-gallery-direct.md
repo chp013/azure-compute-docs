@@ -15,7 +15,7 @@ ms.devlang: azurecli
 
 # Share a gallery with all users in a subscription or tenants (preview)
 
-This article covers how to share a gallery with specific subscriptions or tenants by using a direct shared gallery in Azure Compute Gallery. Sharing a gallery with tenants and subscriptions give them read-only access to it.
+This article covers how to share a gallery with specific subscriptions or tenants by using a direct shared gallery in Azure Compute Gallery. Sharing a gallery with tenants and subscriptions gives them read-only access to it.
 
 There are three main ways to share images in Compute Gallery, depending on which users you want to share with:
 
@@ -25,7 +25,7 @@ There are three main ways to share images in Compute Gallery, depending on which
 | RBAC + [direct shared gallery](./share-gallery-direct.md)  | Yes | Yes | Yes | Yes | No |
 | RBAC + [community gallery](./share-gallery-community.md) | Yes | Yes | Yes | No | Yes |
 
-## Important notes about direct shared galleries
+## Important considerations
 
 - The feature of direct shared galleries is currently in preview and is subject to the [preview terms for Azure Compute Gallery](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
@@ -37,7 +37,7 @@ There are three main ways to share images in Compute Gallery, depending on which
 
 - You can use images with read permissions on them to deploy VMs and disks.
 
-- When you use a direct shared gallery, images are distributed widely to all users in a subscription/tenant. The community gallery distributes images publicly. When you share images that contain intellectual property, use caution to prevent widespread distribution.
+- When you use a direct shared gallery, images are distributed widely to all users in a subscription or tenant. The community gallery distributes images publicly. When you share images that contain intellectual property, use caution to prevent widespread distribution.
 
 ## Limitations
 
@@ -47,11 +47,11 @@ During the preview:
 
 - Only images can be shared. You can't directly share a [VM application](vm-applications.md) during the preview.
 
-- A direct shared gallery can't contain encrypted image versions. You can't create encrypted images within a gallery that's directly shared.
+- A direct shared gallery can't contain encrypted image versions.
 
 - Only the owner of a subscription, or a user or service principal assigned to the Compute Gallery Sharing Admin role at the subscription or gallery level, can enable group-based sharing.
 
-- Only REST API, Azure CLI, and Azure portal support is available in preview. PowerShell and Terraform support is currently not available.
+- Only REST API, Azure CLI, and Azure portal support is available in the feature preview. PowerShell and Terraform support is currently not available.
 
 - Although portal support is available for this feature, consumption of images in the portal is available only from the pane for creating a VM or virtual machine scale set. There's no way to browse through direct shared images in the portal.
 
@@ -59,17 +59,19 @@ During the preview:
 
 - The feature is not available in government clouds.
 
-- *Known issue*: When you create a VM from a direct shared image by using the Azure portal, if you select a region and select an image, and then change the region, you get an error message: "You can only create VM in the replication regions of this image." The message appears even when the image is replicated to that region.
+- *Known issue*: When you create a VM from a direct shared image by using the Azure portal, if you select a region and an image and then change the region, you get an error message: "You can only create VM in the replication regions of this image." The message appears even when the image is replicated to that region.
 
   To eliminate the error, select a different region, and then switch back to the region that you want. If the image is available, it should clear the error message.
 
 ## Prerequisites
 
-You need to create a [new direct shared gallery](./create-gallery.md#create-a-direct-shared-gallery). During the preview, a direct shared gallery has the `sharingProfile.permissions` property set to `Groups`. When you use the Azure CLI to create a gallery, use the `--permissions groups` parameter. You can't use an existing gallery, and the property can't currently be updated.
+You need to create a [new direct shared gallery](./create-gallery.md#create-a-direct-shared-gallery).
 
-## Share by using a direct shared gallery
+During the preview, a direct shared gallery has the `sharingProfile.permissions` property set to `Groups`. When you use the Azure CLI to create a gallery, use the `--permissions groups` parameter. You can't use an existing gallery, and the property can't currently be updated.
 
-Here's an overview of the process:
+## Share a gallery
+
+Here's an overview of the sharing process:
 
 1. You create a gallery under `Microsoft.Compute/Galleries` and choose `groups` as a sharing option.
 1. When you're ready, you share your gallery with subscriptions and tenants. Only the owner of a subscription, or a user or service principal with the Compute Gallery Sharing Admin role at the subscription or gallery level, can share the gallery.
@@ -81,35 +83,6 @@ As the publisher of the private resource, you should consider the private resour
 
 ### [Portal](#tab/portaldirect)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Enter **Azure Compute Gallery** in the search box, and select **Azure Compute Gallery** in the results.
-
-1. On the **Azure Compute Gallery** page, select **Add**.
-
-1. On the **Create Azure compute gallery** pane, on the **Basics** tab, select the correct subscription.
-
-1. Complete all of the details on the **Basics** tab.
-
-1. At the bottom of the pane, select **Next: Sharing method**.
-
-   :::image type="content" source="media/create-gallery/create-gallery.png" alt-text="Screenshot that shows the tab where you enter basic details for a new gallery.":::
-
-1. On the **Sharing** tab, select **RBAC + share directly**.
-
-   :::image type="content" source="media/create-gallery/share-direct.png" alt-text="Screenshot that shows the option to both share by using role-based access control and share directly.":::
-
-1. When you finish, select **Review + create**.
-
-1. After validation passes, select **Create**.
-
-1. When the deployment finishes, select **Go to resource**.
-
-> [!NOTE]
-> In the Azure portal, If you get an error "Failed to update Azure compute gallery", please verify if you have owner (or) compute gallery sharing admin permission on the gallery.
-
-To share the gallery:
-
 1. On the page for the gallery, on the left menu, select **Sharing**.
 
 1. Under **Direct sharing settings**, select **Add**.
@@ -118,22 +91,16 @@ To share the gallery:
 
 1. If you want to share with someone within your organization, for **Type**, select **Subscription** or **Tenant**. Then choose the appropriate item in the **Tenants and subscriptions** dropdown list.
 
-   If you want to share with someone outside your organization, select either **Subscription outside of my organization** or **Tenant outside of my organization**. Then paste or enter the ID into the text box.
+   If you want to share with someone outside your organization, select either **Subscription outside of my organization** or **Tenant outside of my organization**. Then paste or enter the ID in the text box.
 
    When a gallery is shared with the tenant, all subscriptions within the tenant get access to the image. They don't have to share it with individual subscriptions in the tenant.
 
 1. When you finish adding items, select **Save**.
 
+> [!NOTE]
+> If you get the error "Failed to update Azure compute gallery," make sure that you have owner or Compute Gallery Sharing Admin permission on the gallery.
+
 ### [CLI](#tab/clidirect)
-
-To create a direct shared gallery, you need to create the gallery with the `--permissions` parameter set to `groups`:
-
-```azurecli-interactive
-az sig create \
-   --gallery-name myGallery \
-   --permissions groups \
-   --resource-group myResourceGroup  
-```
 
 To start sharing the gallery with a subscription or tenant, use [az sig share add](/cli/azure/sig#az-sig-share-add):
 
@@ -149,7 +116,7 @@ az sig share add \
    --resource-group $rg
 ```
 
-Remove access for a subscription or tenant using [az sig share remove](/cli/azure/sig#az-sig-share-remove):
+Remove access for a subscription or tenant by using [az sig share remove](/cli/azure/sig#az-sig-share-remove):
 
 ```azurecli-interactive
 sub=<subscription-id>
@@ -166,23 +133,7 @@ az sig share remove \
 
 ### [REST](#tab/restdirect)
 
-Create a gallery for subscription or tenant-level sharing using the Azure REST API:
-
-```rest
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rgName}/providers/Microsoft.Compute/galleries/{gallery-name}?api-version=2020-09-30
-
-{
-  "properties": {
-    "sharingProfile": {
-      "permissions": "Groups"
-    }
-  },
-  "location": "{location}
-}
- 
-```
-
-Share a gallery to subscription or tenant:
+Share a gallery with a subscription or tenant:
 
 ```rest
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rgName}/providers/Microsoft.Compute/galleries/{galleryName}/share?api-version=2020-09-30
@@ -234,7 +185,7 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/
 
 ```
 
-Reset sharing to clear everything in the `sharingProfile`:
+Reset sharing to clear everything in `sharingProfile`:
 
 ```rest
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rgName}/providers/Microsoft.Compute/galleries/{galleryName}/share?api-version=2020-09-30 

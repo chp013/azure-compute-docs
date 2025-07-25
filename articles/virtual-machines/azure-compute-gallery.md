@@ -176,9 +176,9 @@ There are three main ways to share images in Azure Compute Gallery, depending on
 | RBAC + [community gallery](#community-gallery) | Yes | Yes | Yes | No | Yes |
 
 > [!NOTE]
-> Please note that Images can be used with read permissions on them to deploy virtual machines and disks.
+> You can use images with read permissions on them to deploy virtual machines and disks.
 >
-> When utilizing the direct shared gallery, images are distributed widely to all users in a subscription/tenant, while the community gallery distributes images publicly. It is recommended to exercise caution when sharing images that contain intellectual property to prevent widespread distribution.
+> When you use the direct shared gallery, images are distributed widely to all users in a subscription or tenant. The community gallery distributes images publicly. When you share images that contain intellectual property, use caution to prevent widespread distribution.
 
 ### RBAC
 
