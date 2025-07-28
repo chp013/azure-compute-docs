@@ -19,7 +19,7 @@ Because a gallery, definition, and version are all resources in Azure Compute Ga
 
 After users have access, they can use the gallery resources to deploy a virtual machine (VM) or a virtual machine scale set. Here's a sharing matrix that can help you understand what the users get access to:
 
-| Shared with users     | Gallery | Image definition | Image version |
+| Shared with users | Gallery | Image definition | Image version |
 |----------------------|----------------------|--------------|----------------------|
 | Gallery | Yes                  | Yes          | Yes                  |
 | Image definition     | No                   | Yes          | Yes                  |

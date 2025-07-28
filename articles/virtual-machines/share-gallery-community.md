@@ -17,7 +17,7 @@ ms.devlang: azurecli
 
 To share a gallery with all Azure users, you can create a [community gallery](azure-compute-gallery.md#community-gallery). Anyone who has an Azure subscription can use community galleries. Someone who creates a virtual machine (VM) can browse images shared with the community by using the Azure portal, the REST API, or the Azure CLI. Sharing images with the community is a new capability in Azure Compute Gallery.
 
-You can make your image galleries public and share them with Azure customers. When a gallery is marked as a community gallery, all images under the gallery become available to all Azure customers as a new resource type under `Microsoft.Compute/communityGalleries`. All Azure customers can see the galleries and use them to create VMs. Your original resources of the type `Microsoft.Compute/galleries` are still under your subscription and private.
+You can make your image galleries public and share them with Azure customers. When a gallery is marked as a community gallery, all images in it become available to all Azure customers as a new resource type under `Microsoft.Compute/communityGalleries`. Azure customers can see the galleries and use them to create VMs. Your original resources of the type `Microsoft.Compute/galleries` are still under your subscription and private.
 
 > [!IMPORTANT]
 > Microsoft does not provide support for community images. For any image-related issues, contact the image publishers. However, Microsoft does provide commercially reasonable support to isolate any platform issue that involves a community image. You can find the publisher contact by querying the image.

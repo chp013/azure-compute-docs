@@ -111,7 +111,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 > [!IMPORTANT]
 > The *direct shared gallery* feature is currently in preview and is subject to the [preview terms for Azure Compute Gallery](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> During the preview, when you need to create a new gallery, set the `sharingProfile.permissions` property to `Groups`. When you use the Azure CLI to create a gallery, use the `--permissions groups` parameter. You can't use an existing gallery, and the property can't currently be updated.
+> During the preview, you need to create a new gallery with the `sharingProfile.permissions` property to `Groups`. When you use the Azure CLI to create a gallery, use the `--permissions groups` parameter. You can't use an existing gallery, and the property can't currently be updated.
 >
 > You can't currently create a flexible virtual machine scale set from an image that another tenant shared with you.
 

@@ -13,7 +13,7 @@ ms.devlang: azurecli
 # Customer intent: As a cloud administrator, I want to share a gallery with specific subscriptions and tenants, so that I can provide controlled read-only access to images for users within my organization and facilitate image deployment efficiently.
 ---
 
-# Share a gallery with all users in a subscription or tenants (preview)
+# Share a gallery with all users in a subscription or tenant (preview)
 
 This article covers how to share a gallery with specific subscriptions or tenants by using a direct shared gallery in Azure Compute Gallery. Sharing a gallery with tenants and subscriptions gives them read-only access to it.
 
