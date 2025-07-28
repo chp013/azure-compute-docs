@@ -17,7 +17,7 @@ ms.devlang: azurecli
 
 [Azure Compute Gallery](./shared-image-galleries.md) (formerly known as Shared Image Gallery) simplifies sharing resources, like images and application packages, across your organization.  
 
-Compute Gallery lets you share custom virtual machine (VM) images and application packages with others in your organization, within or across regions, or within a tenant. Choose what you want to share, the regions where you want to make them available, and the users you want to share them with. You can create multiple galleries so that you can logically group resources.
+Compute Gallery lets you share custom virtual machine (VM) images and application packages with others in your organization, within or across regions, or within a tenant. Choose what resources you want to share, the regions where you want to make them available, and the users you want to share them with. You can create multiple galleries so that you can logically group resources.
 
 The gallery is a top-level resource that can be shared in multiple ways:
 
@@ -29,7 +29,7 @@ The gallery is a top-level resource that can be shared in multiple ways:
 
 ## Requirements for gallery names
 
-Allowed characters for a gallery name are uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), dots (`.`), and underscores (`_`). The gallery name can't contain dashes (`-`). Gallery names must be unique within your subscription.
+Allowed characters for a gallery name are uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), dots (.), and underscores (_). The gallery name can't contain dashes (-). Gallery names must be unique within your subscription.
 
 ## Create a private gallery
 
@@ -57,7 +57,7 @@ Allowed characters for a gallery name are uppercase letters (A-Z), lowercase let
 
 ### [CLI](#tab/cli)
 
-Create a gallery by using [az sig create](/cli/azure/sig#az-sig-create). The following example creates a resource group named `myGalleryRG` in East US, and a gallery named `myGallery`:
+Create a gallery by using [`az sig create`](/cli/azure/sig#az-sig-create). The following example creates a resource group named `myGalleryRG` in East US, and a gallery named `myGallery`:
 
 ```azurecli-interactive
 az group create --name myGalleryRG --location eastus
@@ -66,7 +66,7 @@ az sig create --resource-group myGalleryRG --gallery-name myGallery
 
 ### [PowerShell](#tab/powershell)
 
-Create a gallery by using [New-AzGallery](/powershell/module/az.compute/new-azgallery). The following example creates a gallery named `myGallery` in the `myGalleryRG` resource group:
+Create a gallery by using [`New-AzGallery`](/powershell/module/az.compute/new-azgallery). The following example creates a gallery named `myGallery` in the `myGalleryRG` resource group:
 
 ```azurepowershell-interactive
 $resourceGroup = New-AzResourceGroup `
@@ -111,7 +111,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 > [!IMPORTANT]
 > The *direct shared gallery* feature is currently in preview and is subject to the [preview terms for Azure Compute Gallery](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
-> During the preview, you need to create a new gallery with the `sharingProfile.permissions` property to `Groups`. When you use the Azure CLI to create a gallery, use the `--permissions groups` parameter. You can't use an existing gallery, and the property can't currently be updated.
+> During the preview, you need to create a new gallery with the `sharingProfile.permissions` property set to `Groups`. When you use the Azure CLI to create a gallery, use the `--permissions groups` parameter. You can't use an existing gallery, and the property can't currently be updated.
 >
 > You can't currently create a flexible virtual machine scale set from an image that another tenant shared with you.
 
@@ -192,7 +192,7 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/
 <a name=community></a>
 ## Create a community gallery
 
-A [community gallery](azure-compute-gallery.md#community) is shared publicly with everyone. To create a community gallery, you create the gallery first and then enable it for sharing. The name of public instance of your gallery is the prefix that you provide, plus a unique GUID. To share your gallery publicly, be sure to create your gallery, image definitions, and image versions in the same region.
+A [community gallery](azure-compute-gallery.md#community) is shared publicly with everyone. To create a community gallery, you create the gallery first and then enable it for sharing. The name of public instance of your gallery is the prefix that you provide, plus a GUID. To share your gallery publicly, be sure to create your gallery, image definitions, and image versions in the same region.
 
 When you create an image to share with the community, you need to provide contact information. This information is *publicly available*, so be careful when you provide:
 
@@ -203,12 +203,10 @@ When you create an image to share with the community, you need to provide contac
 
 Information from your image definitions is also publicly available, like what you provide for **Publisher**, **Offer**, and **SKU**.
 
-### Prerequisites
-
 Only the following people can enable a gallery to go public to the community:
 
 - The owner of a subscription
-- A user or a service principal assigned to the `Compute Gallery Sharing Admin` role at the subscription or gallery level
+- A user or a service principal assigned to the Compute Gallery Sharing Admin role at the subscription or gallery level
 
 To assign a role to a user, group, service principal, or managed identity, see [Steps to assign an Azure role](/azure/role-based-access-control/role-assignments-steps).
 
@@ -287,7 +285,7 @@ Making a community gallery available to all Azure users is a two-step process. F
 
 1. For **Name**, enter **myGallery** for the name of the gallery.
 
-1. Leave the default value for **Region**.
+1. For **Region**, leave the default value.
 
 1. You can enter a short description of the gallery, like **My gallery for testing**.
 
