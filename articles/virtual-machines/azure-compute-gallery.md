@@ -46,9 +46,9 @@ All public regions can be target regions, but certain regions require that custo
 
 The following limits apply when you deploy resources by using Azure Compute Gallery:
 
-- You can have a maximum of 100 galleries, per subscription, per region.
-- You can have a maximum of 1,000 image definitions, per subscription, per region.
-- You can have a maximum of 10,000 image versions, per subscription, per region.
+- You can have a maximum of 100 galleries per subscription, per region.
+- You can have a maximum of 1,000 image definitions per subscription, per region.
+- You can have a maximum of 10,000 image versions per subscription, per region.
 - You can have a maximum 100 replicas per image version. However, 50 replicas should be sufficient for most use cases.
 - The image size should be less than 2 TB, but you can use shallow replication to support larger image sizes (up to 32 TB).
 - Resource movement isn't supported for Azure Compute Gallery resources.
@@ -72,7 +72,7 @@ We always recommend that you overprovision the number of replicas due to factors
 
 ## High availability
 
-[Azure ZRS](https://azure.microsoft.com/blog/azure-zone-redundant-storage-in-public-preview/) provides resilience against the failure of an availability zone in the region. With the general availability of Azure Compute Gallery, you can choose to store your images in ZRS accounts in regions that have availability zones.
+[Azure ZRS](https://azure.microsoft.com/blog/azure-zone-redundant-storage-in-public-preview/) provides resilience against the failure of an availability zone in a region. With the general availability of Azure Compute Gallery, you can choose to store your images in ZRS accounts in regions that have availability zones.
 
 You can also choose the account type for each target region. The default storage account type is Standard LRS, but you can choose Standard ZRS for regions that have availability zones. For more information on the regional availability of ZRS, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy).
 
@@ -92,7 +92,9 @@ While the replication is happening, you can view its status per region. After th
 
 ## Trusted Launch validation for Azure Compute Gallery images (preview)
 
-Trusted Launch validation for Azure Compute Gallery images is currently in preview. This preview is intended for testing, evaluation, and feedback purposes only. We don't recommend it for production workloads. When you register to preview, you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability.
+Trusted Launch validation for Azure Compute Gallery images is currently in preview. This preview is intended for testing, evaluation, and feedback purposes only. We don't recommend it for production workloads.
+
+When you register for the preview, you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability.
 
 ### What's changing
 
@@ -180,7 +182,7 @@ There are three main ways to share images in Azure Compute Gallery, depending on
 > [!NOTE]
 > You can use images with read permissions on them to deploy virtual machines and disks.
 >
-> When you use the direct shared gallery, images are distributed widely to all users in a subscription or tenant. The community gallery distributes images publicly. When you share images that contain intellectual property, use caution to prevent widespread distribution.
+> When you use a direct shared gallery, images are distributed widely to all users in a subscription or tenant. A community gallery distributes images publicly. When you share images that contain intellectual property, use caution to prevent widespread distribution.
 
 ### RBAC
 
@@ -248,9 +250,9 @@ The following table lists a few example operations that relate to gallery operat
 
 ## Billing
 
-There's no extra charge for using the Azure Compute Gallery service. You're charged for the following resources:
+There's no extra charge for using the Azure Compute Gallery service. However, you're charged for the following resources:
 
-- Storage costs for each replica. For images, the storage cost is charged as a snapshot. It's based on the occupied size of the image version, the number of replicas of the image version, and the number of regions where the version is replicated to.
+- Storage costs for each replica. For images, the storage cost is charged as a snapshot. It's based on the occupied size of the image version, the number of replicas of the image version, and the number of regions that the version is replicated to.
 - Network egress charges for replication of the first resource version from the source region to the replicated regions. Subsequent replicas are handled within the region, so there are no additional charges.
 
 For example, let's say:
@@ -272,7 +274,7 @@ For more information on the pricing of snapshots in each region, see [Managed di
 
   For example, if you create 1,000 VMs concurrently, you should keep 50 replicas. (You can have a maximum of 50 replicas per region.) To update the replica count, go to the gallery and select **Image Definition** > **Image Version** > **Update replication**.
 
-- Maintain separate galleries for production and test images. Don't put them in a single gallery.
+- Maintain separate galleries for production and test images. Don't put both image types in a single gallery.
 
 - For disaster recovery scenarios, have at least two galleries in separate regions. You can still use image versions in other regions, but if the region for one gallery goes down, you can't create new gallery resources or update existing ones.
 
@@ -360,4 +362,4 @@ You can create Azure Compute Gallery resources by using quickstart templates:
 
 ## Related content
 
-Learn how to deploy [images](shared-image-galleries.md) and [VM apps](vm-applications.md) by using Azure Compute Gallery.
+- Learn how to deploy [images](shared-image-galleries.md) and [VM apps](vm-applications.md) by using Azure Compute Gallery.

@@ -42,4 +42,4 @@ This article lists updates to Azure Compute Gallery features.
 
 ## Related content
 
-For updates and announcements about Azure, see the [Microsoft Azure Blog](https://azure.microsoft.com/blog/).
+- For updates and announcements about Azure, see the [Microsoft Azure Blog](https://azure.microsoft.com/blog/).

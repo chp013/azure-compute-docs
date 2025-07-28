@@ -124,4 +124,4 @@ New-AzVM -ResourceGroupName $resourceGroup -Location $location -VM $vmConfig
 
 ## Related content
 
-If you have any problems, you can [troubleshoot galleries](troubleshooting-shared-images.md).
+- If you have any problems, you can [troubleshoot galleries](troubleshooting-shared-images.md).

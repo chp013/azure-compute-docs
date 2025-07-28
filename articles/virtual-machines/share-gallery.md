@@ -39,7 +39,7 @@ You can also create an [app registration](./share-using-app-registration.md) to 
 > [!NOTE]
 > You can use images with read permissions on them to deploy virtual machines and disks.
 >
-> When you use the direct shared gallery, images are distributed widely to all users in a subscription or tenant. The community gallery distributes images publicly. When you share images that contain intellectual property, use caution to prevent widespread distribution.
+> When you use a direct shared gallery, images are distributed widely to all users in a subscription or tenant. A community gallery distributes images publicly. When you share images that contain intellectual property, use caution to prevent widespread distribution.
 
 ## Share by using RBAC
 

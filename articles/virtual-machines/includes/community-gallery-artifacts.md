@@ -1,6 +1,6 @@
 ---
  title: Include file
- description: include file
+ description: Include file
  author: sandeepraichura
  ms.author: saraic
  ms.service: azure-virtual-machines
