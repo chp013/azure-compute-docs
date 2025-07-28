@@ -17,7 +17,7 @@ ms.devlang: azurecli
 
 [Azure Compute Gallery](./shared-image-galleries.md) (formerly known as Shared Image Gallery) simplifies sharing resources, like images and application packages, across your organization.  
 
-Compute Gallery lets you share custom VM images and application packages with others in your organization, within or across regions, or within a tenant. Choose what you want to share, the regions where you want to make them available, and the users you want to share them with. You can create multiple galleries so that you can logically group resources.
+Compute Gallery lets you share custom virtual machine (VM) images and application packages with others in your organization, within or across regions, or within a tenant. Choose what you want to share, the regions where you want to make them available, and the users you want to share them with. You can create multiple galleries so that you can logically group resources.
 
 The gallery is a top-level resource that can be shared in multiple ways:
 

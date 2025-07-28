@@ -77,7 +77,7 @@ Here's an overview of the sharing process:
 1. When you're ready, you share your gallery with subscriptions and tenants. Only the owner of a subscription, or a user or service principal with the Compute Gallery Sharing Admin role at the subscription or gallery level, can share the gallery.
 1. The Azure infrastructure creates proxy read-only regional resources under `Microsoft.Compute/SharedGalleries`.
 
-Only subscriptions and tenants that you've shared with can interact with the proxy resources. They never interact with your private resources.
+Only subscriptions and tenants that you've shared your gallery with can interact with the proxy resources. They never interact with your private resources.
 
 As the publisher of the private resource, you should consider the private resource as your handle to the public proxy resources. The subscriptions and tenants that you've shared your gallery with see the gallery name as the subscription ID where the gallery was created, followed by the gallery name.
 

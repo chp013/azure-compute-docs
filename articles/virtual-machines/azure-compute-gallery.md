@@ -109,7 +109,7 @@ When you specify `TrustedLaunchSupported` or `TrustedLaunchandConfidentialVMSupp
 
 To try out Trusted Launch validation for Compute Gallery images, complete the following steps:
 
-1. Register for [Trusted Launch as a default feature](/azure/virtual-machines/trusted-launch.md#preview-trusted-launch-as-default).
+1. Register for [Trusted Launch as a default feature](trusted-launch.md#preview-trusted-launch-as-default).
 2. Register for the [Trusted Launch Validation preview](https://aka.ms/ACGTLValidationPreview).
 
 After you enable the two features, all new VM and scale set deployments that use Compute Gallery image versions and that are validated successfully for Trusted Launch default to the Trusted Launch security type.
@@ -248,7 +248,7 @@ The following table lists a few example operations that relate to gallery operat
 
 ## Billing
 
-There is no extra charge for using the Azure Compute Gallery service. You're charged for the following resources:
+There's no extra charge for using the Azure Compute Gallery service. You're charged for the following resources:
 
 - Storage costs for each replica. For images, the storage cost is charged as a snapshot. It's based on the occupied size of the image version, the number of replicas of the image version, and the number of regions where the version is replicated to.
 - Network egress charges for replication of the first resource version from the source region to the replicated regions. Subsequent replicas are handled within the region, so there are no additional charges.
@@ -258,7 +258,7 @@ For example, let's say:
 - You have an image of a 127-GB OS disk that occupies only 10 GB of storage, and you have one empty 32-GB data disk. The occupied size of each image would be only 10 GB.
 - The image is replicated to three regions, and each region has two replicas. There are six total snapshots, each using 10 GB.
 
-In this example, you're charged the storage cost for each snapshot, based on the occupied size of 10 GB. You pay network egress charges for the first replica to be copied to the additional two regions.
+In this example, you're charged for the storage cost of each snapshot, based on the occupied size of 10 GB. You pay network egress charges for the first replica to be copied to the additional two regions.
 
 For more information on the pricing of snapshots in each region, see [Managed disks pricing](https://azure.microsoft.com/pricing/details/managed-disks/). For more information on network egress, see [Bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
@@ -278,7 +278,7 @@ For more information on the pricing of snapshots in each region, see [Managed di
 
 - When you create an image definition, keep the **Publisher**, **Offer**, and **SKU** values consistent with Azure Marketplace images to easily identify OS versions.
 
-  For example, if you're customizing a Windows Server 2019 image from Azure Marketplace and you store it as a Compute Gallery image, use the same **Publisher**, **Offer** and **SKU** values that you used in the Azure Marketplace image.
+  For example, if you're customizing a Windows Server 2019 image from Azure Marketplace and you store it as a Compute Gallery image, use the same **Publisher**, **Offer**, and **SKU** values that you used in the Azure Marketplace image.
 
 - If you want to exclude a specific image version during creation of a VM or scale set, use `excludeFromLatest` when you publish images. See [Gallery image versions - create or update](/rest/api/compute/gallery-image-versions/create-or-update#galleryimageversionpublishingprofile).
 
