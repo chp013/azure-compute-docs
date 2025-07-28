@@ -1,6 +1,16 @@
 {
   "redirections": [
     {
+      "source_path": "articles/virtual-machines/extensions/oms-linux.md",
+      "redirect_url": "/previous-versions/azure/virtual-machines/extensions/oms-linux",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/virtual-machines/extensions/oms-windows.md",
+      "redirect_url": "/previous-versions/azure/virtual-machines/extensions/oms-windows",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/virtual-machines/sizes/gpu-accelerated/nc-series.md",
       "redirect_url": "/previous-versions/azure/virtual-machines/sizes/gpu-accelerated/nc-series",
       "redirect_document_id": false

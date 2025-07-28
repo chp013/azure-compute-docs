@@ -465,7 +465,7 @@
         - name: Lasv4 series
           href: ./sizes/storage-optimized/lasv4-series.md
         - name: Lsv4 series
-          href: ./sizes/storage-optimized/lsv4-series.md    
+          href: ./sizes/storage-optimized/lsv4-series.md
         - name: Lsv3 series
           href: ./sizes/storage-optimized/lsv3-series.md
         - name: Lasv3 series
@@ -497,7 +497,7 @@
         - name: Ncv3 Nc24rs retirement
           href: ncv3-nc24rs-retirement.md
         - name: Ncv3 series retirement
-          href: ncv3-retirement.md        
+          href: ncv3-retirement.md
         - name: NCasT4_v3 series
           href: ./sizes/gpu-accelerated/ncast4v3-series.md
         - name: NC_A100_v4 series
@@ -596,7 +596,6 @@
       - name: HB family
         items:
         - name: HB series
-          items:
         - name: HBv2 series
           items:
           - name: Overview
@@ -1347,13 +1346,6 @@
       - name: Legacy extensions
         items:
         - name: Log Analytics
-          items:
-          - name: Linux
-            displayName: Log Analytics, extension
-            href: ./extensions/oms-linux.md
-          - name: Windows
-            displayName: Log Analytics, extension
-            href: ./extensions/oms-windows.md
     - name: PowerShell DSC
       href: ./extensions/dsc-overview.md
       items:

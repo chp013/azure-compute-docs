@@ -30,8 +30,6 @@ Certain default limits and quotas can be increased. To request an increase of on
 
 > [!IMPORTANT]  
 > Not all limit increase requests are guaranteed to be approved.
-> Deployments with GPU resources aren't supported in an Azure virtual network deployment and are only available on Linux container groups.
-> Using GPU resources (preview) isn't fully supported yet and any support is provided on a best-effort basis.
 
 ### Unchangeable (Hard) Limits 
 
@@ -52,7 +50,6 @@ The following limits are default limits that can’t be increased through a quot
 | --- | :--- | 
 | Standard sku container groups per region per subscription | 100 | 
 | Standard sku cores (CPUs) per region per subscription | 100 |  
-| Standard sku cores (CPUs) for V100 GPU per region per subscription | 0 | 
 | Container group creates per hour |300<sup>1</sup> | 
 | Container group creates per 5 minutes | 100<sup>1</sup> | 
 | Container group deletes per hour | 300<sup>1</sup> | 
@@ -97,12 +94,7 @@ The following maximum resources are available to a container group deployed usin
 ## GPU Container Resources (Preview) 
 
 > [!IMPORTANT]
-> K80 and P100 GPU SKUs were retired on August 31st, 2023. This is due to the retirement of the underlying VMs used: [NC Series](../virtual-machines/nc-series-retirement.md) and [NCv2 Series](../virtual-machines/ncv2-series-retirement.md) Although V100 SKUs will be available, it's recommended to use Azure Kubernetes Service instead. GPU resources aren't fully supported and shouldn't be used for production workloads. Use the following resources to migrate to AKS today: [How to Migrate to AKS](/azure/aks/aks-migration).
-
-> [!NOTE]
-> Not all limit increase requests are guaranteed to be approved.
-> Deployments with GPU resources aren't supported in an Azure virtual network deployment and are only available on Linux container groups.
-> Using GPU resources (preview) isn't fully supported yet and any support is provided on a best-effort basis.
+> This product is retired as of July 14, 2025.
 
 The following maximum resources are available to a container group deployed with [GPU resources](container-instances-gpu.md) (preview). These maximums are hard limits and can't be increased.
 
