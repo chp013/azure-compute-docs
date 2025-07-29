@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: "As a cloud architect, I want to review the specifications of the Daldsv7 size series, so that I can select the appropriate virtual machine sizes that meet my application workload requirements."
 ---
 
-# Daldsv7 sizes series
+# Daldsv7 sizes series (Preview)
 [!INCLUDE [daldsv7-summary](./includes/daldsv7-series-summary.md)]
 
 ## Host specifications
