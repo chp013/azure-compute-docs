@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: "As a cloud architect, I want detailed specifications for the Fasv7 VM size series, so that I can select the appropriate virtual machine for my application's performance and capacity needs."
 ---
 
-# Fasv7 sizes series
+# Fasv7 sizes series (Preview)
 
 [!INCLUDE [fasv7-summary](./includes/fasv7-series-summary.md)]
 
