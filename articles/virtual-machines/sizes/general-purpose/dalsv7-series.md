@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: As a cloud architect, I want to compare the specifications of the Dalsv7 series virtual machine sizes, so that I can select the right size for my application’s performance and resource requirements.
 ---
 
-# Dalsv7 sizes series
+# Dalsv7 sizes series (Preview)
 [!INCLUDE [dalsv7-summary](./includes/dalsv7-series-summary.md)]
 
 ## Host specifications
