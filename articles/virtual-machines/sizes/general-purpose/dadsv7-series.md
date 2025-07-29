@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: "As a cloud architect, I want to understand the specifications and features of the Dadsv7 series virtual machine sizes, so that I can select the appropriate resources for my applications based on performance and storage requirements."
 ---
 
-# Dadsv7 sizes series
+# Dadsv7 sizes series (Preview)
 [!INCLUDE [dadsv7-summary](./includes/dadsv7-series-summary.md)]
 
 ## Host specifications
