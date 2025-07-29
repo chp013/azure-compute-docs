@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: "As a cloud architect, I want to understand the specifications and features of the Faldsv7 series virtual machine sizes, so that I can select the appropriate resources for my applications based on performance and storage requirements."
 ---
 
-# Faldsv7 sizes series
+# Faldsv7 sizes series (Preview)
 [!INCLUDE [faldsv7-summary](./includes/faldsv7-series-summary.md)]
 
 ## Host specifications
