@@ -92,7 +92,7 @@ Network interface info for each size
 | Standard_F1als_v7 | 2 | 16000 |
 | Standard_F2als_v7 | 3 | 16000 |
 | Standard_F4als_v7 | 4 | 25000 |
-| Standard_F8als_v7 | 4 | 25000 |
+| Standard_F8als_v7 | 8 | 25000 |
 | Standard_F16als_v7 | 8 | 25000 |
 | Standard_F32als_v7 | 8 | 45000 |
 | Standard_F48als_v7 | 8 | 70000 |
