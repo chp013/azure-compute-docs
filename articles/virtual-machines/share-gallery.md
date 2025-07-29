@@ -43,7 +43,7 @@ You can also create an [app registration](./share-using-app-registration.md) to 
 
 ## Share by using RBAC
 
-When you share a gallery by using RBAC, you need to provide the `imageID` value to anyone who creates a VM or scale set from the image. There is no way for the person who's deploying the VM or scale set to list the images that were shared with them via RBAC.
+When you share a gallery by using RBAC, you need to provide the `imageID` value to anyone who creates a VM or scale set from the image. The person who's deploying the VM or scale set can't list the images that were shared with them via RBAC.
 
 If you share gallery resources with someone outside your Azure tenant, they need your `tenantID` value to sign in and have Azure verify that they have access to the resource before they can use it within their own tenant. You need to provide the `tenantID` value. There is no way for someone outside your organization to query for this value.
 

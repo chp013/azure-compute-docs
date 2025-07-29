@@ -55,7 +55,7 @@ During the preview:
 
 - Although portal support is available for this feature, consumption of images in the portal is available only from the pane for creating a VM or virtual machine scale set. There's no way to browse through direct shared images in the portal.
 
-- The image version region in the gallery should be the same as the home region. The creation of cross-region versions where the home region is different from the gallery is not supported. However, after the image is in the home region, it can be replicated to other regions.
+- The image version's region in the gallery should be the same as the home region. The creation of cross-region versions where the home region is different from the gallery is not supported. However, after the image is in the home region, it can be replicated to other regions.
 
 - The feature is not available in government clouds.
 
@@ -74,7 +74,7 @@ During the preview, a direct shared gallery has the `sharingProfile.permissions`
 Here's an overview of the sharing process:
 
 1. You create a gallery under `Microsoft.Compute/Galleries` and choose `groups` as a sharing option.
-1. When you're ready, you share your gallery with subscriptions and tenants. Only the owner of a subscription, or a user or service principal with the Compute Gallery Sharing Admin role at the subscription or gallery level, can share the gallery.
+1. When you're ready, you share your gallery with subscriptions and tenants.
 1. The Azure infrastructure creates proxy read-only regional resources under `Microsoft.Compute/SharedGalleries`.
 
 Only subscriptions and tenants that you've shared your gallery with can interact with the proxy resources. They never interact with your private resources.

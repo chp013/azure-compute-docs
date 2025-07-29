@@ -13,7 +13,7 @@ ms.author: saraic
 ---
 # Share gallery VM images across Azure tenants by using an app registration
 
-With Azure Compute Gallery, you can share an image with another organization by using an app registration. For information about other sharing options, see [Share gallery resources across subscriptions and tenants by using RBAC](./share-gallery.md).
+With Azure Compute Gallery, you can share a virtual machine (VM) image with another organization by using an app registration. For information about other sharing options, see [Share gallery resources across subscriptions and tenants by using RBAC](./share-gallery.md).
 
 [!INCLUDE [virtual-machines-share-images-across-tenants](~/reusable-content/ce-skilling/azure/includes/virtual-machines/includes/virtual-machines-share-images-across-tenants.md)]
 
@@ -121,6 +121,8 @@ Add-AzVMNetworkInterface -Id $nic.Id
 # Create a virtual machine
 New-AzVM -ResourceGroupName $resourceGroup -Location $location -VM $vmConfig
 ```
+
+---
 
 ## Related content
 
