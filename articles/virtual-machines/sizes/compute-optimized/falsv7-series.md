@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: "As a cloud architect, I want to evaluate the specifications and performance metrics of the Falsv7 size series for virtual machines, so that I can select the appropriate VM size for my applications based on their resource needs."
 ---
 
-# Falsv7 sizes series
+# Falsv7 sizes series (Preview)
 
 [!INCLUDE [falsv7-summary](./includes/falsv7-series-summary.md)]
 
