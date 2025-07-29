@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: As a cloud architect, I want to review the specifications and features of the Famsv7 size series, so that I can select the appropriate virtual machine size for my application's performance and resource needs.
 ---
 
-# Famsv7 sizes series
+# Famsv7 sizes series (Preview)
 
 [!INCLUDE [famsv7-summary](./includes/famsv7-series-summary.md)]
 
