@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: As a cloud architect, I want to review the specifications of the Easv7 size series, so that I can select the appropriate virtual machine configurations for my applications' performance and storage needs.
 ---
 
-# Easv7 sizes series
+# Easv7 sizes series (Preview)
 
 [!INCLUDE [easv7-summary](./includes/easv7-series-summary.md)]
 
