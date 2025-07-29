@@ -16,6 +16,6 @@ ms.custom: include file
 | Processor      | 2 - 160 vCPUs       | AMD EPYC 9005 (Turin) [x86-64]                               |
 | Memory         | 4 - 320 GiB          |                                  |
 | Local Storage  | None           |                                |
-| Remote Storage | 4 - 64 Disks    | 4000 - 310000 IOPS <br>118 - 10356 MBps   |
+| Remote Storage | 10 - 64 Disks    | 4000 - 310000 IOPS <br>118 - 10356 MBps   |
 | Network        | 2 - 15 NICs          | 16000 - 80000 Mbps                          |
 | Accelerators   | None              |                                   |
