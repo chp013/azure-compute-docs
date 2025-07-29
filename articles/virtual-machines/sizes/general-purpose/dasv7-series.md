@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: As a cloud architect, I want to understand the specifications and features of the Dasv7 series virtual machines, so that I can select the appropriate size for my workload requirements.
 ---
 
-# Dasv7 sizes series
+# Dasv7 sizes series (Preview)
 [!INCLUDE [dasv7-summary](./includes/dasv7-series-summary.md)]
 
 ## Host specifications
