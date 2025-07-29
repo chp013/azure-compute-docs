@@ -11,7 +11,7 @@ ms.reviewer: mattmcinnes
 # Customer intent: "As an IT administrator evaluating virtual machine options, I want to compare specifications of the Eadsv7 size series, so that I can select the most suitable configuration for my workloads and ensure optimal performance."
 ---
 
-# Eadsv7 sizes series
+# Eadsv7 sizes series (Preview)
 
 [!INCLUDE [eadsv7-summary](./includes/eadsv7-series-summary.md)]
 
