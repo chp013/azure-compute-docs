@@ -16,7 +16,7 @@ ms.custom: include file
 | Processor      | 48 - 368 vCPUs     | 4th Generation AMD EPYC [x86-64] |
 | L3 Cache       | 1.5 GB       |    |
 | Memory         | 450 GB        | 6.7 TB/s   |
-| Local Storage  | 1 Temp Disk <br>8 NVMe Disks         |  960 GiB <br>15 TiB (1.9 TB/Disk)  |
+| Local Storage  | 1 Temp Disk <br>8 NVMe Disks         |  480 GiB <br>14.304 TiB (1.9 TB/Disk)  |
 | Remote Storage | 32 Disks        |  |
 | Network        | 8 vNICs <br> 4 InfiniBand NIC       | 180 Gb/s <br> 800 Gb/s (4 x 200 Gb/s) |
 | Accelerators   | None            |     |
