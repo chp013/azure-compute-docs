@@ -129,7 +129,7 @@ Network interface info for each size
 | Size Name | Backend NICs (Qty.) | RDMA Performance (Gb/s) |
 | --- | --- | --- |
 | Standard_HB368rs_v5  | 4 | 800 |
-| Standard_HB368_336rsv5 | 4 | 8000 |
+| Standard_HB368_336rsv5 | 4 | 800 |
 | Standard_HB368_288rsv5 | 4 | 800 | 
 | Standard_HB368-240rs_v5 | 4 | 800 |
 | Standard_HB368-192rs_v5 | 4 | 800 |
