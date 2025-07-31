@@ -5,7 +5,7 @@ author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
-ms.date: 05/27/2025
+ms.date: 08/10/2025
 ms.author: padmalathas
 ms.reviewer: mattmcinnes
 ---
@@ -28,14 +28,14 @@ vCPUs (Qty.) and Memory for each size
 
 | Size Name | vCPUs (Qty.) | Memory (GB) | L3 Cache (GB) | Memory Bandwidth (TB/s) | Base CPU Frequency (GHz) |  Single-core Frequency Peak (GHz) | All-core Frequency Peak (GHz) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Standard_HB368rs_v5 | 368 | 448 | 1.5 | 6.7 | 3.5 | 4 | 4 | 
-| Standard_HB368_336rsv5 | 336 | 448 | 1.5 | 6.7 | 3.5 | 4 | 4 |
-| Standard_HB368_288rsv5 | 288 | 448 | 1.5 | 6.7 | 3.5 | 4 | 4 |
-| Standard_HB368-240rs_v5 | 240 | 448 | 1.5 | 6.7 | 3.5 |  4 | 4 |
-| Standard_HB368-192rs_v5 | 192 | 448 | 1.5 | 6.7 | 3.5 |  4 | 4 |
-| Standard_HB368-144rs_v5 | 144 | 448 | 1.5 | 6.7 | 3.5 |  4 | 4 |
-| Standard_HB368-96rs_v5 | 96 | 448 | 1.5 | 6.7 | 3.5 | 4 | 4 |
-| Standard_HB368-48rs_v5 | 48 | 448 | 1.5 | 6.7 | 3.5 |  4 | 4 |
+| Standard_HB368rs_v5 | 368 | 450 | 1.5 | 6.7 | 3.5 | 4 | 4 | 
+| Standard_HB368_336rsv5 | 336 | 450 | 1.5 | 6.7 | 3.5 | 4 | 4 |
+| Standard_HB368_288rsv5 | 288 | 450 | 1.5 | 6.7 | 3.5 | 4 | 4 |
+| Standard_HB368-240rs_v5 | 240 | 450 | 1.5 | 6.7 | 3.5 |  4 | 4 |
+| Standard_HB368-192rs_v5 | 192 | 450 | 1.5 | 6.7 | 3.5 |  4 | 4 |
+| Standard_HB368-144rs_v5 | 144 | 450 | 1.5 | 6.7 | 3.5 |  4 | 4 |
+| Standard_HB368-96rs_v5 | 96 | 450 | 1.5 | 6.7 | 3.5 | 4 | 4 |
+| Standard_HB368-48rs_v5 | 48 | 450 | 1.5 | 6.7 | 3.5 |  4 | 4 |
 
 
 #### VM Basics resources
@@ -47,14 +47,14 @@ Local (temp) storage info for each size
 
 | Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Local Solid State Disks (Qty.) | Local Solid State Disk Size (GiB) |
 | --- | --- | --- | --- | --- |
-| Standard_HB368rs_v5 | 1 | 960 | 8 | 15000 |
-| Standard_HB368_336rsv5 | 1 | 960 | 8 | 15000 |
-| Standard_HB368_288rsv5 | 1 | 960 | 8 | 15000 |
-| Standard_HB368-240rs_v5 | 1 | 960 | 8 | 15000 |
-| Standard_HB368-192rs_v5 | 1 | 960 | 8 | 15000 |
-| Standard_HB368-144rs_v5 | 1 | 960 | 8 | 15000 |
-| Standard_HB368-96rs_v5 | 1 | 960 | 8 | 15000 |
-| Standard_HB368-48rs_v5 | 1 | 960 | 8 | 15000 |
+| Standard_HB368rs_v5 | 1 | 480 | 8 | 14304 |
+| Standard_HB368_336rsv5 | 1 | 480 | 8 | 14304 |
+| Standard_HB368_288rsv5 | 1 | 480 | 8 | 14304 |
+| Standard_HB368-240rs_v5 | 1 | 480 | 8 | 14304 |
+| Standard_HB368-192rs_v5 | 1 | 480 | 8 | 14304 |
+| Standard_HB368-144rs_v5 | 1 | 480 | 8 | 14304 |
+| Standard_HB368-96rs_v5 | 1 | 480 | 8 | 14304 |
+| Standard_HB368-48rs_v5 | 1 | 480 | 8 | 14304 |
 
 #### Storage resources
 - [Introduction to Azure managed disks](../../../virtual-machines/managed-disks-overview.md)
@@ -128,14 +128,14 @@ Network interface info for each size
 
 | Size Name | Backend NICs (Qty.) | RDMA Performance (Gb/s) |
 | --- | --- | --- |
-| Standard_HB368rs_v5  | 2 | 800 |
-| Standard_HB368_336rsv5 | 2 | 8000 |
-| Standard_HB368_288rsv5 | 2 | 800 | 
-| Standard_HB368-240rs_v5 | 2 | 800 |
-| Standard_HB368-192rs_v5 | 2 | 800 |
-| Standard_HB368-144rs_v5 | 2 | 800 |
-| Standard_HB368-96rs_v5 | 2 | 800 |
-| Standard_HB368-48rs_v5 | 2 | 800 |
+| Standard_HB368rs_v5  | 4 | 800 |
+| Standard_HB368_336rsv5 | 4 | 8000 |
+| Standard_HB368_288rsv5 | 4 | 800 | 
+| Standard_HB368-240rs_v5 | 4 | 800 |
+| Standard_HB368-192rs_v5 | 4 | 800 |
+| Standard_HB368-144rs_v5 | 4 | 800 |
+| Standard_HB368-96rs_v5 | 4 | 800 |
+| Standard_HB368-48rs_v5 | 4 | 800 |
 
 #### Backend Networking resources
 - [Set up Infiniband on HPC VMs](/azure/virtual-machines/setup-infiniband)
