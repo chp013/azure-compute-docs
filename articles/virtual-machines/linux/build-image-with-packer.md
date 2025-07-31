@@ -9,6 +9,7 @@ ms.custom: linux-related-content
 ms.date: 04/11/2023
 ms.author: jushiman
 ms.collection: linux
+# Customer intent: "As a DevOps engineer, I want to create custom Linux VM images using Packer in Azure, so that I can automate the deployment of pre-configured environments for my applications."
 ---
 
 # How to use Packer to create Linux virtual machine images in Azure

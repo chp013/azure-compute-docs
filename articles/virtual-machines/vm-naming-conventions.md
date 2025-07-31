@@ -9,6 +9,7 @@ ms.date: 05/01/2023
 ms.author: mimckitt
 ms.reviewer: mattmcinnes
 ms.custom: sttsinar
+# Customer intent: "As an IT administrator, I want to understand the naming conventions for Azure VM sizes, so that I can select the appropriate VM configuration based on features and specifications for my infrastructure needs."
 ---
 
 # Azure virtual machine sizes naming conventions

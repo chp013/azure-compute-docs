@@ -9,6 +9,7 @@ ms.topic: concept-article
 ms.author: mbaldwin
 ms.date: 03/03/2025
 ms.custom: devx-track-azurepowershell, linux-related-content, devx-track-azurecli
+# Customer intent: As a Linux VM administrator, I want to enable Azure Disk Encryption for my virtual machines, so that I can secure my data at rest and ensure compliance with data protection standards.
 ---
 
 # Azure Disk Encryption scenarios on Linux VMs

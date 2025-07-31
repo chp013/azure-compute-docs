@@ -8,9 +8,13 @@ ms.service: azure-container-instances
 services: container-instances
 ms.date: 09/09/2024
 ms.custom: devx-track-azurecli, innovation-engine
+# Customer intent: As a cloud developer, I want to deploy container groups to Azure virtual networks using the CLI, so that I can ensure secure communication between my containers and other resources within the network.
 ---
 
 # Deploy container instances into an Azure virtual network
+
+> [!div class=""nextstepaction""]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321932)
 
 [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) provides secure, private networking for your Azure and on-premises resources. By deploying container groups into an Azure virtual network, your containers can communicate securely with other resources in the virtual network.
 

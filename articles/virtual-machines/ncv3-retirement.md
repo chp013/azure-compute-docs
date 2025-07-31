@@ -5,16 +5,17 @@ author: sherrywangms
 ms.author: sherrywang
 ms.service: azure-virtual-machines
 ms.topic: concept-article
-ms.date: 03/19/2024
+ms.date: 05/28/2025
 ms.subservice: sizes
+# Customer intent: As a cloud infrastructure administrator, I want to migrate my NCv3-series virtual machines to a supported VM size by the retirement date, so that I can maintain my workloads without service disruption and ensure ongoing performance enhancements.
 ---
 # Migrate your NCv3-series virtual machines by September 30, 2025
 
 On September 30, 2025, Microsoft Azure will retire the Standard_NC6s_v3, Standard_NC12s_v3, Standard_NC24s_v3, and Standard_NC24rs_v3 virtual machines (VMs) in NCv3-series virtual machines (VMs). To avoid any disruption to your service, we recommend that you change the VM sizing for your workloads from the current NCv3-series VMs to the newer VM series in the same NC product line.
 
-Microsoft is recommending the Azure [NCadsH100_v5-series ](/azure/virtual-machines/ncads-h100-v5?source=recommendations)VMs, which offer greater GPU memory bandwidth per GPU, improved [accelerated networking](/azure/virtual-network/create-vm-accelerated-networking-cli) capabilities, and larger and faster local solid state drives. These VMs are targeted for GPU accelerated midrange AI training, batch inferencing, and high-performance computing simulation workloads.
+Microsoft is recommending the Azure [NCadsH100_v5-series ](/azure/virtual-machines/ncads-h100-v5?source=recommendations)VMs, which offer greater GPU memory bandwidth per GPU, improved [accelerated networking](/azure/virtual-network/create-vm-accelerated-networking-cli) capabilities, and larger and faster local solid state drives. These VMs are targeted for GPU accelerated midrange AI training, batch inferencing, and high-performance computing simulation workloads. For regions where NCadsH100_v5 is not available, please migrate to the other recommended SKUs below. 
 
-However, depending on the workload being run, regional affinity, and cost preferences, other VMs that may be migrated to from the NCv3-series VMs include NVadsA10_v5, NCasT4_v3, and NVadsV710_v5: 
+Depending on the workload being run, regional affinity, and cost preferences, other VMs that may be migrated to from the NCv3-series VMs include [NVadsA10_v5](/azure/virtual-machines/sizes/gpu-accelerated/nvadsa10v5-series?tabs=sizebasic), [NCasT4_v3](/azure/virtual-machines/sizes/gpu-accelerated/ncast4v3-series?tabs=sizebasic), and [NVadsV710_v5](/azure/virtual-machines/sizes/gpu-accelerated/nvadsv710-v5-series?tabs=sizebasic): 
 
 |Workload|Recommended SKU to Migrate to|
 | -------- | -------- |

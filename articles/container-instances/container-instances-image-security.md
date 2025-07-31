@@ -7,6 +7,7 @@ author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
 ms.date: 08/29/2024
+# Customer intent: "As a DevOps engineer, I want to implement security best practices for managing container images and credentials, so that I can protect our containerized applications from vulnerabilities and unauthorized access throughout their lifecycle."
 ---
 
 # Security considerations for Azure Container Instances

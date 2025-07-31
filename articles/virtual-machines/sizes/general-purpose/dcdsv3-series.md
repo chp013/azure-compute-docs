@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/31/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to review the specifications and features of the DCdsv3 series virtual machines, so that I can select the right instance type for my applications based on cores, memory, storage options, and networking capabilities.
 ---
 
 # DCdsv3 sizes series

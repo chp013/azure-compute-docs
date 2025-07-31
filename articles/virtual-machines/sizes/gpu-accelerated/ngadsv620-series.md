@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/31/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a solution architect, I want to review the specifications and feature support of the NGads_V620 series, so that I can determine the most suitable virtual machine size for my application’s performance needs.
 ---
 
 # NGads_V620 sizes series

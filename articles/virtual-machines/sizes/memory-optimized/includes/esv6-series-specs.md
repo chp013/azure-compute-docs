@@ -9,6 +9,7 @@ ms.date: 08/01/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
 ms.custom: include file
+# Customer intent: As an IT specialist, I want to access detailed specifications for the Esv6-series VMs, so that I can select the appropriate configuration for my workloads based on performance and capacity needs.
 ---
 | Part | Quantity <br><sup>Count Units | Specs <br><sup>SKU ID, Performance Units, etc.  |
 |---|---|---|

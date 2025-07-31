@@ -9,6 +9,7 @@ author: GabstaMSFT
 ms.custom: GGAL-freshness822, linux-related-content
 ms.collection: linux
 ms.date: 03/28/2023
+# Customer intent: "As a system administrator managing Linux virtual machines, I want to install and configure the Azure Linux VM Agent, so that I can automate provisioning, networking, and diagnostics for efficient VM management."
 ---
 # Azure Linux VM Agent overview
 

@@ -9,6 +9,7 @@ ms.subservice: trusted-launch
 ms.topic: faq
 ms.date: 04/21/2025
 ms.custom: template-faq, devx-track-azurecli, devx-track-azurepowershell
+# Customer intent: As a cloud administrator, I want to implement Trusted Launch for my virtual machines, so that I can enhance security by protecting against boot kits, rootkits, and kernel-level malware effectively.
 ---
 
 # Trusted launch FAQs

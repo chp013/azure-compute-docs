@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 08/01/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As an IT administrator evaluating virtual machine options, I want to compare specifications of the Eadsv6 size series, so that I can select the most suitable configuration for my workloads and ensure optimal performance."
 ---
 
 # Eadsv6 sizes series

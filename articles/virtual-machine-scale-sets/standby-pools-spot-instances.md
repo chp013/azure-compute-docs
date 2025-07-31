@@ -7,6 +7,7 @@ ms.service: azure-virtual-machine-scale-sets
 ms.topic: how-to
 ms.date: 5/6/2025
 ms.reviewer: ju-shim
+# Customer intent: As a cloud architect, I want to configure Virtual Machine Scale Sets with Spot Instances in standby pools, so that I can optimize costs while ensuring scalability and resource availability for my applications.
 ---
 
 # Use Spot Instances in standby pools (Preview)

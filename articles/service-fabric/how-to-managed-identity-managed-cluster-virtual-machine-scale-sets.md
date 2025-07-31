@@ -8,6 +8,7 @@ ms.service: azure-service-fabric
 ms.custom: devx-track-azurepowershell
 services: service-fabric
 ms.date: 07/11/2022
+# Customer intent: As a cloud architect, I want to add a managed identity to a Service Fabric managed cluster node type, so that I can enable secure access to Azure services without managing credentials.
 ---
 
 # Add a managed identity to a Service Fabric managed cluster node type

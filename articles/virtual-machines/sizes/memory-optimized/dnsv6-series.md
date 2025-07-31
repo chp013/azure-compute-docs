@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 05/08/2025
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to review the specifications and features of the Dnsv6 series virtual machine sizes, so that I can select the appropriate instance for optimizing performance and resource allocation for my applications.
 ---
 
 # Dnsv6 sizes series (Preview)

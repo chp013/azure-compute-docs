@@ -8,6 +8,7 @@ ms.custom: devx-track-azurecli
 services: container-instances
 ms.topic: how-to
 ms.date: 11/07/2024
+# Customer intent: As a cloud administrator, I want to perform rolling updates on container groups in NGroups, so that I can ensure minimal workload disruption and maintain service availability during updates.
 ---
 
 # NGroups Rolling Update

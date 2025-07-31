@@ -9,6 +9,7 @@ ms.collection: windows
 ms.topic: how-to
 ms.date: 04/13/2023
 ms.author: vikancha
+# Customer intent: As a cloud engineer, I want to install AMD GPU drivers on N-series VMs running Windows, so that I can ensure optimal performance and compatibility for GPU-based workloads in the Azure environment.
 ---
 
 # Install AMD GPU drivers on N-series VMs running Windows

@@ -9,6 +9,7 @@ ms.collection: windows
 ms.topic: quickstart
 ms.date: 05/14/2025
 ms.custom: mode-ui
+# Customer intent: As a cloud administrator, I want to create and encrypt a Windows virtual machine using a browser-based portal, so that I can secure sensitive data in compliance with security best practices.
 ---
 
 # Quickstart: Create and encrypt a Windows virtual machine with the Azure portal

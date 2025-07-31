@@ -9,6 +9,7 @@ ms.subservice: sizes
 ms.topic: concept-article 
 ms.date: 03/29/2022
 
+# Customer intent: As a cloud architect, I want to understand the specifications of ECas_cc_v5 and ECads_cc_v5-series virtual machines, so that I can select the appropriate resources for my organization's memory-intensive enterprise applications and ensure data confidentiality.
 ---
 
 # ECas_cc_v5 and ECads_cc_v5-series (Preview)

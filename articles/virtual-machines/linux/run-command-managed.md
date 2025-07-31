@@ -10,6 +10,7 @@ ms.date: 10/31/2022
 ms.topic: how-to
 ms.reviewer: jushiman
 ms.custom: devx-track-azurepowershell, devx-track-azurecli, linux-related-content
+# Customer intent: As a system administrator managing Linux virtual machines, I want to run scripts using managed commands, so that I can efficiently automate tasks and troubleshoot issues within my VMs.
 ---
 # Run scripts in your Linux VM by using managed Run Commands
 

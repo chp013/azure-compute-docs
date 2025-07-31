@@ -8,6 +8,7 @@ ms.author: jushiman
 ms.reviewer: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: image-builder
+# Customer intent: As a cloud administrator, I want to implement Isolated Image Builds using Azure Container Instances, so that I can achieve enhanced compute and network isolation while customizing and validating VM images in my subscription.
 ---
 
 # Isolated Image Builds for Azure VM Image Builder

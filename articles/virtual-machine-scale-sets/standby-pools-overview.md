@@ -6,8 +6,9 @@ ms.author: mimckitt
 ms.service: azure-virtual-machine-scale-sets
 ms.custom:
   - ignite-2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 5/6/2025
+# Customer intent: As a cloud architect, I want to configure and manage standby pools for Virtual Machine Scale Sets, so that I can optimize scaling performance and reduce latency during resource scaling events.
 ---
 
 # Standby pools for Virtual Machine Scale Sets
@@ -15,7 +16,7 @@ ms.date: 5/6/2025
 > [!IMPORTANT]
 > For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.
 
-Standby pools for Virtual Machine Scale Sets enables you to increase scaling performance by creating a pool of pre-provisioned virtual machines. The virtual machines in the standby pool complete all post provisioning processes such as installing applications, downloading data packages, etc. Once the virtual machines are fully provisioned, they are be maintained in a running, stopped (deallocated), or hibernated (preview) state. When your scale set requires more instances, the instances in the standby pool are automatically moved into the scale set. A standby pool significantly reduces the time it takes to scale-out a Virtual Machine Scale Set. 
+Standby pools for Virtual Machine Scale Sets enables you to increase scaling performance by creating a pool of pre-provisioned virtual machines. The virtual machines in the standby pool complete all post provisioning processes such as installing applications, downloading data packages, etc. Once the virtual machines are fully provisioned, they are maintained in a running, stopped (deallocated), or hibernated (preview) state. When your scale set requires more instances, the instances in the standby pool are automatically moved into the scale set. A standby pool significantly reduces the time it takes to scale-out a Virtual Machine Scale Set. 
 
 If maintaining a standby pool of running virtual machines, the machines are immediately ready to receive traffic after being moved into the scale set. If maintaining a standby pool of stopped (deallocated) or hibernated virtual machines, the virtual machines are automatically started or resumed after moving into the scale set. 
 

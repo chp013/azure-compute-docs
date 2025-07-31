@@ -9,6 +9,7 @@ ms.collection: linux
 ms.topic: concept-article
 ms.author: mbaldwin
 ms.date: 05/14/2025
+# Customer intent: As a Linux system administrator managing isolated virtual machines, I want to troubleshoot Azure Disk Encryption installation issues, so that I can ensure proper package management and network configurations for successful encryption in a secure environment.
 ---
 # Azure Disk Encryption on an isolated network
 

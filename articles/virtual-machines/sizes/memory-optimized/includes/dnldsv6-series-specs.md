@@ -9,6 +9,7 @@ ms.date: 05/08/2025
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
 ms.custom: include file
+# Customer intent: "As a cloud architect, I want to review the specifications of Dnldsv6-series VM sizes, so that I can select the appropriate configuration for my organization's workload requirements."
 ---
 | Part | Quantity <br><sup>Count Units | Specs <br><sup>SKU ID, Performance Units, etc.  |
 |---|---|---|

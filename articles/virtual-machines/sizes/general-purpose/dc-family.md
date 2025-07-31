@@ -7,6 +7,7 @@ ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 04/16/2024
 ms.author: mattmcinnes
+# Customer intent: As a cloud architect, I want to explore the DC family VM size series and their specifications, so that I can choose the most suitable virtual machine types for my projects based on workload requirements.
 ---
 
 # 'DC' family general purpose VM size series

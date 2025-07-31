@@ -9,6 +9,7 @@ ms.subservice: automatic-os-upgrade
 ms.custom: linux-related-content, devx-track-azurecli, devx-track-azurepowershell
 ms.date: 07/08/2024
 ms.reviewer: mimckitt
+# Customer intent: As a system administrator managing a Virtual Machine Scale Set, I want to enable automatic OS image upgrades so that I can ensure all instances are running the latest OS without manual intervention, maintaining system security and performance.
 ---
 # Azure Virtual Machine Scale Set automatic OS image upgrades
 

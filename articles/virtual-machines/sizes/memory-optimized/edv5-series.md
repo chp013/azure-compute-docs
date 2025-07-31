@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 08/01/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to understand the specifications and capabilities of the Edv5 virtual machine sizes, so that I can select the appropriate size to meet the performance and storage needs of my applications."
 ---
 
 # Edv5 sizes series

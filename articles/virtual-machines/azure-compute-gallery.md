@@ -8,6 +8,7 @@ ms.subservice: gallery
 ms.topic: overview
 ms.date: 09/20/2023
 ms.reviewer: cynthn, mattmcinnes
+# Customer intent: As a cloud architect, I want to utilize an Azure Compute Gallery to manage and share image resources efficiently across multiple regions, so that I can enhance deployment scalability, maintain high availability, and optimize storage for my organization's applications and virtual machines.
 ---
 
 # Store and share resources in an Azure Compute Gallery
@@ -82,6 +83,79 @@ The regions that a resource is replicated to can be updated after creation time.
 ![Graphic showing how you can replicate images](./media/shared-image-galleries/replication.png)
 
 <a name=community></a>
+
+## Trusted Launch validation for Azure Compute Gallery (ACG) images (Preview) 
+
+> [!IMPORTANT]
+>
+> Trusted Launch validation for ACG images is currently in preview. This Preview is intended for testing, evaluation, and feedback purposes only. Production workloads aren't recommended. When registering to preview, you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability (GA).
+
+### What is changing?
+Starting with API 2025-03-03, all new ACG image definitions will default to:
+
+- Hyper-V Generation: `V2`
+- Security Type: `TrustedLaunchSupported`
+
+### How Trusted Launch validation works
+When `TrustedLaunchSupported` or `TrustedLaunchandConfidentialVMSupported` is specified in the ACG image definition, the platform will automatically validate that the image is Trusted Launch capable and add the validation result to the Image Version property. This ensures that the VMs and Virtual Machine Scale Sets deployments using these images can default to Trusted Launch if the validation is successful.
+
+### Enable the Preview
+To try out Trusted Launch validation for ACG images, complete the following steps:
+
+1. Register for [Trusted Launch as Default Feature](/azure/virtual-machines/trusted-launch.md#preview-trusted-launch-as-default)
+2. Register for [Trusted Launch Validation Preview](https://aka.ms/ACGTLValidationPreview)
+
+Once the two features are enabled, all new VM and scale set deployments using ACG image versions and validated successfully for Trusted Launch will default to the Trusted Launch security type. 
+
+### VM deployments from ACG images
+The following compares the current and new behaviors of VM deployments from ACG images, depending on Trusted Launch validation. 
+
+#### Current behavior without Trusted Launch validation 
+To create a Trusted launch supported Gen2 ACG OS image definition, you need to add the following `features` element in your deployment:
+
+```json
+"features": [
+    {
+      "name": "SecurityType",
+      "value": "TrustedLaunchSupported"
+    }
+],
+"hyperVGeneration": "V2"
+```
+
+#### New behavior with Trusted Launch validation
+`TrustedLaunchSupported` is enabled by default on new ACG image definitions if any of the following criteria is met:
+
+- Using API version 2025-03-03 or above for `Microsoft.Compute/galleries` resource
+- The absence of `securityType` feature from deployment
+- A `null` value for `securityType` feature in deployment
+
+Additionally, the Azure platform will trigger validation for the OS image to ensure it supports Trusted launch capabilities. The validation will take a minimum of 1 hour and results will be available as the image version property:
+
+```json
+"validationsProfile": {
+  "executedValidations": [
+      {
+        "type": "TrustedLaunch",
+        "status": "Succeeded",
+        "version": "0.0.2",
+        "executionTime": "2025-07-10T21:27:33.0113984+00:00"
+      }
+    ],
+}
+```
+
+You can choose to explicitly bypass default for new ACG image definitions by setting `Standard` as the value for `securityType` under features:
+
+```json
+"features": [
+    {
+      "name": "SecurityType",
+      "value": "Standard"
+    }
+],
+"hyperVGeneration": "V2"
+```
 
 ## Sharing
 
@@ -163,7 +237,7 @@ The following table lists a few example operations that relate to gallery operat
 
 
 ## Billing
-There is no extra charge for using the Azure Compute Gallery service. you'll be charged for the following resources:
+There is no extra charge for using the Azure Compute Gallery service. You'll be charged for the following resources:
 - Storage costs of storing each replica. For images, the storage cost is charged as a snapshot and is based on the occupied size of the image version, the number of replicas of the image version and the number of regions the version is replicated to. 
 - Network egress charges for replication of the first resource version from the source region to the replicated regions. Subsequent replicas are handled within the region, so there are no additional charges. 
 

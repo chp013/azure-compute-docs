@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.date: 04/29/2025
 ms.author: mbaldwin
 ms.custom: devx-track-azurepowershell, devx-track-azurecli, linux-related-content
+# Customer intent: As a system administrator managing Linux virtual machines, I want to deploy the Key Vault VM extension so that I can automate the refresh of certificates stored in Azure Key Vault and ensure seamless certificate management.
 ---
 # Key Vault virtual machine extension for Linux
 

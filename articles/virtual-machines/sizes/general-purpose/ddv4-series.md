@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/29/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a system architect, I want to review the specifications and feature support of the Ddv4 series virtual machine sizes, so that I can select the most appropriate size for my cloud-based application needs.
 ---
 
 # Ddv4 sizes series

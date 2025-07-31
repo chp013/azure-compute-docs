@@ -8,6 +8,7 @@ ms.topic: overview
 ms.date: 03/14/2025
 ms.author: mattmcinnes
 ms.reviewer: iamwilliew
+# Customer intent: As a cloud infrastructure administrator, I want to understand the retirement process and statuses of virtual machine size series, so that I can effectively manage workloads and ensure timely migration to newer, more efficient hardware.
 ---
 
 # Previous-gen and retired VM size series

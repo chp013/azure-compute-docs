@@ -918,7 +918,11 @@
     items:
     - name: Compare Cloud Services (extended support) with Service Fabric
       href: service-fabric-cloud-services-migration-differences.md
-    - name: Migrate to Service Fabric
+    - name: Cloud Services migration decision matrix
+      href: cloud-services-migration-decision-matrix.md
+    - name: Migration guide
+      href: cloud-services-to-service-fabric-migration-guide.md
+    - name: Convert Web and Worker Roles to stateless services
       href: service-fabric-cloud-services-migration-worker-role-stateless-service.md
     - name: Frequently asked questions (FAQ)
       href: service-fabric-cloud-services-migration-faq.md
@@ -1010,7 +1014,7 @@
   - name: Common questions
     href: service-fabric-common-questions.md
   - name: Azure Roadmap
-    href: https://azure.microsoft.com/roadmap/
+    href: https://azure.microsoft.com/updates/
   - name: Microsoft Q&A question page
     href: /answers/topics/azure-service-fabric.html
   - name: Azure Resource Manager Deployment Guardrails

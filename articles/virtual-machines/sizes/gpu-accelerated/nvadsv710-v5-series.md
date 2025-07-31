@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 09/16/2024
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to understand the specifications and features of the NVads V710 v5 sizes, so that I can select the most suitable virtual machine types for my applications based on performance requirements."
 ---
 
 # NVads V710 v5-series

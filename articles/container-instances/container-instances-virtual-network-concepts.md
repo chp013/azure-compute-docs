@@ -7,6 +7,7 @@ author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
 ms.date: 08/29/2024
+# Customer intent: As a cloud architect, I want to deploy container groups into an Azure virtual network so that I can enable secure communication between my containerized applications and other resources while ensuring proper network configurations and compliance with limitations.
 ---
 
 # Virtual network scenarios and resources

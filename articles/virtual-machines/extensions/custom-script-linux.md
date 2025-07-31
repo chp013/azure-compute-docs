@@ -9,6 +9,7 @@ ms.custom: GGAL-freshness822, devx-track-azurecli, linux-related-content
 author: GabstaMSFT
 ms.collection: linux
 ms.date: 03/31/2023
+# Customer intent: "As a cloud administrator, I want to configure Linux VMs using the Custom Script Extension, so that I can automate post-deployment setup and management tasks effectively."
 ---
 # Use the Azure Custom Script Extension Version 2 with Linux virtual machines
 

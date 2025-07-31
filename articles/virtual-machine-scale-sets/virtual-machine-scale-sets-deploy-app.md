@@ -10,6 +10,7 @@ ms.date: 06/14/2024
 ms.reviewer: mimckitt
 ms.custom: avverma, devx-track-azurepowershell, devx-track-azurecli, linux-related-content
 ms.devlang: azurecli
+# Customer intent: As a cloud engineer, I want to deploy applications to Virtual Machine Scale Sets efficiently, so that I can ensure consistent application availability and streamline management across multiple instances.
 ---
 
 # Deploy your application on Virtual Machine Scale Sets
@@ -19,8 +20,8 @@ ms.devlang: azurecli
 
 To run applications on virtual machine (VM) instances in a scale set, you first need to install the application components and required files. This article introduces ways to build a custom VM image for instances in a scale set, or automatically run install scripts on existing VM instances. You also learn how to manage application or OS updates across a scale set.
 
-## Install an app using VM Apps
-[Azure VM Apps](../virtual-machines/vm-applications.md) provide a streamlined, scalable and secure way to package, manage, and deploy applications across Azure Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS). VM Apps is the best suited method for deploying tools, agents, AI Apps, security components, and line-of-business applications across Azure. 
+## Install an app using VM Applications
+[Azure VM Applications](../virtual-machines/vm-applications.md) provide a streamlined, scalable and secure way to package, manage, and deploy applications across Azure Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS). VM Applications is the best suited method for deploying tools, agents, AI Apps, security components, and line-of-business applications across Azure. It is designed to deploy AI, secure, high scale, low latency and compliant workloads on Azure VMs. 
 
 ### Key Benefits: 
 - **Centralized and Flexible Application Management**: 
@@ -31,7 +32,7 @@ To run applications on virtual machine (VM) instances in a scale set, you first 
   - Integrated RBAC: Control publishing and deployment access using Azure Role-Based Access Control (RBAC).
 - **Reliable and Customizable Deployments**
   - Individual App Control: Install, update, or delete applications independently—no need to rebuild VM images.
-  - Customizable Operations: Define how install, update, and delete operations for applications, including reboot handling.
+  - Customizable Operations: Customize install, update, and delete operations for applications, including reboot handling.
   - Built-In Failure Handling: Ensure resilient deployments by connecting VM application failure to VM failure.
 - **Scalable and Low-Latency Distribution**
   - Global and Intra-Region Replication: Automatically replicate applications across and within regions to reduce latency and improve resiliency—no need for AzCopy or manual transfers.

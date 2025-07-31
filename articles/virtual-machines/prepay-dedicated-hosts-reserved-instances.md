@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 04/15/2024
 ms.author: banders
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to purchase reserved instances for Azure Dedicated Hosts, so that I can optimize compute costs for my organization effectively."
 ---
 
 # Save costs with Azure Dedicated Host reservations

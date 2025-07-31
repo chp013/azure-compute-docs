@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 05/08/2025
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to review the specifications and features of the Dnlsv6 size series, so that I can select the appropriate virtual machine configurations for my workloads based on their requirements for CPU, memory, storage, and networking.
 ---
 
 # Dnlsv6 sizes series (Preview)

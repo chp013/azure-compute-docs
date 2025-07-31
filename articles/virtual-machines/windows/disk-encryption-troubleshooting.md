@@ -8,6 +8,7 @@ ms.collection: windows
 ms.topic: troubleshooting
 ms.author: mbaldwin
 ms.date: 05/14/2025
+# Customer intent: "As an IT professional, I want to troubleshoot Azure Disk Encryption issues for Windows VMs, so that I can ensure proper encryption and compliance for my organization's data security requirements."
 ---
 # Azure Disk Encryption troubleshooting guide
 

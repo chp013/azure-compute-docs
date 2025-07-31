@@ -9,7 +9,7 @@ ms.service: azure-disk-storage
 ms.custom:
   - references_regions
   - ignite-2023
-#Customer intent: The goal of this article is to provide a high level overview of each server-side encryption method available to users of managed disks.
+# Customer intent: "As a security administrator, I want to learn about the various server-side encryption options for Azure managed disks, so that I can implement the most appropriate security measures for protecting data in Azure virtual machines."
 ---
 
 # Server-side encryption of Azure Disk Storage

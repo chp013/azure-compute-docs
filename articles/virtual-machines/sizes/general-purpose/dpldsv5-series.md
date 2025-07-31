@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/29/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to compare the specifications of the Dpldsv5 virtual machine sizes, so that I can select the most suitable size for my workloads based on CPU, memory, storage, and network capabilities.
 ---
 
 # Dpldsv5 sizes series

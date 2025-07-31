@@ -9,6 +9,7 @@ ms.reviewer: jushiman
 author: GabstaMSFT
 ms.collection: windows
 ms.date: 03/13/2023
+# Customer intent: As a database administrator, I want to register Azure Backup for my SQL Server running in an Azure VM, so that I can ensure reliable backup and recovery of my database workloads.
 ---
 
 # Azure Backup for SQL Server running in Azure VM

@@ -9,6 +9,7 @@ ms.date: 05/08/2025
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
 ms.custom: include file
+# Customer intent: "As an IT administrator, I want to access detailed specifications for Dnsv6-series VM sizes, so that I can effectively select the appropriate virtual machine configuration for my organization's workload requirements."
 ---
 | Part | Quantity <br><sup>Count Units | Specs <br><sup>SKU ID, Performance Units, etc.  |
 |---|---|---|

@@ -7,6 +7,7 @@ author: tomvcassidy
 ms.service: azure-service-fabric
 services: service-fabric
 ms.date: 07/14/2022
+# Customer intent: As a cloud application developer, I want to implement monitoring and diagnostics for my services in Azure Service Fabric, so that I can ensure application reliability and proactively address performance issues.
 ---
 
 # Monitoring and diagnostic best practices for Azure Service Fabric

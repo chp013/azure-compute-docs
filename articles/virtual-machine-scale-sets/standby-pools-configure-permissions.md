@@ -6,6 +6,7 @@ ms.author: mimckitt
 ms.service: azure-virtual-machine-scale-sets
 ms.topic: how-to
 ms.date: 5/6/2025
+# Customer intent: "As a cloud administrator managing standby pools, I want to configure role-based access control permissions, so that I can ensure proper functionality and prevent issues with resource creation and management in my subscription."
 ---
 
 # Configure role permissions for standby pools
@@ -53,7 +54,7 @@ Permission issues are a common cause of problems with standby pools. These issue
 If your pool is not functioning as expected, use Log Analytics to analyze the logs and identify missing permissions:
 
 1. Navigate to the [Azure portal](https://portal.azure.com/).
-2. Go to your Log Analytics workspace associated with the standby pool. Before using log analytics, you first need to configure a log analytics workspace. For more infomation, see [use Azure Log Analytics to monitor standby pool events](standby-pools-monitor-pool-events.md).
+2. Go to your Log Analytics workspace associated with the standby pool. Before using log analytics, you first need to configure a log analytics workspace. For more information, see [use Azure Log Analytics to monitor standby pool events](standby-pools-monitor-pool-events.md).
 3. Query the `SVMPoolExecutionLog` table to review events related to instance creation and deletion:
 
 ```kusto

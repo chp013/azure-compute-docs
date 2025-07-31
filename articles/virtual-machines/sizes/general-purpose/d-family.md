@@ -7,6 +7,7 @@ ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 07/30/2024
 ms.author: mattmcinnes
+# Customer intent: "As a cloud architect, I want to review the specifications and use cases of the D-family VM sizes, so that I can select the most appropriate virtual machine for my workload requirements."
 ---
 
 # 'D' family general purpose VM size series

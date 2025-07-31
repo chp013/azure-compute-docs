@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 05/08/2025
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud systems architect, I want to review the specifications and support features of the Dndsv6 size series, so that I can choose the best VM size for my application requirements and optimize performance.
 ---
 
 # Dndsv6 sizes series (Preview)

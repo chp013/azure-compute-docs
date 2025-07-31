@@ -6,6 +6,7 @@ ms.author: wwilliams
 ms.service: azure-virtual-machines
 ms.topic: concept-article
 ms.date: 02/18/2025
+# Customer intent: "As a system administrator, I want to implement VM watch for my virtual machines, so that I can monitor their health efficiently and prevent potential issues with minimal resource impact."
 ---
 
 # VM watch: Enhancing VM health monitoring (preview)

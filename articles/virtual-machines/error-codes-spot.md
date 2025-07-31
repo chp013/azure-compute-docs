@@ -8,6 +8,7 @@ ms.topic: troubleshooting
 ms.date: 02/28/2023
 ms.author: jushiman
 #pmcontact: jagaveer
+# Customer intent: As a cloud administrator, I want to understand the error codes related to Azure Spot Virtual Machines and scale sets, so that I can troubleshoot and resolve deployment issues effectively.
 ---
 
 # Error messages for Azure Spot Virtual Machines and scale sets

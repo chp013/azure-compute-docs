@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/31/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to evaluate the specifications of the NVv3 virtual machine sizes, so that I can select the appropriate size for resource-intensive applications based on computing, storage, and network requirements.
 ---
 
 # NVv3 sizes series

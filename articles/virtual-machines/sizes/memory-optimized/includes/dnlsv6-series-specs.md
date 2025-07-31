@@ -9,6 +9,7 @@ ms.date: 05/08/2025
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
 ms.custom: include file
+# Customer intent: As a cloud infrastructure planner, I want to review the specifications of Dnlsv6 series VM sizes, so that I can determine the appropriate resource allocation for applications requiring varying performance and capacity.
 ---
 | Part | Quantity <br><sup>Count Units | Specs <br><sup>SKU ID, Performance Units, etc.  |
 |---|---|---|

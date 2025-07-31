@@ -8,6 +8,7 @@ ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
 ms.date: 08/29/2024
+# Customer intent: "As a cloud developer, I want to enable managed identities in Azure Container Instances, so that I can authenticate to other Azure services without handling credentials in my code."
 ---
 
 # How to use managed identities with Azure Container Instances

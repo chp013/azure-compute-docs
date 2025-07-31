@@ -9,6 +9,7 @@ ms.date: 06/14/2024
 ms.reviewer: jushiman
 ms.custom: mimckitt
 
+# Customer intent: As a cloud architect, I want to create a basic scale set template for virtual machines, so that I can efficiently deploy and manage scalable applications in the cloud.
 ---
 
 # Learn about Virtual Machine Scale Set templates

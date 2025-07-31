@@ -9,6 +9,7 @@ ms.collection: linux
 ms.topic: quickstart
 ms.date: 05/14/2025
 ms.custom: devx-track-azurepowershell, mode-api, linux-related-content
+# Customer intent: "As a system administrator, I want to create and encrypt a Linux virtual machine using PowerShell, so that I can ensure the security of my data and comply with organizational policies."
 ---
 
 # Quickstart: Create and encrypt a Linux VM in Azure with Azure PowerShell

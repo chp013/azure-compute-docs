@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 05/08/2025
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to understand the specifications and support features of the Dnldsv6 virtual machine sizes, so that I can select the appropriate VM type for my applications based on performance and capacity requirements."
 ---
 
 # Dnldsv6 sizes series (Preview)

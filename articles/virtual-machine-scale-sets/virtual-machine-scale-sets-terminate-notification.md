@@ -9,6 +9,7 @@ ms.subservice: terminate-notification
 ms.date: 06/14/2024
 ms.reviewer: mimckitt
 ms.custom: avverma, devx-track-azurecli, devx-track-azurepowershell
+# Customer intent: As a cloud engineer, I want to enable termination notifications for my scale set instances, so that I can manage instance deletions more effectively by being notified and controlling the timing of these operations.
 ---
 
 # Terminate notification for Azure Virtual Machine Scale Set instances

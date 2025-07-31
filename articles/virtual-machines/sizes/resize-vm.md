@@ -8,6 +8,7 @@ ms.date: 01/31/2024
 ms.author: jushiman
 ms.reviewer: mattmcinnes
 ms.custom: compute-cost-fy24, devx-track-azurecli, devx-track-azurepowershell, devx-track-terraform
+# Customer intent: "As a cloud administrator, I want to resize a virtual machine to a suitable SKU so that I can efficiently allocate resources based on workload demands while minimizing downtime."
 ---
 
 # Change the size of a virtual machine 

@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 05/08/2025
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to understand the specifications and capabilities of the Ensv6-series virtual machines, so that I can choose the appropriate size for my workload requirements.
 ---
 
 # Ensv6 sizes series (Preview)

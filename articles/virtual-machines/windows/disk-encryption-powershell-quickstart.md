@@ -9,6 +9,7 @@ ms.collection: windows
 ms.topic: quickstart
 ms.date: 05/14/2025
 ms.custom: devx-track-azurepowershell, mode-api
+# Customer intent: As a cloud administrator, I want to create and encrypt a Windows virtual machine using PowerShell, so that I can ensure the security of sensitive data stored on the VM.
 ---
 
 # Quickstart: Create and encrypt a Windows virtual machine in Azure with PowerShell
