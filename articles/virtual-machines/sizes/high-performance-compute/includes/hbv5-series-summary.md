@@ -1,5 +1,5 @@
 ---
-title: HBv5-series summary include file
+title: HBv5 series summary include file
 description: Include file for HBv5-series summary
 author: mattmcinnes
 ms.topic: include
@@ -10,6 +10,8 @@ ms.author: padmalathas
 ms.reviewer: mattmcinnes
 ms.custom: include file
 ---
+
+# HBv5 series summary 
 
 HBv5-series VMs are optimized for the most memory bandwidth-intensive HPC applications, including:
 
