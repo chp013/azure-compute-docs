@@ -13,7 +13,7 @@ ms.reviewer: mattmcinnes
 
 # Faldsv7 sizes series (Preview)
 
-[!INCLUDE [sizes-preview-tag](./includes/sizes-preview-tag.md)]
+[!INCLUDE [sizes-preview-tag](../includes/sizes-preview-tag.md)]
 
 [!INCLUDE [faldsv7-summary](./includes/faldsv7-series-summary.md)]
 

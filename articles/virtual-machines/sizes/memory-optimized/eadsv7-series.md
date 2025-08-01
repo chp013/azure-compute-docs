@@ -13,6 +13,8 @@ ms.reviewer: mattmcinnes
 
 # Eadsv7 sizes series (Preview)
 
+[!INCLUDE [sizes-preview-tag](../includes/sizes-preview-tag.md)]
+
 [!INCLUDE [eadsv7-summary](./includes/eadsv7-series-summary.md)]
 
 ## Host specifications

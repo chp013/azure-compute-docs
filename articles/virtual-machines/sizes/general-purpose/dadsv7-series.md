@@ -12,6 +12,9 @@ ms.reviewer: mattmcinnes
 ---
 
 # Dadsv7 sizes series (Preview)
+
+[!INCLUDE [sizes-preview-tag](../includes/sizes-preview-tag.md)]
+
 [!INCLUDE [dadsv7-summary](./includes/dadsv7-series-summary.md)]
 
 ## Host specifications

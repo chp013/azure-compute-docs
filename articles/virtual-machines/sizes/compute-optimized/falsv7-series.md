@@ -13,7 +13,7 @@ ms.reviewer: mattmcinnes
 
 # Falsv7 sizes series (Preview)
 
-[!INCLUDE [sizes-preview-tag](./includes/sizes-preview-tag.md)]
+[!INCLUDE [sizes-preview-tag](../includes/sizes-preview-tag.md)]
 
 [!INCLUDE [falsv7-summary](./includes/falsv7-series-summary.md)]
 

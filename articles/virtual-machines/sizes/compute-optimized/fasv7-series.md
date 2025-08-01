@@ -13,7 +13,7 @@ ms.reviewer: mattmcinnes
 
 # Fasv7 sizes series (Preview)
 
-[!INCLUDE [sizes-preview-tag](./includes/sizes-preview-tag.md)]
+[!INCLUDE [sizes-preview-tag](../includes/sizes-preview-tag.md)]
 
 [!INCLUDE [fasv7-summary](./includes/fasv7-series-summary.md)]
 

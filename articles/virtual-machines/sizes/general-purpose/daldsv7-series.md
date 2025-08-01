@@ -12,6 +12,9 @@ ms.reviewer: mattmcinnes
 ---
 
 # Daldsv7 sizes series (Preview)
+
+[!INCLUDE [sizes-preview-tag](../includes/sizes-preview-tag.md)]
+
 [!INCLUDE [daldsv7-summary](./includes/daldsv7-series-summary.md)]
 
 ## Host specifications
