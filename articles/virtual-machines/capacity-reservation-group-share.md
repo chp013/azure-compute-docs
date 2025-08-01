@@ -773,7 +773,7 @@ The Azure Resource Graph can be used to view the list of all Capacity Reservatio
 
 To view the capacity reservation group list, go to [Azure Resource Graph Explorer](https://ms.portal.azure.com/#view/HubsExtension/ArgQueryBlade) and try this query.
 
-Enables fetching Resource IDs for all capacity reservation group resources shared with subscription ID 1 and created within the subscription ID 1. 
+Enables fetching Resource IDs for all capacity reservation group resources shared with subscription ID 1 and created within subscription ID 1. 
 
 ```kusto
 resources
