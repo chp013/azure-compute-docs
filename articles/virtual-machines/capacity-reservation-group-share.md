@@ -113,7 +113,8 @@ Limitations by design:
 Limitations for Public Preview:
 - Portal support isn't yet available; API and other Azure clients are available.  
 - Reprovisioning of Virtual Machine Scale Set VMs using a shared Capacity Reservation Group isn't supported during a zone outage
-- Azure Kubernetes Service doesn't currently support deployment to a shared Capacity Reservation Group. 
+- Azure Kubernetes Service doesn't currently support deployment to a shared Capacity Reservation Group.
+- There is a known issue of [Capacity Reservation Groups-List by Subscription ID](#capacity-reservation-groups-list-by-subscription-id) not giving the right response if there is no CRG created in the subscription making the GET call to get the list of shared CRGs. To get the correct response, please ensure you have a local CRG created in the subscription making the API call. Alternatively you can also use the [Azure Resource Graph](#azure-resource-graph) query provided to get the list of CRGs shared with your subscription.
 
 ## Share a Capacity Reservation Group: 
 
@@ -663,10 +664,12 @@ See [Get-AzCapacityReservationGroup](/powershell/module/az.compute/get-azcapacit
 
 The list of all Capacity Reservation Groups that are created locally or shared with by other subscriptions, can be viewed for a given subscription. Extra parameter 'resourceIdsonly' needs to be passed to view the shared Capacity Reservation Groups.
 
-> [!NOTE]
-> There is a known issue of this API not giving the right response if there is no Capacity Reservation Group created in the subscription making the call to get the list of shared CRGs. To get the correct response, please ensure you have a local CRG created in the subscription making the API. Alternatively you can also use the Azure Resource Graph query provided.
+### Capacity Reservation Groups-List by Subscription ID
 
-### [API](#tab/api-6)
+The Capacity Reservation Groups list by subscription ID API can be used to view the capacity reservation groups created locally or shared with the subscription. Extra parameter 'resourceIdsonly' needs to be passed to view the shared Capacity Reservation Groups.
+
+
+#### [API](#tab/api-6)
 
 Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription.  
 
@@ -707,7 +710,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 To learn more, see [Capacity Reservation Group-List by subscription](/rest/api/compute/capacity-reservation-groups/list-by-subscription).
 
  
-### [CLI](#tab/cli-6)
+#### [CLI](#tab/cli-6)
 
 Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription and created in the subscription
 
@@ -733,7 +736,7 @@ Enables fetching Resource IDs for all capacity reservation group resources share
 To learn more, go to [AzCapacityReservationGroupList](/cli/azure/capacity/reservation/group).
 
 
-### [PowerShell](#tab/powershell-6)
+#### [PowerShell](#tab/powershell-6)
 
 Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription and created in the subscription
 
@@ -762,6 +765,77 @@ To learn more, see Azure PowerShell command [Update-AzCapacityReservation](/powe
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
 
+### Azure Resource Graph
+
+The Azure Resource Graph can be used to view the list of all Capacity Reservation Groups that are created locally in or shared with a given subscription.
+
+#### [Portal](#tab/portal-7)
+
+To view the capacity reservation group list, go to https://ms.portal.azure.com/#view/HubsExtension/ArgQueryBlade and try this query.
+
+Enables fetching Resource IDs for all capacity reservation group resources shared with subscription ID 1 and created within the subscription ID 1. 
+
+```kusto
+resources
+| where type == "microsoft.compute/capacityreservationgroups"
+|where properties["sharingProfile"] contains "{subscriptionId1}" or subscriptionId == "{subscriptionId1}"
+| project name, id
+``` 
+
+Enables fetching Resource IDs for all capacity reservation group resources shared with subscription ID 1: 
+
+```kusto
+resources
+| where type == "microsoft.compute/capacityreservationgroups"
+|where properties["sharingProfile"] contains "{subscriptionId}"
+| project name, id
+``` 
+ 
+#### [CLI](#tab/cli-7)
+
+Enables fetching Resource IDs for all capacity reservation group resources shared with subscription ID 1 and created in subscription ID 1.
+
+ ```azurecli-interactive
+az graph query -q "resources| where type == 'microsoft.compute/capacityreservationgroups'| where tostring(properties['sharingProfile']) contains '{subscriptionId1}' or subscriptionId == '{subscriptionId1}'| project name, id" 
+ ```
+
+Enables fetching Resource IDs for all capacity reservation group resources shared with subscription ID 1.
+
+ ```azurecli-interactive
+az graph query -q "resources| where type == 'microsoft.compute/capacityreservationgroups'| where tostring(properties['sharingProfile']) contains '{subscriptionId1}'| project name, id"
+ ```
+
+#### [PowerShell](#tab/powershell-7)
+
+Enables fetching Resource IDs for all capacity reservation group resources shared with subscription ID 1 and created in subscription ID 1.
+
+```powershell-interactive
+$query = @"
+resources
+| where type == "microsoft.compute/capacityreservationgroups"
+| where tostring(properties["sharingProfile"]) contains "{subscriptionId1}" or subscriptionId == "{subscriptionId1}"
+| project name, id
+"@
+$result = Search-AzGraph -Query $query
+$result
+```
+
+Enables fetching Resource IDs for all capacity reservation group resources shared with subscription ID 1. 
+
+```powershell-interactive
+$query = @"
+resources
+| where type == "microsoft.compute/capacityreservationgroups"
+| where tostring(properties["sharingProfile"]) contains "c1a24fcd-16ab-441b-882c-f90560a72600"
+| project name, id
+"@
+
+$result = Search-AzGraph -Query $query
+$result
+```
+
+--- 
+<!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
 
 ## Next steps
 
