@@ -13,6 +13,8 @@ ms.reviewer: mattmcinnes
 
 # Famsv7 sizes series (Preview)
 
+[!INCLUDE [sizes-preview-tag](./includes/sizes-preview-tag.md)]
+
 [!INCLUDE [famsv7-summary](./includes/famsv7-series-summary.md)]
 
 ## Host specifications

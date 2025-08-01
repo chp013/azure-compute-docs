@@ -12,6 +12,9 @@ ms.reviewer: mattmcinnes
 ---
 
 # Fadsv7 sizes series (Preview)
+
+[!INCLUDE [sizes-preview-tag](./includes/sizes-preview-tag.md)]
+
 [!INCLUDE [fadsv7-summary](./includes/fadsv7-series-summary.md)]
 
 ## Host specifications
