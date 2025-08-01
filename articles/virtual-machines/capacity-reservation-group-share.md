@@ -777,18 +777,18 @@ Enables fetching Resource IDs for all capacity reservation group resources share
 
 ```kusto
 resources
-| where type == "microsoft.compute/capacityreservationgroups"
+|where type == "microsoft.compute/capacityreservationgroups"
 |where properties["sharingProfile"] contains "{subscriptionId1}" or subscriptionId == "{subscriptionId1}"
-| project name, id
+|project name, id
 ``` 
 
 Enables fetching Resource IDs for all capacity reservation group resources shared with subscription ID 1: 
 
 ```kusto
 resources
-| where type == "microsoft.compute/capacityreservationgroups"
+|where type == "microsoft.compute/capacityreservationgroups"
 |where properties["sharingProfile"] contains "{subscriptionId}"
-| project name, id
+|project name, id
 ``` 
  
 #### [CLI](#tab/cli-7)
