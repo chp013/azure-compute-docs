@@ -10,7 +10,7 @@ ms.author: padmalathas
 ms.reviewer: mattmcinnes
 ---
 
-# HBv5 size series
+# HBv5 sizes series
 
 [!INCLUDE [hbv5-summary](./includes/hbv5-series-summary.md)]
 
