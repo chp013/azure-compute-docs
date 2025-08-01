@@ -221,6 +221,14 @@
         - name: Overview
           displayName: D-series, sizes, size, vm size
           href: ./sizes/general-purpose/d-family.md
+        - name: Dasv7 series
+          href: ./sizes/general-purpose/dasv7-series.md
+        - name: Dadsv7 series
+          href: ./sizes/general-purpose/dadsv7-series.md
+        - name: Dalsv7 series
+          href: ./sizes/general-purpose/dalsv7-series.md
+        - name: Daldsv7 series
+          href: ./sizes/general-purpose/daldsv7-series.md
         - name: Dsv6 series
           href: ./sizes/general-purpose/dsv6-series.md
         - name: Ddsv6 series
@@ -320,6 +328,18 @@
         - name: Overview
           displayName: F-series, sizes, size, vm size
           href: ./sizes/compute-optimized/f-family.md
+        - name: Fasv7 series
+          href: ./sizes/compute-optimized/fasv7-series.md
+        - name: Fadsv7 series
+          href: ./sizes/compute-optimized/fadsv7-series.md
+        - name: Famsv7 series
+          href: ./sizes/compute-optimized/famsv7-series.md
+        - name: Famdsv7 series
+          href: ./sizes/compute-optimized/famdsv7-series.md
+        - name: Falsv7 series
+          href: ./sizes/compute-optimized/falsv7-series.md
+        - name: Faldsv7 series
+          href: ./sizes/compute-optimized/faldsv7-series.md
         - name: Fasv6-series
           href: ./sizes/compute-optimized/fasv6-series.md
         - name: Falsv6 series
@@ -349,6 +369,10 @@
         - name: Overview
           displayName: E-series, sizes, size, vm size
           href: ./sizes/memory-optimized/e-family.md
+        - name: Easv7 series
+          href: ./sizes/memory-optimized/easv7-series.md
+        - name: Eadsv7 series
+          href: ./sizes/memory-optimized/eadsv7-series.md
         - name: Esv6 series
           href: ./sizes/memory-optimized/esv6-series.md
         - name: Edsv6 series
