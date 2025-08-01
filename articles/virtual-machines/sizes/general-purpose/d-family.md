@@ -37,6 +37,7 @@ ms.author: mattmcinnes
 
 [!INCLUDE [dadsv7-series-specs](./includes/dadsv7-series-specs.md)]
 
+---
 ### Dalsv7 series and Daldsv7 series
 #### [Dalsv7 series](#tab/dalsv7)
 [!INCLUDE [dalsv7-series-summary](./includes/dalsv7-series-summary.md)]
@@ -52,6 +53,7 @@ ms.author: mattmcinnes
 
 [!INCLUDE [daldsv7-series-specs](./includes/daldsv7-series-specs.md)]
 
+---
 ### Dpsv6 and Dplsv6-series
 #### [Dpsv6-series](#tab/dpsv6)
 [!INCLUDE [dpsv6-series-summary](./includes/dpsv6-series-summary.md)]

@@ -37,6 +37,7 @@ ms.author: mattmcinnes
 
 [!INCLUDE [eadsv7-series-specs](./includes/eadsv7-series-specs.md)]
 
+---
 ### Epsv6 and Epdsv6-series 
 #### [Epsv6-series](#tab/epsv6)
 [!INCLUDE [epsv6-series-summary](./includes/epsv6-series-summary.md)]
