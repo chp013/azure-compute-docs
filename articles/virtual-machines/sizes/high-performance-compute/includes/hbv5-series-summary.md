@@ -13,19 +13,17 @@ ms.custom: include file
 
 HBv5-series VMs are optimized for the most memory bandwidth-intensive HPC applications, including:
 
-* Running computational fluid dynamics
-* Running automotive simulations
-* Running aerospace simulations
-* Running weather system models
-* Running energy research workloads
-* Running molecular dynamics simulations
-* Running computer-aided engineering tasks
-* Running other demanding HPC workloads
+* Computational fluid dynamics
+* Automotive and aerospace simulations
+* Weather modeling
+* Energy research
+* Molecular dynamics simulations
+* Computer-aided engineering and other HPC workloads
 
-HBv5 VMs deliver 6.7 TB/s of memory bandwidth across 438 GiB (450 GB) of high-bandwidth memory (HBM) and support up to 368 4th Gen AMD EPYC™ processor cores with up to 4 GHz max frequency, without simultaneous multithreading. 
+HBv5 VMs feature 6.7 TB/s of memory bandwidth across 450 GB (438 GiB) of high-bandwidth memory (HBM) and up to 368 4th Generation AMD EPYC™ processor cores with 4 GHz boost frequencies, 3.5 GHz base frequencies, and no simultaneous multithreading. 
 
-They also feature 800 Gb/s InfiniBand from NVIDIA Networking, enabling supercomputer-scale MPI workloads. In addition, each VM includes 15 TiB of local NVMe SSD storage, offering up to 50 GB/s read and 30 GB/s write throughput for block devices.
+Each HBv5-series VM also includes 14.3 TiB of local NVMe SSD storage with up to 50 GB/s (reads) and 30 GB/s (writes) of block device performance.
 
-All HBv5-series VMs feature 800 Gbps per node of NDR InfiniBand (2 x 400 Gbps CX-7 NIC per node) of InfiniBand connectivity from NVIDIA Networking to enable supercomputer-scale MPI workloads. These VMs are connected in a nonblocking fat tree for optimized and consistent RDMA performance. 
+All HBv5-series VMs feature 800 Gb/s per node (4 x 200 Gb/s CX-7 NIC) of InfiniBand connectivity from NVIDIA Networking to enable supercomputer-scale MPI workloads. These VMs are connected in a nonblocking fat tree for optimized and consistent RDMA performance. 
 
-InfiniBand includes features like Adaptive Routing, Dynamically Connected Transport (DCT), MPI collective offload, and congestion-aware latency optimization. These features improve application performance, scalability, and consistency, and are recommended for use.
+The InfiniBand NICs support features like Adaptive Routing, Dynamically Connected Transport (DCT), hardware acceleration of MPI collectives, and congestion control. These features enhance application performance, scalability, and consistency, and their usage is recommended for optimal performance and cost efficiency.
