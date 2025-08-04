@@ -100,9 +100,9 @@ Starting with API 2025-03-03, all new ACG image definitions will default to:
 When `TrustedLaunchSupported` or `TrustedLaunchandConfidentialVMSupported` is specified in the ACG image definition, the platform will automatically validate that the image is Trusted Launch capable and add the validation result to the Image Version property. This ensures that the VMs and Virtual Machine Scale Sets deployments using these images can default to Trusted Launch if the validation is successful.
 
 ### Enable the Preview
-To try out Trusted Launch validation for ACG images, complete the following steps:
+To try out  Launch validation for ACG images, complete the following steps:
 
-1. Register for [Trusted Launch as Default Feature](/azure/virtual-machines/trusted-launch.md#preview-trusted-launch-as-default)
+1. Register for [Trusted Launch as Default Feature](/azure/virtual-machines/trusted-launch#preview-trusted-launch-as-default)
 2. Register for [Trusted Launch Validation Preview](https://aka.ms/ACGTLValidationPreview)
 
 Once the two features are enabled, all new VM and scale set deployments using ACG image versions and validated successfully for Trusted Launch will default to the Trusted Launch security type. 
