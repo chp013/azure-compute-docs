@@ -90,16 +90,16 @@ While the VM is running, you need the logs from the VM to understand why provisi
 - [Serial Console](/troubleshoot/azure/virtual-machines/serial-console-grub-single-user-mode)
 - [Run AZ VM Repair](/troubleshoot/azure/virtual-machines/repair-linux-vm-using-azure-virtual-machine-repair-commands) to attach and mount the OS disk ([*lvm*](/troubleshoot/azure/virtual-machines/linux/troubleshoot-recovery-disks-portal-linux#mount-the-attached-data-disk), [*no lvm*](/troubleshoot/azure/virtual-machines/linux/troubleshoot-recovery-disks-portal-linux#mount-the-attached-data-disk)), which will allow you to collect and examine these logs:
 
-```bash
-/rescue/var/log/waagent*
-/rescue/var/log/syslog*
-/rescue/var/log/rsyslog*
-/rescue/var/log/messages*
-/rescue/var/log/kern*
-/rescue/var/log/dmesg*
-/rescue/var/log/boot*
-/rescue/ /var/log/cloud-init.log
-/rescue//var/log/cloud-init-output.log
+   ```bash
+   /rescue/var/log/waagent*
+   /rescue/var/log/syslog*
+   /rescue/var/log/rsyslog*
+   /rescue/var/log/messages*
+   /rescue/var/log/kern*
+   /rescue/var/log/dmesg*
+   /rescue/var/log/boot*
+   /rescue/ /var/log/cloud-init.log
+   /rescue//var/log/cloud-init-output.log
 ```
 
 > [!NOTE]
