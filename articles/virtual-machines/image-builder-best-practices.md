@@ -33,9 +33,11 @@ Set up VM Image Builder [triggers](image-builder-triggers-how-to.md) to automati
 
 Enable [virtual machine (VM) boot optimization](vm-boot-optimization.md) in VM Image Builder to improve the creation time for your VMs.
 
-## Specify subnets
+## Bring your own subnets
 
-Specify your own build VM subnets and Azure Container Instances subnets for tighter control over deployment of network-related resources by VM Image Builder in your subscription. Specifying these subnets also leads to faster build times for images. To learn more, see the [template reference](./linux/image-builder-json.md#vnetconfig-optional).
+Specify your own build VM subnets ([subnetId](./linux/image-builder-json.md#subnetid)) and Azure Container Instances subnets ([containerInstanceSubnetId](./linux/image-builder-json.md#containerinstancesubnetid-optional)) for tighter control over deployment of network-related resources by VM Image Builder in your subscription. Specifying these subnets also leads to faster and more reliable image builds.
+
+You can read more about this network topology in the [Isolated Image Builds section](../virtual-machines/security-isolated-image-builds-image-builder.md).
 
 ## Follow the principle of least privilege
 

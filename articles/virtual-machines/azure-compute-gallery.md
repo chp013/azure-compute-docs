@@ -111,7 +111,7 @@ When you specify `TrustedLaunchSupported` or `TrustedLaunchandConfidentialVMSupp
 
 To try out Trusted Launch validation for Compute Gallery images, complete the following steps:
 
-1. Register for [Trusted Launch as a default feature](trusted-launch.md#preview-trusted-launch-as-default).
+1. Register for [Trusted Launch as a default feature](/azure/virtual-machines/trusted-launch#preview-trusted-launch-as-default).
 2. Register for the [Trusted Launch Validation preview](https://aka.ms/ACGTLValidationPreview).
 
 After you enable the two features, all new VM and scale set deployments that use Compute Gallery image versions and that are validated successfully for Trusted Launch default to the Trusted Launch security type.
