@@ -7,7 +7,7 @@ ms.reviewer: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: trusted-launch
 ms.topic: faq
-ms.date: 01/29/2024
+ms.date: 08/05/2025
 ms.custom: template-faq, devx-track-azurecli, devx-track-azurepowershell
 ---
 
@@ -540,11 +540,15 @@ Package certificates, composed of .p7b (Full Certificate Authority) and .cer (In
 
 [!INCLUDE [json](../virtual-machines/includes/trusted-launch-tpm-certs/tpm-root-certificate-authority.md)]
 
+[!INCLUDE [cert](../virtual-machines/includes/trusted-launch-tpm-certs/root-certificate-authority.md)]
+
 [!INCLUDE [p7b](../virtual-machines/includes/trusted-launch-tpm-certs/full-certificate-authority.md)]
 
-[!INCLUDE [json](../virtual-machines/includes/trusted-launch-tpm-certs/root-certificate-authority.md)]
-
 [!INCLUDE [cert](../virtual-machines/includes/trusted-launch-tpm-certs/intermediate-ca.md)]
+
+[!INCLUDE [p7b](../virtual-machines/includes/trusted-launch-tpm-certs/full-certificate-authority-03.md)]
+
+[!INCLUDE [cert](../virtual-machines/includes/trusted-launch-tpm-certs/intermediate-ca-03.md)]
 
 ### What Microsoft owned trusted certificates are built into Azure VMs ? 
 For Windows VMs, Windows CA certificate is built in UEFI firmware. For Linux VMs, Microsoft UEFI CA certificate is built in UEFI firmware.
