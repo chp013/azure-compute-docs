@@ -22,8 +22,8 @@ The NVads_V710_v5-series enables right-sizing for demanding GPU-accelerated grap
 
 |Workload|Recommended SKU to Migrate to|
 | -------- | -------- |
-|Graphics, visualization, or small AI workloads such as SLM inferencing and semantic search where optimal performance is not a priority or there is an interest in reducing costs.|NVads_V710_v5|
-|GPU accelerated graphics applications, virtual desktops, visualizations, or small AI workloads.|NVads_V710_v5|
+|Small AI workloads such as SLM inferencing and semantic search where optimal performance is not a priority or there is an interest in reducing costs.|NVads_V710_v5|
+|GPU accelerated graphics applications, virtual desktops, and visualizations.|NVads_V710_v5|
 
 ## How does the retirement of the NVv4-series virtual machines affect me? 
 
