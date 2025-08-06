@@ -8,6 +8,7 @@ ms.subservice: sizes
 ms.date: 08/05/2025
 ms.author: reprasa
 ms.custom: include file
+# Customer intent: As an IT security professional, I want to obtain the Intermediate Certificate Authority for TPM certificates so that I can establish secure communication and trust within my organization's infrastructure.
 ---
 
 <details>

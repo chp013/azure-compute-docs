@@ -8,6 +8,7 @@ ms.subservice: sizes
 ms.date: 08/05/2025
 ms.author: reprasa
 ms.custom: include file
+# Customer intent: "As a security administrator, I want to obtain the full certificate authority for Virtual Trusted Platform Module (TPM), so that I can ensure secure certificate management and compliance with organizational policies."
 ---
 
 <details>

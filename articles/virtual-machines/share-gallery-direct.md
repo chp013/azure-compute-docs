@@ -10,6 +10,7 @@ ms.author: saraic
 ms.reviewer: cynthn
 ms.custom: template-how-to , devx-track-azurecli
 ms.devlang: azurecli
+# Customer intent: As a cloud administrator, I want to share an Azure Compute Gallery with specific subscriptions and tenants, so that I can provide controlled read-only access to images for users within my organization and facilitate image deployment efficiently.
 ---
 
 # Share a gallery with all users in a subscription or tenants (preview)

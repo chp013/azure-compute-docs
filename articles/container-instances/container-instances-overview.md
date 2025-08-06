@@ -8,6 +8,7 @@ ms.service: azure-container-instances
 services: container-instances
 ms.date: 08/29/2024
 ms.custom: mvc, linux-related-content
+# Customer intent: As a cloud developer, I want to deploy and manage containerized applications using serverless containers, so that I can simplify resource management and achieve faster startup times without the overhead of virtual machines.
 ---
 
 # What is Azure Container Instances?
@@ -37,7 +38,7 @@ Azure Container Instances also supports executing a command in a running contain
 
 ### Hypervisor-level security
 
-Historically, containers offered application dependency isolation and resource governance but were insufficiently hardened for hostile multitenant usage. Azure Container Instances guarantees your application is as isolated in a container as it would be in a VM. Learn more about [Hypervisor security on the Azure Fleet](/azure/security/fundamentals/hypervisor).
+Historically, containers offered application dependency isolation and resource governance but were insufficiently hardened for hostile multitenant usage. Azure Container Instances guarantees your application is as isolated in a container as it would be in a VM.
 
 ### Customer data
 
