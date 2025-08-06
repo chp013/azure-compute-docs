@@ -264,7 +264,7 @@
   - name: Stack Overflow
     href: https://stackoverflow.com/questions/tagged/azure-container-instances
   - name: Videos
-    href: https://azure.microsoft.com/en-us/resources/videos/?services=container-instances&sort=newest
+    href: https://azure.microsoft.com/resources/videos/?services=container-instances&sort=newest
   - name: FAQ
     href: container-instances-faq.yml
 - name: Support and troubleshooting
