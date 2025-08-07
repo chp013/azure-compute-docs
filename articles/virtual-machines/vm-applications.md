@@ -47,16 +47,18 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 
 ## Create VM Applications & VM Applications version resource
 The VM application is stored in Azure Compute Gallery. The VM application resource defines the following about your VM application:
+
 | Property | Description |
-|--|--|
+|----------|-------------|
 | name | Name of the application |
 | supportedOSType | Supported OS type like Linux or Windows |
 | description | A description of the VM application |
 | eula | Link to End User License Agreement |
 
 VM application versions are the deployable resources within the VM Application resource. Versions are defined with the following properties:
+
 | Property | Description |
-|--|--|
+|----------|-------------|
 | mediaLink | Link to the application package file in a storage account |
 | defaultConfigurationLink | A link to the configuration file for the VM application, where you can include license files |
 | install | Install script as string to properly install the application |
@@ -248,8 +250,9 @@ VM application versions are the deployable resources within the VM Application r
 After the VM Application version is published to Azure Compute Gallery, you can deploy the version across Azure Virtual Machines (VM) and Azure Virtual Machine Scale Sets (VMSS). 
 
 The applicationProfile in Azure VM and VMSS defines the following:
+
 | Property | Description |
-|--|--|
+|----------|-------------|
 | galleryApplications | Gallery Applications to deploy |
 | packageReferenceId | Reference to application version to deploy |
 | order | Order in which to deploy applications |
