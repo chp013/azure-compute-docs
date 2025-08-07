@@ -19,14 +19,14 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 |----------|------------|
 | **Azure Compute Gallery** | A gallery is a repository for managing and sharing application packages. Users can share the gallery resource and all the child resources are shared automatically. The gallery name must be unique per subscription. For example, you may have one gallery to store all your OS images and another gallery to store all your VM applications.|
 | **VM Application** | The definition of your VM application. It's a *logical* resource that stores the common metadata for all the versions under it. For example, you may have an application definition for Apache Tomcat and have multiple versions within it. |
-| **VM Application version** | The deployable resource which holds your application package and version specific configurations. You can globally replicate your VM application versions to target regions closer to your VM infrastructure. The VM Application version must be replicated to a region before it may be deployed on a VM in that region. |
+| **VM Application version** | The deployable resource, which holds your application package and version specific configurations. You can globally replicate your VM application versions to target regions closer to your VM infrastructure. The VM Application version must be replicated to a region before it may be deployed on a VM in that region. |
 | **Storage Account**| Application packages are first uploaded to your storage account. Azure Compute Gallery then downloads the application package from this storage account using SAS URLs and stores it within the VM Application version. Azure Compute Gallery also replicates this package across regions & regional replicas per the VM Application version definition. The application package in the storage account can be deleted after VM application version is created in Azure Compute Gallery. |   
 
 :::image type="content" source="media/vmapps/vm-application-overview.png" alt-text="Diagram showing steps to create VM application and deploying it to Azure":::
 
 ## Key Benefits: 
 - **Centralized and Flexible Application Management**: 
-  - Package Anyhithig Once, Deploy Anywhere: Package windows & linux applications, scripts, files as blobs, deploy it across Azure VM or VMSS, and manage them centrally in Azure Compute Gallery. Blobs could be in .zip, .msi (Microsoft Package Installed), .exe, .tar.gz, .deb, .rpm, .sh or any other format.
+  - Package Anything Once, Deploy Anywhere: Package applications (windows / linux), scripts, or files as VM Applications. Then deploy it across Azure VM or VMSS, and manage them centrally in Azure Compute Gallery. Applications or files could be in .zip, .msi, .exe, .tar.gz, .deb, .rpm, .sh or any other format.
   - Version Control: Deploy either the latest or a specific version by maintaining multiple versions of each application. 
 - **Seamless Sharing and Access Control**
   - Tenant-Wide Sharing: Share applications within teams or across your entire organization (tenant).
@@ -40,32 +40,34 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
   - Optimized for High-Scale Scenarios: Achieve low create latency even during large-scale deployments.
 - **Secure and Compliant by Design**
   - Policy-Driven Enforcement: Use Azure Policy to enforce application presence and configuration across your fleet.
-  - Secure Deployments: Avoid internet-based downloads and complex private link setups which aren't ideal for locked-down or secure environments.
+  - Secure Deployments: Avoid internet-based downloads and complex private link setups, which aren't ideal for locked-down or secure environments.
 - **Broad Platform Support**
   - VMs and Scale Sets: Deploy to individual VMs, flexible scale sets, or uniform scale sets with full support.
   - Block Blob Support: Efficiently handle large application packages (upto 2 GB) using Azure Block Blobs for chunked uploads and background streaming.
 
 ## Create VM Applications & VM Applications version resource
+The VM application is stored in Azure Compute Gallery. The VM application resource defines the following about your VM application:
+| Property | Description |
+|--|--|
+| name | Name of the application |
+| supportedOSType | Supported OS type like Linux or Windows |
+| description | A description of the VM application |
+| eula | Link to End User License Agreement |
 
-The VM application resource defines the following about your VM application:
-- Azure Compute Gallery where the VM application is stored
-- name: Name of the application
-- supportedOSType: Supported OS type like Linux or Windows
-- description: A description of the VM application
-- eula: Link to End User License Agreement
-
-VM application versions are the deployable resource. Versions are defined with the following properties:
-- mediaLink: Link to the application package file in a storage account
-- defaultConfigurationLink: A link to the configuration file for the VM application, where you can include license files
-- install: Install script as string to properly install the application
-- remove: Remove script as string to properly remove the application
-- update: Update script as string to properly update the VM application to a newer version
-- packageFileName: Package file name to use when the package is downloaded to the VM.
-- configFileName: Configuration file name to be use when the configuration is downloaded to the VM.
-- targetRegions: Target regions for replication. Improves resiliency to region failure and create latency.
-- regionalReplica: Number of replicas per region distributed across zones. Improves resiliency to region or cluster failure and create latency during high scale.
-- excludeFromLatest: Exclude version from being used as the latest version of the application when 'latest' keyword is used in applicationProfile.
-- endOfLifeDate: End-of-life dates are informational; VM Application version can be deployed past the end-of-life date.
+VM application versions are the deployable resources within the VM Application resource. Versions are defined with the following properties:
+| Property | Description |
+|--|--|
+| mediaLink | Link to the application package file in a storage account |
+| defaultConfigurationLink | A link to the configuration file for the VM application, where you can include license files |
+| install | Install script as string to properly install the application |
+| remove | Remove script as string to properly remove the application |
+| update | Update script as string to properly update the VM application to a newer version |
+| packageFileName | Package file name to use when the package is downloaded to the VM. |
+| configFileName | Configuration file name to be use when the configuration is downloaded to the VM. |
+| targetRegions | Target regions for replication. Improves resiliency to region failure and create latency. |
+| regionalReplica | Number of replicas per region distributed across zones. Improves resiliency to region or cluster failure and create latency during high scale. |
+| excludeFromLatest | Exclude version from being used as the latest version of the application when 'latest' keyword is used in applicationProfile. |
+| endOfLifeDate | End-of-life dates are informational; VM Application version can be deployed past the end-of-life date. |
 
 #### [Template](#tab/template)
 ```json
@@ -246,10 +248,12 @@ VM application versions are the deployable resource. Versions are defined with t
 After the VM Application version is published to Azure Compute Gallery, you can deploy the version across Azure Virtual Machines (VM) and Azure Virtual Machine Scale Sets (VMSS). 
 
 The applicationProfile in Azure VM and VMSS defines the following:
-- galleryApplications: Gallery Applications to deploy
-- packageReferenceId: Reference to application version to deploy 
-- order: Order in which to deploy applications
-- treatFailureAsDeploymentFailure: Mark application failure as VM deployment failure for failure handling
+| Property | Description |
+|--|--|
+| galleryApplications | Gallery Applications to deploy |
+| packageReferenceId | Reference to application version to deploy |
+| order | Order in which to deploy applications |
+| treatFailureAsDeploymentFailure | Mark application failure as VM deployment failure for failure handling |
 
 #### [Deploy on VMSS](#tab/VMSS)
 ```json
@@ -445,7 +449,7 @@ The install/update/remove commands should be written assuming the application pa
 
 ### File naming
 
-When the application file gets downloaded to the VM, the file is renamed as "MyVmApp" and has no file extension (E.g. .exe, .msi). The VM is unaware of the file's original name and extension. 
+When the application file gets downloaded to the VM, the file is renamed as "MyVmApp" and has no file extension (E.g., .exe, .msi). The VM is unaware of the file's original name and extension. 
 
 Here are a few alternatives to navigate this issue:
 
