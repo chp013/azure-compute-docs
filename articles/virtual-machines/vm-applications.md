@@ -1,12 +1,12 @@
 ---
 title: Overview of VM Applications in the Azure Compute Gallery
-description: Learn about Azure VM Applications in an Azure Compute Gallery used to create and deploy applications on Azure Virtual Machines & Scale Sets.
+description: Learn about Azure VM Applications in Azure Compute Gallery used to create and deploy applications on Azure Virtual Machines & Scale Sets.
 ms.service: azure-virtual-machines
 ms.subservice: gallery
 ms.topic: concept-article
 ms.date: 03/14/2025
 author: ju-shim
-ms.author: gabsta
+ms.author: tagore
 ms.reviewer: jushiman
 ms.custom: linux-related-content
 ---
