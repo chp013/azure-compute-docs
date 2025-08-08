@@ -1790,6 +1790,16 @@
         href: ./windows/attach-managed-disk-portal.yml
       - name: Change temp disk drive letter
         href: ./windows/change-drive-letter.md
+  - name: Format and mount a disk
+    items:
+    - name: Linux
+      items:
+      - name: Format and mount remote disk
+        displayName: format and mount remote disk
+        href: ./linux/format-and-mount-remote-disks-linux.md
+      - name: Format and mount temporary or resource disk
+        displayName: format and mount temporary or resource disk
+        href: ./linux/format-and-mount-temp-or-resource-disks-linux.md
   - name: Detach a disk
     items:
     - name: Linux
