@@ -38,7 +38,7 @@ Before formatting temporary or resource disks:
 > [!WARNING]
 > Formatting will permanently erase all data on the disk. Ensure you're working with the correct disk and that no important data exists on it.
 
-## Format SCSI resource disks
+## Format SCSi controlled resource disks
 
 > [!NOTE]
 > It is recommended that you use the latest version `parted` that is available for your distro. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
@@ -51,7 +51,7 @@ sudo partprobe /dev/sdb
 sudo mkfs.xfs /dev/sdb1
 ```
 
-## Format NVMe local disks
+## Format NVMe controlled local disks
 
 ### Traditional Approach
 ```bash
@@ -118,26 +118,27 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /mnt/temp   xfs   defaults,discard,n
 
 ### Alternatively, run `fstrim` periodically:
 
-## Ubuntu
+# [Ubuntu](#tab/ubuntu)
 
 ```bash
 sudo apt install util-linux
-sudo fstrim /mnt/temp
+sudo fstrim /datadrive
 ```
 
-## RHEL/CentOS/Fedora
+# [RHEL](#tab/rhel)
 
 ```bash
 sudo yum install util-linux
-sudo fstrim /mnt/temp
+sudo fstrim /datadrive
 ```
 
-## SLES
+# [SLES](#tab/suse)
 
 ```bash
 sudo zypper in util-linux
-sudo fstrim /mnt/temp
+sudo fstrim /datadrive
 ```
+---
 
 # Important reminders
 

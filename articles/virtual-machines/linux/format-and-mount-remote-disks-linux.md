@@ -20,57 +20,19 @@ This article covers how to format, mount, and persist remote data disks on Azure
 
 Before formatting and mounting a data disk, ensure you have:
 
-1. [Identified the correct disk](./identifying-disks-linux.md) to avoid data loss
+1. [Identify the correct disk](./add-disk.md#identifying-disks) to avoid data loss
 2. SSH access to your VM
 3. Root or sudo privileges
 
 > [!WARNING]
 > Always verify you're working with the correct disk before formatting. Formatting the wrong disk will result in data loss.
 
-## Identify the disk to format
-
-First, identify the disk you want to format. The method varies depending on whether your VM uses SCSI or NVMe interface.
-
-### Using traditional SCSI interface
-```bash
-# List SCSI disks
-lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep sd
-
-# Use azure-vm-utils symlinks if available
-ls -la /dev/disk/azure/scsi1/
-```
-
-### Using NVMe interface
-```bash
-# List NVMe disks
-lsblk -o NAME,SIZE,MOUNTPOINT | grep nvme
-
-# Use azure-vm-utils symlinks if available
-ls -la /dev/disk/azure/data/by-lun/
-```
-
-### Using azure-vm-utils (recommended)
-If [azure-vm-utils](./az-vm-utils.md) is installed, use predictable symlinks:
-
-```bash
-# List all Azure disks
-ls -la /dev/disk/azure/
-
-# For data disks by LUN (works for both SCSI and NVMe)
-ls -la /dev/disk/azure/data/by-lun/
-
-# Example: Access data disk at LUN 0
-ls -la /dev/disk/azure/data/by-lun/0
-```
-
 # Format the disk
-
-Format the disk with `parted`. If the disk size is two tebibytes (TiB) or larger then you must use GPT partitioning, if it is under 2TiB, then you can use either MBR or GPT partitioning.
 
 > [!NOTE]
 > It is recommended that you use the latest version `parted` that is available for your distro. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
-## Traditional device naming approach
+## Format SCSi controlled data disks
 
 The following example uses `parted` on `/dev/sdc`, which is where the first data disk will typically be on most VMs. Replace `sdc` with the correct option for your disk. We're also formatting it using the [XFS](https://xfs.wiki.kernel.org/) filesystem.
 
@@ -80,29 +42,20 @@ sudo partprobe /dev/sdc
 sudo mkfs.xfs /dev/sdc1
 ```
 
-## Using azure-vm-utils symlinks (recommended)
+## Format NVMe controlled data disks
+For NVMe controlled disks, the process is similar but device names differ:
 
-For more reliable disk identification, use azure-vm-utils symlinks when available:
-
-```bash
-# Example: Format data disk at LUN 0
-sudo parted /dev/disk/azure/data/by-lun/0 --script mklabel gpt mkpart xfspart xfs 0% 100%
-sudo partprobe /dev/disk/azure/data/by-lun/0
-sudo mkfs.xfs /dev/disk/azure/data/by-lun/0p1
-```
-
-## NVMe disk formatting
-
-For NVMe disks, the process is similar but device names differ:
-
+### Traditional Approach
 ```bash
 # Example: Format NVMe disk (replace nvme1n1 with your disk)
 sudo parted /dev/nvme1n1 --script mklabel gpt mkpart xfspart xfs 0% 100%
 sudo partprobe /dev/nvme1n1
 sudo mkfs.xfs /dev/nvme1n1p1
 ```
-
 Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and filesystem. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new filesystem immediately.
+
+### Formatting using azure-vm-utils
+**Content to be added**
 
 # Mount the disk
 
@@ -112,7 +65,7 @@ Now, create a directory to mount the file system using `mkdir`. The following ex
 sudo mkdir /datadrive
 ```
 
-## Mounting SCSI disks
+## Mounting SCSI controlled data disks
 
 Use `mount` to then mount the filesystem. The following example mounts the `/dev/sdc1` partition to the `/datadrive` mount point:
 
@@ -120,27 +73,18 @@ Use `mount` to then mount the filesystem. The following example mounts the `/dev
 sudo mount /dev/sdc1 /datadrive
 ```
 
-## Mounting NVMe disks
+## Mounting NVMe controlled data disks
 
+### Traditional Approach
 For NVMe disks, use the appropriate NVMe device name:
 
 ```bash
 # Example: Mount NVMe partition
 sudo mount /dev/nvme1n1p1 /datadrive
 ```
+### Mounting using azure-vm-utils
+**Content to be added**
 
-## Mounting using azure-vm-utils symlinks
-
-For more reliable mounting, use azure-vm-utils symlinks when available:
-
-```bash
-# Example: Mount using LUN-based symlink
-sudo mount /dev/disk/azure/data/by-lun/0p1 /datadrive
-
-# Or resolve the symlink and mount
-DEVICE=$(readlink -f /dev/disk/azure/data/by-lun/0)
-sudo mount ${DEVICE}1 /datadrive
-```
 
 # Persist the mount
 
@@ -189,15 +133,7 @@ UUID=$(sudo blkid -s UUID -o value /dev/nvme1n1p1)
 echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
 ```
 
-## Using azure-vm-utils for persistent mounting
 
-When using azure-vm-utils symlinks, you can reference them in fstab, but UUIDs are still recommended:
-
-```bash
-# Get UUID using symlink
-UUID=$(sudo blkid -s UUID -o value /dev/disk/azure/data/by-lun/0p1)
-echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
-```
 
 > [!NOTE]
 > Later removing a data disk without editing fstab could cause the VM to fail to boot. Most distributions provide either the `nofail` and/or `nobootwait` fstab options. These options allow a system to boot even if the disk fails to mount at boot time. Consult your distribution's documentation for more information on these parameters.
@@ -206,42 +142,6 @@ The `nofail` option ensures that the VM starts even if the filesystem is corrupt
 
 The Azure VM Serial Console can be used for console access to your VM if modifying fstab has resulted in a boot failure. More details are available in the [Serial Console documentation](/troubleshoot/azure/virtual-machines/serial-console-linux).
 
-# TRIM/UNMAP support for remote data disks
-
-Remote data disks in Azure support TRIM/UNMAP operations to discard unused blocks. This feature is important for cost optimization on disks that are billed based on consumed storage.
-
-## NVMe TRIM support
-
-NVMe disks on Azure have enhanced TRIM/UNMAP support. For optimal performance:
-
-- Use the `discard` mount option in `/etc/fstab`
-- NVMe devices generally handle TRIM operations more efficiently than SCSI devices
-- Consider periodic `fstrim` operations for workloads with high disk churn
-
-## TRIM configuration options
-
-There are two ways to enable TRIM support in your Linux VM. As usual, consult your distribution for the recommended approach:
-
-### Option 1: Mount-time discard
-Use the `discard` mount option in `/etc/fstab`, for example:
-
-```
-UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,discard,nofail   1   2
-```
-
-### Option 2: Periodic trim
-In some cases, the `discard` option may have performance implications. Alternatively, you can run the `fstrim` command manually from the command line, or add it to your crontab to run regularly:
-
-```bash
-echo "UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,nofail   1   2" >> /etc/fstab
-```
-
-> [!NOTE]
-> Later removing a data disk without editing fstab could cause the VM to fail to boot. Most distributions provide either the nofail and/or nobootwait fstab options. These options allow a system to boot even if the disk fails to mount at boot time. Consult your distribution's documentation for more information on these parameters.
-
-The nofail option ensures that the VM starts even if the filesystem is corrupt or the disk does not exist at boot time. Without this option, you may encounter behavior as described in [Cannot SSH to Linux VM due to FSTAB errors](/troubleshoot/azure/virtual-machines/linux-virtual-machine-cannot-start-fstab-errors)
-
-The Azure VM Serial Console can be used for console access to your VM if modifying fstab has resulted in a boot failure. More details are available in the [Serial Console documentation](/troubleshoot/azure/virtual-machines/serial-console-linux).
 
 # TRIM/UNMAP support for Linux in Azure
 
@@ -257,26 +157,27 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,discard 
 
 • In some cases, the `discard` option may have performance implications. Alternatively, you can run the `fstrim` command manually from the command line, or add it to your crontab to run regularly:
 
-## Ubuntu
+# [Ubuntu](#tab/ubuntu)
 
 ```bash
 sudo apt install util-linux
 sudo fstrim /datadrive
 ```
 
-## RHEL
+# [RHEL](#tab/rhel)
 
 ```bash
 sudo yum install util-linux
 sudo fstrim /datadrive
 ```
 
-## SLES
+# [SLES](#tab/suse)
 
 ```bash
 sudo zypper in util-linux
 sudo fstrim /datadrive
 ```
+---
 
 # Troubleshooting
 
