@@ -181,4 +181,4 @@ sudo fstrim /datadrive
 
 # Troubleshooting
 
-[!INCLUDE [virtual-machines-linux-lunzero](~/articles/includes/virtual-machines-linux-lunzero.md)]
+[!INCLUDE [virtual-machines-linux-lunzero](../includes/virtual-machines-linux-lunzero.md)]
