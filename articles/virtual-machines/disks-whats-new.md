@@ -61,6 +61,10 @@ Azure Disk Storage regularly receives updates for new features and enhancements.
 
 ### Quarter 2 (April, May, June)
 
+#### Public preview: Azure Site Recovery for Virtual Machines with Premium SSD v2 and Ultra disks
+
+Azure Site Recovery support for Virtual Machines with [Premium SSD v2](https://azure.microsoft.com/en-us/updates?id=495231) and [Ultra](https://azure.microsoft.com/en-us/updates?id=495843) disks is in public preview. Azure Site Recovery provides seamless disaster recovery for Virtual Machines across Azure Regions and from on-premises to Azure, helping organizations maintain business continuity. It offers cost-effective replication, automated failover, and easy disaster recovery simulation, ensuring minimal production impact during disaster events. With built-in security, compliance support, and native integration with Azure services, Azure Site Recovery helps your organization stay resilient and minimize downtime. [Learn more] (/azure/site-recovery/azure-to-azure-support-matrix).
+
 #### Generally available: Troubleshoot Disk Performance with Copilot in Azure
 
 The Disk Performance Troubleshooting Capability for Copilot in Azure is now [Generally Available](https://azure.microsoft.com/updates?id=474649) as a part of the Copilot in Azure General Availability. Now, you can use Copilot in Azure to analyze your [disk metrics](disks-metrics.md) and resolve any performance degredation issues when your application requires higher performance than what you have configured for your VMs and disks. To learn more, see [Troubleshoot Disk Performance using Microsoft Copilot in Azure](/azure/copilot/troubleshoot-disk-performance).
