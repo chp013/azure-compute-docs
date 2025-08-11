@@ -6,7 +6,7 @@ ms.service: azure-disk-storage
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linux
 ms.topic: how-to
-ms.date: 22/07/2025
+ms.date: 07/22/2025
 ms.author: vakavuru
 ---
 # Azure-VM-Utils

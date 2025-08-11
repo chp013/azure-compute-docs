@@ -6,7 +6,7 @@ ms.service: azure-disk-storage
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linux
 ms.topic: how-to
-ms.date: 22/07/2025
+ms.date: 07/22/2025
 ms.author: vakavuru
 ---
 
@@ -27,12 +27,12 @@ Before formatting and mounting a data disk, ensure you have:
 > [!WARNING]
 > Always verify you're working with the correct disk before formatting. Formatting the wrong disk will result in data loss.
 
-# Format the disk
+## Format the disk
 
 > [!NOTE]
 > It is recommended that you use the latest version `parted` that is available for your distro. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
-## Format SCSi controlled data disks
+### Format SCSi controlled data disks
 
 The following example uses `parted` on `/dev/sdc`, which is where the first data disk will typically be on most VMs. Replace `sdc` with the correct option for your disk. We're also formatting it using the [XFS](https://xfs.wiki.kernel.org/) filesystem.
 
@@ -42,10 +42,10 @@ sudo partprobe /dev/sdc
 sudo mkfs.xfs /dev/sdc1
 ```
 
-## Format NVMe controlled data disks
+### Format NVMe controlled data disks
 For NVMe controlled disks, the process is similar but device names differ:
 
-### Traditional Approach
+#### Traditional Approach
 ```bash
 # Example: Format NVMe disk (replace nvme1n1 with your disk)
 sudo parted /dev/nvme1n1 --script mklabel gpt mkpart xfspart xfs 0% 100%
@@ -54,10 +54,10 @@ sudo mkfs.xfs /dev/nvme1n1p1
 ```
 Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and filesystem. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new filesystem immediately.
 
-### Formatting using azure-vm-utils
+#### Formatting using azure-vm-utils
 **Content to be added**
 
-# Mount the disk
+## Mount the disk
 
 Now, create a directory to mount the file system using `mkdir`. The following example creates a directory at `/datadrive`:
 
@@ -65,7 +65,7 @@ Now, create a directory to mount the file system using `mkdir`. The following ex
 sudo mkdir /datadrive
 ```
 
-## Mounting SCSI controlled data disks
+### Mounting SCSI controlled data disks
 
 Use `mount` to then mount the filesystem. The following example mounts the `/dev/sdc1` partition to the `/datadrive` mount point:
 
@@ -73,20 +73,20 @@ Use `mount` to then mount the filesystem. The following example mounts the `/dev
 sudo mount /dev/sdc1 /datadrive
 ```
 
-## Mounting NVMe controlled data disks
+### Mounting NVMe controlled data disks
 
-### Traditional Approach
+#### Traditional Approach
 For NVMe disks, use the appropriate NVMe device name:
 
 ```bash
 # Example: Mount NVMe partition
 sudo mount /dev/nvme1n1p1 /datadrive
 ```
-### Mounting using azure-vm-utils
+#### Mounting using azure-vm-utils
 **Content to be added**
 
 
-# Persist the mount
+## Persist the mount
 
 To ensure that the drive is remounted automatically after a reboot, it must be added to the `/etc/fstab` file. It's also highly recommended that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than just the device name (such as, /dev/sdc1). If the OS detects a disk error during boot, using the UUID avoids the incorrect disk being mounted to a given location. Remaining data disks would then be assigned those same device IDs. To find the UUID of the new drive, use the `blkid` utility:
 
@@ -123,7 +123,7 @@ UUID=$(sudo blkid -s UUID -o value /dev/sdc1)
 echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
 ```
 
-## NVMe disk persistence considerations
+### NVMe disk persistence considerations
 
 For NVMe disks, the fstab entry process is similar, but device names differ:
 
@@ -143,7 +143,7 @@ The `nofail` option ensures that the VM starts even if the filesystem is corrupt
 The Azure VM Serial Console can be used for console access to your VM if modifying fstab has resulted in a boot failure. More details are available in the [Serial Console documentation](/troubleshoot/azure/virtual-machines/serial-console-linux).
 
 
-# TRIM/UNMAP support for Linux in Azure
+## TRIM/UNMAP support for Linux in Azure
 
 Some Linux kernels support TRIM/UNMAP operations to discard unused blocks on the disk. This feature is primarily useful to inform Azure that deleted pages are no longer valid and can be discarded. This feature can save money on disks that are billed based on the amount of consumed storage, such as unmanaged standard disks and disk snapshots.
 
@@ -157,21 +157,21 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,discard 
 
 • In some cases, the `discard` option may have performance implications. Alternatively, you can run the `fstrim` command manually from the command line, or add it to your crontab to run regularly:
 
-# [Ubuntu](#tab/ubuntu)
+## [Ubuntu](#tab/ubuntu)
 
 ```bash
 sudo apt install util-linux
 sudo fstrim /datadrive
 ```
 
-# [RHEL](#tab/rhel)
+## [RHEL](#tab/rhel)
 
 ```bash
 sudo yum install util-linux
 sudo fstrim /datadrive
 ```
 
-# [SLES](#tab/suse)
+## [SLES](#tab/suse)
 
 ```bash
 sudo zypper in util-linux
@@ -179,6 +179,6 @@ sudo fstrim /datadrive
 ```
 ---
 
-# Troubleshooting
+## Troubleshooting
 
 [!INCLUDE [virtual-machines-linux-lunzero](../includes/virtual-machines-linux-lunzero.md)]

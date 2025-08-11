@@ -46,7 +46,7 @@ diskId=$(az disk show -g myResourceGroup -n myDataDisk --query 'id' -o tsv)
 az vm disk attach -g myResourceGroup --vm-name myVM --name $diskId
 ```
 
-# Identifying disks
+## Identifying disks
 
 Azure Linux virtual machines use different disk interfaces depending on the VM SKU and generation.
 - **Older VM SKUs**: Use SCSI interface for disk management
@@ -54,7 +54,7 @@ Azure Linux virtual machines use different disk interfaces depending on the VM S
 
 For more information about SCSI vs NVMe differences, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme). 
 
-## Connect to the virtual machine
+### Connect to the virtual machine
 
 To identify disks associated with your Linux virtual machine (VM), SSH into the VM. For more information, see [How to use SSH with Linux on Azure](/azure/virtual-machines/linux/mac-create-ssh-keys). The following example connects to a VM with the public IP address of 10.123.123.25 with the username azureuser:
 
@@ -64,7 +64,7 @@ ssh azureuser@10.123.123.25
 > [!NOTE]
 > Before identifying specific disks, determine whether your VM uses SCSI, NVMe, or a combination of both interfaces.
 
-## Disks using SCSi controller
+### Identifying SCSi controlled disks
 
 Once you connect to your VM, find the disk. In this example, we're using `lsblk` to list SCSI disks.
 
@@ -97,7 +97,7 @@ The output should be similar to the following example:
 lrwxrwxrwx 1 root root 12 Mar 28 19:41 lun0 -> ../../../sdc
 ```
 
-## Disks using NVMe controller
+### Identifying NVMe controlled disks
 
 ```bash
 lsblk -o NAME,TYPE,SIZE,MOUNTPOINT | grep nvme
@@ -113,7 +113,7 @@ nvme1n1     disk   50G
 nvme0n2     disk   50G
 ```
 
-## Identifying disks using azure-vm-utils
+### Identifying disks using azure-vm-utils
 
 The [azure-vm-utils](https://github.com/Azure/azure-vm-utils) package provides essential utilities and udev rules to optimize the Linux experience on Azure virtual machines. This package consolidates device management tools for SCSI, NVMe, MANA, and Mellanox devices, making disk identification and management more reliable and consistent across different VM configurations.
 

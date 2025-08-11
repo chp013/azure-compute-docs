@@ -33,12 +33,12 @@ Before formatting temporary or resource disks:
 2. Understand that data is not persistent across VM stops/deallocations
 3. Have SSH access to your VM with root or sudo privileges
 
-# Format temporary and resource disks
+## Format temporary and resource disks
 
 > [!WARNING]
 > Formatting will permanently erase all data on the disk. Ensure you're working with the correct disk and that no important data exists on it.
 
-## Format SCSi controlled resource disks
+### Format SCSi controlled resource disks
 
 > [!NOTE]
 > It is recommended that you use the latest version `parted` that is available for your distro. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
@@ -51,9 +51,9 @@ sudo partprobe /dev/sdb
 sudo mkfs.xfs /dev/sdb1
 ```
 
-## Format NVMe controlled local disks
+### Format NVMe controlled local disks
 
-### Traditional Approach
+#### Traditional Approach
 ```bash
 # Example: Format local NVMe disk (replace nvme1n1 with your disk)
 sudo parted /dev/nvme1n1 --script mklabel gpt mkpart xfspart xfs 0% 100%
@@ -61,10 +61,10 @@ sudo partprobe /dev/nvme1n1
 sudo mkfs.xfs /dev/nvme1n1p1
 ```
 
-### Using azure-vm-utils
+#### Using azure-vm-utils
 **Content to be added**
 
-## Multiple local disk scenarios (RAID)
+### Multiple local disk scenarios (RAID)
 
 Some VM SKUs provide multiple local NVMe disks. You can set up RAID for better performance or redundancy:
 
@@ -76,7 +76,7 @@ sudo mkfs.xfs /dev/md0
 
 Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and filesystem. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new filesystem immediately.
 
-# Mount temporary and resource disks
+## Mount temporary and resource disks
 
 Now, create a directory to mount the file system using `mkdir`. For temporary storage, common mount points include `/mnt`, `/tmp`, or application-specific directories.
 
@@ -84,7 +84,7 @@ Now, create a directory to mount the file system using `mkdir`. For temporary st
 sudo mkdir /mnt/temp
 ```
 
-## Mount SCSI resource disks
+### Mount SCSI resource disks
 
 Use `mount` to mount the filesystem. The following example mounts the `/dev/sdb1` partition to the `/mnt/temp` mount point:
 
@@ -92,7 +92,7 @@ Use `mount` to mount the filesystem. The following example mounts the `/dev/sdb1
 sudo mount /dev/sdb1 /mnt/temp
 ```
 
-## Mount NVMe local disks
+### Mount NVMe local disks
 
 For NVMe local disks:
 
@@ -101,7 +101,7 @@ For NVMe local disks:
 sudo mount /dev/nvme1n1p1 /mnt/temp
 ```
 
-## Mount using azure-vm-utils symlinks
+### Mount using azure-vm-utils symlinks
 
 **Content to be added**
 
@@ -118,21 +118,21 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /mnt/temp   xfs   defaults,discard,n
 
 ### Alternatively, run `fstrim` periodically:
 
-# [Ubuntu](#tab/ubuntu)
+### [Ubuntu](#tab/ubuntu)
 
 ```bash
 sudo apt install util-linux
 sudo fstrim /datadrive
 ```
 
-# [RHEL](#tab/rhel)
+### [RHEL](#tab/rhel)
 
 ```bash
 sudo yum install util-linux
 sudo fstrim /datadrive
 ```
 
-# [SLES](#tab/suse)
+### [SLES](#tab/suse)
 
 ```bash
 sudo zypper in util-linux
@@ -140,7 +140,7 @@ sudo fstrim /datadrive
 ```
 ---
 
-# Important reminders
+## Important reminders
 
 > [!WARNING]
 > - Temporary and resource disk data is lost during VM deallocations, stops for maintenance, or redeployments
@@ -153,6 +153,6 @@ sudo fstrim /datadrive
 > - Monitor disk usage to avoid running out of temporary storage space
 > - Consider automated backup strategies if temporary disk content has any value
 
-# Troubleshooting
+## Troubleshooting
 
 [!INCLUDE [virtual-machines-linux-lunzero](../includes/virtual-machines-linux-lunzero.md)]
