@@ -14,7 +14,7 @@ ms.author: vakavuru
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets 
 
-This article covers how to format and mount temporary (local) and resource disks on Azure Linux VMs. These disks provide local storage that is not persistent and may use either SCSI or NVMe interfaces depending on your VM SKU.
+This article covers how to format and mount temporary (local) and resource disks on Azure Linux VMs. These disks provide local storage that isn't persistent and might use either SCSI or NVMe interfaces depending on your VM SKU.
 
 ## Understanding temporary and resource disks
 
@@ -23,14 +23,14 @@ This article covers how to format and mount temporary (local) and resource disks
 - **NVMe local disks**: High-performance local storage on newer VM SKUs
 
 > [!WARNING]  
-> Temporary and resource disks are not persistent. Data stored on these disks will be lost when the VM is deallocated, redeployed, or stopped for maintenance.
+> Temporary and resource disks aren't persistent. Data stored on these disks will be lost when the VM is deallocated, redeployed, or stopped for maintenance.
 
 ## Prerequisites
 
 Before formatting temporary or resource disks:
 
 1. [Identify the correct disk](./add-disk.md#identifying-disks) to avoid data loss
-2. Understand that data is not persistent across VM stops/deallocations
+2. Understand that data isn't persistent across VM stops/deallocations
 3. Have SSH access to your VM with root or sudo privileges
 
 ## Format temporary and resource disks
@@ -38,12 +38,12 @@ Before formatting temporary or resource disks:
 > [!WARNING]
 > Formatting will permanently erase all data on the disk. Ensure you're working with the correct disk and that no important data exists on it.
 
-### Format SCSi controlled resource disks
+### Format SCSI controlled resource disks
 
 > [!NOTE]
-> It is recommended that you use the latest version `parted` that is available for your distro. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
+> We recommend that you use the latest version of `parted` that's available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
-The following example uses `parted` on `/dev/sdb`, which is typically where the resource disk appears. Replace `sdb` with the correct device for your disk. We're using the [XFS](https://xfs.wiki.kernel.org/) filesystem for better performance.
+The following example uses `parted` on `/dev/sdb`, which is typically where the resource disk appears. Replace `sdb` with the correct device for your disk. We're using the [XFS](https://xfs.wiki.kernel.org/) file system for better performance.
 
 ```bash
 sudo parted /dev/sdb --script mklabel gpt mkpart xfspart xfs 0% 100%
@@ -74,11 +74,11 @@ sudo mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/nvme1n1 /dev/nvme2n
 sudo mkfs.xfs /dev/md0
 ```
 
-Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and filesystem. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new filesystem immediately.
+Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and file system. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new file system immediately.
 
 ## Mount temporary and resource disks
 
-Now, create a directory to mount the file system using `mkdir`. For temporary storage, common mount points include `/mnt`, `/tmp`, or application-specific directories.
+Now, create a directory to mount the file system by using `mkdir`. For temporary storage, common mount points include `/mnt`, `/tmp`, or application-specific directories.
 
 ```bash
 sudo mkdir /mnt/temp
@@ -86,7 +86,7 @@ sudo mkdir /mnt/temp
 
 ### Mount SCSI resource disks
 
-Use `mount` to mount the filesystem. The following example mounts the `/dev/sdb1` partition to the `/mnt/temp` mount point:
+Use `mount` to mount the file system. The following example mounts the `/dev/sdb1` partition to the `/mnt/temp` mount point:
 
 ```bash
 sudo mount /dev/sdb1 /mnt/temp

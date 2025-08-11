@@ -30,11 +30,11 @@ Before formatting and mounting a data disk, ensure you have:
 ## Format the disk
 
 > [!NOTE]
-> It is recommended that you use the latest version `parted` that is available for your distro. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
+> We recommend that you use the latest version of `parted` that's available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
-### Format SCSi controlled data disks
+### Format SCSI controlled data disks
 
-The following example uses `parted` on `/dev/sdc`, which is where the first data disk will typically be on most VMs. Replace `sdc` with the correct option for your disk. We're also formatting it using the [XFS](https://xfs.wiki.kernel.org/) filesystem.
+The following example uses `parted` on `/dev/sdc`, which is where the first data disk will typically be on most VMs. Replace `sdc` with the correct option for your disk. We're also formatting it by using the [XFS](https://xfs.wiki.kernel.org/) file system.
 
 ```bash
 sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
@@ -45,21 +45,21 @@ sudo mkfs.xfs /dev/sdc1
 ### Format NVMe controlled data disks
 For NVMe controlled disks, the process is similar but device names differ:
 
-#### Traditional Approach
+#### Traditional approach
 ```bash
 # Example: Format NVMe disk (replace nvme1n1 with your disk)
 sudo parted /dev/nvme1n1 --script mklabel gpt mkpart xfspart xfs 0% 100%
 sudo partprobe /dev/nvme1n1
 sudo mkfs.xfs /dev/nvme1n1p1
 ```
-Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and filesystem. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new filesystem immediately.
+Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and file system. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new file system immediately.
 
 #### Formatting using azure-vm-utils
 **Content to be added**
 
 ## Mount the disk
 
-Now, create a directory to mount the file system using `mkdir`. The following example creates a directory at `/datadrive`:
+Now, create a directory to mount the file system by using `mkdir`. The following example creates a directory at `/datadrive`:
 
 ```bash
 sudo mkdir /datadrive
@@ -67,7 +67,7 @@ sudo mkdir /datadrive
 
 ### Mounting SCSI controlled data disks
 
-Use `mount` to then mount the filesystem. The following example mounts the `/dev/sdc1` partition to the `/datadrive` mount point:
+Use `mount` to then mount the file system. The following example mounts the `/dev/sdc1` partition to the `/datadrive` mount point:
 
 ```bash
 sudo mount /dev/sdc1 /datadrive
@@ -75,7 +75,7 @@ sudo mount /dev/sdc1 /datadrive
 
 ### Mounting NVMe controlled data disks
 
-#### Traditional Approach
+#### Traditional approach
 For NVMe disks, use the appropriate NVMe device name:
 
 ```bash
@@ -88,7 +88,7 @@ sudo mount /dev/nvme1n1p1 /datadrive
 
 ## Persist the mount
 
-To ensure that the drive is remounted automatically after a reboot, it must be added to the `/etc/fstab` file. It's also highly recommended that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than just the device name (such as, /dev/sdc1). If the OS detects a disk error during boot, using the UUID avoids the incorrect disk being mounted to a given location. Remaining data disks would then be assigned those same device IDs. To find the UUID of the new drive, use the `blkid` utility:
+To ensure that the drive is remounted automatically after a reboot, it must be added to the `/etc/fstab` file. It's also highly recommended that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than just the device name (such as /dev/sdc1). If the OS detects a disk error during boot, using the UUID avoids the incorrect disk being mounted to a given location. Remaining data disks would then be assigned those same device IDs. To find the UUID of the new drive, use the `blkid` utility:
 
 ```bash
 sudo blkid
@@ -105,9 +105,9 @@ The output looks similar to the following example:
 ```
 
 > [!WARNING]
-> Improperly editing the `/etc/fstab` file could result in an unbootable system. If unsure, refer to the distribution's documentation for information on how to properly edit this file. It is also recommended that a backup of the `/etc/fstab` file is created before editing.
+> Improperly editing the `/etc/fstab` file could result in an unbootable system. If you're unsure, refer to the distribution's documentation for information on how to properly edit this file. We also recommend that you create a backup of the `/etc/fstab` file before editing.
 
-Next, open the `/etc/fstab` file in a text editor. Add a line to the end of the file, using the UUID value for the `/dev/sdc1` device that was created in the previous steps, and the mountpoint of `/datadrive`. Using the example from this article, the new line would look like the following:
+Next, open the `/etc/fstab` file in a text editor. Add a line to the end of the file, by using the UUID value for the `/dev/sdc1` device that was created in the previous steps, and the mountpoint of `/datadrive`. Using the example from this article, the new line would look like the following:
 
 ```
 UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,nofail   1   2

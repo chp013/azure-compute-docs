@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.date: 07/22/2025
 ms.author: vakavuru
 ---
-# Azure-VM-Utils
+# Azure virtual machine utilities (azure-vm-utils)
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets 
 
@@ -17,15 +17,15 @@ The [azure-vm-utils](https://github.com/Azure/azure-vm-utils) package provides e
 
 ## Introduction
 
-There are a number of udev rules critical to the Linux on Azure experience to assist with managing devices including: SCSI, NVMe, MANA, and Mellanox. Today these rules are spread out among cloud-init, WALinuxAgent, azure-nvme-utils, and vendor-specific image customization.
+There are several udev rules critical to the Linux on Azure experience that assist with managing devices including SCSI, NVMe, MANA, and Mellanox. Today these rules are spread out among cloud-init, WALinuxAgent, azure-nvme-utils, and vendor-specific image customization.
 
 The WALinuxAgent team is working to decouple their guest agent from the provisioning agent. The provisioning agent is being deprecated and will be removed in a future release. The long-term plan is to migrate the udev rules and configuration found in WALinuxAgent and elsewhere into azure-vm-utils so they can be maintained and updated independently of the WALinuxAgent package.
 
 ## NVMe Udev Rules
 
-Newer VM SKUs on Azure have adopted NVMe interface for disk management. VMs with NVMe interface interpret and present the disks slightly differently than with the SCSI interface. See the [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme) doc for reference. 
+Newer VM SKUs on Azure have adopted the NVMe interface for disk management. VMs with NVMe interface interpret and present disks slightly differently than with the SCSI interface. For reference, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme). 
 
-NVMe udev rules in this package consolidate critical tools and udev rules to create stable, predictable symlinks for Azure disks. It provides an easy and reliable way to identify disks, making automation, troubleshooting, and management significantly simpler.
+NVMe udev rules in this package consolidate critical tools and udev rules to create stable, predictable symlinks for Azure disks. The package provides an easy and reliable way to identify disks, making automation, troubleshooting, and management significantly simpler.
 
 ### Symlinks
 
@@ -38,24 +38,24 @@ WALinuxAgent currently includes udev rules to provide several symlinks for SCSI 
 
 The rules found in WALinuxAgent are being extended with azure-vm-utils to add identification support for NVMe devices.
 
-New symlinks that will be provided for all instances with NVMe disks include:
+New symlinks that are provided for all instances with NVMe disks include:
 
 - `/dev/disk/azure/data/by-lun/<lun>`
 - `/dev/disk/azure/local/by-serial/<serial>`
 - `/dev/disk/azure/os`
 
-For v6 and newer VM sizes with local NVMe disks supporting namespace identifiers, additional links will be available:
+For v6 and newer VM sizes with local NVMe disks supporting namespace identifiers, additional links are available:
 
 - `/dev/disk/azure/local/by-index/<index>`
 - `/dev/disk/azure/local/by-name/<name>`
 
-For future VM sizes with remote NVMe disks supporting namespace identifiers, additional links will be available:
+For future VM sizes with remote NVMe disks supporting namespace identifiers, additional links are available:
 
 - `/dev/disk/azure/data/by-name/<name>`
 
 ### SCSI Compatibility
 
-To ensure backward compatibility azure-vm-utils will ensure SCSI disks support the following links:
+To ensure backward compatibility, azure-vm-utils ensures that SCSI disks support the following links:
 
 - `/dev/disk/azure/os`
 - `/dev/disk/azure/resource`
@@ -65,9 +65,9 @@ To ensure backward compatibility azure-vm-utils will ensure SCSI disks support t
 
 ### Linux Distro Support
 
-We are working with all endorsed distro partners to include this package in their default images. The following distros and versions already have it, and support for the rest is coming soon.
+We are working with all endorsed distribution partners to include this package in their default images. The following distributions and versions already have the package, and support for the rest is coming soon.
 
-| Distro | Version |
+| Distribution | Version |
 |--------|---------|
 | Fedora | 41 |
 | Flatcar | 4152.2.3 |
