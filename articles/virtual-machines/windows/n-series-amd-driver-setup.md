@@ -34,17 +34,17 @@ For basic specs, storage capacities, and disk details, see [GPU Windows VM sizes
 
 ### VM Creation
 Create the VMs using CLI. (Azure AMD GPU driver extensions don't support NVads V710 v5 Series during preview)
-1. Review the [CLI VM creation documentation](/azure/virtual-machines/windows/quick-create-cli).
+- Review the [CLI VM creation documentation](/azure/virtual-machines/windows/quick-create-cli).
 
 ### Driver installation
-1.	Connect by Remote Desktop to each NVads V710 v5-series VM<br>
-2. Download the EXE file to a local drive<br>
-3. If you need to uninstall the previous driver version, run "setup.exe -factoryresetinstall" from a command line <br>
-4.	For a first-time driver installation, double-click or run “setup.exe” from a command line<br>
-5. Reboot the VM
+1.	Connect by Remote Desktop to each NVads V710 v5-series VM.<br>
+2. Download the EXE file to a local drive.<br>
+3. If you need to uninstall the previous driver version, run "setup.exe -factoryresetinstall" from a command line. <br>
+4.	For a first-time driver installation, double-click or run “setup.exe” from a command line.<br>
+5. Reboot the VM.
 
 ### Verify driver installation
-1.	You can verify driver installation in Device Manager. The following example shows successful configuration of the Radeon Pro V710 card on an NVads V710 v5 VM. The exact driver date and version will depend on the driver package released.
+You can verify driver installation in Device Manager. The following example shows successful configuration of the Radeon Pro V710 card on an NVads V710 v5 VM. The exact driver date and version will depend on the driver package released.
 
 ![Diagram that shows successful configuration of the Radeon Pro V710 card on an Azure NVads V710 v5 VM.](./media/n-series-amd-driver-setup/v710-device-manager.jpg)
 
