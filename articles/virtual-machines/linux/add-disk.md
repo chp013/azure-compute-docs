@@ -117,7 +117,7 @@ nvme0n2     disk   50G
 
 The [azure-vm-utils](https://github.com/Azure/azure-vm-utils) package provides essential utilities and udev rules to optimize the Linux experience on Azure virtual machines. This package consolidates device management tools for SCSI, NVMe, MANA, and Mellanox devices, making disk identification and management more reliable and consistent across different VM configurations.
 
-See [azure-vm-utils](az-vm-utils.md) for additonal infromation including instructions for instllating the package incase it is not baked into the image.
+See [azure-vm-utils](azure-virtualmachine-utilities.md) for additonal infromation including instructions for instllating the package incase it is not baked into the image.
 
 Usee the following command to list NVMe controlled disks on the VM:
 ```bash
@@ -133,4 +133,4 @@ The output is similar to the following example:
 
 ## Next Steps
 
-- Format and mount the disks based on your requirements and use case, review isntructions for fromatting and mounting [temp disks](format-and-mount-temp-or-resource-disks-linux.md) and [remote disks](format-and-mount-remote-disks-linux.md).
+- Format and mount the disks based on your requirements and use case, review isntructions for fromatting and mounting [temp disks](formatting-mounting-temp-resource-disks-linux.md) and [remote disks](formatting-mounting-remote-disks-linux.md).
