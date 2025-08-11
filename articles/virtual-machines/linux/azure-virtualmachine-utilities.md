@@ -60,7 +60,7 @@ To ensure backward compatibility for disks using SCSI controllers, azure-vm-util
 
 ### Linux distribution support
 
-We are working with all endorsed distro partners to include az-vm-utils in their default images. The following distros and versions currently include it:
+The following distros and versions currently include az-vm-utils in their default images:
 
 | Distribution | Version |
 |--------|---------|
