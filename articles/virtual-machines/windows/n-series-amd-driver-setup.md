@@ -7,17 +7,48 @@ ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.collection: windows
 ms.topic: how-to
-ms.date: 04/13/2023
+ms.date: 05/05/2025
 ms.author: vikancha
-# Customer intent: As a cloud engineer, I want to install AMD GPU drivers on N-series VMs running Windows, so that I can ensure optimal performance and compatibility for GPU-based workloads in the Azure environment.
 ---
 
 # Install AMD GPU drivers on N-series VMs running Windows
 
 **Applies to:** Windows VMs :heavy_check_mark: Flexible scale sets 
 > [!NOTE]
-> The [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-windows.md) installs AMD GPU drivers on a NVv4-series, NGads V620 Series and NVadsV710_v5 Series. Install or manage the extension using the Azure portal or tools such as Azure PowerShell or Azure Resource Manager templates. See the [AMD GPU Driver Extension documentation](../extensions/hpccompute-amd-gpu-windows.md) for supported operating systems and deployment steps.
+> The [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-windows.md) installs AMD GPU drivers on a NVads V710 v5 Series, NGads V620 Series and NVv4-series. Install or manage the extension using the Azure portal or tools such as Azure PowerShell or Azure Resource Manager templates. See the [AMD GPU Driver Extension documentation](../extensions/hpccompute-amd-gpu-windows.md) for supported operating systems and deployment steps.
 > 
+## NVads V710 v5 Series ##
+To take advantage of the GPU capabilities of the new Azure NVads V710 v5 series VMs running Windows, AMD GPU drivers must be installed. The [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-windows.md) installs AMD GPU drivers on a NVads V710 v5-series VM. Install or manage the extension using the Azure portal or tools such as Azure PowerShell or Azure Resource Manager templates. See the [AMD GPU Driver Extension documentation](../extensions/hpccompute-amd-gpu-windows.md) for supported operating systems and deployment steps.
+
+If you choose to install AMD GPU drivers manually, this article provides supported operating systems, drivers, and installation and verification steps.
+
+Only GPU drivers published by Microsoft are supported on NVads V710 v5 series VMs. Don't install GPU drivers from any other source.
+
+For basic specs, storage capacities, and disk details, see [GPU Windows VM sizes](../sizes-gpu.md?toc=/azure/virtual-machines/windows/toc.json).
+
+| OS | Driver |
+| -------- |------------- |
+| Windows 10, Windows 11 64-bit 21H2, 22H2, 23H2<br/><br/>Windows 10 64-bit 21H2, 22H2, 20H2 <br/><br/> | [24.Q2](https://go.microsoft.com/fwlink/?linkid=2291063) (.exe) |
+| Windows Server 2022, Windows 11 EMS <br/><br/> | [24.Q2](https://go.microsoft.com/fwlink/?linkid=2292204) (.exe)|
+| Windows Server 2019, Windows 10 EMS <br/><br/> | [24.Q2](https://go.microsoft.com/fwlink/?linkid=2292402) (.exe)|
+
+### VM Creation
+Create the VMs using CLI. (Azure AMD GPU driver extensions don't support NVads V710 v5 Series during preview)
+- Review the [CLI VM creation documentation](/azure/virtual-machines/windows/quick-create-cli).
+
+### Driver installation
+1.	Connect by Remote Desktop to each NVads V710 v5-series VM.<br>
+2. Download the EXE file to a local drive.<br>
+3. If you need to uninstall the previous driver version, run "setup.exe -factoryresetinstall" from a command line. <br>
+4.	For a first-time driver installation, double-click or run “setup.exe” from a command line.<br>
+5. Reboot the VM.
+
+### Verify driver installation
+You can verify driver installation in Device Manager. The following example shows successful configuration of the Radeon Pro V710 card on an NVads V710 v5 VM. The exact driver date and version will depend on the driver package released.
+
+![Diagram that shows successful configuration of the Radeon Pro V710 card on an Azure NVads V710 v5 VM.](./media/n-series-amd-driver-setup/v710-device-manager.jpg)
+
+
 ## NGads V620 Series ##
 The AMD Software: Cloud Edition drivers must be installed to take advantage of the GPU capabilities of Azure NGads V620 Series VMs.
 
@@ -72,7 +103,7 @@ Previous supported driver versions for Windows builds up to 1909 are [20.Q4-1](h
  
 ### Driver installation
 > [!NOTE]
-   >  Follow these steps if you see "Error 184 - AMD Installer cannot cpontinue due to an unsupported Operating System" error on Windows 10 EMS / Windows 11 EMS.
+   >  Follow these steps if you see "Error 184 - AMD Installer cannot continue due to an unsupported Operating System" error on Windows 10 EMS / Windows 11 EMS.
    >  
    >  Go to C:\AMD\AMD Software Azure NVv4 Guest Driver 23Q3\Packages\Drivers\Display\WT6A_INF
    >  Right click and  install on the *.inf file.
@@ -103,12 +134,3 @@ Previous supported driver versions for Windows builds up to 1909 are [20.Q4-1](h
 3. If you're running Windows 10 build 1903 or higher, dxdiag shows no information in the 'Display' tab. Use the 'Save All Information' option at the bottom and the output file shows the information related to AMD MI25 GPU.
 
 ![GPU driver properties](./media/n-series-amd-driver-setup/dxdiag-details.png)
-
-## NVadsV710_v5 Series (In Preview) ##
-During the preview program manually download and install the following Windows drivers. Azure GPU driver extension will support the NVadsV710_v5 Series at GA.
-
-| OS | Driver |
-| -------- |------------- |
-| Windows 10, Windows 11 64-bit 21H2, 22H2, 23H2<br/><br/>Windows 10 64-bit 21H2, 22H2, 20H2 <br/><br/> | [24.Q2](https://go.microsoft.com/fwlink/?linkid=2291063) (.exe) |
-| Windows Server 2022, Windows 11 EMS <br/><br/> | [24.Q2](https://go.microsoft.com/fwlink/?linkid=2292204) (.exe)
-| Windows Server 2019, Windows 10 EMS <br/><br/> | [24.Q2](https://go.microsoft.com/fwlink/?linkid=2292402) (.exe)
