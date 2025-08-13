@@ -107,8 +107,47 @@ The HTTP probe has additional properties that you can set:
 * `host`: The host IP address to connect to.
 
 > [!NOTE]
-> Port and scheme is not supported for non-containerized applications. For this scenario please use **EndpointRef="EndpointName"** attribute. Replace 'EndpointName' with the name from the Endpoint defined in ServiceManifest.xml.
->
+> Port is not supported for non-containerized applications. For this scenario please use **EndpointRef="EndpointName"** attribute. Replace 'EndpointName' with the name from the Endpoint defined in ServiceManifest.xml.
+> If you use `EndpointRef` with an HTTP endpoint, the `scheme` attribute is optional as HTTP is the default. If you use `EndpointRef` with an HTTPS endpoint, you must explicitly set the `scheme` attribute to "https". Additionally, the `CertificateRef` attribute must be defined for HTTPS to secure the connection to the endpoint being probed.
+> ```xml
+>   <ServiceManifestImport>
+> ```
+>     <ServiceManifestRef ServiceManifestName="Stateless1Pkg" ServiceManifestVersion="1.0.0" />
+> ```
+>     <ConfigOverrides />
+> ```
+>     <Policies>
+> ```
+>       <EndpointBindingPolicy EndpointRef="ServiceEndpoint" CertificateRef="your.cert.name" />
+> ```
+>       <CodePackagePolicy CodePackageRef="Code">
+> ```
+>         <Probes>
+> ```
+>           <Probe Type="Readiness" FailureThreshold="10" SuccessThreshold="2" InitialDelaySeconds="600" PeriodSeconds="60" TimeoutSeconds="20">
+> ```
+>             <HttpGet Path="/" EndpointRef="ServiceEndpoint" Scheme="https">
+> ```
+>             </HttpGet>
+> ```
+>           </Probe>
+> ```
+>         </Probes>
+> ```
+>       </CodePackagePolicy>
+> ```
+>     </Policies>
+> ```
+>   </ServiceManifestImport>
+> ```
+> 
+> ```
+> <Certificates>
+> ```
+>   <EndpointCertificate X509FindType="FindBySubjectName" X509FindValue="your.cert.name" Name="your.cert.name" />
+> ```
+> </Certificates>
+> ```
 
 ### TCP probe
 
