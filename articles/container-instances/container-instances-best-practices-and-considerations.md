@@ -16,7 +16,7 @@ Azure Container Instances (ACI) allow you to package, deploy, and manage cloud a
 
 ## What to consider
 **IMPORTANT**
-> If you deploy your container group into a virtual network, you must use a NAT gateway for outbound connectivity. This is the only supported configuration for outbound connectivity from your container group in a virtual network. See <link to doc> for more information on how to configure this.
+> If you deploy your container group into a virtual network, you must use a NAT gateway for outbound connectivity. This is the only supported configuration for outbound connectivity from your container group in a virtual network. See [Configure a NAT gateway for static IP address for outbound traffic from a container group](./container-instances-nat-gateway.md) for more information on how to configure this.
 
 User’s credentials passed via command line interface (CLI) are stored as plain text in the backend. Storing credentials in plain text is a security risk; Microsoft advises customers to store user credentials in CLI environment variables to ensure they're encrypted/transformed when stored in the backend.
 
