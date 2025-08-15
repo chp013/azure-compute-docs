@@ -5,7 +5,7 @@ author: tanmaygore
 ms.service: azure-virtual-machines
 ms.subservice: gallery
 ms.topic: how-to
-ms.date: 09/08/2023
+ms.date: 08/14/2025
 ms.author: tagore
 ms.reviewer: jushiman
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
@@ -121,7 +121,7 @@ The output is similar to the VM example earlier.
 
 ---
 
-# Delete the VM Application
+## Delete the VM Application
 To delete the VM Application resource, you need to first delete all its versions. Deleting the application version causes deletion of the application version resource from Azure Compute Gallery and all its replicas. The application blob in Storage Account used to create the application version is unaffected. After deleting the application version, if any VM is using that version, then reimage operation on those VMs will fail. Use 'latest' keyword as the version number in the 'applicationProfile' instead of hard coding the version number to address this failure.  
 However if the application is deleted, then VM fails during reimage operation since there are no versions available for Azure to install. The VM profile needs to be updated to not use the VM Application. 
 
