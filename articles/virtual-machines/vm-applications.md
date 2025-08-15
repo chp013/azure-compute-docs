@@ -95,7 +95,7 @@ VM application versions are the deployable resources within the VM Application r
     "versionName": {
       "type": "string",
       "metadata": {
-        "description": "Must follow the format: major.minor.patch (e.g., 1.0.0)"
+        "description": "Must follow the format: major.minor.patch (Example: 1.0.0)"
       }
     },
     "location": {
@@ -151,19 +151,19 @@ VM application versions are the deployable resources within the VM Application r
     "installScript": {
       "type": "string",
       "metadata": {
-        "description": "Optional. Script to run to install the application. E.g. echo 'Installing application...'"
+        "description": "Optional. Script to run to install the application. Example: echo 'Installing application...'"
       }
     },
     "updateScript": {
       "type": "string",
       "metadata": {
-        "description": "Optional. Script to run to update the application. E.g. echo 'Updating application...'"
+        "description": "Optional. Script to run to update the application. Example: echo 'Updating application...'"
       }
     },
     "removeScript": {
       "type": "string",
       "metadata": {
-        "description": "Optional. Script to run to delete the application. E.g. echo 'Deleting application...'"
+        "description": "Optional. Script to run to delete the application. Example: echo 'Deleting application...'"
       }
     },
     "storageAccountType": {
@@ -469,7 +469,7 @@ The install/update/remove commands should be written assuming the application pa
 
 ### File naming
 
-When the application file gets downloaded to the VM, the file is renamed as "MyVmApp" and has no file extension (E.g., .exe, .msi). The VM is unaware of the file's original name and extension. 
+When the application file gets downloaded to the VM, the file is renamed as "MyVmApp" and has no file extension (For example .exe, .msi). The VM is unaware of the file's original name and extension. 
 
 Here are a few alternatives to navigate this issue:
 
@@ -898,3 +898,4 @@ $resultSummary | convertto-json -depth 5
 ## Next steps
 
 - Learn how to [create and deploy VM application packages](vm-applications-how-to.md).
+- Learn how to [manage and delete Azure VM Applications](vm-applications-manage.md).

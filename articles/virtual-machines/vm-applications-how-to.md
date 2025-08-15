@@ -51,7 +51,7 @@ There may be few operations required to be performed in the install script
 	Windows: `C:\Packages\Plugins\Microsoft.CPlat.Core.VMApplicationManagerWindows\1.0.16\Downloads\<application name>\<application version>`
    
 - **Unarchive application blob**
-	For archived application packages, it needs to be unarchived before installing the application. It is recommended to use .zip or .tar since most OS has built-in support for unarchiving these formats. For other formats, make sure the Guest OS provides support.     
+	For archived application packages, it needs to be unarchived before installing the application. It's recommended to use .zip or .tar since most OS has built-in support for unarchiving these formats. For other formats, make sure the Guest OS provides support.     
    
 - **(Optional) Set right execution policy and permissions**
 	After unarchiving, file permissions could be reset. It's a good practice to set the right permissions before executing the files.
@@ -59,7 +59,7 @@ There may be few operations required to be performed in the install script
 - **Convert the script to string**
    	The install script is passed as a string for the `install` property in the `publishingProfile` of Azure VM Application version resource. 
 
-Here is sample install scripts based on the file extension of the application blob
+Here are sample install scripts based on the file extension of the application blob
 #### [.TAR](#tab/TAR)
 ```bash
 #!/bin/bash
@@ -298,7 +298,7 @@ Script as string:
 
 #### 4. Create the delete script
 
-The delete script enables customers to define the delete operation for the application. **The delete script is provided as a string** and has a maximum character limit of 4,096 chars. The delete commands should be written assuming the application package and the configuration file are in the current directory.
+The delete script enables customers to define the delete operations for the application. **The delete script is provided as a string** and has a maximum character limit of 4,096 chars. The delete commands should be written assuming the application package and the configuration file are in the current directory.
 
 There may be few operations that delete script must perform. 
 
@@ -1195,7 +1195,7 @@ pipeline {
 ----
 
 ## Deploy the VM Apps
-One or more VM Applications can now be referenced in the `applicationProfile` of Azure VM or Azure VM Scale Sets. Azure then pulls the payload of the VM Application and install it on each VM using the provided install script. The `order` property defines the sequential order in which the VM Applications are installed on the VM. 
+One or more VM Applications can now be referenced in the `applicationProfile` of Azure VM or Azure VM Scale Sets. Azure then pulls the payload of the VM Application and installs it on each VM using the provided install script. The `order` property defines the sequential order in which the VM Applications are installed on the VM. 
 
 Refer [schema of applicationProfile of the VM / VMSS](vm-applications.md#deploy-azure-vm-applications) to learn more about each property. 
 								

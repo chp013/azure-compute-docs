@@ -1,6 +1,6 @@
 ---
-title: Manage, Update and Delete VM Application on Azure
-description: Learn how to manage, update and delete VM applications on Azure Virtual Machine (VM) and Virtual Machine Scale Sets (VMSS) using Azure Compute Gallery.
+title: Manage, Update, and Delete VM Application on Azure
+description: Learn how to manage, update, and delete VM applications on Azure Virtual Machine (VM) and Virtual Machine Scale Sets (VMSS) using Azure Compute Gallery.
 author: tanmaygore
 ms.service: azure-virtual-machines
 ms.subservice: gallery
@@ -13,7 +13,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 # Manage Azure VM Applications
 
-This article talks about how to monitor, update and delete deployed VM application resource on Azure Virtual Machine (VM) or Virtual Machine Scale Sets (VMSS).
+This article talks about how to monitor, update, and delete deployed VM application resource on Azure Virtual Machine (VM) or Virtual Machine Scale Sets (VMSS).
 
 ## Monitor the deployed VM Applications
 #### [Portal](#tab/portal5)
