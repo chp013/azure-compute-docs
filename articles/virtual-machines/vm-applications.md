@@ -48,28 +48,36 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 ## Create VM Applications & VM Applications version resource
 The VM application is stored in Azure Compute Gallery. The VM application resource defines the following about your VM application:
 
-| Property | Description |
-|----------|-------------|
-| name | Name of the application |
-| supportedOSType | Supported OS type like Linux or Windows |
-| description | A description of the VM application |
-| eula | Link to End User License Agreement |
+| Property | Description | Limitations |
+|----------|-------------|-------------|
+| name | Name of the application | Max length of 117 characters. Allowed characters are uppercase or lowercase letters, digits, hyphen(-), period (.), underscore (_). Names not allowed to end with period(.).|
+| supportedOSType | Define the upported OS type | "Linux" or "Windows" |
+| endOfLifeDate | A future end of life date for the application. The date is for reference only and isn't enforced. | |
+| description | Optional. A description of the VM application | |
+| eula | Optional. Reference to End User License Agreement (EULA) | |
+| privacyStatementUri | Optional. Reference to privacy statement for the application. | |
+| releaseNoteUri | Optional. Reference to release notes for the application. | |
 
 VM application versions are the deployable resources within the VM Application resource. Versions are defined with the following properties:
 
-| Property | Description |
-|----------|-------------|
-| mediaLink | Link to the application package file in a storage account |
-| defaultConfigurationLink | A link to the configuration file for the VM application, where you can include license files |
-| install | Install script as string to properly install the application |
-| remove | Remove script as string to properly remove the application |
-| update | Update script as string to properly update the VM application to a newer version |
-| packageFileName | Package file name to use when the package is downloaded to the VM. |
-| configFileName | Configuration file name to be use when the configuration is downloaded to the VM. |
-| targetRegions | Target regions for replication. Improves resiliency to region failure and create latency. |
-| regionalReplica | Number of replicas per region distributed across zones. Improves resiliency to region or cluster failure and create latency during high scale. |
-| excludeFromLatest | Exclude version from being used as the latest version of the application when 'latest' keyword is used in applicationProfile. |
-| endOfLifeDate | End-of-life dates are informational; VM Application version can be deployed past the end-of-life date. |
+| Property | Description | Limitations |
+|----------|-------------|-------------|
+| location | Source location for the VM Application version. | Valid Azure Region |
+| source/mediaLink | Link to the application package file in a storage account | Valid and existing storage url|
+| source/defaultConfigurationLink | Optional. A link to the configuration file for the VM application. It can be overridden at deployment time. | Valid and existing storage url |
+| manageActions/install | Install script as string to properly install the application | Valid command for the given OS in string format. |
+| manageActions/remove | Remove script as string to properly remove the application | Valid command for the given OS in string format |
+| manageActions/update | Optional. Update script as string to properly update the VM application to a newer version. | Valid command for the given OS in string format |
+| targetRegions/name | Name of target regions to which to replicate. Improves resiliency to region failure and create latency. | Valid Azure region |
+| targetRegions/regionalReplicaCount | Optional. The number of replicas to create in the region. Improves load handling and create latency. Defaults to 1. | Integer between 1 and 3 inclusive |
+| replicaCount | Optional. Defines the number of replicas across each region. Takes effect if regionalReplicaCount isn't defined. Improves resiliency to region or cluster failure and create latency during high scale. | Integer between 1 and 3 inclusive. |
+| endOfLifeDate | Optional. A future end of life date for the application version. This property is for customer reference only and isn't enforced. | Valid future date |
+| excludeFromLatest | Exclude version from being used as the latest version of the application when 'latest' keyword is used in applicationProfile. ||
+| storageAccountType | Optional. Type of storage account to use in each region for storing application package. Defaults to Standard_LRS. | This property is non-updatable. |
+| safetyProfile/allowDeletionOfReplicatedLocations | Optional. Indicates whether or not removing this Gallery Image Version from replicated regions is allowed.| |
+| settings/packageFileName | Package file name to use when the package is downloaded to the VM. | This is limited to 4,096 characters. |
+| settings/configFileName | Configuration file name to be use when the configuration is downloaded to the VM. | This is limited to 4,096 characters. |
+| settings/scriptBehaviorAfterReboot | Optional. The action to be taken for installing, updating, or removing gallery application after the VM is rebooted. | |
 
 #### [Template](#tab/template)
 ```json
@@ -251,12 +259,21 @@ After the VM Application version is published to Azure Compute Gallery, you can 
 
 The applicationProfile in Azure VM and VMSS defines the following:
 
-| Property | Description |
-|----------|-------------|
-| galleryApplications | Gallery Applications to deploy |
-| packageReferenceId | Reference to application version to deploy |
-| order | Order in which to deploy applications |
-| treatFailureAsDeploymentFailure | Mark application failure as VM deployment failure for failure handling |
+| Property | Description | Limitations |
+|----------|-------------|-------------|
+| galleryApplications | Gallery Applications to deploy | |
+| packageReferenceId | Reference to application version to deploy | Valid application version reference|
+| configurationReference | Optional. The full url of a storage blob containing the configuration for this deployment. This overrides any value provided for defaultConfiguration earlier. | Valid storage blob reference | 
+| order | Optional. Order in which to deploy applications | Valid integer |
+| treatFailureAsDeploymentFailure | Optional. Mark application failure as VM deployment failure for failure handling | True or False |
+
+The order field may be used to specify dependencies between applications. The rules for order are as follows:
+
+| Case | Install Meaning | Failure Meaning |
+|--|--|--|
+| No order specified | Unordered applications are installed after ordered applications. There's no guarantee of installation order among the unordered applications. | Installation failures of other applications, be it ordered or unordered doesn’t affect the installation of unordered applications. |
+| Duplicate order values | Application is installed in any order compared to other applications with the same order. All applications of the same order are installed after the ones with lower orders and before the ones with higher orders. | If a previous application with a lower order failed to install, no applications with this order install. If any application with this order fails to install, no applications with a higher order install. |
+| Increasing orders | Application will be installed after the ones with lower orders and before the ones with higher orders. | If a previous application with a lower order failed to install, this application doesn't install. If this application fails to install, no application with a higher order installs. |
 
 #### [Deploy on VMSS](#tab/VMSS)
 ```json
@@ -445,8 +462,8 @@ For more information on network egress, see [Bandwidth pricing](https://azure.mi
 
 The download location of the application package and the configuration files are:
 
-- Linux: `/var/lib/waagent/Microsoft.CPlat.Core.VMApplicationManagerLinux/<application name>/<application version> `
-- Windows: `C:\Packages\Plugins\Microsoft.CPlat.Core.VMApplicationManagerWindows\1.0.9\Downloads\<application name>\<application version> `
+- Linux: `/var/lib/waagent/Microsoft.CPlat.Core.VMApplicationManagerLinux/<application name>/<application version>`
+- Windows: `C:\Packages\Plugins\Microsoft.CPlat.Core.VMApplicationManagerWindows\1.0.9\Downloads\<application name>\<application version>`
 
 The install/update/remove commands should be written assuming the application package and the configuration file are in the current directory.
 
