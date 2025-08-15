@@ -27,7 +27,7 @@ To create and deploy applications on Azure VM, first package and upload your app
 #### 1. Package the application files
    - If your application installation requires a single file (.exe, .msi, .sh, .ps, etc.) then you can use it as is.
    - If your application installation requires multiple files (Executable file with configuration file, dependencies, manifest files, scripts, etc.), then you must archive it (using .zip, .tar, .tar.gz, etc.) into a single file.
-   - For microservice application, you can package and publish each microservice as a separate Azure VM Application. This facilitates application reusability, cross-team development, and sequential installation of microservices using `order` property in the [applicationProfile](#step-4-deploy-the-vm-apps).
+   - For microservice application, you can package and publish each microservice as a separate Azure VM Application. This facilitates application reusability, cross-team development, and sequential installation of microservices using `order` property in the [applicationProfile](#deploy-the-vm-apps).
      
 #### 2. (Optional) Package the application configuration file
    - You can optionally provide the configuration file separately. This reduces the overhead of archiving and unarchiving application packages. Configuration files can also be passed during app deployment enabling customized installation per VM.
@@ -41,7 +41,7 @@ There may be few operations required to be performed in the install script
 	The default command interpreter used by Azure are `/bin/bash` on Linux OS and `cmd.exe` on Windows OS. It's possible to use a different interpreter like Chocolatey or PowerShell, if its installed on the machine. Call the executable and pass the commands to it. E.g., `powershell.exe -command '<powershell command>'`. If you're using PowerShell, you need to be using version 3.11.0 of the Az.Storage module.
 
 - **(Optional) Rename application blob and configuration blob**
-	Azure can't retain the original file name and the file extensions. Therefore, the downloaded application file and the configuration file have a default name as "MyVMApp" and "MyVMApp-config" without a file extension. You can rename the file with the file extension using the install script or you can also pass the names in `packageFileName` and `configFileName` properties of the [`publishingProfile` of VM Application version resource](#step-3-create-the-vm-application). Azure will then use these names instead of default names while downloading the files. 
+	Azure can't retain the original file name and the file extensions. Therefore, the downloaded application file and the configuration file have a default name as "MyVMApp" and "MyVMApp-config" without a file extension. You can rename the file with the file extension using the install script or you can also pass the names in `packageFileName` and `configFileName` properties of the [`publishingProfile` of VM Application version resource](#create-the-vm-application). Azure will then use these names instead of default names while downloading the files. 
     
 - **(Optional) Move application and configuration blob to appropriate location**
 	Azure downloads the application blob and configuration blob to following locations. The install script must move the files to appropriate locations when necessary.
