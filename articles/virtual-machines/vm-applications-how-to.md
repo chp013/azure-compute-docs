@@ -15,11 +15,13 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 VM Application is a resource type in Azure Compute Gallery that simplifies management, sharing, and global distribution of applications for your virtual machines. [Learn more about VM Application](./vm-applications.md)
 
+To create and deploy applications on Azure VM, first package and upload your application to Azure Storage Account as a storage blob. Then create `Azure VM application` resource and `VM application version` resource referencing these storage blobs. Finally, deploy the application on any VM or VMSS by passing application reference in applicationProfile.
+
 ## Prerequisites
 1. Create [Azure storage account](/azure/storage/common/storage-account-create#create-a-storage-account) and [storage container](/azure/storage/blobs/blob-containers-portal#create-a-container). This container is used to upload your application files. It's recommended to use storage account with anonymous access disabled for added security. 
 1. Create [Azure Compute Gallery for storing and sharing application resources](create-gallery.md).
 
-## Step 1: Package the application
+## Package the application
 :::image type="content" source="media/vmapps/vm-application-folder-structure.png" alt-text="Screenshot showing the folder structure recommended for uploading and creating VM Applications.":::
 
 #### 1. Package the application files
@@ -307,7 +309,7 @@ There may be few operations that delete script must perform.
    	Delete residual applications files from the VM. For example, execute `Remove-Item -Path "$PWD\*" -Recurse -Force -ErrorAction SilentlyContinue` on Windows or `sudo rm -rf ./* ./.??*` on Linux.
 
 
-## Step 2: Upload the application files to Azure storage account
+## Upload the application files to Azure storage account
 
 #### 1. **[Upload your application and configuration files to a container](/azure/storage/blobs/storage-quickstart-blobs-portal) in an [Azure storage account](/azure/storage/common/storage-account-create)**.
    Your application can be stored in a block or page blob. If you choose to use a page blob, you need to byte align the files before you upload them. Use the following sample to byte align your file.
@@ -456,8 +458,10 @@ foreach ($file in $files) {
 [Upload application package and configuration files to Azure Storage Account using Portal](/azure/storage/blobs/storage-quickstart-blobs-portal)
 
 ---
-## Step 3: Create the VM Application
+## Create the VM Application
 To create the VM Application, first create the VM Application resource, which describes the application. Then create a VM Application Version resource within it, which contains the VM application payload and scripts to install, update, and delete the application. Payload is supplied using SAS URL to the blob container in Azure Storage Account. 
+
+Refer [schema for VM Application and VM Application version resource](vm-applications.md#create-vm-applications--vm-applications-version-resource) to learn more about each property. 
 
 #### [REST](#tab/rest3)
 
@@ -481,17 +485,6 @@ PUT
 }
 
 ```
-
-| Field Name | Description | Limitations |
-|--|--|--|
-| name | A unique name for the VM Application within the gallery. | Max length of 117 characters. Allowed characters are uppercase or lowercase letters, digits, hyphen(-), period (.), underscore (_). Names not allowed to end with period(.). |
-| supportedOSType | Define the supported OS Type. | "Windows" or "Linux" |
-| endOfLifeDate | A future end of life date for the application. The date is for reference only and isn't enforced. | Valid future date |
-| description | Optional. Description of the Application. |
-| eula | Optional. Reference to End-User License Agreement (EULA). |
-| privacyStatementUri | Optional. Reference to privacy statement for the application. |
-| releaseNoteUri | Optional. Reference to release notes for the application. |
-
 
 Create a VM application version using the ['create gallery application version API'](/rest/api/compute/gallery-applications).
 
@@ -537,24 +530,6 @@ PUT
 }
 
 ```
-
-| Field Name | Description | Limitations |
-|--|--|--|
-| location | Source location for the VM Application version. | Valid Azure region |
-| mediaLink | The url containing the application version package. | Valid and existing storage url |
-| defaultConfigurationLink | Optional. The url containing the default configuration, which may be overridden at deployment time. | Valid and existing storage url |
-| Install | The command to install the application. | Valid command for the given OS |
-| Remove | The command to remove the application. | Valid command for the given OS |
-| Update | Optional. The command to update the application. If not specified and an update is required, the old version is removed and the new one installed. | Valid command for the given OS |
-| targetRegions/name | The name of a region to which to replicate. | Validate Azure region |
-| targetRegions/regionalReplicaCount | Optional. The number of replicas in the region to create. Defaults to 1. | Integer between 1 and 3 inclusive |
-| replicaCount | Optional. Defines the number of replicas across each region. Takes effect if regionalReplicaCount isn't defined. | Integer between 1 and 3 inclusive |
-| endOfLifeDate | A future end of life date for the application version. This property is for customer reference only and isn't enforced. | Valid future date |
-| storageAccountType | Optional. Type of storage account to use in each region for storing application package. Defaults to Standard_LRS. | This property is nonupdatable. |
-| allowDeletionOfReplicatedLocations | Optional. Indicates whether or not removing this Gallery Image Version from replicated regions is allowed. | |
-| settings/scriptBehaviorAfterReboot | Optional. The action to be taken for installing, updating, or removing gallery application after the VM is rebooted. | | 
-| settings/configFileName | Optional. The name to assign the downloaded package file on the VM. If not specified, the package file is named the same as the Gallery Application name. | This is limited to 4,096 characters. |
-| settings/packageFileName | Optional. The name to assign the downloaded config file on the VM. If not specified, the config file is named as the Gallery Application name appended with '_config'. | This is limited to 4,096 characters. |
 
 #### [CLI](#tab/cli3)
 
@@ -1219,8 +1194,10 @@ pipeline {
 
 ----
 
-## Step 4: Deploy the VM Apps
+## Deploy the VM Apps
 One or more VM Applications can now be referenced in the `applicationProfile` of Azure VM or Azure VM Scale Sets. Azure then pulls the payload of the VM Application and install it on each VM using the provided install script. The `order` property defines the sequential order in which the VM Applications are installed on the VM. 
+
+Refer [schema of applicationProfile of the VM / VMSS](vm-applications.md#deploy-azure-vm-applications) to learn more about each property. 
 								
 #### [REST](#tab/rest4)
 
@@ -1276,22 +1253,6 @@ PUT
   "location": "{vm location}"
 }
 ```
-
-
-| Field Name | Description | Limitations |
-|--|--|--|
-| order | Optional. The order in which the applications should be deployed. | Validate integer |
-| packageReferenceId | A reference to the gallery application version. Use "latest" keyword for version to automatically install the latest available version. | Valid application version reference |
-| configurationReference | Optional. The full url of a storage blob containing the configuration for this deployment. This overrides any value provided for defaultConfiguration earlier. | Valid storage blob reference |
-| treatFailureAsDeploymentFailure | Optional. When enabled, app deployment failure causes VM provisioning status to report failed status. | True or False
-
-The order field may be used to specify dependencies between applications. The rules for order are as follows:
-
-| Case | Install Meaning | Failure Meaning |
-|--|--|--|
-| No order specified | Unordered applications are installed after ordered applications. There's no guarantee of installation order among the unordered applications. | Installation failures of other applications, be it ordered or unordered doesn’t affect the installation of unordered applications. |
-| Duplicate order values | Application is installed in any order compared to other applications with the same order. All applications of the same order are installed after the ones with lower orders and before the ones with higher orders. | If a previous application with a lower order failed to install, no applications with this order install. If any application with this order fails to install, no applications with a higher order install. |
-| Increasing orders | Application will be installed after the ones with lower orders and before the ones with higher orders. | If a previous application with a lower order failed to install, this application doesn't install. If this application fails to install, no application with a higher order installs. |
 
 The response includes the full VM model. The following are the
 relevant parts.
