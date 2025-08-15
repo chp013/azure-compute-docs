@@ -96,7 +96,7 @@ After you delete virtual machines resources, the following resources might conti
 - Bandwidth
 - Load balancer
 
-If your OS disk isn't deleted with your VM, it likely incurs [P10 disk costs](https://azure.microsoft.com/pricing/details/managed-disks/) even in a stopped state. The OS disk size is smaller by default for some images and incurs lower costs accordingly.
+If your OS disk isn't deleted with your VM, it continues to occur costs, even in a stopped state.
 
 For virtual networks, one virtual network is billed per subscription and per region. Virtual networks can't span regions or subscriptions. Setting up private endpoints in vNet setups may also incur charges.
 
