@@ -13,7 +13,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 # Manage Azure VM Applications
 
-This article talks about how to monitor, update, and delete the published VM Applicatoin and the deployed VM application resource on Azure Virtual Machine (VM) or Virtual Machine Scale Sets (VMSS).
+This article talks about how to monitor, update, and delete the published VM Application and the deployed VM application resource on Azure Virtual Machine (VM) or Virtual Machine Scale Sets (VMSS).
 
 ## View the published VM Applications
 #### [Portal](#tab/portal1)
@@ -25,14 +25,14 @@ To view the properties of a published VM Application in the Azure portal:
 4. Click the **VM Application Name** you want to view.
 5. The **Overview/Properties** blade displays information about the VM Application.
 6. The **Overview/Versions** blade displays all published versions and its basic properties like Target Regions, Provisioning state, and Replication state.
-7. Select a **specific version** to view its additional details.
+7. Select a **specific version** to view all its details.
 
 :::image type="content" source="media/vmapps/vm-applications-details-portal.png" alt-text="Screenshot showing VM Application properties & all versions in the Azure portal.":::
 
 :::image type="content" source="media/vmapps/vm-applications-version-details-portal.png" alt-text="Screenshot showing VM Application version properties in the Azure portal.":::
 
 #### [Rest](#tab/rest1)
-To view the properties of a published VM Application or a specific version using the REST API:
+View the properties of a published VM Application or a specific version using the REST API:
 
 **Get VM Application details:**
 ```rest
@@ -183,8 +183,9 @@ Get-AzGalleryApplicationVersion `
 ---
 
 ## Monitor the deployed VM Applications
+
 #### [Portal](#tab/portal2)
-To show the VM application status, go to the Extensions + applications tab/settings and check the status of the VMAppExtension:
+To show the VM application status, go to the **Extensions + applications** tab/settings and check the status of the VMAppExtension:
 
 :::image type="content" source="media/vmapps/select-app-status.png" alt-text="Screenshot showing VM application status.":::
 
@@ -229,6 +230,7 @@ The result looks like this:
     ]
 }
 ```
+
 The VM App status is in the status message of the result of the VM App extension in the instance view.
 
 To get the status for the application on the Virtual Machine Scale Set:
@@ -238,8 +240,6 @@ GET
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/ virtualMachineScaleSets/{VMSSName}/virtualMachines/{instanceId}/instanceView?api-version=2019-03-01
 ```
 The output is similar to the VM example earlier.
-
----
 
 #### [CLI](#tab/cli2)
 
@@ -287,19 +287,20 @@ $result | ForEach-Object {
 }
 $resultSummary | ConvertTo-Json -Depth 5
 ```
+---
 
 ## Remove the VM Application from Azure VM or VMSS
 
 #### [Portal](#tab/portal3)
 1. Open the Azure portal and go to the target virtual machine (VM) or virtual machine scale set (VMSS).
 2. In Settings, select **Extensions + applications**, then select the **VM Applications** tab.
-3. Click uninstall button on the VM Application to remove and Save.
+3. Click uninstall button on the VM Application and Save.
 4. Track progress in Notifications or check Instance view for the VMAppExtension status.
 
 :::image type="content" source="media/vmapps/vm-applications-delete-from-vm-portal.png" alt-text="Screenshot showing how to Uninstall VM application from a VM.":::
 
 #### [REST](#tab/rest3)
-Remove a VM application by updating the applicationProfile to clear (or exclude) the target app.
+To remove a VM application, update the applicationProfile by clearing (or excluding) the target app.
 
 Remove from a single VM:
 ```rest
@@ -343,7 +344,6 @@ Body
     "instanceIds": ["0", "1"]
 }
 ```
----
 
 #### [CLI](#tab/cli3)
 Remove from a single VM:
@@ -360,7 +360,6 @@ Apply the change to existing VMSS instances (Manual upgrade policy):
 ```azurecli-interactive
 az vmss update-instances -g myResourceGroup -n myVMss --instance-ids "*"
 ```
----
 
 #### [PowerShell](#tab/powershell3)
 Remove from a single VM:
@@ -385,22 +384,23 @@ Update-AzVmss -ResourceGroupName $rgName -VMScaleSetName $vmssName -VirtualMachi
 $instanceIds = (Get-AzVmssVM -ResourceGroupName $rgName -VMScaleSetName $vmssName).InstanceId
 Update-AzVmssInstance -ResourceGroupName $rgName -VMScaleSetName $vmssName -InstanceId $instanceIds
 ```
+---
 
 ## Delete the VM Application from Azure Compute Gallery
 To delete the VM Application resource, you need to first delete all its versions. Deleting the application version causes deletion of the application version resource from Azure Compute Gallery and all its replicas. The application blob in Storage Account used to create the application version is unaffected. 
 
 > [!WARNING]
-> After deleting the application version, subsequent PUT operations on VMs using that versoin will fail. Use 'latest' keyword as the version number in the 'applicationProfile' instead of hard coding the version number to address this failure.  
+> - Deleting the application version causes subsequent PUT operations on VMs using that version to fail. Use `latest` keyword as the version number in the `applicationProfile` instead of hard coding the version number to address this failure.  
 >
-> Deleting the VM application that is referenced by any VM or VMSS will cause subsequent PUT operations on those resources to fail (for example, update, scale, or reimage). Before deleting, ensure all VMs/VMSS instances stop using the application by removing it from their applicationProfile. 
+> - Deleting the VM application that is referenced by any VM or VMSS causes subsequent PUT operations on those resources to fail (for example, update, scale, or reimage). Before deleting, ensure all VMs/VMSS instances stop using the application by removing it from their applicationProfile. 
 >
->To prevent accidental deletion,  set `safetyProfile/allowDeletionOfReplicatedLocations` to `false` and apply an Azure Resource Manager lock (CanNotDelete or ReadOnly) on the VM application resource.
+>- To prevent accidental deletion,  set `safetyProfile/allowDeletionOfReplicatedLocations` to `false` while publishing the version and apply an Azure Resource Manager lock (CanNotDelete or ReadOnly) on the VM application resource.
 
 #### [Portal](#tab/portal4)
-1. Sign in to the Azure portal.
+1. Sign in to the [Azure portal](https://portal.azure.com).
 2. Search for Azure Compute Gallery and open the target gallery.
 3. Select the VM application you want to remove.
-4. Select one or more versions which you want to delete.
+4. Select one or more versions, which you want to delete.
 5. To delete the VM application, first delete all the versions. Then click delete (on top of the blade).
 6. Monitor Notifications for completion. If deletion is blocked, remove any locks and ensure no VM or scale set references the application.
 
@@ -444,4 +444,5 @@ Remove-AzGalleryApplication -ResourceGroupName $rgNmae -GalleryName $galleryName
 
 ## Next steps
 Learn more about [Azure VM Applications](vm-applications.md).
+
 Learn to [create Azure VM applications](vm-applications-how-to.md).
