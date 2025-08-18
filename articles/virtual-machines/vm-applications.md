@@ -4,7 +4,7 @@ description: Learn about Azure VM Applications in an Azure Compute Gallery used 
 ms.service: azure-virtual-machines
 ms.subservice: gallery
 ms.topic: concept-article
-ms.date: 03/14/2025
+ms.date: 08/18/2025
 author: ju-shim
 ms.author: gabsta
 ms.reviewer: jushiman

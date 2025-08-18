@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.collection: linux
 author: GabstaMSFT
 ms.author: jushiman
-ms.date: 10/31/2022
+ms.date: 08/18/2025
 ms.topic: how-to
 ms.reviewer: jushiman
 ms.custom: devx-track-azurepowershell, devx-track-azurecli, linux-related-content
@@ -36,18 +36,18 @@ The *updated* managed Run Command uses the same VM agent channel to execute scri
 > Older versions do not support Managed RunCommand
 
 ### Linux Distro’s Supported
-| **Linux Distro** | **x64** | **ARM64** |
-|:-----|:-----:|:-----:|
-| Alma Linux |	9.x+ |	Not Supported |
-| Debian |	10+ |	Not Supported |
-| Flatcar Linux |	3374.2.x+ |	Not Supported |
-| Azure Linux | 2.x | Not Supported |
-| openSUSE |	12.3+ |	Not Supported |
-| Oracle Linux |	6.4+, 7.x+, 8.x+ |	Not Supported |
-| Red Hat Enterprise Linux |	6.7+, 7.x+,  8.x+ |	Not Supported |
-| Rocky Linux |	9.x+ |	Not Supported |
-| SLES |	12.x+, 15.x+ |	Not Supported |
-| Ubuntu |	18.04+, 20.04+, 22.04+ |	Not Supported |
+| Publisher | Distribution | x64 | ARM64 |
+|:-----|:-----|:-----:|:-----:|
+| Alma Linux Community | Alma Linux | 8.x+, 9.x+ | 8.x+, 9.x+ |
+| Credativ | Debian | 10+ | 11.x+ |
+| Kinvolk | Flatcar Linux | 3374.2.x+ | 3374.2.x+ |
+| Microsoft | Azure Linux | 2.x | 2.x |
+| openSUSE Project | openSUSE | 12.3+ | *Not supported* |
+| Oracle | Oracle Linux | 6.4+, 7.x+, 8.x+ | *Not supported* |
+| Red Hat | Red Hat Enterprise Linux | 6.7+, 7.x+,  8.x+, 9.x+ | 8.6+, 9.0+ |
+| CIQ | Rocky Linux | 9.x+ | 9.x+ |
+| SUSE | SLES | 12.x+, 15.x+ | 15.x SP4+ |
+| Canonical | Ubuntu (LTS releases)| 18.04+, 20.04+, 22.04+, 24.04+ | 20.04+, 22.04+, 24.04+ |
 
 ## Available Commands
 | **CommandID** | **Description** |

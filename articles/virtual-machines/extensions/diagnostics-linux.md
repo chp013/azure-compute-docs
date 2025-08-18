@@ -7,7 +7,7 @@ ms.subservice: extensions
 ms.author: gabsta
 author: GabstaMSFT
 ms.collection: linux
-ms.date: 04/04/2023
+ms.date: 08/18/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli, linux-related-content
 ms.devlang: azurecli
 # Customer intent: "As an IT administrator managing Linux VMs, I want to configure the Linux diagnostic extension to collect metrics and logs, so that I can monitor system health and performance effectively."

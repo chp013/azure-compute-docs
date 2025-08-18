@@ -8,7 +8,7 @@ ms.custom: linux-related-content
 ms.author: gabsta
 author: GabstaMSFT
 ms.collection: linux
-ms.date: 02/03/2023
+ms.date: 08/18/2025
 # Customer intent: "As a Linux system administrator managing virtual machines in the cloud, I want to update the Azure Linux Agent on my VMs, so that I can ensure optimal performance and security compliance for my applications running in Azure."
 ---
 # How to update the Azure Linux Agent on a VM
@@ -315,7 +315,7 @@ sudo systemctl status walinuxagent
         ```
 
 > [!IMPORTANT]
-> Keep in consideration Oracle Linux 6.x is already EOL. Oracle Linux version 6.10 has available [ELS support](https://www.oracle.com/a/ocom/docs/linux/oracle-linux-extended-support-ds.pdf), which [will end on 07/2024](https://www.oracle.com/a/ocom/docs/elsp-lifetime-069338.pdf).
+> Keep in consideration Oracle Linux 6.x is already EOL. Oracle Linux version 6.10 has available [ELS support](https://www.oracle.com/a/ocom/docs/linux/oracle-linux-extended-support-ds.pdf), which [ended on 07/2024](https://www.oracle.com/a/ocom/docs/elsp-lifetime-069338.pdf).
 
 2. Then install the latest version of the Azure Linux Agent using the following command:
 

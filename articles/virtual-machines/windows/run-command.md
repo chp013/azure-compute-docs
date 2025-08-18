@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.collection: windows
 author: GabstaMSFT
 ms.author: jushiman
-ms.date: 12/02/2024
+ms.date: 08/18/2025
 ms.topic: how-to
 ms.reviewer: jushiman
 ms.custom: devx-track-azurecli

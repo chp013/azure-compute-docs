@@ -5,7 +5,7 @@ author: gabstamsft
 ms.service: azure-virtual-machines
 ms.subservice: gallery
 ms.topic: how-to
-ms.date: 09/08/2023
+ms.date: 08/18/2025
 ms.author: gabsta
 ms.reviewer: jushiman
 ms.custom: devx-track-azurepowershell, devx-track-azurecli

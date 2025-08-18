@@ -7,7 +7,7 @@ ms.subservice: extensions
 ms.author: gabsta
 author: GabstaMSFT
 ms.collection: linux
-ms.date: 04/12/2023
+ms.date: 08/18/2025
 ms.custom: GGAL-freshness822, devx-track-azurecli, devx-track-azurepowershell, linux-related-content
 # Customer intent: "As a Linux VM administrator, I want to reset access to my virtual machine using the VMAccess extension, so that I can manage administrative users and regain control when I lose access."
 ---
@@ -25,18 +25,18 @@ This article describes how to run the VMAccess Extension from the Azure CLI and 
 
 ### Supported Linux distributions
 
-| **Linux Distro** | **x64** | **ARM64** |
-|:-----|:-----:|:-----:|
-| Alma Linux |	9.x+ |	9.x+ |
-| Debian |	10+ |	11.x+ |
-| Flatcar Linux |	3374.2.x+ |	3374.2.x+ |
-| Azure Linux | 2.x | 2.x |
-| openSUSE |	12.3+ |	Not Supported |
-| Oracle Linux |	6.4+, 7.x+, 8.x+ |	Not Supported |
-| Red Hat Enterprise Linux |	6.7+, 7.x+,  8.x+ |	8.6+, 9.0+ |
-| Rocky Linux |	9.x+ |	9.x+ |
-| SLES |	12.x+, 15.x+ |	15.x SP4+ |
-| Ubuntu |	18.04+, 20.04+, 22.04+ |	20.04+, 22.04+ |
+| Publisher | Distribution | x64 | ARM64 |
+|:-----|:-----|:-----:|:-----:|
+| Alma Linux Community | Alma Linux | 8.x+, 9.x+ | 8.x+, 9.x+ |
+| Credativ | Debian | 10+ | 11.x+ |
+| Kinvolk | Flatcar Linux | 3374.2.x+ | 3374.2.x+ |
+| Microsoft | Azure Linux | 2.x | 2.x |
+| openSUSE Project | openSUSE | 12.3+ | *Not supported* |
+| Oracle | Oracle Linux | 6.4+, 7.x+, 8.x+ | *Not supported* |
+| Red Hat | Red Hat Enterprise Linux | 6.7+, 7.x+,  8.x+, 9.x+ | 8.6+, 9.0+ |
+| CIQ | Rocky Linux | 9.x+ | 9.x+ |
+| SUSE | SLES | 12.x+, 15.x+ | 15.x SP4+ |
+| Canonical | Ubuntu (LTS releases)| 18.04+, 20.04+, 22.04+, 24.04+ | 20.04+, 22.04+, 24.04+ |
 
 ### Tips
 * VMAccess was designed for regaining access to a VM given that access is lost. Based on this principle, it grants sudo permission to account specified in the username field. If you don't wish a user to gain sudo permissions, log in to the VM and use built-in tools (for example, usermod, chage, etc.) to manage unprivileged users.
