@@ -78,25 +78,25 @@ c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
 > The Virtual Function Device ID 7461 confirms that the Virtual Machine is configured with the AMD Radeon PRO V710 GPU.
 - **Disable amdgpu driver**
 
-  Before installing the latest AMD Linux driver, you should disable or blocklist the default AMD GPU driver found in Linux distributions like Ubuntu or RHEL. This default driver is not certified for use with the **AMD Radeon PRO V710 GPU** on an **NVv5-V710 GPU** Linux instance. Instead, use the driver optimized for Azure **NVv5-V710 GPU** workloads.
-
+  Before installing the latest AMD Linux driver, you should disable or blacklist the default AMD GPU driver found in Linux distributions like Ubuntu or RHEL. This default driver is not certified for use with the **AMD Radeon PRO V710 GPU** on an **NVv5-V710 GPU** Linux instance. Instead, use the driver optimized for Azure **NVv5-V710 GPU** workloads.
+  
 - **Verify for driver disable**
 
   Verify if the amdgpu driver is already disabled, using the command: ```bash $ grep amdgpu /etc/modprobe.d/* -rn```
-If the driver is blocklisted, you don't need to modify anything else. However, be cautious with entries that start with #blacklist amdgpu as it indicates that the driver isn't blocklisted.
-
+  If the driver is blacklisted, you don't need to modify anything else. However, be cautious with entries that start with #blacklist amdgpu as it indicates that the driver isn't blacklisted.
+  
 - **Disable the amdgpu driver**
 
-  To install the latest driver, you need to blocklist the default amdgpu driver. Follow these steps:
-
+  To install the latest driver, you need to blacklist the default amdgpu driver. Follow these steps:
+  
   * Edit the `/etc/modprobe.d/blacklist.conf` file to include the amdgpu driver, using `$ blacklist amdgpu`
-  * Apply the changes using `$ sudo update-initramfs -uk all` to ensure that the changes take effect and the driver is properly blocklisted.
-
+  * Apply the changes using `$ sudo update-initramfs -uk all` to ensure that the changes take effect and the driver is properly blacklisted.
+    
 - **Reboot**
 
-  After restarting the VM, the default amdgpu driver in Ubuntu Linux distributions should not load because it has been blocklisted. Confirm that the driver isn't loaded, using: `$ lsmod | grep amdgpu` to check if the amdgpu driver is loaded.
-  If there is no output, it means the driver isn't loaded, and you can proceed. However, if the driver is still loaded, return to the previous step to double-check that the amdgpu driver was correctly blocklisted.
-
+  After restarting the VM, the default amdgpu driver in Ubuntu Linux distributions should not load because it has been blacklisted. Confirm that the driver isn't loaded, using: `$ lsmod | grep amdgpu` to check if the amdgpu driver is loaded.
+  If there is no output, it means the driver isn't loaded, and you can proceed. However, if the driver is still loaded, return to the previous step to double-check that the amdgpu driver was correctly blacklisted.
+  
 ### 4. AMD Driver Installation
 #### 4a Installation
 
@@ -156,12 +156,14 @@ $ sudo dmesg | grep amdgpu
 
 #### 4c Enable the driver
 
-To automatically load the `amdgpu` driver on every reboot of the VM, we need to remove any blocklist entry that is preventing it from loading automatically.
-* Search for any file that containing blocklisted amdgpu, using `$ grep amdgpu /etc/modprobe.d/* -rn`. The output must render a string similar to <br>
+To automatically load the `amdgpu` driver on every reboot of the VM, we need to remove any blacklist entry that is preventing it from loading automatically.
+
+* Search for any file that containing blacklisted amdgpu, using `$ grep amdgpu /etc/modprobe.d/* -rn`. The output must render a string similar to <br>
 */etc/modprobe.d/blacklist.conf:10:blacklist amdgpu*
-* Remove the blocklist from the listed file, using `$ sudo nano /etc/modprobe.d/blacklist.conf` and delete the line with *blacklist amdgpu*.
+* Remove the blacklist from the listed file, using `$ sudo nano /etc/modprobe.d/blacklist.conf` and delete the line with *blacklist amdgpu*.
 * Update the initramfs to apply changes on the next boot, using `$ sudo update-initramfs -uk all`
-* Reboot the system to load the updated configuration using `$ sudo reboot`. After rebooting, ensure that amdgpu driver isn't blocklisted and it's available for use.
+* Reboot the system to load the updated configuration using `$ sudo reboot`. After rebooting, ensure that amdgpu driver isn't blacklisted and it's available for use.
+
 * Run AMD-SMI to confirm the driver is loaded successfully using `$ amd-smi monitor` <br>
 ```bash
 GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UTIL  ENC_CLOCK  DEC_UTIL  DEC_CLOCK     THROTTLE  SINGLE_ECC  DOUBLE_ECC  PCIE_REPLAY  VRAM_USED  VRAM_TOTAL   PCIE_BW 
@@ -332,7 +334,7 @@ Be careful with entries that start with #blacklist amdgpu –  this indication m
 
 
 ##### Disable the amdgpu Driver
- If the `amdgpu` driver is **not already blocklisted** follow the steps to blacklist it.
+ If the `amdgpu` driver is **not already blacklisted** follow the steps to blacklist it.
 
 Open the /etc/modprobe.d/blacklist.conf file to edit:
 ```bash 
