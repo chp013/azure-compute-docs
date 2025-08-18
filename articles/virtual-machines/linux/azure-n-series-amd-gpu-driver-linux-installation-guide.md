@@ -301,7 +301,7 @@ $ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 
 #### 4.5 Verifying GPU Card in Linux&reg;
 
-The output should the GPU card.
+The output should have the GPU card.
 
 ```Bash
 $ sudo lspci -d 1002:7461
