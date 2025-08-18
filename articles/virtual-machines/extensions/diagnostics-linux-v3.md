@@ -13,6 +13,16 @@ ms.devlang: azurecli
 # Customer intent: "As a system administrator managing Linux virtual machines in Azure, I want to configure the Linux diagnostic extension 3.0, so that I can effectively monitor performance metrics and log events for proactive management and troubleshooting."
 ---
 
+# Use Linux diagnostic extension 3.0 to monitor metrics and logs
+
+> [!CAUTION]
+> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
+
+This document describes version 3.0 and newer of the Linux diagnostic extension (LAD).
+
+> [!IMPORTANT]
+> For information about version 2.3 and earlier, see [Monitor the performance and diagnostic data of a Linux VM](/previous-versions/azure/virtual-machines/linux/classic/diagnostic-extension-v2).
+
 > [!IMPORTANT]
 > ### Migrate from Azure Diagnostic extension
 > 
@@ -37,16 +47,6 @@ ms.devlang: azurecli
 > This produces results similar to the following:
 > 
 > :::image type="content" source="/azure/azure-monitor/agents/media/diagnostics-extension-overview/query-results.png" lightbox="/azure/azure-monitor/agents/media/diagnostics-extension-overview/query-results.png#lightbox" alt-text="Screenshot showing the results of a sample Azure Resource Graph Query.":::
-
-# Use Linux diagnostic extension 3.0 to monitor metrics and logs
-
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
-
-This document describes version 3.0 and newer of the Linux diagnostic extension (LAD).
-
-> [!IMPORTANT]
-> For information about version 2.3 and earlier, see [Monitor the performance and diagnostic data of a Linux VM](/previous-versions/azure/virtual-machines/linux/classic/diagnostic-extension-v2).
 
 ## Introduction
 
