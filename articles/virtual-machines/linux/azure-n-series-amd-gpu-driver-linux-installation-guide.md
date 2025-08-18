@@ -24,6 +24,8 @@ ms.author: padmalathas
 
 To utilize the GPU capabilities of the new Azure *NVads V710-series VMs* running Linux, you need to install the AMD GPU drivers. The [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-linux.md) simplifies the installation process for AMD GPU drivers on *NVv710-series VMs*. You can manage this extension through the Azure portal, Azure PowerShell, or Azure Resource Manager(ARM) templates. For detailed information on supported operating systems and deployment steps, see [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-linux.md) documentation.
 
+The [marketplace image](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/amdinc1746636494855.nvv5_v710_linux_rocm_image?tab=Overview) is preloaded with the AMD GPU driver and can speed up the process when bringing up the VM. 
+
 This article outlines the supported operating systems, drivers, and provides installation and verification steps for **Ubuntu**.
 
 ### ROCm
@@ -33,51 +35,47 @@ Here are the steps for installing the AMD Linux Driver to harness the capabiliti
 ## Step1: Linux Driver Installation
 - **Supported Linux Distros**
 
-Verify if the system is running [supported Linux version](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#supported-distributions) using `$ cat /etc/*release`, and the output should return the string similar to:
-`DISTRIB_ID=Ubuntu` <br> `DISTRIB_RELEASE=XX` <br> `DISTRIB_CODENAME=jammy` <br> `DISTRIB_DESCRIPTION="Ubuntu"` <br> `PRETTY_NAME="Ubuntu LTS"` <br>
+Confirm the system has a supported Linux version. 
+
+To obtain the Linux distribution information, use the following command: 
+
+
+```
+$ cat /etc/*release
+
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=XX
+DISTRIB_CODENAME=jammy
+DISTRIB_DESCRIPTION="Ubuntu"
+PRETTY_NAME="Ubuntu LTS" 
+```
+
+Confirm that your Linux distribution matches a [supported distribution](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#supported-distributions). 
 
 - **Supported Linux Kernel**
 
-Verify if the Linux OS is running [supported kernel version](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#supported-distributions) using `$ uname -srmv`, and the output should return the string similar to: <br>
-`Linux 5.XX.0-XX-generic #86-Ubuntu SMP Mon Jul 10 16:07:21 UTC 2023 x86_64`
- 
+To check the kernel version of your Linux system, type the following command: 
+
+
+```
+$ uname -srmv
+
+Linux 5.XX.0-XX-generic #86-Ubuntu SMP Mon Jul 10 16:07:21 UTC 2023 x86_64
+```
 
 ## Step2: Pre-configuration
->[!Note]
+> [!Note]
 > The disk size must be greater than 64GB to ensure optimal performance and compatibility.
-- **Updated package list**
-
-  Verify if system is running current versions of packages and their dependencies, using <br>
-  `$ sudo apt update`
-
-- **Python setuptools and wheel**
-
-  Verify if the system has essential Python packages for building and distributing, using <br>
-  `$ sudo apt install python3-setuptools python3-wheel`
-
-- **Group permissions**
-
-  Verify if you are part of the render and video group using <br>
-  `$ sudo usermod -a -G render,video $LOGNAME`
-
-- **Kernel headers and development packages**
-
-  The driver package uses Dynamic Kernel Module Support (DKMS) to build the amdgpu-dkms module for installed kernels. This process requires installing Linux kernel headers and modules for each kernel. The kernel automatically installs these packages. However, if you use multiple kernel versions or download kernel images without the meta-packages, you need to install them manually using <br>
-  `$ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"`
 
 - **Verify the GPU card**
 
-  Verify the output of the GPU card, using <br>
-  `$ sudo lspci -d 1002:7461` <br> 
-   c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
+Verify the output of the GPU card, using
 
+`$ sudo lspci -d 1002:7461` 
+
+c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
 > [!NOTE]
 > The Virtual Function Device ID 7461 confirms that the Virtual Machine is configured with the AMD Radeon PRO V710 GPU.
-
-- **Virtual machine update**
-
-  Run the update on NVv5-V710 GPU Linux instance running Ubuntu 22.04 OS, using `sudo apt update`
-
 - **Disable amdgpu driver**
 
   Before installing the latest AMD Linux driver, you should disable or blocklist the default AMD GPU driver found in Linux distributions like Ubuntu or RHEL. This default driver is not certified for use with the **AMD Radeon PRO V710 GPU** on an **NVv5-V710 GPU** Linux instance. Instead, use the driver optimized for Azure **NVv5-V710 GPU** workloads.
