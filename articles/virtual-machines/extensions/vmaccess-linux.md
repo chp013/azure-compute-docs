@@ -19,7 +19,7 @@ The VMAccess Extension is used to manage administrative users, configure SSH, an
 This article describes how to run the VMAccess Extension from the Azure CLI and through an Azure Resource Manager template. This article also provides troubleshooting steps for Linux systems.
 
 > [!NOTE]
-> If you use the VMAccess extension to reset the password of your VM after you install the Microsoft Entra Login extension, rerun the Microsoft Entra Login extension to re-enable Microsoft Entra Login for your VM.
+> If you use the VMAccess extension to reset the password of your VM after you install the Microsoft Entra sign-in extension, rerun the Microsoft Entra sign-in extension to re-enable Microsoft Entra sign-in for your VM.
 
 ## Prerequisites
 
@@ -39,7 +39,7 @@ This article describes how to run the VMAccess Extension from the Azure CLI and 
 | Canonical | Ubuntu (LTS releases)| 18.04+, 20.04+, 22.04+, 24.04+ | 20.04+, 22.04+, 24.04+ |
 
 ### Tips
-* VMAccess was designed for regaining access to a VM given that access is lost. Based on this principle, it grants sudo permission to account specified in the username field. If you don't wish a user to gain sudo permissions, log in to the VM and use built-in tools (for example, usermod, chage, etc.) to manage unprivileged users.
+* VMAccess was designed for regaining access to a VM given that access is lost. Based on this principle, it grants sudo permission to account specified in the username field. If you don't wish a user to gain sudo permissions, sign-in to the VM and use built-in tools (for example, usermod, change, etc.) to manage unprivileged users.
 * You can only have one version of the extension applied to a VM. To run a second action, update the existing extension with a new configuration.
 * During a user update, VMAccess alters the `sshd_config` file and takes a backup of it beforehand. It changes `ChallengeResponseAuthentication` to `no` and `PasswordAuthentication` to `yes`. To restore the original backed-up SSH configuration, run VMAccess with `restore_backup_ssh` set to `True`.
 
@@ -115,7 +115,7 @@ The JSON configuration for a virtual machine extension must be nested inside the
 
 ### Using Azure CLI VM user commands
 
-The following CLI commands under [az vm user](/cli/azure/vm/user) use the VMAccess Extension. To use these commands, you need to [install the latest Azure CLI](/cli/azure/install-az-cli2) and sign in to an Azure account by using [az login](/cli/azure/reference-index).
+The following CLI commands under [az vm user](/cli/azure/vm/user) use the VMAccess Extension. To use these commands, you need to [install the latest Azure CLI](/cli/azure/install-az-cli2) and sign in to an Azure account by using [az sign-in](/cli/azure/reference-index).
 
 #### Update SSH key
 
