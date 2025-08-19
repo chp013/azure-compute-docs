@@ -107,8 +107,7 @@ Performance for each disk role works differently. To learn more about how perfor
 
 Every virtual machine has one attached OS disk. This disk has a preinstalled operating system, which you selected when creating the VM. This disk contains the boot volume.
 
-> [!NOTE]
-> On September 8, 2028, the ability to use Standard HDD disks as [OS disks](managed-disks-overview.md#os-disk) will be retired. To learn more, see [Migrate your Standard HDD OS disks by September 08, 2028](disks-hdd-os-retirement.md)
+[!INCLUDE [disks-hdd-os-statement](includes/disks-hdd-os-statement.md)]
 
 Generally, you should store only your OS information on the OS disk. The [data disk](#data-disk) is where you should store all applications and data. If cost is a concern, you can use the OS disk instead of creating a data disk.
 
