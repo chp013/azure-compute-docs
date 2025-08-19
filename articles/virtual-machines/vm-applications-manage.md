@@ -1,6 +1,6 @@
 ---
-title: Manage, Update, and Delete VM Application on Azure
-description: Learn how to manage, update, and delete VM applications on Azure Virtual Machine (VM) and Virtual Machine Scale Sets (VMSS) using Azure Compute Gallery.
+title: Manage, Update, and Delete VM Applications on Azure
+description: Learn how to manage, update, and delete VM applications on Azure Virtual Machine (VM) and Virtual Machine Scale Sets using Azure Compute Gallery.
 author: tanmaygore
 ms.service: azure-virtual-machines
 ms.subservice: gallery
@@ -13,7 +13,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 # Manage Azure VM Applications
 
-This article talks about how to monitor, update, and delete the published VM Application and the deployed VM application resource on Azure Virtual Machine (VM) or Virtual Machine Scale Sets (VMSS).
+This article talks about how to monitor, update, and delete the published VM Application and the deployed VM application resource on Azure Virtual Machine (VM) or Virtual Machine Scale Sets.
 
 ## View the published VM Applications
 #### [Portal](#tab/portal1)
@@ -189,7 +189,7 @@ To show the VM application status, go to the **Extensions + applications** tab/s
 
 :::image type="content" source="media/vmapps/select-app-status.png" alt-text="Screenshot showing VM application status.":::
 
-To show the VM application status for scale set, go to the Azure portal Virtual Machine Scale Sets page, then the Instances section, select one of the scales sets listed, then go to **VMAppExtension**:
+To show the VM application status for a scale set, go to the Azure portal Virtual Machine Scale Sets page. In the Instances section, select one of the scales sets listed, then go to **VMAppExtension**:
 
 :::image type="content" source="media/vmapps/select-apps-status-vmss-portal.png" alt-text="Screenshot showing virtual machine scale sets application status.":::
 
@@ -292,7 +292,7 @@ $resultSummary | ConvertTo-Json -Depth 5
 ## Remove the VM Application from Azure VM or VMSS
 
 #### [Portal](#tab/portal3)
-1. Open the Azure portal and go to the target virtual machine (VM) or virtual machine scale set (VMSS).
+1. Open the Azure portal and go to the target virtual machine (VM) or Virtual Machine Scale Set.
 2. In Settings, select **Extensions + applications**, then select the **VM Applications** tab.
 3. Click uninstall button on the VM Application and Save.
 4. Track progress in Notifications or check Instance view for the VMAppExtension status.
@@ -300,7 +300,7 @@ $resultSummary | ConvertTo-Json -Depth 5
 :::image type="content" source="media/vmapps/vm-applications-delete-from-vm-portal.png" alt-text="Screenshot showing how to Uninstall VM application from a VM.":::
 
 #### [REST](#tab/rest3)
-To remove a VM application, update the applicationProfile by clearing (or excluding) the target app.
+To remove a VM application, update the `applicationProfile` by clearing or excluding the target application.
 
 Remove from a single VM:
 ```rest

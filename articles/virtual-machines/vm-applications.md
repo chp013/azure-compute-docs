@@ -1,6 +1,6 @@
 ---
 title: Overview of VM Applications in the Azure Compute Gallery
-description: Learn about Azure VM Applications in Azure Compute Gallery used to create and deploy applications on Azure Virtual Machines & Scale Sets.
+description: Learn about Azure VM Applications in Azure Compute Gallery used to create and deploy applications on Azure Virtual Machines and Virtual Machine Scale Sets.
 ms.service: azure-virtual-machines
 ms.subservice: gallery
 ms.topic: concept-article
@@ -26,7 +26,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 
 ## Key Benefits: 
 - **Centralized and Flexible Application Management**: 
-  - Package Anything Once, Deploy Anywhere: Package applications (windows / linux), scripts, or files as VM Applications. Then deploy it across Azure VM or VMSS, and manage them centrally in Azure Compute Gallery. Applications or files could be in .zip, .msi, .exe, .tar.gz, .deb, .rpm, .sh or any other format.
+  - Package Anything Once, Deploy Anywhere: Package applications (windows / linux), scripts, or files as VM Applications. Then deploy it across Azure VMs or VM scale sets, and manage them centrally in Azure Compute Gallery. Applications or files could be in .zip, .msi, .exe, .tar.gz, .deb, .rpm, .sh, or any other format.
   - Version Control: Deploy either the latest or a specific version by maintaining multiple versions of each application. 
 - **Seamless Sharing and Access Control**
   - Tenant-Wide Sharing: Share applications within teams or across your entire organization (tenant).
@@ -255,9 +255,9 @@ VM application versions are the deployable resources within the VM Application r
 ---
 
 ## Deploy Azure VM Applications
-After the VM Application version is published to Azure Compute Gallery, you can deploy the version across Azure Virtual Machines (VM) and Azure Virtual Machine Scale Sets (VMSS). 
+After the VM Application version is published to Azure Compute Gallery, you can deploy the version across Azure Virtual Machines (VM) and Azure Virtual Machine Scale Sets. 
 
-The applicationProfile in Azure VM and VMSS defines the following:
+The `applicationProfile` in Azure VM and VM scale sets defines the following:
 
 | Property | Description | Limitations |
 |----------|-------------|-------------|
@@ -275,7 +275,7 @@ The order field may be used to specify dependencies between applications. The ru
 | Duplicate order values | Application is installed in any order compared to other applications with the same order. All applications of the same order are installed after the ones with lower orders and before the ones with higher orders. | If a previous application with a lower order failed to install, no applications with this order install. If any application with this order fails to install, no applications with a higher order install. |
 | Increasing orders | Application will be installed after the ones with lower orders and before the ones with higher orders. | If a previous application with a lower order failed to install, this application doesn't install. If this application fails to install, no application with a higher order installs. |
 
-#### [Deploy on VMSS](#tab/VMSS)
+#### [Deploy on VM scale sets](#tab/VMSS)
 ```json
 
 {

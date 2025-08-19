@@ -15,7 +15,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 VM Application is a resource type in Azure Compute Gallery that simplifies management, sharing, and global distribution of applications for your virtual machines. [Learn more about VM Application](./vm-applications.md)
 
-To create and deploy applications on Azure VM, first package and upload your application to Azure Storage Account as a storage blob. Then create `Azure VM application` resource and `VM application version` resource referencing these storage blobs. Finally, deploy the application on any VM or VMSS by passing application reference in applicationProfile.
+To create and deploy applications on Azure VM, first package and upload your application to Azure Storage Account as a storage blob. Then create `Azure VM application` resource and `VM application version` resource referencing these storage blobs. Finally, deploy the application on any VM or Virtual Machine Scale Set by passing application reference in `applicationProfile`.
 
 ## Prerequisites
 1. Create [Azure storage account](/azure/storage/common/storage-account-create#create-a-storage-account) and [storage container](/azure/storage/blobs/blob-containers-portal#create-a-container). This container is used to upload your application files. It's recommended to use storage account with anonymous access disabled for added security. 
@@ -298,7 +298,7 @@ Script as string:
 
 #### 4. Create the delete script
 
-The delete script enables customers to define the delete operations for the application. **The delete script is provided as a string** and has a maximum character limit of 4,096 chars. The delete commands should be written assuming the application package and the configuration file are in the current directory.
+The delete script enables you to define the delete operations for the application. The delete script is provided as a string and has a maximum character limit of 4,096 characters. Write the delete commands assuming the application package and the configuration file are in the current directory.
 
 There may be few operations that delete script must perform. 
 
@@ -1197,7 +1197,7 @@ pipeline {
 ## Deploy the VM Apps
 One or more VM Applications can now be referenced in the `applicationProfile` of Azure VM or Azure VM Scale Sets. Azure then pulls the payload of the VM Application and installs it on each VM using the provided install script. The `order` property defines the sequential order in which the VM Applications are installed on the VM. 
 
-Refer [schema of applicationProfile of the VM / VMSS](vm-applications.md#deploy-azure-vm-applications) to learn more about each property. 
+Refer [schema of applicationProfile of the VM / Virtual Machine Scale Set](vm-applications.md#deploy-azure-vm-applications) to learn more about each property. 
 								
 #### [REST](#tab/rest4)
 
