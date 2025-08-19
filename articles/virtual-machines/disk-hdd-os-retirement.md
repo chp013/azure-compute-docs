@@ -13,14 +13,14 @@ ms.author: rogarana
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
-On September 8th, 2028, Standard HDD disks can no longer be able to be used as OS disks. At that time, all Standard HDD disks being used as OS disks will be automatically converted to Standard SSD disks. To avoid potential service disruption, you should convert your Standard HDD disks being used as OS disks to either Standard SSD or Premium SSD disks.
+On September 8, 2028, Standard HDD disks can no longer be able to be used as OS disks. At that time, all Standard HDD disks being used as OS disks will be automatically converted to Standard SSD disks. To avoid potential service disruption, you should convert your Standard HDD disks being used as OS disks to either Standard SSD or Premium SSD disks.
 
 If you're using Standard HDD as OS disks, begin planning a migration now. Generally, Standard SSD provides the closest price to performance ratio as Standard HDD disks. If you need higher performance, migrate to Premium.
 
 ## How does this affect me?
 
-- After September 30th, 2026, you won't be able to configure or deploy new Standard HDD disks as OS disks
-- After September 8th, 2028, any existing virtual machines using Standard HDDs as their OS disks will automatically be converted to a Standard SSD of an equivalent size. Workloads on these disks may experience a service disruption if they're not migrated before September 8th, 2028.
+- After September 30, 2026, you won't be able to configure or deploy new Standard HDD disks as OS disks
+- After September 8, 2028, any existing virtual machines using Standard HDDs as their OS disks will automatically be converted to a Standard SSD of an equivalent size. Workloads on these disks may experience a service disruption if they're not migrated before September 8, 2028.
 
 ## What is being retired?
 
