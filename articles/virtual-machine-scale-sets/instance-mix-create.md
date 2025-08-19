@@ -5,13 +5,23 @@ author: brittanyrowe
 ms.author: brittanyrowe
 ms.topic: concept-article
 ms.service: azure-virtual-machine-scale-sets
-ms.date: 06/10/2025
+ms.date: 08/19/2025
 ms.reviewer: jushiman
 # Customer intent: As a cloud administrator, I want to create a virtual machine scale set using instance mix, so that I can optimize resource allocation with different VM sizes based on my application requirements.
 ---
 
 # Create a scale set using instance mix
-The article walks through how to deploy a scale set using instance mix, using different virtual machine (VM) sizes and an allocation strategy.
+This article shows how to create a Virtual Machine Scale Set (VMSS) that uses instance mix, a way to specify multiple VM sizes for a single scale set and control how Azure chooses sizes at provisioning time via an allocation strategy.
+
+## Before you begin
+Make sure you have the following in place before you create an instance mix scale set:
+
+- You intend to deploy a scale set that uses Flexible orchestration mode.
+- Consistent VM characteristics across selected sizes: same CPU architecture (x64 or Arm64), compatible disk interface (SCSI vs. NVMe), and compatible security profile.
+- Sufficient quota for each VM size in the target subscription and region.
+- Choose a region that supports the VM sizes you want to include.
+- (CLI users) Azure CLI 2.66.0 or later is recommended. For PowerShell, use the latest `Az.Compute` module.
+
 
 ## Create a scale set using instance mix
 ### [Azure portal](#tab/portal-1)
@@ -25,6 +35,10 @@ The article walks through how to deploy a scale set using instance mix, using di
 8. In the **Allocation strategy** field, select your allocation strategy.
 9. Using the `Prioritized (preview)` allocation strategy, the **Rank size** section appears below the Allocation strategy section. Clicking on the bottom **Rank priority** brings up the prioritization blade, where you can adjust the priority of your VM sizes.
 10. You can specify other properties in subsequent tabs, or you can go to **Review + create** and select the **Create** button at the bottom of the page to start your instance mix scale set deployment.
+
+### Portal tips
+- If a selected VM size is unavailable in the chosen zone or subscription quota is exceeded, the portal will surface a validation error. Adjust selected sizes or limits and retry.
+- For predictable, reservation-aligned deployments, choose the `Prioritized` allocation strategy and set ranks for sizes that match your reservations.
 
 ### [Azure CLI](#tab/cli-1)
 Before using CLI commands with instance mix, be sure you're using the correct CLI version. Make sure you're using version `2.66.0` or greater.
@@ -140,6 +154,12 @@ If you use the `Prioritized (preview)` allocation strategy, you can assign a pri
 - Replace placeholders,such as `{YourSubscriptionId}`, with your actual values.
 - You can specify up to five VM sizes in the `vmSizes` array.
 - The `rank` property is required only when using the `Prioritized (preview)` allocation strategy.
+
+Tips for REST deployments:
+
+- Ensure `sku.name` is set to `"Mix"` and that `sku.tier` is not set (or is `null`).
+- The `rank` property is only required for the `Prioritized` strategy. Ranks with lower numbers are higher priority.
+- Always validate the template against the target subscription and region to confirm VM size availability and quota before PUT.
 
 ---
 
