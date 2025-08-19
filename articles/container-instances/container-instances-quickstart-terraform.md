@@ -56,6 +56,26 @@ In this article, you learn how to:
 
     [!code-terraform[master](~/terraform_samples/quickstart/101-aci-linuxcontainer-public-ip/variables.tf)]
 
+1. To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1:
+
+    1. In the `main.tf` file after `restart_policy = var.restart_policy` add the following code:
+
+        ```terraform
+        
+        zones = var.zone
+
+        ```
+
+    2. At the bottom of `variables.tf`, add the following snippet:
+
+        ```terraform
+            variable "zone" {
+            type        = string
+            description = "The availability zone to deploy the container group to."
+            default     = "1"
+        }
+        ```
+
 ## Initialize Terraform
 
 [!INCLUDE [terraform-init.md](~/azure-dev-docs-pr/articles/terraform/includes/terraform-init.md)]

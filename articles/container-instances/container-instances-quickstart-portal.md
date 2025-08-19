@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 08/29/2024
+ms.date: 08/19/2025
 ms.custom: mvc, mode-ui
 # Customer intent: "As a developer, I want to quickly deploy a containerized web application using the cloud portal, so that I can easily run and manage my application without the complexity of a full container orchestration platform."
 ---
@@ -46,6 +46,8 @@ On the **Basics** page, choose a subscription and enter the following values for
 
 > [!NOTE]
 > For this quickstart, you use default settings to deploy the public Microsoft `aci-helloworld:latest` image. This sample Linux image packages a small web app written in Node.js that serves a static HTML page. You can also bring your own container images stored in Azure Container Registry, Docker Hub, or other registries.
+
+To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support), for **Availability zones**, select the zone where you want the container to be deployed. Otherwise, keep the default `0` value. 
 
 Leave the other values as their defaults, then select **Next: Networking**.
 

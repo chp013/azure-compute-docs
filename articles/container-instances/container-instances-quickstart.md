@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 08/29/2024
+ms.date: 08/19/202
 ms.custom: mvc, devx-track-azurecli, mode-api
 # Customer intent: As a developer, I want to quickly deploy a Docker container using the command line, so that I can run my web application without managing complex orchestration platforms.
 ---
@@ -32,11 +32,14 @@ In this quickstart, you use the Azure CLI to deploy an isolated Docker container
 
 Azure container instances, like all Azure resources, must be deployed into a resource group. Resource groups allow you to organize and manage related Azure resources.
 
-First, create a resource group named *myResourceGroup* in the *eastus* location with the following [az group create][az-group-create] command:
+First, create a resource group named *myResourceGroup* in the *eastus* location with the [az group create][az-group-create] command.
+
+To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1, add `--zone 1`. 
 
 ```azurecli-interactive
-az group create --name myResourceGroup --location eastus
+az group create --name myResourceGroup --location eastus 
 ```
+
 
 ## Create a container
 

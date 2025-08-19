@@ -29,6 +29,16 @@ If you don't have an Azure subscription, create a [free](https://azure.microsoft
 
 The template used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/aci-linuxcontainer-public-ip/).
 
+To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1, add the following to the end of the resource definition for the container group (around line 106):
+
+```json
+
+"zones": [
+    "1"
+]
+
+```
+
 :::code language="json" source="~/quickstart-templates/quickstarts/microsoft.containerinstance/aci-linuxcontainer-public-ip/azuredeploy.json":::
 
 The following resource is defined in the template:

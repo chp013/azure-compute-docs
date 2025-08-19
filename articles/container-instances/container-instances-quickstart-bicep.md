@@ -25,7 +25,16 @@ If you don't have an Azure subscription, create a [free](https://azure.microsoft
 
 The Bicep file used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/aci-linuxcontainer-public-ip/).
 
-:::code language="bicep" source="~/quickstart-templates/quickstarts/microsoft.containerinstance/aci-linuxcontainer-public-ip/main.bicep":::
+To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1, add the following to the end of the resource definition for `containerGroup`, right before the closing `}`:
+
+```bicep
+
+  zones: [
+    '1'
+  ]
+
+```
+
 
 The following resource is defined in the Bicep file:
 
