@@ -11,10 +11,11 @@ ms.reviewer: jushiman
 ---
 
 # Create a scale set using instance mix
-This article shows how to create a Virtual Machine Scale Set (VMSS) that uses instance mix, a way to specify multiple VM sizes for a single scale set and control how Azure chooses sizes at provisioning time via an allocation strategy.
+This article shows how to create a Virtual Machine Scale Set (VMSS) that uses instance mix, a way to specify multiple virtual machine (VM) sizes for a single scale set and control how Azure chooses sizes at provisioning time via an allocation strategy.
 
 ## Before you begin
-Make sure you have the following in place before you create an instance mix scale set:
+
+Confirm these prerequisites before you create an instance mix enabled scale set:
 
 - You intend to deploy a scale set that uses Flexible orchestration mode.
 - Consistent VM characteristics across selected sizes: same CPU architecture (x64 or Arm64), compatible disk interface (SCSI vs. NVMe), and compatible security profile.
@@ -35,10 +36,6 @@ Make sure you have the following in place before you create an instance mix scal
 8. In the **Allocation strategy** field, select your allocation strategy.
 9. Using the `Prioritized (preview)` allocation strategy, the **Rank size** section appears below the Allocation strategy section. Clicking on the bottom **Rank priority** brings up the prioritization blade, where you can adjust the priority of your VM sizes.
 10. You can specify other properties in subsequent tabs, or you can go to **Review + create** and select the **Create** button at the bottom of the page to start your instance mix scale set deployment.
-
-### Portal tips
-- If a selected VM size is unavailable in the chosen zone or subscription quota is exceeded, the portal will surface a validation error. Adjust selected sizes or limits and retry.
-- For predictable, reservation-aligned deployments, choose the `Prioritized` allocation strategy and set ranks for sizes that match your reservations.
 
 ### [Azure CLI](#tab/cli-1)
 Before using CLI commands with instance mix, be sure you're using the correct CLI version. Make sure you're using version `2.66.0` or greater.
@@ -66,7 +63,7 @@ az vmss create \
 ```
  
 ### [Azure PowerShell](#tab/powershell-1)
-You can use the following basic command to create a scale set using instance mix using the following command, which will default to using the `lowestPrice` allocation strategy:
+You can use the following basic command to create a scale set using instance mix using the following command, which defaults to using the `lowestPrice` allocation strategy:
  
 ```azurepowershell-interactive
 New-AzVmss `
@@ -151,13 +148,13 @@ If you use the `Prioritized (preview)` allocation strategy, you can assign a pri
 },
 ```
 
-- Replace placeholders,such as `{YourSubscriptionId}`, with your actual values.
+- Replace placeholders, such as `{YourSubscriptionId}`, with your actual values.
 - You can specify up to five VM sizes in the `vmSizes` array.
 - The `rank` property is required only when using the `Prioritized (preview)` allocation strategy.
 
 Tips for REST deployments:
 
-- Ensure `sku.name` is set to `"Mix"` and that `sku.tier` is not set (or is `null`).
+- Ensure `sku.name` is set to `"Mix"` and that `sku.tier` isn't set (or is `null`).
 - The `rank` property is only required for the `Prioritized` strategy. Ranks with lower numbers are higher priority.
 - Always validate the template against the target subscription and region to confirm VM size availability and quota before PUT.
 
