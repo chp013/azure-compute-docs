@@ -59,6 +59,9 @@ Execute a command similar to the following to start a container instance. Set a 
 
 To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1, add `-Zone 1` to the command. 
 
+>[!IMPORTANT]
+>Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
+
 ```azurepowershell-interactive
 $containerGroup = New-AzContainerGroup -ResourceGroupName myResourceGroup -Name myContainerGroup -Location EastUS -Container myContainer -OsType Windows -IPAddressDnsNameLabel aci-quickstart-win -IpAddressType Public -IPAddressPort @($port) -Zone 1
 ```

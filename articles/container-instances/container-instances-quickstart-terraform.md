@@ -58,6 +58,9 @@ In this article, you learn how to:
 
 1. To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1:
 
+    >[!IMPORTANT]
+    >Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
+    
     1. In the `main.tf` file after `restart_policy = var.restart_policy` add the following code:
 
         ```terraform

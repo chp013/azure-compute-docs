@@ -49,6 +49,9 @@ On the **Basics** page, choose a subscription and enter the following values for
 
 To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support), for **Availability zones**, select the zone where you want the container to be deployed. Otherwise, keep the default `0` value. 
 
+>[!IMPORTANT]
+>Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
+
 Leave the other values as their defaults, then select **Next: Networking**.
 
 On the **Networking** page, specify a **DNS name label** for your container. The name must be unique within the Azure region where you create the container instance. Your container is publicly reachable at `<dns-name-label>.<region>.azurecontainer.io`. If you receive a "DNS name label not available" error message, try a different DNS name label.

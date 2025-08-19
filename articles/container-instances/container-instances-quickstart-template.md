@@ -38,6 +38,8 @@ To make the [container group zonal](/azure/reliability/reliability-containers.md
 ]
 
 ```
+>[!IMPORTANT]
+>Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
 
 :::code language="json" source="~/quickstart-templates/quickstarts/microsoft.containerinstance/aci-linuxcontainer-public-ip/azuredeploy.json":::
 

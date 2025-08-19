@@ -27,6 +27,9 @@ The Bicep file used in this quickstart is from [Azure Quickstart Templates](http
 
 To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1, add the following to the end of the resource definition for `containerGroup`, right before the closing `}`:
 
+>[!IMPORTANT]
+>Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
+
 ```bicep
 
   zones: [
