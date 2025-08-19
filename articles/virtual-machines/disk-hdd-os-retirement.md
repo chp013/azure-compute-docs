@@ -28,17 +28,15 @@ This retirement is only for the ability to use Standard HDD disks as OS disks. A
 
 ## What actions should I take?
 
-Start planning a migration to either Standard SSD or Premium SSD disks.
+To start planning a migration to either Standard SSD or Premium SSD disks, first, make a list of all affected OS disks and VMs.
 
-1. Make a list of all affected OS disks and VMs
-    
-    > [!NOTE]
-    > Disks with the **Storage type** set to **Standard HDD LRS** and **OS type** set to **Linux and Windows** on the [Azure portal's Disk Storage Center](https://ms.portal.azure.com/#view/Microsoft_Azure_StorageHub/StorageHub.MenuView/~/DisksBrowse) are all the affected disks within the subscription.
-    >     
-    > The Owner column indicates the name of the virtual machine that uses the listed Standard HDD OS disks.
+If you have multiple subscriptions, the easiest way to do this is to use the Disk Storage Center. Add two filters, one for **Storage type** which should be equal to **Standard HDD LRS** and one for **OS type** which should equal to **Linux and Windows**. This'll produce a list of all Standard HDD OS disks across all your subscriptions. The **Owner** column is the name of the virtual machine that uses the listed Standard HDD OS disks.
 
-1. Once you have a list of Standard HDD OS disks, [convert your Standard HDD OS disks](disks-convert-types.md#change-the-type-of-an-individual-managed-disk) to either Standard SSD or Premium SSD disks.
-1. For technical questions and issues, contact support.
+The Disk Storage Center will still work if you have individual subscriptions. But, if you prefer, you can use the Azure CLI or the Azure PowerShell module to get the same list for an individual subscription. For the Azure PowerShell module, use `Get-AzDisk | Where-Object { $_.Sku.Name -eq "Standard_LRS" -and $_.OsType }` and for the Azure CLI, use `az disk list --query "[?sku.name=='Standard_LRS' && osType!=null]" --output table`.
+
+Once you have a list of Standard HDD OS disks, [convert your Standard HDD OS disks](disks-convert-types.md#change-the-type-of-an-individual-managed-disk) to either Standard SSD or Premium SSD disks.
+
+For technical questions and issues, contact support.
 
 
 ## What resources are available for this migration?
