@@ -1,6 +1,6 @@
 ---
 title: Migrate Standard HDD OS disks by September 08, 2028
-description: This article provides a high-level overview of the retirement of Azure unmanaged disks and how to migrate to Azure managed disks.
+description: Learn about the retirement of the capability to use Standard HDD as OS disks for Azure Virtual Machines.
 author: roygara
 ms.service: azure-disk-storage
 ms.topic: how-to
@@ -43,4 +43,4 @@ Start planning a migration to either Standard SSD or Premium SSD disks.
 
 ## What resources are available for this migration?
 
-- [Microsoft Q&A](/answers/topics/azure-virtual-machines-migration.html): Microsoft and community support for migration.
+[Microsoft Q&A](/answers/topics/azure-virtual-machines-migration.html): Microsoft and community support for migration.
