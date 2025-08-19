@@ -807,6 +807,8 @@
         href: vm-applications.md
       - name: Create & Deploy VM Applications
         href: vm-applications-how-to.md
+      - name: Manage VM Applications
+        href: vm-applications-manage.md
   - name: Images
     items:
     - name: Find Azure Marketplace images
