@@ -42,8 +42,8 @@ Instance mix supports three allocation strategies. Choose the strategy that matc
 | Strategy | Best for | Behavior | Notes |
 |---|---|---|---|
 | lowestPrice (default) | Cost-sensitive, fault-tolerant workloads | Prefers the lowest-cost VM sizes from the `vmSizes` list while considering available capacity. Deploys as many of the lowest-priced VMs as capacity allows before moving to higher-priced sizes. | Best suited for Spot VMs. Higher-cost sizes may be selected to secure capacity. |
-| capacityOptimized | Critical workloads that must provision reliably | Prioritizes VM sizes with the highest likelihood of availability in the target region; cost is not considered. | Availability varies by region. May select higher-cost sizes to secure capacity. |
-| Prioritized (Preview) | Predictable allocation order, reservation alignment | Respects user-defined `rank` values on VM sizes; lower rank means higher priority. Azure allocates instances according to rank while respecting capacity. | Ranks are optional, can be duplicated, and do not need to be sequential. Allocation remains subject to regional capacity constraints. |
+| capacityOptimized | Critical workloads that must provision reliably | Prioritizes VM sizes with the highest likelihood of availability in the target region; cost isn't considered. | Availability varies by region. May select higher-cost sizes to secure capacity. |
+| Prioritized (Preview) | Predictable allocation order, reservation alignment | Respects user-defined `rank` values on VM sizes; lower rank means higher priority. Azure allocates instances according to rank while respecting capacity. | Ranks are optional, can be duplicated, and don't need to be sequential. Allocation remains subject to regional capacity constraints. |
 
 > [!NOTE]
 > Use `rank`  only with the `Prioritized` strategy. Omit ranks for `lowestPrice` and `capacityOptimized`.
@@ -52,16 +52,20 @@ Instance mix supports three allocation strategies. Choose the strategy that matc
 
 ### Changes to existing properties
 
-- `sku.name` — Set to `"Mix"` for instance mix deployments. VM sizes are defined in `skuProfile`.
-- `sku.tier` — Should be `null` for instance mix scenarios (optional property).
-- `sku.capacity` — Represents the total number of VMs in the scale set.
-- `scaleInPolicy` — Not required. Instance mix uses the `allocationStrategy` to guide scale-in decisions.
+| Property | Change | Notes |
+|---|---|---|
+| `sku.name` | Must be set to `"Mix"` for instance mix deployments. | VM sizes are moved into the `skuProfile` configuration. |
+| `sku.tier` | Should be `null` for instance mix scenarios. | Optional property; set to `null` to avoid tier mismatch across sizes. |
+| `sku.capacity` | Represents the desired total number of VMs in the scale set. | Keeps representing the scale set capacity (desired instances). |
+| `scaleInPolicy` | Not required for instance mix. | Instance mix uses `allocationStrategy` to guide allocation; scale-in behavior follows the scale set's policy and allocation strategy. |
 
 ### New properties
 
-- `skuProfile` — Contains properties for instance mix (for example, `vmSizes` and `allocationStrategy`).
-- `vmSizes` — List of VM sizes to include in the instance mix. Maximum: five sizes.
-- `allocationStrategy` — One of `lowestPrice`, `capacityOptimized`, or `Prioritized`.
+| Property | Type | Description | Example Value |
+|---|---|---|---|
+| `skuProfile` | Object | Container for instance mix configuration (vmSizes, allocationStrategy, etc.). | `{ "vmSizes": [...], "allocationStrategy": "Prioritized" }` |
+| `vmSizes` | Array of strings or objects | List (max 5) of VM sizes to include in the instance mix. Each item can be a string (size name) or an object with an optional `rank` for the `Prioritized` strategy. | `[{ "name": "Standard_D8s_v5", "rank": 0 }, { "name":"Standard_D8as_v5", "rank": 1]` |
+| `allocationStrategy` | String | Determines how Azure chooses VM sizes at provisioning time. One of: `lowestPrice`, `capacityOptimized`, `Prioritized`. | `"Prioritized"` |
 
 ## Example: Prioritized allocation (JSON fragment)
 
@@ -93,8 +97,8 @@ Before you deploy an instance mix scale set:
 
 ## Recommendations
 
-- Use VM sizes with similar vCPU and memory to ensure balanced load distribution.
-- Use VM sizes of similar type (for example, both D-series) for consistent performance.
+- To ensure balanced load distribution, use VM sizes with similar vCPU and memory.
+- For consistent performance, use VM sizes of similar type (for example, both D-series).
 - For reservation or savings-plan benefits, use `Prioritized` and place reservation-backed sizes at higher priority.
 
 ## Limitations and unsupported scenarios
@@ -102,10 +106,10 @@ Before you deploy an instance mix scale set:
 - Orchestration mode: instance mix is available only with Flexible Orchestration Mode.
 - VM families supported in `skuProfile`: A, B, D, E, and F families only.
 - Up to five VM sizes can be specified.
-- You cannot mix VM architectures (for example, Arm64 and x64) in the same instance mix.
+- You can't mix VM architectures (for example, Arm64 and x64) in the same instance mix.
 - VMs with different storage interfaces (SCSI vs NVMe) can't be mixed.
 - All VMs must share the same Security Profile and local disk configuration.
-- Instance mix does not support: Standby Pools, Azure Dedicated Host, or Proximity Placement Groups.
+- Instance mix doesn't support: Standby Pools, Azure Dedicated Host, or Proximity Placement Groups.
 
 ## Next steps
 Learn how to [create a scale set using instance mix](instance-mix-create.md).
