@@ -14,6 +14,7 @@ ms.date: 03/28/2023
 ms.author: magoedte
 ms.custom: devx-track-azurecli, devx-track-arm-template
 ms.devlang: azurecli
+# Customer intent: "As an IT administrator managing Azure virtual machines, I want to implement Desired State Configuration using Azure extensions, so that I can automate and maintain consistent VM configurations efficiently."
 ---
 
 # Introduction to the Azure Desired State Configuration extension handler

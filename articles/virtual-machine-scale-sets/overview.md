@@ -9,6 +9,7 @@ ms.subservice:
 ms.date: 03/21/2025
 ms.reviewer: mimckitt
 
+# Customer intent: As a cloud architect, I want to implement Virtual Machine Scale Sets, so that I can efficiently manage application instances and automatically scale resources based on demand to ensure high availability and performance for my applications.
 ---
 # What are Virtual Machine Scale Sets?
 

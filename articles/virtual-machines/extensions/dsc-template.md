@@ -13,6 +13,7 @@ ms.topic: concept-article
 ms.tgt_pltfrm: vm-windows
 ms.date: 03/13/2022
 ms.author: magoedte
+# Customer intent: As a cloud administrator, I want to deploy the Desired State Configuration extension using Resource Manager templates so that I can manage the configuration of virtual machines effectively before transitioning to Azure Machine Configuration.
 ---
 # Desired State Configuration extension with Azure Resource Manager templates
 
@@ -78,7 +79,7 @@ resource configuration_dscext 'Microsoft.Compute/virtualMachines/extensions@2024
       }
     }
     protectedSettings: {
-      configurationArguements: {
+      configurationArguments: {
         arg2: arg2
       }
     }

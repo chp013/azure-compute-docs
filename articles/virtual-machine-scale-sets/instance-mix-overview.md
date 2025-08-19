@@ -3,7 +3,7 @@ title: Use multiple Virtual Machine sizes with instance mix
 description: Use multiple Virtual Machine sizes in a scale set using instance mix. Optimize deployments using allocation strategies. 
 author: brittanyrowe 
 ms.author: brittanyrowe
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-virtual-machine-scale-sets
 ms.date: 08/19/2025
 ms.reviewer: jushiman
