@@ -3,10 +3,10 @@ title: Migrate Standard HDD OS disks by September 08, 2028
 description: This article provides a high-level overview of the retirement of Azure unmanaged disks and how to migrate to Azure managed disks.
 author: roygara
 ms.service: azure-disk-storage
-ms.topic: concept-article
-ms.date: 06/28/2023
+ms.topic: how-to
+ms.date: 08/19/2025
 ms.author: rogarana
-# Customer intent: As an Azure user managing virtual machines, I want to migrate my unmanaged disks to managed disks before the retirement deadline, so that I can ensure continued operation and take advantage of the enhanced reliability and features of managed disks.
+
 ---
 
 # Migrate your Standard HDD OS disks by September 08, 2028
@@ -24,16 +24,20 @@ If you're using Standard HDD as your OS disks, begin planning a migration now. G
 
 ## What is being retired?
 
-This retirement is only for the ability to use Standard HDD disks as OS disks. All other managed disks, and ephemeral OS disks, aren't affected by this retirement.
+This retirement is only for the ability to use Standard HDD disks as OS disks. All other managed disk types and ephemeral OS disks, aren't affected by this retirement.
 
 ## What actions should I take?
 
 Start planning a migration to either Standard SSD or Premium SSD disks.
 
 1. Make a list of all affected OS disks and VMs
-    1. Disks with the **Storage type** set to **Standard HDD LRS** and **OS type** set to **Linux and Windows** on the [Azure portal's Disk Storage Center](https://ms.portal.azure.com/#view/Microsoft_Azure_StorageHub/StorageHub.MenuView/~/DisksBrowse) are all the affected disks within the subscription.
-    1. The Owner column indicates the name of the virtual machine that uses the listed Standard HDD OS disks.
-1. Learn how to convert your Standard HDD OS disks to either Standard SSD or Premium SSD disks.
+    
+    > [!NOTE]
+    > Disks with the **Storage type** set to **Standard HDD LRS** and **OS type** set to **Linux and Windows** on the [Azure portal's Disk Storage Center](https://ms.portal.azure.com/#view/Microsoft_Azure_StorageHub/StorageHub.MenuView/~/DisksBrowse) are all the affected disks within the subscription.
+    >     
+    > The Owner column indicates the name of the virtual machine that uses the listed Standard HDD OS disks.
+
+1. Once you have a list of Standard HDD OS disks, [convert your Standard HDD OS disks](disks-convert-types.md#change-the-type-of-an-individual-managed-disk) to either Standard SSD or Premium SSD disks.
 1. For technical questions and issues, contact support.
 
 
