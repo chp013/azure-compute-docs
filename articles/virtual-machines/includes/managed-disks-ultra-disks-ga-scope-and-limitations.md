@@ -11,8 +11,7 @@ ms.custom: include file
 ---
 
 The following list contains Ultra Disk's limitations:
-- Ultra Disks can't be used as an OS disk.
-- Ultra Disks can't be used with Azure Compute Gallery.
+- Ultra Disks can't be used as an OS disk or with Azure Compute Gallery.
 - Currently, Ultra Disks only support Single VM and Availability zone infrastructure options as locally redundant storage (LRS). Ultra Disks don't support zone redundant storage (ZRS).
 - Ultra Disks don't support availability sets.
 - Existing disks currently can't change their type to an Ultra Disk. They must be [migrated](/azure/virtual-machines/disks-convert-types?tabs=azure-powershell#migrate-to-premium-ssd-v2-or-ultra-disk-using-snapshots).
