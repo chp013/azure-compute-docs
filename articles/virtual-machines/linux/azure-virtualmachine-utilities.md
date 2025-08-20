@@ -5,7 +5,7 @@ author: vamckms
 ms.service: azure-virtual-machines
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linux
-ms.topic: concept-article
+ms.topic: how-to
 ms.date: 07/22/2025
 ms.author: vakavuru
 ---
@@ -60,7 +60,7 @@ To ensure backward compatibility for disks using SCSI controllers, azure-vm-util
 
 ### Linux distribution support
 
-We are working with all endorsed distro partners to include az-vm-utils in their default images. The following distros and versions currently include it:
+The following distros and versions currently include az-vm-utils in their default images:
 
 | Distribution | Version |
 |--------|---------|
