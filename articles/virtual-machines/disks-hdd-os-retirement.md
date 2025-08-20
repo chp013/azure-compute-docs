@@ -19,8 +19,7 @@ If you're using Standard HDD as OS disks, begin planning a migration now. Genera
 
 ## How am I affected?
 
-- After September 30, 2026, you won't be able to configure or deploy new Standard HDD disks as OS disks
-- After September 8, 2028, any existing virtual machines using Standard HDDs as their OS disks will automatically be converted to a Standard SSD of an equivalent size. Workloads on these disks may experience a service disruption if they're not migrated before September 8, 2028.
+After September 8, 2028, any existing virtual machines using Standard HDDs as their OS disks will automatically be converted to a Standard SSD of an equivalent size. Workloads on these disks may experience a service disruption if they're not migrated before September 8, 2028.
 
 ## What is being retired?
 
