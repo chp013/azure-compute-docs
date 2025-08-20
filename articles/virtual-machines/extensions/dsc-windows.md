@@ -4,11 +4,11 @@ description: Upload and apply a PowerShell DSC configuration on an Azure VM usin
 ms.topic: concept-article
 ms.service: azure-virtual-machines
 ms.subservice: extensions
-author: bobbytreed
-ms.author: robreed
+author: mgreenegit
+ms.author: migreene
 ms.reviewer: jushiman
 ms.collection: windows
-ms.date: 11/28/2022
+ms.date: 08/20/2025
 # Customer intent: As a system administrator, I want to apply a PowerShell DSC configuration to an Azure VM using an extension, so that I can automate the configuration management for consistent and compliant system states.
 ---
 # PowerShell DSC Extension
