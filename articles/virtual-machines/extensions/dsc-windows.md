@@ -9,12 +9,11 @@ ms.author: migreene
 ms.reviewer: jushiman
 ms.collection: windows
 ms.date: 08/20/2025
-# Customer intent: As a system administrator, I want to apply a PowerShell DSC configuration to an Azure VM using an extension, so that I can automate the configuration management for consistent and compliant system states.
 ---
 # PowerShell DSC Extension
 
 > [!NOTE]
-> DSC extension will be retired on March 31, 2028. Please transition to
+> DSC extension will be retired on March 31, 2028. Please move to
 > [Azure Machine Configuration](/azure/governance/machine-configuration/overview) by that date.
 > For more information, see the [blog post](https://azure.microsoft.com/updates/?id=485828)
 > announcement. The Azure Machine Configuration service combines certain features of DSC Extension, Azure
@@ -24,20 +23,20 @@ ms.date: 08/20/2025
 
 ## Overview
 
-The PowerShell DSC Extension for Windows is published and supported by Microsoft. The extension uploads and applies a PowerShell DSC Configuration on an Azure VM. The DSC Extension calls into PowerShell DSC to enact the received DSC configuration on the VM. This document details the supported platforms, configurations, and deployment options for the DSC virtual machine extension for Windows.
+The PowerShell DSC Extension for Windows uploads and applies a PowerShell DSC Configuration on an Azure VM. The DSC Extension calls into PowerShell DSC to enact the received DSC configuration on the VM. This document details the supported platforms, configurations, and deployment options for the DSC virtual machine extension for Windows.
 
 ## Prerequisites
 
 ### Operating system
 
-The DSC Extension supports the following OS's
+The DSC Extension supports the following operating systems
 
 Windows Server 2022, Windows Server 2019, Windows Server 2016, Windows Server 2012R2, Windows Server 2012, Windows Server 2008 R2 SP1, Windows Client 7/8.1/10
 
 ### Internet connectivity
 
 The DSC extension for Windows requires that the target virtual machine is able to communicate with Azure
-and the location of the configuration package (.zip file) if it is stored in a location outside of Azure.
+and the location of the configuration package (.zip file) if it's stored in a location outside of Azure.
 
 ## Extension schema
 
@@ -109,14 +108,14 @@ The following JSON shows the schema for the settings portion of the DSC Extensio
 
 | Name | Data Type | Description
 | ---- | ---- | ---- |
-| settings.wmfVersion | string | Specifies the version of the Windows Management Framework that should be installed on your VM. Setting this property to ‘latest’ will install the most updated version of WMF. The only current possible values for this property are ‘4.0’, ‘5.0’, and ‘latest’. These possible values are subject to updates. The default value is ‘latest’. |
+| settings.wmfVersion | string | Specifies the version of the Windows Management Framework that should be installed on your VM. Setting this property to 'latest' will install the most updated version of WMF. The only current possible values for this property are ‘4.0’, ‘5.0’, and 'latest'. These possible values are subject to updates. The default value is 'latest'. |
 | settings.configuration.url | string | Specifies the URL location from which to download your DSC configuration zip file. If the URL provided requires a SAS token for access, you will need to set the protectedSettings.configurationUrlSasToken property to the value of your SAS token. This property is required if settings.configuration.script and/or settings.configuration.function are defined.
 | settings.configuration.script | string | Specifies the file name of the script that contains the definition of your DSC configuration. This script must be in the root folder of the zip file downloaded from the URL specified by the configuration.url property. This property is required if settings.configuration.url and/or settings.configuration.script are defined.
 | settings.configuration.function | string | Specifies the name of your DSC configuration. The configuration named must be contained in the script defined by configuration.script. This property is required if settings.configuration.url and/or settings.configuration.function are defined.
-| settings.configurationArguments | Collection | Defines any parameters you would like to pass to your DSC configuration. This property will not be encrypted.
-| settings.configurationData.url | string | Specifies the URL from which to download your configuration data (.pds1) file to use as input for your DSC configuration. If the URL provided requires a SAS token for access, you will need to set the protectedSettings.configurationDataUrlSasToken property to the value of your SAS token.
+| settings.configurationArguments | Collection | Defines any parameters you would like to pass to your DSC configuration. This property won't be encrypted.
+| settings.configurationData.url | string | Specifies the URL from which to download your configuration data (.pds1) file to use as input for your DSC configuration. If the URL provided requires a SAS token for access, you'll need to set the protectedSettings.configurationDataUrlSasToken property to the value of your SAS token.
 | settings.privacy.dataEnabled | string | Enables or disables telemetry collection. The only possible values for this property are ‘Enable’, ‘Disable’, ”, or $null. Leaving this property blank or null will enable telemetry
-| settings.advancedOptions.forcePullAndApply | Bool | This setting is designed to enhance the experience of working with the extension to register nodes  with Azure Automation DSC.  If the value is `$true`, the extension will wait for the first run of the configuration pulled from the service before returning success/failure.  If the value is set to $false, the status returned by the extension will only refer to whether the node was registered with Azure Automation State Configuration successfully and the node configuration will not be run during the registration.
+| settings.advancedOptions.forcePullAndApply | Bool | This setting is designed to enhance the experience of working with the extension to register nodes  with Azure Automation DSC.  If the value is `$true`, the extension will wait for the first run of the configuration pulled from the service before returning success/failure.  If the value is set to $false, the status returned by the extension will only refer to whether the node was registered with Azure Automation State Configuration successfully and the node configuration won't be run during the registration.
 | settings.advancedOptions.downloadMappings | Collection | Defines alternate locations to download dependencies such as WMF and .NET
 
 ### Protected Settings Property values

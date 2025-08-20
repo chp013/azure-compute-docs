@@ -18,7 +18,7 @@ ms.author: migreene
 # Desired State Configuration extension with Azure Resource Manager templates
 
 > [!NOTE]
-> DSC extension will be retired on March 31, 2028. Please transition to
+> DSC extension will be retired on March 31, 2028. Please move to
 > [Azure Machine Configuration](/azure/governance/machine-configuration/overview) by that date.
 > For more information, see the [blog post](https://azure.microsoft.com/updates/?id=485828)
 > announcement. The Azure Machine Configuration service combines certain features of DSC Extension, Azure
@@ -32,7 +32,7 @@ This article describes the Azure Resource Manager template for the [Desired Stat
 > [!NOTE]
 > You might encounter slightly different schema examples. The change in schema occurred in the October 2016 release. For details, see [Update from a previous format](#update-from-a-previous-format).
 
-## Bicep example for a VM
+## Bicep example for a virtual machine
 
 The DSC extension inherits default extension properties.
 For more information, see
@@ -105,7 +105,7 @@ All settings are saved in a settings text file on the VM.
 Properties listed under **settings** are public properties.
 Public properties aren't encrypted in the settings text file.
 Properties listed under **protectedSettings** are encrypted with a certificate
-and are not shown in plain text in the settings file on the VM.
+and aren't shown in plain text in the settings file on the VM.
 
 If the configuration needs credentials,
 you can include the credentials in **protectedSettings**:
