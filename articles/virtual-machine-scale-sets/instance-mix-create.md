@@ -5,13 +5,24 @@ author: brittanyrowe
 ms.author: brittanyrowe
 ms.topic: concept-article
 ms.service: azure-virtual-machine-scale-sets
-ms.date: 06/10/2025
+ms.date: 08/19/2025
 ms.reviewer: jushiman
 # Customer intent: As a cloud administrator, I want to create a virtual machine scale set using instance mix, so that I can optimize resource allocation with different VM sizes based on my application requirements.
 ---
 
 # Create a scale set using instance mix
-The article walks through how to deploy a scale set using instance mix, using different virtual machine (VM) sizes and an allocation strategy.
+This article shows how to create a Virtual Machine Scale Set (VMSS) that uses instance mix, a way to specify multiple virtual machine (VM) sizes for a single scale set and control how Azure chooses sizes at provisioning time via an allocation strategy.
+
+## Before you begin
+
+Confirm these prerequisites before you create an instance mix enabled scale set:
+
+- You intend to deploy a scale set that uses Flexible orchestration mode.
+- Consistent VM characteristics across selected sizes: same CPU architecture (x64 or Arm64), compatible disk interface (SCSI vs. NVMe), and compatible security profile.
+- Sufficient quota for each VM size in the target subscription and region.
+- Choose a region that supports the VM sizes you want to include.
+- (CLI users) Azure CLI 2.66.0 or later is recommended. For PowerShell, use the latest `Az.Compute` module.
+
 
 ## Create a scale set using instance mix
 ### [Azure portal](#tab/portal-1)
@@ -52,7 +63,7 @@ az vmss create \
 ```
  
 ### [Azure PowerShell](#tab/powershell-1)
-You can use the following basic command to create a scale set using instance mix using the following command, which will default to using the `lowestPrice` allocation strategy:
+You can use the following basic command to create a scale set using instance mix using the following command, which defaults to using the `lowestPrice` allocation strategy:
  
 ```azurepowershell-interactive
 New-AzVmss `
@@ -137,9 +148,15 @@ If you use the `Prioritized (preview)` allocation strategy, you can assign a pri
 },
 ```
 
-- Replace placeholders,such as `{YourSubscriptionId}`, with your actual values.
+- Replace placeholders, such as `{YourSubscriptionId}`, with your actual values.
 - You can specify up to five VM sizes in the `vmSizes` array.
 - The `rank` property is required only when using the `Prioritized (preview)` allocation strategy.
+
+Tips for REST deployments:
+
+- Ensure `sku.name` is set to `"Mix"` and that `sku.tier` isn't set (or is `null`).
+- The `rank` property is only required for the `Prioritized` strategy. Ranks with lower numbers are higher priority.
+- Always validate the template against the target subscription and region to confirm VM size availability and quota before PUT.
 
 ---
 

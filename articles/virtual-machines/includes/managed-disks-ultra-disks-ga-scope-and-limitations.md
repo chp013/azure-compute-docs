@@ -11,13 +11,11 @@ ms.custom: include file
 ---
 
 The following list contains Ultra Disk's limitations:
-- Ultra Disks can't be used as an OS disk.
-- Ultra Disks can't be used with Azure Compute Gallery.
+- Ultra Disks can't be used as an OS disk or with Azure Compute Gallery.
 - Currently, Ultra Disks only support Single VM and Availability zone infrastructure options as locally redundant storage (LRS). Ultra Disks don't support zone redundant storage (ZRS).
 - Ultra Disks don't support availability sets.
 - Existing disks currently can't change their type to an Ultra Disk. They must be [migrated](/azure/virtual-machines/disks-convert-types?tabs=azure-powershell#migrate-to-premium-ssd-v2-or-ultra-disk-using-snapshots).
 - (Preview) You can encrypt Ultra Disks with customer-managed keys using Azure Key Vaults stored in a different Microsoft Entra ID tenant.
-- Azure Disk Encryption isn't supported for VMs with Ultra Disks. Instead, you should use encryption at rest with platform-managed or customer-managed keys.
 - Azure Site Recovery for VMs with Ultra Disks is currently in [Public Preview](/azure/site-recovery/azure-to-azure-support-matrix).
 - Ultra Disks don't support disk caching.
 - Snapshots are supported with [other limitations](/azure/virtual-machines/disks-incremental-snapshots?tabs=azure-powershell#incremental-snapshots-of-premium-ssd-v2-and-ultra-disks).
