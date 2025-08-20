@@ -41,9 +41,9 @@ Instance mix supports three allocation strategies. Choose the strategy that matc
 
 | Strategy | Best for | Behavior | Notes |
 |---|---|---|---|
-| lowestPrice (default) | Cost-sensitive, fault-tolerant workloads | Prefers the lowest-cost VM sizes from the `vmSizes` list while considering available capacity. Deploys as many of the lowest-priced VMs as capacity allows before moving to higher-priced sizes. | Best suited for Spot VMs. Higher-cost sizes may be selected to secure capacity. |
-| capacityOptimized | Critical workloads that must provision reliably | Prioritizes VM sizes with the highest likelihood of availability in the target region; cost isn't considered. | Availability varies by region. May select higher-cost sizes to secure capacity. |
-| Prioritized (Preview) | Predictable allocation order, reservation alignment | Respects user-defined `rank` values on VM sizes; lower rank means higher priority. Azure allocates instances according to rank while respecting capacity. | Ranks are optional, can be duplicated, and don't need to be sequential. Allocation remains subject to regional capacity constraints. |
+| `lowestPrice` (default) | Cost-sensitive, fault-tolerant workloads | Prefers the lowest-cost VM sizes from the `vmSizes` list while considering available capacity. Deploys as many of the lowest-priced VMs as capacity allows before moving to higher-priced sizes. | Best suited for Spot VMs. Higher-cost sizes may be selected to secure capacity. |
+| `capacityOptimized` | Critical workloads that must provision reliably | Prioritizes VM sizes with the highest likelihood of availability in the target region; cost isn't considered. | Availability varies by region. May select higher-cost sizes to secure capacity. |
+| `Prioritized` (Preview) | Predictable allocation order, reservation alignment | Respects user-defined `rank` values on VM sizes; lower rank means higher priority. Azure allocates instances according to rank while respecting capacity. | Ranks are optional, can be duplicated, and don't need to be sequential. Allocation remains subject to regional capacity constraints. |
 
 > [!NOTE]
 > Use `rank`  only with the `Prioritized` strategy. Omit ranks for `lowestPrice` and `capacityOptimized`.
