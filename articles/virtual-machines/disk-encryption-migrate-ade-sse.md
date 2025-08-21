@@ -317,7 +317,7 @@ After successful migration and verification:
 
 - **Solution**: Verify that the VM was created with the `--encryption-at-host true` parameter and that your subscription supports this feature
 
-**Issue**: Performance issues persist
+#### Performance issues persist
 
 - **Solution**: Verify that Encryption at Host is properly enabled and that the VM size supports the expected performance
 
