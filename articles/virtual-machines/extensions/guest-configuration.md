@@ -37,7 +37,7 @@ and report status to the Machine Configuration service. The VM can connect by us
 
 To learn more about private networking, see the following articles:
 
-- [Azure Mchine Configuration, Communicate over Azure Private Link](/azure/governance/machine-configuration/overview#communicate-over-private-link-in-azure)
+- [Azure Machine Configuration, Communicate over Azure Private Link](/azure/governance/machine-configuration/overview#communicate-over-private-link-in-azure)
 - [Use private endpoints for Azure Storage](/azure/storage/common/storage-private-endpoints)
 
 ## Install the extension
