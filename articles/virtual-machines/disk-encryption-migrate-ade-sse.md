@@ -11,7 +11,7 @@ ms.custom: references_regions
 # Customer intent: As a security administrator, I need to migrate my VMs from Azure Disk Encryption to encryption at host before the ADE retirement date to avoid service disruption.
 ---
 
-# Migrate from Azure Disk Encryption to Encryption at Host
+# Migrate from Azure Disk Encryption to encryption at host
 
 > [!IMPORTANT]
 > **Azure Disk Encryption Retirement Notice**
