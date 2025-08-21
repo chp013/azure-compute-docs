@@ -37,7 +37,6 @@ Once you have a list of Standard HDD OS disks, [convert your Standard HDD OS dis
 
 For technical questions and issues, contact support.
 
-
 ## What resources are available for this migration?
 
 [Microsoft Q&A](/answers/topics/azure-virtual-machines-migration.html): Microsoft and community support for migration.
