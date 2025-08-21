@@ -16,7 +16,7 @@ ms.custom: references_regions
 > [!IMPORTANT]
 > **Azure Disk Encryption Retirement Notice**
 >
-> Azure Disk Encryption for Virtual Machines and Virtual Machine Scale Sets will be retired on **September 15, 2028**. New customers should use Encryption at Host for all new VMs. Existing customers should plan to migrate current ADE-enabled VMs to Encryption at Host before the retirement date to avoid service disruption.
+> Azure Disk Encryption for Virtual Machines and Virtual Machine Scale Sets will be retired on **September 15, 2028**. New customers should use encryption at host for all new VMs. Existing customers should plan to migrate current ADE-enabled VMs to encryption at host before the retirement date to avoid service disruption.
 
 This article provides step-by-step guidance for migrating your virtual machines from Azure Disk Encryption (ADE) to Encryption at Host. The migration process requires creating new disks and VMs, as in-place conversion is not supported.
 
