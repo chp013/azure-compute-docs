@@ -319,7 +319,9 @@ After successful migration and verification:
 
 #### Performance issues persist
 
-- **Solution**: Verify that Encryption at Host is properly enabled and that the VM size supports the expected performance
+##### Solution
+
+Verify that encryption at host is properly enabled and that the VM size supports the expected performance.
 
 ## Next steps
 
