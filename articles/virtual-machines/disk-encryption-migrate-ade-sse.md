@@ -44,7 +44,7 @@ Before starting the migration:
 
 2. **Test the process**: If possible, test the migration process on a non-production VM first.
 
-3. **Prepare encryption resources**: Ensure your VM size supports Encryption at Host. Most current VM sizes support this feature.
+3. **Prepare encryption resources**: Ensure your VM size supports encryption at host. Most current VM sizes support this feature.
 
 4. **Document configuration**: Record your current VM configuration, including network settings, extensions, and attached resources.
 
