@@ -8,7 +8,7 @@ ms.author: mbaldwin
 ms.service: azure-virtual-machines
 ms.subservice: security
 ms.custom: references_regions
-# Customer intent: As a security administrator, I need to migrate my VMs from Azure Disk Encryption to Encryption at Host before the ADE retirement date to avoid service disruption.
+# Customer intent: As a security administrator, I need to migrate my VMs from Azure Disk Encryption to encryption at host before the ADE retirement date to avoid service disruption.
 ---
 
 # Migrate from Azure Disk Encryption to Encryption at Host
