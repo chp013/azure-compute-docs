@@ -1,5 +1,5 @@
 ---
-title: Migrate from Azure Disk Encryption to Encryption at Host
+title: Migrate from Azure Disk Encryption to encryption at host
 description: Learn how to migrate your virtual machines from Azure Disk Encryption (ADE) to Encryption at Host before the ADE retirement date.
 author: msmbaldwin
 ms.date: 08/21/2025
