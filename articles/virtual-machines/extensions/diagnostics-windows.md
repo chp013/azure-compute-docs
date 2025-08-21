@@ -21,7 +21,7 @@ Azure Diagnostics is the capability within Azure that enables the collection of 
 ## Enable the diagnostics extension if you use the Resource Manager deployment model
 You can enable the diagnostics extension while you create a Windows VM through the Azure Resource Manager deployment model by adding the extension configuration to the Resource Manager template. See [Create a Windows virtual machine with monitoring and diagnostics by using the Azure Resource Manager template](diagnostics-template.md).
 
-To enable the diagnostics extension on an existing VM that was created through the Resource Manager deployment model, you can use the [Set-AzVMDiagnosticsExtension](/powershell/module/az.compute/set-azvmdiagnosticsextension) PowerShell cmdlet.
+To enable the diagnostics extension on an existing VM that was created through the Resource Manager deployment model, you can use the [Set-AzVMDiagnosticsExtension](/powershell/module/az.compute/set-azvmdiagnosticsextension) PowerShell cmdlet as shown below.
 
 ```azurepowershell
 $vm_resourcegroup = "myvmresourcegroup"
@@ -32,11 +32,11 @@ Set-AzVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_na
 ```
 
 
-*$diagnosticsconfig_path* is the path to the file that contains the diagnostics configuration in XML, as described in the [sample](#sample-diagnostics-configuration).  
+*$diagnosticsconfig_path* is the path to the file that contains the diagnostics configuration in XML, as described in the [sample](#sample-diagnostics-configuration) below.  
 
-If the diagnostics configuration file specifies a **StorageAccount** element with a storage account name, then the *Set-AzVMDiagnosticsExtension* script automatically sets the diagnostics extension to send diagnostic data to that storage account. The storage account needs to be in the same subscription as the VM.
+If the diagnostics configuration file specifies a **StorageAccount** element with a storage account name, then the *Set-AzVMDiagnosticsExtension* script will automatically set the diagnostics extension to send diagnostic data to that storage account. For this to work, the storage account needs to be in the same subscription as the VM.
 
-If no **StorageAccount** was specified in the diagnostics configuration, then you need to pass in the *StorageAccountName* parameter to the cmdlet. If the *StorageAccountName* parameter is specified, then the cmdlet will use the storage account that is specified in the parameter and not the one that is specified in the diagnostics configuration file.
+If no **StorageAccount** was specified in the diagnostics configuration, then you need to pass in the *StorageAccountName* parameter to the cmdlet. If the *StorageAccountName* parameter is specified, then the cmdlet will always use the storage account that is specified in the parameter and not the one that is specified in the diagnostics configuration file.
 
 If the diagnostics storage account is in a different subscription from the VM, then you need to explicitly pass in the *StorageAccountName* and *StorageAccountKey* parameters to the cmdlet. The *StorageAccountKey* parameter is not needed when the diagnostics storage account is in the same subscription, as the cmdlet can automatically query and set the key value when enabling the diagnostics extension. However, if the diagnostics storage account is in a different subscription, then the cmdlet might not be able to get the key automatically and you need to explicitly specify the key through the *StorageAccountKey* parameter.  
 
@@ -65,7 +65,7 @@ The [Remove-AzVmDiagnosticsExtension](/powershell/module/az.compute/remove-azvmd
 
 [!INCLUDE [classic-vm-deprecation](../includes/classic-vm-deprecation.md)]
 
-You can use the [Set-AzureVMDiagnosticsExtension](/powershell/module/servicemanagement/azure/set-azurevmdiagnosticsextension) cmdlet to enable a diagnostics extension on a VM that you create through the classic deployment model. The  example shows how to create a new VM through the classic deployment model with the diagnostics extension enabled:
+You can use the [Set-AzureVMDiagnosticsExtension](/powershell/module/servicemanagement/azure/set-azurevmdiagnosticsextension) cmdlet to enable a diagnostics extension on a VM that you create through the classic deployment model. The following example shows how to create a new VM through the classic deployment model with the diagnostics extension enabled.
 
 ```azurepowershell
 $VM = New-AzureVMConfig -Name $VM -InstanceSize Small -ImageName $VMImage
@@ -83,13 +83,13 @@ Update-AzureVM -ServiceName $Service_Name -Name $VM_Name -VM $VM_Update.VM
 ```
 
 ## Sample diagnostics configuration
-This sample configuration transfers various performance counters to the diagnostics storage account, along with errors from the application, security, and system channels in the Windows event logs and any errors from the diagnostics infrastructure logs. The XML can be used for the diagnostics public configuration with the above scripts.
+The following XML can be used for the diagnostics public configuration with the above scripts. This sample configuration will transfer various performance counters to the diagnostics storage account, along with errors from the application, security, and system channels in the Windows event logs and any errors from the diagnostics infrastructure logs.
 
-The configuration needs to be updated to include:
+The configuration needs to be updated to include the following:
 
 * The *resourceID* attribute of the **Metrics** element needs to be updated with the resource ID for the VM.
   
-  * The resource ID can be constructed by using the pattern: "/subscriptions/{*subscription ID for the subscription with the VM*}/resourceGroups/{*The resourcegroup name for the VM*}/providers/Microsoft.Compute/virtualMachines/{*The VM Name*}".
+  * The resource ID can be constructed by using the following pattern: "/subscriptions/{*subscription ID for the subscription with the VM*}/resourceGroups/{*The resourcegroup name for the VM*}/providers/Microsoft.Compute/virtualMachines/{*The VM Name*}".
   * For example, if the subscription ID for the subscription where the VM is running is **11111111-1111-1111-1111-111111111111**, the resource group name for the resource group is **MyResourceGroup**, and the VM Name is **MyWindowsVM**, then the value for *resourceID* would be:
     
       ```xml
