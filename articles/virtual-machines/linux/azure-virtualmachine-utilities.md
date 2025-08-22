@@ -2,26 +2,23 @@
 title: Introduction to Azure virtual machine utilities (azure-vm-utils)
 description: Learn about the azure-vm-utils package that provides utilities and udev rules for an optimal Linux experience on Azure VMs
 author: vamckms
-ms.service: azure-disk-storage
+ms.service: azure-virtual-machines
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linux
 ms.topic: how-to
 ms.date: 07/22/2025
 ms.author: vakavuru
 ---
-# Azure virtual machine utilities (azure-vm-utils)
+
+# Learn about Azure-VM-Utils
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets 
 
-The [azure-vm-utils](https://github.com/Azure/azure-vm-utils) package provides essential utilities and udev rules to optimize the Linux experience on Azure virtual machines (VMs). This package consolidates device management tools for Small Computer System Interface (SCSI), Non-Volatile Memory Express (NVMe), Microsoft Azure Network Adapter ([MANA](/azure/virtual-network/accelerated-networking-mana-overview)), and Mellanox devices, making disk identification and management more reliable and consistent across different VM configurations.
-
-## Introduction
-
-Currently, critical udev rules for Linux on Azure are spread across multiple components: cloud-init, WALinuxAgent, azure-nvme-utils, and vendor-specific image customization. As Azure moves to decouple the WALinuxAgent guest agent from its provisioning agent (which is being deprecated), the long-term plan is to consolidate these rules into azure-vm-utils for independent maintenance and updates.
+The [azure-vm-utils](https://github.com/Azure/azure-vm-utils) package provides essential utilities and udev rules to optimize the Linux experience on Azure Virtual Machines. This package consolidates device management tools for Small Computer System Interface (SCSI), Non-Volatile Memory Express (NVMe), Microsoft Azure Network Adapter ([MANA](/azure/virtual-network/accelerated-networking-mana-overview)), and Mellanox devices, making disk identification and management more reliable and consistent across different VM configurations.
 
 ## NVMe Udev Rules
 
-Newer VM SKUs on Azure use the NVMe interface for disk management. VMs with NVMe interfaces interpret and present disks differently from VMs that use SCSI interfaces. For reference, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme). 
+Newer virtual machines (VMs) SKUs on Azure use the NVMe interface for disk management. VMs with NVMe interfaces interpret and present disks differently from VMs that use SCSI interfaces. For reference, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme). 
 
 NVMe udev rules in this package consolidate critical tools and udev rules to create stable, predictable symlinks for Azure disks. This package provides an easy and reliable way to identify disks, making automation, troubleshooting, and management simpler.
 
@@ -53,17 +50,17 @@ For future VM sizes with remote NVMe disks that support namespace identifiers, t
 
 ### SCSI Compatibility
 
-To ensure backward compatibility, azure-vm-utils ensures that SCSI disks support the following links:
+To ensure backward compatibility for disks using SCSI controllers, azure-vm-utils supports the following links:
 
 - `/dev/disk/azure/os`
 - `/dev/disk/azure/resource`
 
 > [!NOTE]
-> Some VM sizes come with both NVMe local disks and a SCSI temp resource disk. These temp resource disks are considered to be separate from local disks, which are dedicated to local NVMe disks to avoid confusion.
+> Some VM sizes come with both NVMe local disks in addition to a SCSI temp resource disk. These temp resource disks are separate from local disks, which are dedicated to local NVMe disks to avoid confusion.
 
 ### Linux distribution support
 
-We're working with all endorsed distribution partners to include this package in their default images. The following distributions and versions already have the package, and support for the rest is coming soon.
+The following distros and versions currently include az-vm-utils in their default images:
 
 | Distribution | Version |
 |--------|---------|
@@ -73,11 +70,11 @@ We're working with all endorsed distribution partners to include this package in
 
 ### Installation
 
-If the package isn't present in the default platform image, it can be installed manually via package managers or from the [GitHub repository](https://github.com/Azure/azure-vm-utils).
+If the package isn't present in the default platform image, install it via package managers or from the [GitHub repository](https://github.com/Azure/azure-vm-utils).
 
 ### Manual installation
 
-For distributions where azure-vm-utils isn't pre-installed, you can build and install it manually:
+For distributions where azure-vm-utils isn't pre-installed, build and install it manually:
 
 ```bash
 # Clone the repository
@@ -154,13 +151,13 @@ To verify that azure-vm-utils is working correctly on your VM:
    dpkg -l | grep azure-vm-utils
    ```
 
-2. Verify that udev rules are in place:
+1. Verify udev rules are in place:
    
    ```bash
    ls -la /usr/lib/udev/rules.d/*azure*
    ```
 
-3. Check for Azure disk symlinks:
+1. Check for Azure disk symlinks:
    
    ```bash
    ls -la /dev/disk/azure/
