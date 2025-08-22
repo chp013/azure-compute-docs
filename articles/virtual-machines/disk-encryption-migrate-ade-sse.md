@@ -19,15 +19,17 @@ This article provides step-by-step guidance for migrating your virtual machines 
 
 Azure Disk Encryption (ADE) encrypts data within the VM using BitLocker (Windows) or dm-crypt (Linux), while Encryption at Host encrypts data at the storage layer without consuming VM CPU resources. Encryption at Host provides end-to-end encryption for all VM data, including temp disks, caches, and data flows between compute and storage.
 
-## Migration limitations and considerations
+### Migration limitations and considerations
 
-### Important limitations
+Before starting the migration process, be aware of these important limitations and considerations that will affect your migration strategy:
 
-- **No in-place migration**: You cannot directly convert ADE-encrypted disks to SSE. Migration requires creating new disks and VMs.
+- **No in-place migration**: You cannot directly convert ADE-encrypted disks to Encryption at Host. Migration requires creating new disks and VMs.
 
 - **Linux OS disk limitation**: Disabling ADE on Linux OS disks is not supported. For Linux VMs with ADE-encrypted OS disks, you must create a new VM with a new OS disk.
 
-- **Windows ADE disablement**: Azure Disk Encryption can be disabled on Windows VMs regardless of whether only data disks are encrypted or both OS and data disks are encrypted. This allows for a more straightforward migration path compared to Linux VMs.
+- **Windows ADE encryption patterns**: On Windows VMs, Azure Disk Encryption can only encrypt the OS disk alone OR all disks (OS + data disks). It's not possible to encrypt only data disks on Windows VMs.
+
+- **UDE flag persistence**: Snapshots retain the UDE (User Data Encryption) flag from the original encrypted disk. The migration requires creating new managed disks directly from the source disks using the Copy option to remove encryption metadata.
 
 - **Downtime required**: The migration process requires VM downtime for disk operations and VM recreation.
 
@@ -49,18 +51,20 @@ The migration approach depends on your VM's operating system and which disks are
 
 | Scenario | Supported | Migration Method |
 |----------|-----------|------------------|
-| Windows VM - Data disks only encrypted | ✅ Yes | Disable ADE, copy disks, create new VM with Encryption at Host |
-| Windows VM - OS and data disks encrypted | ✅ Yes | Disable ADE, copy disks, create new VM with Encryption at Host |
-| Linux VM - Data disks only encrypted | ✅ Yes | Disable ADE, copy disks, attach to new/existing VM with Encryption at Host |
-| Linux VM - OS disk encrypted | ❌ Limited | Create new VM with Encryption at Host, migrate data disks |
+| Windows VM - OS disk only encrypted | ✅ Yes | Disable ADE, create new disks from source disks, create new VM with Encryption at Host |
+| Windows VM - OS and data disks encrypted | ✅ Yes | Disable ADE, create new disks from source disks, create new VM with Encryption at Host |
+| Linux VM - Data disks only encrypted | ✅ Yes | Disable ADE, create new disks from source disks, attach to new/existing VM with Encryption at Host |
+| Linux VM - OS disk encrypted | ❌ Limited | Create new VM with Encryption at Host, migrate data disks using direct disk copy |
+| Linux VM - OS and data disks encrypted | ❌ Limited | Create new VM with Encryption at Host, migrate data disks using direct disk copy |
 
-## Migration procedures
+> [!NOTE]
+> Windows VMs cannot have only data disks encrypted with ADE. The VolumeType parameter for Windows must be set to either "All" or "OS".
 
-### Windows VM migration
+## Windows VM migration procedures
 
-This procedure works for Windows VMs where you can disable Azure Disk Encryption.
+This procedure works for Windows VMs where you can disable Azure Disk Encryption. Follow these steps:
 
-## Step 1: Disable Azure Disk Encryption
+### Disable Azure Disk Encryption
 
 First, disable ADE and remove the encryption extension:
 
@@ -92,95 +96,95 @@ az vm extension delete --resource-group "MyResourceGroup" --vm-name "MyVM" --nam
 
 ---
 
-## Step 2: Create snapshots of the decrypted disks
+### Create new managed disks from source disks
 
-# [Azure PowerShell - Snapshots](#tab/azure-powershell-snapshots)
+To properly remove the UDE (User Data Encryption) flag, create new managed disks directly from the source disks using the Copy option rather than using snapshots.
+
+# [Azure PowerShell - Copy Disks](#tab/azure-powershell-copy)
 
 ```azurepowershell
-# Get the VM
+# Get the VM and its disks
 $vm = Get-AzVM -ResourceGroupName "MyResourceGroup" -Name "MyVM"
 
-# Create snapshot of OS disk
+# Create new OS disk by copying from source disk
 $osDisk = Get-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName $vm.StorageProfile.OsDisk.Name
-$osSnapshotConfig = New-AzSnapshotConfig -SourceUri $osDisk.Id -Location $vm.Location -CreateOption Copy
-$osSnapshot = New-AzSnapshot -Snapshot $osSnapshotConfig -SnapshotName "MyVM-OS-Snapshot" -ResourceGroupName "MyResourceGroup"
+$osDiskConfig = New-AzDiskConfig -Location $vm.Location -DiskSizeGB $osDisk.DiskSizeGB -SourceResourceId $osDisk.Id -CreateOption Copy
+$newOsDisk = New-AzDisk -Disk $osDiskConfig -ResourceGroupName "MyResourceGroup" -DiskName "MyVM-OS-New"
 
-# Create snapshots of data disks
+# Create new data disks by copying from source disks
 foreach ($dataDisk in $vm.StorageProfile.DataDisks) {
-    $disk = Get-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName $dataDisk.Name
-    $snapshotConfig = New-AzSnapshotConfig -SourceUri $disk.Id -Location $vm.Location -CreateOption Copy
-    $snapshot = New-AzSnapshot -Snapshot $snapshotConfig -SnapshotName "$($dataDisk.Name)-Snapshot" -ResourceGroupName "MyResourceGroup"
+    $sourceDisk = Get-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName $dataDisk.Name
+    $diskConfig = New-AzDiskConfig -Location $vm.Location -DiskSizeGB $sourceDisk.DiskSizeGB -SourceResourceId $sourceDisk.Id -CreateOption Copy
+    $newDisk = New-AzDisk -Disk $diskConfig -ResourceGroupName "MyResourceGroup" -DiskName "$($dataDisk.Name)-New"
 }
 ```
 
-# [Azure CLI - Snapshots](#tab/azure-cli-snapshots)
+# [Azure CLI - Copy Disks](#tab/azure-cli-copy)
 
 ```azurecli
 # Get VM information
 vm_info=$(az vm show --resource-group "MyResourceGroup" --name "MyVM")
 location=$(echo $vm_info | jq -r '.location')
 
-# Create snapshot of OS disk
+# Get OS disk ID and create new disk by copying from source
 os_disk_name=$(echo $vm_info | jq -r '.storageProfile.osDisk.name')
-az snapshot create \
-    --resource-group "MyResourceGroup" \
-    --name "MyVM-OS-Snapshot" \
-    --source $os_disk_name
+os_disk_id=$(az disk show --resource-group "MyResourceGroup" --name $os_disk_name --query "id" -o tsv)
 
-# Create snapshots of data disks
-data_disks=$(echo $vm_info | jq -r '.storageProfile.dataDisks[].name')
-for disk in $data_disks; do
-    az snapshot create \
-        --resource-group "MyResourceGroup" \
-        --name "${disk}-Snapshot" \
-        --source $disk
-done
-```
-
----
-
-## Step 3: Create new managed disks
-
-# [Azure PowerShell - New Disks](#tab/azure-powershell-disks)
-
-```azurepowershell
-# Create new OS disk from snapshot (will be encrypted with Encryption at Host)
-$osSnapshotId = $osSnapshot.Id
-$osDiskConfig = New-AzDiskConfig -Location $vm.Location -DiskSizeGB $osDisk.DiskSizeGB -SourceResourceId $osSnapshotId -CreateOption Copy
-$newOsDisk = New-AzDisk -Disk $osDiskConfig -ResourceGroupName "MyResourceGroup" -DiskName "MyVM-OS-New"
-
-# Create new data disks from snapshots (will be encrypted with Encryption at Host)
-foreach ($dataDisk in $vm.StorageProfile.DataDisks) {
-    $snapshotName = "$($dataDisk.Name)-Snapshot"
-    $snapshot = Get-AzSnapshot -ResourceGroupName "MyResourceGroup" -SnapshotName $snapshotName
-    $diskConfig = New-AzDiskConfig -Location $vm.Location -DiskSizeGB $dataDisk.DiskSizeGB -SourceResourceId $snapshot.Id -CreateOption Copy
-    $newDisk = New-AzDisk -Disk $diskConfig -ResourceGroupName "MyResourceGroup" -DiskName "$($dataDisk.Name)-New"
-}
-```
-
-# [Azure CLI - New Disks](#tab/azure-cli-disks)
-
-```azurecli
-# Create new OS disk from snapshot (will be encrypted with Encryption at Host)
-os_snapshot_id=$(az snapshot show --resource-group "MyResourceGroup" --name "MyVM-OS-Snapshot" --query "id" -o tsv)
 az disk create \
     --resource-group "MyResourceGroup" \
     --name "MyVM-OS-New" \
-    --source $os_snapshot_id
+    --location $location \
+    --source $os_disk_id
 
-# Create new data disks from snapshots (will be encrypted with Encryption at Host)
+# Create new data disks by copying from source disks
+data_disks=$(echo $vm_info | jq -r '.storageProfile.dataDisks[].name')
 for disk in $data_disks; do
-    snapshot_id=$(az snapshot show --resource-group "MyResourceGroup" --name "${disk}-Snapshot" --query "id" -o tsv)
+    disk_id=$(az disk show --resource-group "MyResourceGroup" --name $disk --query "id" -o tsv)
     az disk create \
         --resource-group "MyResourceGroup" \
         --name "${disk}-New" \
-        --source $snapshot_id
+        --location $location \
+        --source $disk_id
+done
+```
+
+> [!IMPORTANT]
+> This method creates new managed disks using the Copy option, which removes the UDE flag and creates clean disks that can be encrypted with Encryption at Host. For OS disks, the UDE flag is also stored at the VM metadata level, so the VM must be recreated.
+
+---
+
+### Verify new managed disks
+
+Verify that the new managed disks have been created successfully and are ready for use with Encryption at Host.
+
+# [Azure PowerShell - Verify Disks](#tab/azure-powershell-verify)
+
+```azurepowershell
+# Verify OS disk was created successfully
+Get-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName "MyVM-OS-New" | Select-Object Name, DiskState, DiskSizeGB
+
+# Verify data disks were created successfully
+foreach ($dataDisk in $vm.StorageProfile.DataDisks) {
+    $newDiskName = "$($dataDisk.Name)-New"
+    Get-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName $newDiskName | Select-Object Name, DiskState, DiskSizeGB
+}
+```
+
+# [Azure CLI - Verify Disks](#tab/azure-cli-verify)
+
+```azurecli
+# Verify OS disk was created successfully
+az disk show --resource-group "MyResourceGroup" --name "MyVM-OS-New" --query "{name:name, state:diskState, sizeGB:diskSizeGb}"
+
+# Verify data disks were created successfully
+for disk in $data_disks; do
+    az disk show --resource-group "MyResourceGroup" --name "${disk}-New" --query "{name:name, state:diskState, sizeGB:diskSizeGb}"
 done
 ```
 
 ---
 
-## Step 4: Create new VM with encrypted disks
+### Create new VM with encrypted disks
 
 # [Azure PowerShell - New VM](#tab/azure-powershell-vm)
 
@@ -244,7 +248,7 @@ done
 
 ---
 
-## Linux VM migration
+## Linux VM migration procedures
 
 For Linux VMs, the approach depends on whether the OS disk is encrypted:
 
@@ -253,9 +257,8 @@ For Linux VMs, the approach depends on whether the OS disk is encrypted:
 If only data disks are encrypted, follow the same procedure as Windows VMs:
 
 1. [Disable ADE on data disks](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension)
-2. Create snapshots of decrypted data disks
-3. Create new managed disks
-4. Create a new VM with Encryption at Host enabled and attach the new disks
+2. Create new managed disks from source disks using the Copy option
+3. Create a new VM with Encryption at Host enabled and attach the new disks
 
 ### OS disk encrypted (Linux)
 
@@ -263,7 +266,7 @@ Since disabling ADE on Linux OS disks is not supported, you must create a new VM
 
 1. Create a new VM with a fresh OS disk and Encryption at Host enabled
 2. [Disable ADE on the data disks](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension) of the original VM
-3. Create snapshots and new data disks as described above
+3. Create new data disks from source disks using the Copy option as described above
 4. Attach the new data disks to the new VM with Encryption at Host
 5. Migrate your data and configuration from the old VM to the new VM
 
@@ -293,7 +296,7 @@ After successful migration and verification:
 
 1. **Delete old VM**: Remove the original ADE-encrypted VM
 2. **Delete old disks**: Remove the original encrypted disks
-3. **Delete snapshots**: Clean up temporary snapshots (optional, but recommended for cost savings)
+3. **Clean up resources**: Remove any temporary resources created during migration
 4. **Update documentation**: Update your infrastructure documentation to reflect the migration to Encryption at Host
 
 ## Common issues and solutions
