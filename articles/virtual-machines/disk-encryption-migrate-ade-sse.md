@@ -13,11 +13,6 @@ ms.custom: references_regions
 
 # Migrate from Azure Disk Encryption to encryption at host
 
-> [!IMPORTANT]
-> **Azure Disk Encryption Retirement Notice**
->
-> Azure Disk Encryption for Virtual Machines and Virtual Machine Scale Sets will be retired on **September 15, 2028**. New customers should use encryption at host for all new VMs. Existing customers should plan to migrate current ADE-enabled VMs to encryption at host before the retirement date to avoid service disruption.
-
 This article provides step-by-step guidance for migrating your virtual machines from Azure Disk Encryption (ADE) to Encryption at Host. The migration process requires creating new disks and VMs, as in-place conversion is not supported.
 
 ## Migration overview
@@ -32,7 +27,7 @@ Azure Disk Encryption (ADE) encrypts data within the VM using BitLocker (Windows
 
 - **Linux OS disk limitation**: Disabling ADE on Linux OS disks is not supported. For Linux VMs with ADE-encrypted OS disks, you must create a new VM with a new OS disk.
 
-- **Windows limitations**: You can only disable ADE on Windows VMs where both OS and data disks are encrypted, or only data disks are encrypted.
+- **Windows ADE disablement**: Azure Disk Encryption can be disabled on Windows VMs regardless of whether only data disks are encrypted or both OS and data disks are encrypted. This allows for a more straightforward migration path compared to Linux VMs.
 
 - **Downtime required**: The migration process requires VM downtime for disk operations and VM recreation.
 
@@ -42,11 +37,11 @@ Before starting the migration:
 
 1. **Backup your data**: Create backups of all critical data before beginning the migration process.
 
-2. **Test the process**: If possible, test the migration process on a non-production VM first.
+1. **Test the process**: If possible, test the migration process on a non-production VM first.
 
-3. **Prepare encryption resources**: Ensure your VM size supports encryption at host. Most current VM sizes support this feature.
+1. **Prepare encryption resources**: Ensure your VM size supports encryption at host. Most current VM sizes support this feature.
 
-4. **Document configuration**: Record your current VM configuration, including network settings, extensions, and attached resources.
+1. **Document configuration**: Record your current VM configuration, including network settings, extensions, and attached resources.
 
 ## Migration scenarios
 
@@ -301,27 +296,23 @@ After successful migration and verification:
 3. **Delete snapshots**: Clean up temporary snapshots (optional, but recommended for cost savings)
 4. **Update documentation**: Update your infrastructure documentation to reflect the migration to Encryption at Host
 
-## Troubleshooting
+## Common issues and solutions
 
-### Common issues and solutions
+### VM size doesn't support Encryption at Host
 
-**Issue**: VM size doesn't support Encryption at Host
+**Solution**: Check the [list of supported VM sizes](disk-encryption.md#encryption-at-host---end-to-end-encryption-for-your-vm-data) and resize your VM if necessary
 
-- **Solution**: Check the [list of supported VM sizes](disk-encryption.md#encryption-at-host---end-to-end-encryption-for-your-vm-data) and resize your VM if necessary
+### VM fails to start after migration
 
-**Issue**: VM fails to start after migration
+**Solution**: Check that all disks are properly attached and that the OS disk is set as the boot disk
 
-- **Solution**: Check that all disks are properly attached and that the OS disk is set as the boot disk
+### Encryption at Host not enabled
 
-**Issue**: Encryption at Host not enabled
+**Solution**: Verify that the VM was created with the `--encryption-at-host true` parameter and that your subscription supports this feature
 
-- **Solution**: Verify that the VM was created with the `--encryption-at-host true` parameter and that your subscription supports this feature
+### Performance issues persist
 
-#### Performance issues persist
-
-##### Solution
-
-Verify that encryption at host is properly enabled and that the VM size supports the expected performance.
+**Solution**: Verify that encryption at host is properly enabled and that the VM size supports the expected performance.
 
 ## Next steps
 
