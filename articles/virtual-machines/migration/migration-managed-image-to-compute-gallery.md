@@ -5,7 +5,7 @@ author: AjKundnani
 ms.service: azure-virtual-machines
 ms.subservice: gallery
 ms.topic: how-to
-ms.date: 25/08/2025
+ms.date: 08/24/2025
 ms.author: saraic
 ms.reviewer: cynthn
 ms.custom: template-how-to, devx-track-azurepowershell
