@@ -23,13 +23,13 @@ After September 8, 2028, any existing virtual machines using Standard HDD OS Dis
 
 ## What is being retired?
 
-This retirement is only for the ability to use Standard HDD disks as OS disks. All other managed disk types and ephemeral OS disks aren't affected by this retirement.
+This retirement is only for the ability to use Standard HDD disks as OS disks. None of the other managed disk types or ephemeral OS disks will be affected by this retirement.
 
 ## What actions should I take?
 
 To start planning a migration to either Standard SSD or Premium SSD OS disks, first, make a list of all affected OS disks and VMs.
 
-If you have multiple subscriptions, use the [Disk Storage Center](https://ms.portal.azure.com/#view/Microsoft_Azure_StorageHub/StorageHub.MenuView/~/DisksBrowse) to create a list. Add two filters, one for **Storage type** which should be equal to **Standard HDD LRS** and one for **OS type** which should equal to **Linux and Windows**. This will produce a list of all Standard HDD OS disks across all your subscriptions. The **Owner** column is the name of the virtual machine that uses the listed Standard HDD OS disks.
+If you have multiple subscriptions, use the [Disk Storage Center](https://ms.portal.azure.com/#view/Microsoft_Azure_StorageHub/StorageHub.MenuView/~/DisksBrowse) to create a list. Add two filters, one for **Storage type** which should be equal to **Standard HDD LRS** and one for **OS type** which should equal to **Linux and Windows**. This produces a list of all Standard HDD OS disks across all your subscriptions. The **Owner** column is the name of the virtual machine that uses the listed Standard HDD OS disks.
 
 The Disk Storage Center still works for individual subscriptions. But, if you prefer, you can use the Azure CLI or the Azure PowerShell module to get the same list for an individual subscription. For the Azure PowerShell module, use `Get-AzDisk | Where-Object { $_.Sku.Name -eq "Standard_LRS" -and $_.OsType }` and for the Azure CLI, use `az disk list --query "[?sku.name=='Standard_LRS' && osType!=null]" --output table`.
 
