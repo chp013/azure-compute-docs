@@ -13,13 +13,13 @@ ms.author: rogarana
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
-On September 8, 2028, the ability to use Standard HDD disks as [OS disks](managed-disks-overview.md#os-disk) will be retired. At that time, all Standard HDD disks being used as OS disks will be automatically converted to Standard SSD disks. To avoid potential service disruption, you should convert your Standard HDD disks being used as OS disks to either Standard SSD or Premium SSD disks.
+On September 8, 2028, the ability to use Standard HDD disks as [OS disks](managed-disks-overview.md#os-disk) will be retired. After that date, all Standard HDD disks being used as OS disks will be automatically converted to Standard SSD disks of equivalent size. To avoid potential service disruptions, you should convert your Standard HDD OS disks to either Standard SSD or Premium SSD disks before the retirement date.
 
 If you're using Standard HDD as OS disks, begin planning a migration now. Generally, Standard SSD provides the closest price to performance ratio as Standard HDD disks. If you need higher performance, migrate to Premium SSD.
 
 ## How am I affected?
 
-After September 8, 2028, any existing virtual machines using Standard HDDs as their OS disks will automatically be converted to a Standard SSD of an equivalent size. Workloads on these disks may experience a service disruption if they're not migrated before September 8, 2028.
+After September 8, 2028, any existing virtual machines using Standard HDD OS Disks will have their OS disks automatically converted to a Standard SSD of equivalent size. Workloads on these disks may experience a service disruption if they're not migrated before September 8, 2028.
 
 ## What is being retired?
 
@@ -27,7 +27,7 @@ This retirement is only for the ability to use Standard HDD disks as OS disks. A
 
 ## What actions should I take?
 
-To start planning a migration to either Standard SSD or Premium SSD disks, first, make a list of all affected OS disks and VMs.
+To start planning a migration to either Standard SSD or Premium SSD OS disks, first, make a list of all affected OS disks and VMs.
 
 If you have multiple subscriptions, use the [Disk Storage Center](https://ms.portal.azure.com/#view/Microsoft_Azure_StorageHub/StorageHub.MenuView/~/DisksBrowse) to create a list. Add two filters, one for **Storage type** which should be equal to **Standard HDD LRS** and one for **OS type** which should equal to **Linux and Windows**. This will produce a list of all Standard HDD OS disks across all your subscriptions. The **Owner** column is the name of the virtual machine that uses the listed Standard HDD OS disks.
 
