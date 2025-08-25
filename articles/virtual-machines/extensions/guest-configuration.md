@@ -4,9 +4,9 @@ description: Learn about the Machine Configuration extension, and audit and conf
 ms.topic: concept-article
 ms.service: azure-virtual-machines
 ms.subservice: extensions
-author: mgreenegit
-ms.author: migreene
-ms.date: 04/05/2023
+author: MutemwaRMasheke
+ms.author: mmasheke
+ms.date: 08/20/2025
 # Customer intent: "As a cloud administrator, I want to install the Machine Configuration extension on my Azure virtual machines, so that I can audit and configure compliance settings effectively for improved security management."
 ---
 
@@ -37,7 +37,7 @@ and report status to the Machine Configuration service. The VM can connect by us
 
 To learn more about private networking, see the following articles:
 
-- [Azure Mchine Configuration, Communicate over Azure Private Link](/azure/governance/machine-configuration/overview#communicate-over-private-link-in-azure)
+- [Azure Machine Configuration, Communicate over Azure Private Link](/azure/governance/machine-configuration/overview#communicate-over-private-link-in-azure)
 - [Use private endpoints for Azure Storage](/azure/storage/common/storage-private-endpoints)
 
 ## Install the extension
