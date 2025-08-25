@@ -15,7 +15,7 @@ ms.author: rogarana
 
 On September 8, 2028, the ability to use Standard HDD disks as [OS disks](managed-disks-overview.md#os-disk) will be retired. At that time, all Standard HDD disks being used as OS disks will be automatically converted to Standard SSD disks. To avoid potential service disruption, you should convert your Standard HDD disks being used as OS disks to either Standard SSD or Premium SSD disks.
 
-If you're using Standard HDD as OS disks, begin planning a migration now. Generally, Standard SSD provides the closest price to performance ratio as Standard HDD disks. If you need higher performance, migrate to Premium.
+If you're using Standard HDD as OS disks, begin planning a migration now. Generally, Standard SSD provides the closest price to performance ratio as Standard HDD disks. If you need higher performance, migrate to Premium SSD.
 
 ## How am I affected?
 
