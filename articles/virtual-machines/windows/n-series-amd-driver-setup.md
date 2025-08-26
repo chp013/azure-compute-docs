@@ -56,12 +56,12 @@ The AMD Software: Cloud Edition drivers must be installed to take advantage of t
 
 |OS|Driver|
 | -------- | -------- |
-|Windows 11 64-bit version 21H2, 22H2|[25.Q1 (.exe)]()|
-|Windows 10 64-bit version 21H2, 22H2|[25.Q1 (.exe)]()|
-|Windows 11 EMS 64-bit 21H2, 22H2||
-|Windows 10 EMS 64-bit 21H2, 22H2||
-|Windows Server 2019 LTSC (version 1809)|[25.Q1 (.exe)]()|
-|Windows Server 2022 64-bit Release 20348|[25.Q1 (.exe)]()|
+|Windows 11 64-bit version 21H2, 22H2, 23H2, 24H2|[25.Q1 (.exe)](https://download.microsoft.com/download/44ee0d6c-74dd-4214-b6d5-24fbf2eac33b/whql-amd-software-cloud-edition-25.1.1-win10-win11-azure-ngads-v620.exe)|
+|Windows 10 64-bit version 20H2, 21H2, 22H2|[25.Q1 (.exe)](https://download.microsoft.com/download/44ee0d6c-74dd-4214-b6d5-24fbf2eac33b/whql-amd-software-cloud-edition-25.1.1-win10-win11-azure-ngads-v620.exe)|
+|Windows 11 EMS 64-bit 21H2, 22H2|[25.Q1 (.exe)](https://download.microsoft.com/download/6f834f98-109d-4dfc-89e6-d25ff02a9dd0/amd-software-cloud-edition-25.1.1-winsvr2022-azure-v620.exe)|
+|Windows 10 EMS 64-bit 21H2, 22H2|[25.Q1 (.exe)](https://download.microsoft.com/download/066e6ff4-1a59-4d15-8411-fe1dd8e5de6d/amd-software-cloud-edition-25.1.1-winsvr2019-azure-v620.exe)|
+|Windows Server 2019 LTSC (version 1809)|[25.Q1 (.exe)](https://download.microsoft.com/download/066e6ff4-1a59-4d15-8411-fe1dd8e5de6d/amd-software-cloud-edition-25.1.1-winsvr2019-azure-v620.exe)|
+|Windows Server 2022 64-bit Release 20348|[25.Q1 (.exe)](https://download.microsoft.com/download/6f834f98-109d-4dfc-89e6-d25ff02a9dd0/amd-software-cloud-edition-25.1.1-winsvr2022-azure-v620.exe)|
 
 ### VM Creation
 Create the VMs using CLI. (Azure AMD GPU driver extensions don't support NGads  V620 Series during preview)
@@ -101,21 +101,21 @@ Previous supported driver versions for Windows builds up to 1909 are [20.Q4-1](h
  
  > [!NOTE]
 >  If you use build 1903/1909 then you may need to update the following group policy for optimal performance. These changes are not needed for any other Windows builds.
-   >  
-   >  [Computer Configuration->Policies->Windows Settings->Administrative Templates->Windows Components->Remote Desktop Services->Remote Desktop Session Host->Remote Session    Environment], set the Policy [Use WDDM graphics display driver for Remote Desktop Connections] to Disabled.
+ 
+>  [Computer Configuration->Policies->Windows Settings->Administrative Templates->Windows Components->Remote Desktop Services->Remote Desktop Session Host->Remote Session    Environment], set the Policy [Use WDDM graphics display driver for Remote Desktop Connections] to Disabled.
    >  
 
  
 ### Driver installation
 > [!NOTE]
 >  Follow these steps if you see "Error 184 - AMD Installer cannot continue due to an unsupported Operating System" error on Windows 10 EMS / Windows 11 EMS.
-   >  
-   >  Go to C:\AMD\AMD Software Azure NVv4 Guest Driver 23Q3\Packages\Drivers\Display\WT6A_INF
+ 
+>  Go to C:\AMD\AMD Software Azure NVv4 Guest Driver 23Q3\Packages\Drivers\Display\WT6A_INF
    >  Right click and  install on the *.inf file.
 
 >   For Windows10 EMS: u9397288.inf
-  > 
-  >   For Windows11 EMS: u2397344.inf 
+
+>   For Windows11 EMS: u2397344.inf 
 
 1. Connect by Remote Desktop to each NVv4-series VM.
 
