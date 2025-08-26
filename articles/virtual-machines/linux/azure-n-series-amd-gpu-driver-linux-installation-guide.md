@@ -78,7 +78,7 @@ c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
 
 > [!NOTE]
 > The Virtual Function Device ID 7461 confirms that the Virtual Machine is configured with the AMD Radeon PRO V710 GPU.
-### AMD Driver Installation
+#### AMD Driver Installation
 
 **Installation**
 
@@ -156,14 +156,11 @@ To automatically load the `amdgpu` driver on every reboot of the VM, we need to 
 */etc/modprobe.d/blacklist.conf:10:blacklist amdgpu*
 * Remove the blacklist from the listed file, using `$ sudo nano /etc/modprobe.d/blacklist.conf` and delete the line with *blacklist amdgpu*.
 * Update the initramfs to apply changes on the next boot, using `$ sudo update-initramfs -uk all`
+
 * Reboot the system to load the updated configuration using `$ sudo reboot`. After rebooting, ensure that amdgpu driver isn't blacklisted and it's available for use.
 
-* Run AMD-SMI to confirm the driver is loaded successfully using `$ amd-smi monitor` <br>
-```bash
-GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UTIL  ENC_CLOCK  DEC_UTIL  DEC_CLOCK     THROTTLE  SINGLE_ECC  DOUBLE_ECC  PCIE_REPLAY  VRAM_USED  VRAM_TOTAL   PCIE_BW 
+* Run AMD-SMI to confirm the driver is loaded successfully using `$ amd-smi monitor` 
 
-  0   11 W     43 °C     58 °C      84 %   1814 MHz       1 %     96 MHz       N/A    812 MHz       N/A    512 MHz  UNTHROTTLED           0           0            0     227 MB    25476 MB  N/A Mb/s
-```
 ### Graphics+ROCM
 
 ### 1. Installation Guide
