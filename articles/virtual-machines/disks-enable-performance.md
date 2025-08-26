@@ -22,7 +22,7 @@ Once enabled, the IOPS and throughput limits for an eligible disk increase to th
 ## Limitations
 
 - Can only be enabled on Standard HDD, Standard SSD, and Premium SSD managed disks that are 513 GiB or larger
-- Can only be enabled on new disks
+- Can only be enabled during disk creation
     - To work around this, create a snapshot of your disk, then create a new disk from the snapshot
 - Not supported for disks recovered with Azure Site Recovery
 - Not supported on disk creation on VM creation pipeline
