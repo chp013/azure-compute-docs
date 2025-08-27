@@ -13,19 +13,19 @@ ms.custom: references_regions
 
 # Migrate from Azure Disk Encryption to encryption at host
 
-This article provides step-by-step guidance for migrating your virtual machines from Azure Disk Encryption (ADE) to Encryption at Host. The migration process requires creating new disks and VMs, as in-place conversion is not supported.
+This article provides step-by-step guidance for migrating your virtual machines from Azure Disk Encryption (ADE) to encryption at host. The migration process requires creating new disks and VMs, as in-place conversion is not supported.
 
 ## Migration overview
 
-Azure Disk Encryption (ADE) encrypts data within the VM using BitLocker (Windows) or dm-crypt (Linux), while Encryption at Host encrypts data at the VM host level without consuming VM CPU resources. Encryption at Host enhances Azure's default server-side encryption (SSE) by providing end-to-end encryption for all VM data, including temp disks, caches, and data flows between compute and storage.
+Azure Disk Encryption (ADE) encrypts data within the VM using BitLocker (Windows) or dm-crypt (Linux), while encryption at host encrypts data at the VM host level without consuming VM CPU resources. Encryption at host enhances Azure's default server-side encryption (SSE) by providing end-to-end encryption for all VM data, including temp disks, caches, and data flows between compute and storage.
 
-For more information, see [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview) or [Enable end-to-end encryption using encryption at host](/azure/virtual-machines/disks-enable-host-based-encryption-portal).
+For more information, see [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview) and [Enable end-to-end encryption using encryption at host](/azure/virtual-machines/disks-enable-host-based-encryption-portal).
 
 ### Migration limitations and considerations
 
 Before starting the migration process, be aware of these important limitations and considerations that will affect your migration strategy:
 
-- **No in-place migration**: You cannot directly convert ADE-encrypted disks to Encryption at Host. Migration requires creating new disks and VMs.
+- **No in-place migration**: You cannot directly convert ADE-encrypted disks to encryption at host. Migration requires creating new disks and VMs.
 
 - **Linux OS disk limitation**: Disabling ADE on Linux OS disks is not supported. For Linux VMs with ADE-encrypted OS disks, you must create a new VM with a new OS disk.
 
@@ -40,7 +40,7 @@ Before starting the migration process, be aware of these important limitations a
   - After creating the new VM, it must be rejoined to the domain
   - For Linux VMs, domain joining can be accomplished using Azure AD extensions
 
-For more information, see [What is Microsoft Entra Domain Services?](/entra/identity/domain-services/overview)
+  For more information, see [What is Microsoft Entra Domain Services?](/entra/identity/domain-services/overview)
 
 ### Prerequisites
 
@@ -50,9 +50,7 @@ Before starting the migration:
 
 1. **Test the process**: If possible, test the migration process on a non-production VM first.
 
-1. **Prepare encryption resources**: Ensure your VM size supports encryption at host. Most current VM sizes support this feature.
-
-For more information about VM size requirements, see [Enable end-to-end encryption using encryption at host](/azure/virtual-machines/disks-enable-host-based-encryption-portal).
+1. **Prepare encryption resources**: Ensure your VM size supports encryption at host. Most current VM sizes support this feature.  For more information about VM size requirements, see [Enable end-to-end encryption using encryption at host](/azure/virtual-machines/disks-enable-host-based-encryption-portal).
 
 1. **Document configuration**: Record your current VM configuration, including network settings, extensions, and attached resources.
 
@@ -62,12 +60,12 @@ The migration approach depends on your VM's operating system and which disks are
 
 | Scenario | Supported | Migration Method |
 |----------|-----------|------------------|
-| Windows VM - OS disk only encrypted | ✅ Yes | Disable ADE, create new disks without encryption settings, create new VM with Encryption at Host |
-| Windows VM - OS and data disks encrypted | ✅ Yes | Disable ADE, create new disks without encryption settings, create new VM with Encryption at Host |
-| Linux VM - Data disks only encrypted | ✅ Yes | Disable ADE, create new disks without encryption settings, attach to new/existing VM with Encryption at Host |
-| Linux VM - OS disk only encrypted | ❌ Limited | Create new VM with Encryption at Host, migrate data using new disks without encryption settings |
-| Linux VM - OS disk encrypted | ❌ Limited | Create new VM with Encryption at Host, migrate data using new disks without encryption settings |
-| Linux VM - OS and data disks encrypted | ❌ Limited | Create new VM with Encryption at Host, migrate data using new disks without encryption settings |
+| Windows VM - OS disk only encrypted | ✅ Yes | Disable ADE, create new disks without encryption settings, create new VM with encryption at host |
+| Windows VM - OS and data disks encrypted | ✅ Yes | Disable ADE, create new disks without encryption settings, create new VM with encryption at host |
+| Linux VM - Data disks only encrypted | ✅ Yes | Disable ADE, create new disks without encryption settings, attach to new/existing VM with encryption at host |
+| Linux VM - OS disk only encrypted | ❌ Limited | Create new VM with encryption at host, migrate data using new disks without encryption settings |
+| Linux VM - OS disk encrypted | ❌ Limited | Create new VM with encryption at host, migrate data using new disks without encryption settings |
+| Linux VM - OS and data disks encrypted | ❌ Limited | Create new VM with encryption at host, migrate data using new disks without encryption settings |
 
 > [!NOTE]
 > **Windows ADE VolumeType limitations**: Windows VMs cannot have only data disks encrypted with ADE - you cannot encrypt data disks without first encrypting the OS disk. The VolumeType parameter for Windows can be omitted (defaults to "All") or set to either "All" or "OS", but cannot be set to "Data" alone. Therefore, the "Windows VM - Data disks only encrypted" scenario is not possible with Azure Disk Encryption.
@@ -227,7 +225,7 @@ done
 
 ### Verify new managed disks
 
-Verify that the new managed disks have been created successfully and are ready for use with Encryption at Host.
+Verify that the new managed disks have been created successfully and are ready for use with encryption at host.
 
 # [Azure PowerShell - Verify Disks](#tab/azure-powershell-verify)
 
@@ -292,7 +290,7 @@ New-AzVM -ResourceGroupName "MyResourceGroup" -Location $vm.Location -VM $vmConf
 vm_size=$(echo $vm_info | jq -r '.hardwareProfile.vmSize')
 nic_id=$(echo $vm_info | jq -r '.networkProfile.networkInterfaces[0].id')
 
-# Create new VM with Encryption at Host enabled
+# Create new VM with encryption at host enabled
 os_disk_id=$(az disk show --resource-group "MyResourceGroup" --name "MyVM-OS-New" --query "id" -o tsv)
 
 az vm create \
@@ -322,9 +320,7 @@ done
 
 ## Linux VM migration procedures
 
-For Linux VMs, the approach depends on whether the OS disk is encrypted.
-
-For more information about Azure Disk Encryption on Linux, see [Azure Disk Encryption for Linux VMs](/azure/virtual-machines/linux/disk-encryption-overview).
+For Linux VMs, the approach depends on whether the OS disk is encrypted.  For more information about Azure Disk Encryption on Linux, see [Azure Disk Encryption for Linux VMs](/azure/virtual-machines/linux/disk-encryption-overview).
 
 ### Data disks only encrypted
 
@@ -333,29 +329,22 @@ If only data disks are encrypted, follow a similar procedure as Windows VMs:
 1. [Disable ADE on data disks](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension)
 2. Create new managed disks without encryption settings (Platform Managed Keys)
 3. Copy data from the original disks to the new disks
-4. Create a new VM with Encryption at Host enabled and attach the new disks
+4. Create a new VM with encryption at host enabled and attach the new disks
 
 ### OS disk encrypted (Linux)
 
 Since disabling ADE on Linux OS disks is not supported, you must create a new VM:
 
-1. Create a new VM with a fresh OS disk and Encryption at Host enabled
+1. Create a new VM with a fresh OS disk and encryption at host enabled
 2. [Disable ADE on the data disks](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension) of the original VM (if applicable)
 3. Create new data disks without encryption settings (Platform Managed Keys)
 4. Copy data from the original disks to the new disks
-5. Attach the new data disks to the new VM with Encryption at Host
+5. Attach the new data disks to the new VM with encryption at host
 6. Migrate your data and configuration from the old VM to the new VM
 
 ## VHD blob copying process
 
 The migration process uses AzCopy to copy the VHD blob data from the source ADE-encrypted disk to a new managed disk created with the Upload method. This approach creates a completely new disk object without any metadata from the source disk.
-
-### Key advantages of the Upload method
-
-1. **Complete metadata removal**: Creates a new disk object without any metadata from the source disk
-2. **UDE flag elimination**: The new disk will not have the UDE flag that prevents Encryption at Host, while still maintaining Azure's default server-side encryption (SSE)
-3. **Direct VHD blob transfer**: Uses AzCopy for efficient blob-level copying
-4. **No intermediate steps**: Eliminates the need for temporary VMs or manual file copying
 
 ### Process overview
 
@@ -364,7 +353,7 @@ The migration process uses AzCopy to copy the VHD blob data from the source ADE-
 3. **Generate SAS tokens**: Create read access for source disk and write access for target disk
 4. **Copy VHD blobs**: Use AzCopy to transfer the VHD blob data between disks
 5. **Revoke access**: Remove SAS access from both source and target disks
-6. **Create new VM**: Build a new VM with Encryption at Host using the new disks
+6. **Create new VM**: Build a new VM with encryption at host using the new disks
 
 ### Prerequisites for copying
 
@@ -403,7 +392,7 @@ If your VMs are members of an Active Directory domain, additional steps are requ
 
 ### Post-migration domain rejoining
 
-1. **Join new VM to domain**: After creating the new VM with Encryption at Host:
+1. **Join new VM to domain**: After creating the new VM with encryption at host:
    - For Windows: Use `Add-Computer` PowerShell cmdlet or System Properties
    - For Linux: Use Azure AD domain join extension or manual configuration
 
@@ -434,9 +423,9 @@ For more information, see [What is Microsoft Entra Domain Services?](/entra/iden
 
 ## Post-migration verification
 
-After completing the migration, verify that Encryption at Host is working correctly:
+After completing the migration, verify that encryption at host is working correctly:
 
-1. **Check Encryption at Host status**: Verify that Encryption at Host is enabled:
+1. **Check encryption at host status**: Verify that encryption at host is enabled:
 
    ```azurecli
    az vm show --resource-group "MyResourceGroup" --name "MyVM-New" --query "securityProfile.encryptionAtHost"
@@ -461,11 +450,11 @@ After successful migration and verification:
 1. **Delete old VM**: Remove the original ADE-encrypted VM
 2. **Delete old disks**: Remove the original encrypted disks
 3. **Clean up resources**: Remove any temporary resources created during migration
-4. **Update documentation**: Update your infrastructure documentation to reflect the migration to Encryption at Host
+4. **Update documentation**: Update your infrastructure documentation to reflect the migration to encryption at host
 
 ## Common issues and solutions
 
-### VM size doesn't support Encryption at Host
+### VM size doesn't support encryption at host
 
 **Solution**: Check the [list of supported VM sizes](disk-encryption.md#encryption-at-host---end-to-end-encryption-for-your-vm-data) and resize your VM if necessary
 
@@ -473,7 +462,7 @@ After successful migration and verification:
 
 **Solution**: Check that all disks are properly attached and that the OS disk is set as the boot disk
 
-### Encryption at Host not enabled
+### Encryption at host not enabled
 
 **Solution**: Verify that the VM was created with the `--encryption-at-host true` parameter and that your subscription supports this feature
 
