@@ -66,47 +66,33 @@ Linux 5.XX.0-XX-generic #86-Ubuntu SMP Mon Jul 10 16:07:21 UTC 2023 x86_64
 ## Step2: Pre-configuration
 > [!Note]
 > The disk size must be greater than 64GB to ensure optimal performance and compatibility.
-
-- **Verify the GPU card**
+**Verify the GPU card**
 
 Verify the output of the GPU card, using
 
-`$ sudo lspci -d 1002:7461` 
 
+```
+$ sudo lspci -d 1002:7461` 
 c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
+```
+
 > [!NOTE]
 > The Virtual Function Device ID 7461 confirms that the Virtual Machine is configured with the AMD Radeon PRO V710 GPU.
-- **Disable amdgpu driver**
+#### AMD Driver Installation
 
-  Before installing the latest AMD Linux driver, you should disable or blacklist the default AMD GPU driver found in Linux distributions like Ubuntu or RHEL. This default driver is not certified for use with the **AMD Radeon PRO V710 GPU** on an **NVv5-V710 GPU** Linux instance. Instead, use the driver optimized for Azure **NVv5-V710 GPU** workloads.
-  
-- **Verify for driver disable**
-
-  Verify if the amdgpu driver is already disabled, using the command: ```bash $ grep amdgpu /etc/modprobe.d/* -rn```
-  If the driver is blacklisted, you don't need to modify anything else. However, be cautious with entries that start with #blacklist amdgpu as it indicates that the driver isn't blacklisted.
-  
-- **Disable the amdgpu driver**
-
-  To install the latest driver, you need to blacklist the default amdgpu driver. Follow these steps:
-  
-  * Edit the `/etc/modprobe.d/blacklist.conf` file to include the amdgpu driver, using `$ blacklist amdgpu`
-  * Apply the changes using `$ sudo update-initramfs -uk all` to ensure that the changes take effect and the driver is properly blacklisted.
-    
-- **Reboot**
-
-  After restarting the VM, the default amdgpu driver in Ubuntu Linux distributions should not load because it has been blacklisted. Confirm that the driver isn't loaded, using: `$ lsmod | grep amdgpu` to check if the amdgpu driver is loaded.
-  If there is no output, it means the driver isn't loaded, and you can proceed. However, if the driver is still loaded, return to the previous step to double-check that the amdgpu driver was correctly blacklisted.
-  
-### 4. AMD Driver Installation
-#### 4a Installation
+**Installation**
 
 The following steps demonstrate the use of the amdgpu-install script for a single-version driver installation. To install the latest ROCm driver, run the following commands on your terminal:
 <details>
   <summary><strong>Ubuntu 22.04</strong></summary>
 
   ```bash
-wget https://repo.radeon.com/amdgpu-install/6.3.3/ubuntu/jammy/amdgpu-install_6.3.60303-1_all.deb
-sudo apt install ./amdgpu-install_6.3.60303-1_all.deb
+sudo apt update
+sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
+sudo apt install python3-setuptools python3-wheel
+sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+wget https://repo.radeon.com/amdgpu-install/6.4.3/ubuntu/jammy/amdgpu-install_6.4.60403-1_all.deb
+sudo apt install ./amdgpu-install_6.4.60403-1_all.deb
 sudo apt update
 sudo apt install amdgpu-dkms rocm
   ```
@@ -115,9 +101,14 @@ sudo apt install amdgpu-dkms rocm
   <summary><strong>Ubuntu 24.04</strong></summary>
 
 
+
 ```bash
-wget https://repo.radeon.com/amdgpu-install/6.3.3/ubuntu/noble/amdgpu-install_6.3.60303-1_all.deb
-sudo apt install ./amdgpu-install_6.3.60303-1_all.deb
+sudo apt update
+sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
+sudo apt install python3-setuptools python3-wheel
+sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+wget https://repo.radeon.com/amdgpu-install/6.4.3/ubuntu/noble/amdgpu-install_6.4.60403-1_all.deb
+sudo apt install ./amdgpu-install_6.4.60403-1_all.deb
 sudo apt update
 sudo apt install amdgpu-dkms rocm
 ```
@@ -127,7 +118,7 @@ sudo apt install amdgpu-dkms rocm
 >[!NOTE]
 > Azure currently supports Ubuntu 22.04 and Ubuntu 24.04, for all other Linux distros refer to [AMD's documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html).
 
-#### 4b Load amdgpu driver
+**Load amdgpu driver**
 
 ```bash
 $ sudo modprobe amdgpu
@@ -148,7 +139,16 @@ $ sudo dmesg | grep amdgpu
 [ 66.689542] amdgpu 045b:00:00.0: amdgpu: CP RS64 enable
 ```
 
-#### 4c Enable the driver
+Run AMD-SMI to confirm the driver is loaded successfully using `$ amd-smi monitor`
+
+
+```
+GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UTIL  ENC_CLOCK  DEC_UTIL  DEC_CLOCK     THROTTLE  SINGLE_ECC  DOUBLE_ECC  PCIE_REPLAY  VRAM_USED  VRAM_TOTAL   PCIE_BW 
+  0   11 W     43 °C     58 °C      84 %   1814 MHz       1 %     96 MHz       N/A    812 MHz       N/A    512 MHz  UNTHROTTLED           0           0            0     227 MB    25476 MB  N/A Mb/s
+
+```
+
+**Enable the driver**
 
 To automatically load the `amdgpu` driver on every reboot of the VM, we need to remove any blacklist entry that is preventing it from loading automatically.
 
@@ -156,14 +156,11 @@ To automatically load the `amdgpu` driver on every reboot of the VM, we need to 
 */etc/modprobe.d/blacklist.conf:10:blacklist amdgpu*
 * Remove the blacklist from the listed file, using `$ sudo nano /etc/modprobe.d/blacklist.conf` and delete the line with *blacklist amdgpu*.
 * Update the initramfs to apply changes on the next boot, using `$ sudo update-initramfs -uk all`
+
 * Reboot the system to load the updated configuration using `$ sudo reboot`. After rebooting, ensure that amdgpu driver isn't blacklisted and it's available for use.
 
-* Run AMD-SMI to confirm the driver is loaded successfully using `$ amd-smi monitor` <br>
-```bash
-GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UTIL  ENC_CLOCK  DEC_UTIL  DEC_CLOCK     THROTTLE  SINGLE_ECC  DOUBLE_ECC  PCIE_REPLAY  VRAM_USED  VRAM_TOTAL   PCIE_BW 
+* Run AMD-SMI to confirm the driver is loaded successfully using `$ amd-smi monitor` 
 
-  0   11 W     43 °C     58 °C      84 %   1814 MHz       1 %     96 MHz       N/A    812 MHz       N/A    512 MHz  UNTHROTTLED           0           0            0     227 MB    25476 MB  N/A Mb/s
-```
 ### Graphics+ROCM
 
 ### 1. Installation Guide
