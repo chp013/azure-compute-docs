@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.collection: windows
 author: GabstaMSFT
 ms.author: jushiman
-ms.date: 12/02/2024
+ms.date: 08/18/2025
 ms.topic: how-to
 ms.reviewer: jushiman
 ms.custom: devx-track-azurecli
@@ -81,7 +81,7 @@ The entity was not found in this Azure location
 | **ResetRDPCert** | Removes the TLS/SSL certificate tied to the RDP listener and restores the RDP listener security to default. Use this script if you see any issues with the certificate. |
 | **SetRDPPort** | Sets the default or user-specified port number for Remote Desktop connections. Enables firewall rules for inbound access to the port. |
 | **IMDSCertCheck** | Checks from within the virtual machine for known configuration issues that may be causing IMDS to not function properly. |
-| **WindowsActivationValidation** | Checks from within the virtual machine for known Windows Activation issues or concerns that may cause acation to fail. |
+| **WindowsActivationValidation** | Checks from within the virtual machine for known Windows Activation issues or concerns that may cause action to fail. |
 
 ## Azure CLI
 

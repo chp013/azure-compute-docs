@@ -32,7 +32,7 @@ This article outlines the supported operating systems, drivers, and provides ins
 
 Here are the steps for installing the AMD Linux Driver to harness the capabilities of the AMD Radeon PRO V710 GPU on an NVv5-V710 GPU Linux instance provided by Microsoft Azure. Subsequent sections provide detailed Linux driver installation instructions for users who wish to perform inference using ROCm on the NVv5-V710 GPU Linux instance.
 
-## Step1: Linux Driver Installation
+## Step 1: Linux Driver Installation
 **Supported Linux Distros**
 
 Confirm the system has a supported Linux version. 
@@ -63,13 +63,14 @@ $ uname -srmv
 Linux 5.XX.0-XX-generic #86-Ubuntu SMP Mon Jul 10 16:07:21 UTC 2023 x86_64
 ```
 
-## Step2: Pre-configuration
+## Step 2: Pre-configuration
 > [!Note]
 > The disk size must be greater than 64GB to ensure optimal performance and compatibility.
 
 **Verify the GPU card**
 
 Verify the output of the GPU card, using
+
 
 ```
 $ sudo lspci -d 1002:7461` 
@@ -98,6 +99,7 @@ sudo apt install amdgpu-dkms rocm
   </details> 
   <details>
   <summary><strong>Ubuntu 24.04</strong></summary>
+
 
 
 ```bash
@@ -152,7 +154,9 @@ To automatically load the `amdgpu` driver on every reboot of the VM, we need to 
 */etc/modprobe.d/blacklist.conf:10:blacklist amdgpu*
 * Remove the blacklist from the listed file, using `$ sudo nano /etc/modprobe.d/blacklist.conf` and delete the line with *blacklist amdgpu*.
 * Update the initramfs to apply changes on the next boot, using `$ sudo update-initramfs -uk all`
+
 * Reboot the system to load the updated configuration using `$ sudo reboot`. After rebooting, ensure that amdgpu driver isn't blacklisted and it's available for use.
+
 
 ### Graphics+ROCM
 
