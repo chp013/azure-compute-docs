@@ -25,25 +25,22 @@ If you don't have an Azure subscription, create a [free](https://azure.microsoft
 
 The Bicep file used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/aci-linuxcontainer-public-ip/).
 
-To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1, add the following to the end of the resource definition for `containerGroup`, right before the closing `}`:
-
->[!IMPORTANT]
->Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
-
-```bicep
-
-  zones: [
-    '1'
-  ]
-
-```
-
-
 The following resource is defined in the Bicep file:
 
 * **[Microsoft.ContainerInstance/containerGroups](/azure/templates/microsoft.containerinstance/containergroups)**: create an Azure container group. This Bicep file defines a group consisting of a single container instance.
 
 More Azure Container Instances template samples can be found in the [quickstart template gallery](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Containerinstance&pageNumber=1&sort=Popular).
+
+To [deploy the container into a specific availability zone](/azure/reliability/reliability-containers#availability-zone-support), configure the `zones` property of the `containerGroup` resource. For example, to deploy it into logical zone 1, add the following to the end of the resource definition for `containerGroup`, right before the closing `}`:
+
+```bicep
+  zones: [
+    '1'
+  ]
+```
+
+> [!IMPORTANT]
+> Zonal deployments are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
 
 ## Deploy the Bicep file
 

@@ -34,15 +34,9 @@ Azure container instances, like all Azure resources, must be deployed into a res
 
 First, create a resource group named *myResourceGroup* in the *eastus* location with the [az group create][az-group-create] command.
 
-To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1, add `--zone 1`.
-
->[!IMPORTANT]
->Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
-
 ```azurecli-interactive
 az group create --name myResourceGroup --location eastus 
 ```
-
 
 ## Create a container
 
@@ -55,6 +49,15 @@ Execute a command similar to the following to start a container instance. Set a 
 ```azurecli-interactive
 az container create --resource-group myResourceGroup --name mycontainer --image mcr.microsoft.com/azuredocs/aci-helloworld --dns-name-label aci-demo --ports 80 --os-type linux --memory 1.5 --cpu 1
 ```
+
+To [deploy the container into a specific availability zone](/azure/reliability/reliability-containers#availability-zone-support), use the `--zone` argument and specify the logical zone number:
+
+```azurecli-interactive
+az container create --resource-group myResourceGroup --name mycontainer --image mcr.microsoft.com/azuredocs/aci-helloworld --dns-name-label aci-demo --ports 80 --os-type linux --memory 1.5 --cpu 1 --zone 1
+```
+
+> [!IMPORTANT]
+> Zonal deployments are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
 
 Within a few seconds, you should get a response from the Azure CLI indicating the deployment completed. Check its status with the [az container show][az-container-show] command:
 

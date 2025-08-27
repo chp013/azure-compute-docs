@@ -29,18 +29,6 @@ If you don't have an Azure subscription, create a [free](https://azure.microsoft
 
 The template used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/aci-linuxcontainer-public-ip/).
 
-To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1, add the following to the end of the resource definition for the container group (around line 106):
-
-```json
-
-"zones": [
-    "1"
-]
-
-```
->[!IMPORTANT]
->Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
-
 :::code language="json" source="~/quickstart-templates/quickstarts/microsoft.containerinstance/aci-linuxcontainer-public-ip/azuredeploy.json":::
 
 The following resource is defined in the template:
@@ -48,6 +36,17 @@ The following resource is defined in the template:
 * **[Microsoft.ContainerInstance/containerGroups](/azure/templates/microsoft.containerinstance/containergroups)**: create an Azure container group. This template defines a group consisting of a single container instance.
 
 More Azure Container Instances template samples can be found in the [quickstart template gallery](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Containerinstance&pageNumber=1&sort=Popular).
+
+To [deploy the container group into a specific availability zone](/azure/reliability/reliability-containers#availability-zone-support), configure the `zones` property of the container group resource. For example, to deploy it into logical zone 1, add the following to the end of the resource definition for the container group, right before the closing `}`:
+
+```json
+"zones": [
+  "1"
+]
+```
+
+> [!IMPORTANT]
+> Zonal deployments are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
 
 ## Deploy the template
 

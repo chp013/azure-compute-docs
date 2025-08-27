@@ -57,14 +57,18 @@ Next, use the [New-AzContainerGroup][New-AzContainerGroup] cmdlet. You need to p
 
 Execute a command similar to the following to start a container instance. Set a `-IPAddressDnsNameLabel` value that's unique within the Azure region where you create the instance. If you receive a "DNS name label not available" error message, try a different DNS name label.
 
-To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support) and deploy it into logical zone 1, add `-Zone 1` to the command. 
+```azurepowershell-interactive
+$containerGroup = New-AzContainerGroup -ResourceGroupName myResourceGroup -Name myContainerGroup -Location EastUS -Container myContainer -OsType Windows -IPAddressDnsNameLabel aci-quickstart-win -IpAddressType Public -IPAddressPort @($port)
+```
 
->[!IMPORTANT]
->Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
+To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support), use the `-Zone` argument and specify the logical zone number:
 
 ```azurepowershell-interactive
 $containerGroup = New-AzContainerGroup -ResourceGroupName myResourceGroup -Name myContainerGroup -Location EastUS -Container myContainer -OsType Windows -IPAddressDnsNameLabel aci-quickstart-win -IpAddressType Public -IPAddressPort @($port) -Zone 1
 ```
+
+> [!IMPORTANT]
+> Zonal container groups are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
 
 Within a few seconds, you should receive a response from Azure. The container's `ProvisioningState` is initially **Creating**, but should move to **Succeeded** within a minute or two. Check the deployment state with the [Get-AzContainerGroup][Get-AzContainerGroup] cmdlet:
 

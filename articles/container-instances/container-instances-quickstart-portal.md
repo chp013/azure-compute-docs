@@ -47,10 +47,10 @@ On the **Basics** page, choose a subscription and enter the following values for
 > [!NOTE]
 > For this quickstart, you use default settings to deploy the public Microsoft `aci-helloworld:latest` image. This sample Linux image packages a small web app written in Node.js that serves a static HTML page. You can also bring your own container images stored in Azure Container Registry, Docker Hub, or other registries.
 
-To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support), for **Availability zones**, select the zone where you want the container to be deployed. Otherwise, keep the default `0` value. 
+To [deploy the container into a specific availability zone](/azure/reliability/reliability-containers.md#availability-zone-support), for **Availability zones**, select the logical zone where you want the container to be deployed. If you don't need it to run in a specific zone, keep the default *None* value. 
 
->[!IMPORTANT]
->Availability zones are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
+> [!IMPORTANT]
+> Zonal deployments are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
 
 Leave the other values as their defaults, then select **Next: Networking**.
 
