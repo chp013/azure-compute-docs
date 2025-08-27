@@ -102,6 +102,8 @@ sudo apt install amdgpu-dkms rocm
 
 
 
+
+
 ```bash
 sudo apt update
 sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
@@ -156,7 +158,6 @@ To automatically load the `amdgpu` driver on every reboot of the VM, we need to 
 * Update the initramfs to apply changes on the next boot, using `$ sudo update-initramfs -uk all`
 
 * Reboot the system to load the updated configuration using `$ sudo reboot`. After rebooting, ensure that amdgpu driver isn't blacklisted and it's available for use.
-
 
 ### Graphics+ROCM
 
