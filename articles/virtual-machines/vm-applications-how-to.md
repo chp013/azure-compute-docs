@@ -1196,7 +1196,7 @@ pipeline {
 ----
 
 ## Deploy the VM Apps
-One or more VM Applications can now be referenced in the `applicationProfile` of Azure VM or Azure VM Scale Sets. Azure then pulls the payload of the VM Application and installs it on each VM using the provided install script. The `order` property defines the sequential order in which the VM Applications are installed on the VM. 
+One or more VM Applications can now be referenced in the `applicationProfile` of Azure VM or Azure Virtual Machine Scale Sets. Azure then pulls the payload of the VM Application and installs it on each VM using the provided install script. The `order` property defines the sequential order in which the VM Applications are installed on the VM. 
 
 Refer [schema of applicationProfile of the VM / Virtual Machine Scale Set](vm-applications.md#deploy-azure-vm-applications) to learn more about each property. 
 								
