@@ -1,6 +1,6 @@
 ---
 title: FIPS 140-3 Support for Azure Linux VM Extensions and Guest Agent
-description: Learn how to opt-in to FIPS 140-3 support for Azure Linux VM Extensions and Guest Agent.
+description: Learn how to opt in to FIPS 140-3 support for Azure Linux VM Extensions and Guest Agent.
 ms.topic: how-to
 ms.service: azure-virtual-machines
 ms.subservice: extensions
@@ -11,7 +11,7 @@ ms.collection: linux
 ms.date: 08/27/2025
 ---
 # Overview
-VM Extensions currently comply with FIPS 140-2 but update to the platform were required to add support for FIPS 140-3.  These changes are currently being enabled across the Commercial Cloud and Soverign Clouds.  Extensions that use protected settings are also being updated to be able to use a FIPS 140-3 compliant encryption algorythm. This document will help enable support for FIPS 140-3 on Linux images that have FIPS Enforced configured.
+VM Extensions currently comply with FIPS 140-2 but update to the platform were required to add support for FIPS 140-3.  These changes are currently being enabled across the Commercial Cloud and Azure Government Clouds. Extensions that use protected settings are also being updated to be able to use a FIPS 140-3 compliant encryption algorithm. This document helps enable support for FIPS 140-3 on Linux images that have FIPS Enforced configured.
 
 ## Prerequisites
 - Minimum Linux VM Guest Agent Version: [v2.14.0.1](https://github.com/Azure/WALinuxAgent/releases/tag/v2.14.0.1)
@@ -57,7 +57,7 @@ To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https:/
 To enable FIPS on Ubuntu, switch the system to FIPS mode by installing a designated set of cryptographic packages from the main repository. These packages, such as the Linux kernel and OpenSSL, form the cryptographic core set and undergo periodic testing and validation to meet FIPS 140-3 requirements for each Ubuntu LTS release.
 
 **Steps to Enable FIPS on Ubuntu**
-1. **Use a Ubuntu pro client or pro image:** https://documentation.ubuntu.com/pro-client/en/docs/howtoguides/enable_fips/
+1. **Use an Ubuntu pro client or pro image:** https://documentation.ubuntu.com/pro-client/en/docs/howtoguides/enable_fips/
 2. Update and Upgrade: Ensure system is up to date. sudo apt update && sudo apt -y upgrade
 3. Enable FIPS Updates: sudo pro enable fips-updates
 
@@ -66,11 +66,11 @@ To enable FIPS on Ubuntu, switch the system to FIPS mode by installing a designa
 1.	Run fips-mode-setup –enable
 2.	Reboot the VM
 
-**Verify fips installation**
+**Verify FIPS installation**
 1.	fips-mode-setup -check
 
 ### Step 2: Get Feature Access for Subscription
-Because not all extensions are onboarded onto using fips encryption, we’re requiring the subscription opt into this feature. Shortly we will have an aka.ms link that will list the extensions that are onboarded.
+Because not all extensions are onboarded onto using fips encryption, we’re requiring the subscription opt into this feature.
 
 **The Subscription needs to enable the feature:** “_Microsoft.Compute/OptInToFips1403Compliance_”
 
@@ -90,9 +90,9 @@ This property needs to be added to the **VM Model** (in the properties section):
 
 **3.1: Existing VMs**
 
-**Option 1: Az Cli**
+**Option 1: Az CLI**
 
-Though we haven’t updated the SDK/CLI to the public yet (waiting for feature validation), you can still use AZ CLI to add the above property. 
+Updates to SDK/CLI are still in progress, you can still use AZ CLI to add the property. 
 
 ```
 az rest \
@@ -132,27 +132,27 @@ $ az rest --method get --url 'https://...' \
     - Go to the VM in Portal
     - On the left side, go to Automation-> Export Template
     - Download the template
-2.	Add/modify the _additionalCapabilities_ section as mentioned above (Full ARM Template Example).
+2.	Add/modify the _additionalCapabilities_ section as mentioned (Full ARM Template Example).
 
 **3.2: New VMs**
 
 	Full ARM Template example
 
 ### Step 4: Generate new PFX Cert (Existing VMs Only)
-- For existing VMs, it may be necessary to generate a new PFX. 
+- For existing VMs, it might be necessary to generate a new PFX. 
 - To determine if so, try running an extension that uses protected settings first. 
 
 **Example**
 ```
 az vm extension set --subscription <subid> --resource-group <group> --vm-name<vm> --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --force-update --protected-settings {"commandToExecute": "date"}
 ```
-If there is a failure, then try the steps below.
+If there's a failure, then try these steps:
 
 **Testing if PFX is needed**
 
-Execute the Custom Script Extension to test if it is needed to generate a new PFX certificate, if it fails to successfully run (not just install) due to FIPS then generating a new PFX certificate will be needed.
+Execute the Custom Script Extension to test if there's a need to generate a new PFX certificate. If it fails to successfully run (not just install) due to FIPS then generating a new PFX certificate is needed.
 
-**Cli example:**
+**CLI example:**
 ```
 az vm extension set --subscription <subid> --resource-group <group> --vm-name<vm> --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --force-update --protected-settings {"commandToExecute": "date"}
 ```
@@ -160,14 +160,14 @@ az vm extension set --subscription <subid> --resource-group <group> --vm-name<vm
 **Option 1: Deallocate/Reallocate the VM**
 
 If you’re doing this step, first deploy the modified ARM Template or execute the az cli commands, then do this step.
-NOTE: The current WALinuxAgent on RHEL 9.5+ (version 2.7.0.6) has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS and before a new PFX is generated. We do not recommend this option on RHEL 9.5+. 
+NOTE: The current WALinuxAgent on RHEL 9.5+ (version 2.7.0.6) has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS and before a new PFX is generated. We don't recommend this option on RHEL 9.5+. 
 
 **Option 2: Add a Keyvault Certificate**
 
 Create the keyvault/certificate then add it to the modified ARM template and deploy.
 - **Steps here:** [Get started with Key Vault certificates | Microsoft Learn](https://learn.microsoft.com/en-us/azure/key-vault/certificates/certificate-scenarios)
 
-**Example** (this is in the “properties” section of the VM model):
+**Example** (“properties” section of the VM model):
 
 ```json
       "secrets": [
