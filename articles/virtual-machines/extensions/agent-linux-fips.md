@@ -70,7 +70,7 @@ To enable FIPS on Ubuntu, switch the system to FIPS mode by installing a designa
 1.	fips-mode-setup -check
 
 ### Step 2: Get Feature Access for Subscription
-Because not all extensions are onboarded onto using fips encryption, we’re requiring the subscription opt into this feature.
+Because not all extensions are onboarded onto using FIPS 140-3 encryption yet, we’re requiring the subscription opt into this feature.
 
 **The Subscription needs to enable the feature:** “_Microsoft.Compute/OptInToFips1403Compliance_”
 
@@ -136,7 +136,7 @@ $ az rest --method get --url 'https://...' \
 
 **3.2: New VMs**
 
-	Full ARM Template example
+Example [full ARM template](/agent-linux-fips#Sample-ARM-Template)
 
 ### Step 4: Generate new PFX Cert (Existing VMs Only)
 - For existing VMs, it might be necessary to generate a new PFX. 
@@ -160,7 +160,9 @@ az vm extension set --subscription <subid> --resource-group <group> --vm-name<vm
 **Option 1: Deallocate/Reallocate the VM**
 
 If you’re doing this step, first deploy the modified ARM Template or execute the az cli commands, then do this step.
-NOTE: The current WALinuxAgent on RHEL 9.5+ (version 2.7.0.6) has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS and before a new PFX is generated. We don't recommend this option on RHEL 9.5+. 
+
+> [!NOTE]
+> The current WALinuxAgent on RHEL 9.5+ (version 2.7.0.6) has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS and before a new PFX is generated. We don't recommend this option on RHEL 9.5+. 
 
 **Option 2: Add a Keyvault Certificate**
 
