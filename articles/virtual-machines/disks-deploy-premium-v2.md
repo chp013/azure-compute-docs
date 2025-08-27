@@ -176,6 +176,9 @@ Update-AzVM -VM $vm -ResourceGroupName $resourceGroupName
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 1. Navigate to **Virtual machines** and follow the normal VM creation process.
 1. On the **Basics** page, select a [supported region](#regional-availability) and set **Availability options** to **Availability zone**.
+
+    For regions that support availability zones, Premium SSD v2 disks can only be attached to zonal VMs. When creating a new VM or Virtual Machine Scale Set, specify the availability zone you want before adding Premium SSD v2 disks to your configuration.
+
 1. Select one or more of the zones.
 1. Fill in the rest of the values on the page as you like.
 
