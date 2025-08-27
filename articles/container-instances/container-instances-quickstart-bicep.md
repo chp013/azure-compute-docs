@@ -31,7 +31,7 @@ The following resource is defined in the Bicep file:
 
 More Azure Container Instances template samples can be found in the [quickstart template gallery](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Containerinstance&pageNumber=1&sort=Popular).
 
-To [deploy the container into a specific availability zone](/azure/reliability/reliability-containers#availability-zone-support), configure the `zones` property of the `containerGroup` resource. For example, to deploy it into logical zone 1, add the following to the end of the resource definition for `containerGroup`, right before the closing `}`:
+To [deploy the container into a specific availability zone](/azure/reliability/reliability-container-instances#availability-zone-support), configure the `zones` property of the `containerGroup` resource. For example, to deploy it into logical zone 1, add the following to the end of the resource definition for `containerGroup`, right before the closing `}`:
 
 ```bicep
   zones: [

@@ -61,7 +61,7 @@ Execute a command similar to the following to start a container instance. Set a 
 $containerGroup = New-AzContainerGroup -ResourceGroupName myResourceGroup -Name myContainerGroup -Location EastUS -Container myContainer -OsType Windows -IPAddressDnsNameLabel aci-quickstart-win -IpAddressType Public -IPAddressPort @($port)
 ```
 
-To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support), use the `-Zone` argument and specify the logical zone number:
+To make the [container group zonal](/azure/reliability/reliability-container-instances#availability-zone-support), use the `-Zone` argument and specify the logical zone number:
 
 ```azurepowershell-interactive
 $containerGroup = New-AzContainerGroup -ResourceGroupName myResourceGroup -Name myContainerGroup -Location EastUS -Container myContainer -OsType Windows -IPAddressDnsNameLabel aci-quickstart-win -IpAddressType Public -IPAddressPort @($port) -Zone 1

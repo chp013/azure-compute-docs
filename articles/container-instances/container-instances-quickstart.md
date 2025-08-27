@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 08/19/202
+ms.date: 08/28/2025
 ms.custom: mvc, devx-track-azurecli, mode-api
 # Customer intent: As a developer, I want to quickly deploy a Docker container using the command line, so that I can run my web application without managing complex orchestration platforms.
 ---
@@ -50,7 +50,7 @@ Execute a command similar to the following to start a container instance. Set a 
 az container create --resource-group myResourceGroup --name mycontainer --image mcr.microsoft.com/azuredocs/aci-helloworld --dns-name-label aci-demo --ports 80 --os-type linux --memory 1.5 --cpu 1
 ```
 
-To [deploy the container into a specific availability zone](/azure/reliability/reliability-containers#availability-zone-support), use the `--zone` argument and specify the logical zone number:
+To [deploy the container into a specific availability zone](/azure/reliability/reliability-container-instances#availability-zone-support), use the `--zone` argument and specify the logical zone number:
 
 ```azurecli-interactive
 az container create --resource-group myResourceGroup --name mycontainer --image mcr.microsoft.com/azuredocs/aci-helloworld --dns-name-label aci-demo --ports 80 --os-type linux --memory 1.5 --cpu 1 --zone 1

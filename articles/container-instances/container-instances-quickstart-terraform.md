@@ -56,7 +56,7 @@ In this article, you learn how to:
 
     [!code-terraform[master](~/terraform_samples/quickstart/101-aci-linuxcontainer-public-ip/variables.tf)]
 
-1. To make the [container group zonal](/azure/reliability/reliability-containers.md#availability-zone-support), configure the `zones` property of the container group resource. For example, to deploy it into logical zone 1:
+1. To make the [container group zonal](/azure/reliability/reliability-container-instances#availability-zone-support), configure the `zones` property of the container group resource. For example, to deploy it into logical zone 1:
 
     > [!IMPORTANT]
     > Zonal container groups are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).
