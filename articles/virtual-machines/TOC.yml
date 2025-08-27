@@ -1241,6 +1241,8 @@
         href: ./extensions/features-linux.md
       - name: Linux VM Agent
         href: ./extensions/agent-linux.md
+      - name: Enable FIPS 140-3 on Linux VM Agent
+        href: ./extensions/agent-linux-fips.md
     - name: Windows
       items:
       - name: Windows features
