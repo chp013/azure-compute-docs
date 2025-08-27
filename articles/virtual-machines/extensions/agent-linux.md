@@ -8,7 +8,7 @@ ms.author: gabsta
 author: GabstaMSFT
 ms.custom: GGAL-freshness822, linux-related-content
 ms.collection: linux
-ms.date: 03/28/2023
+ms.date: 08/18/2025
 # Customer intent: "As a system administrator managing Linux virtual machines, I want to install and configure the Azure Linux VM Agent, so that I can automate provisioning, networking, and diagnostics for efficient VM management."
 ---
 # Azure Linux VM Agent overview
@@ -20,7 +20,7 @@ The Linux agent provides the following functionality for Linux and FreeBSD Azure
 > [!IMPORTANT]
 > FIPS 140-3 Enforced is not supported on RHEL/Ubuntu with extensions using 'protectedSettings'.
 >
-> Support for FIPS 140-3 will be added during the CY25 Q4 timeframe.
+> Support for FIPS 140-3 will be added September 2025.
 
 ### Image provisioning
 
@@ -81,7 +81,7 @@ Testing has confirmed that the following systems work with the Azure Linux VM Ag
 | Microsoft | Azure Linux | 2.x | 2.x |
 | openSUSE Project | openSUSE | 12.3+ | *Not supported* |
 | Oracle | Oracle Linux | 6.4+, 7.x+, 8.x+ | *Not supported* |
-| Red Hat | Red Hat Enterprise Linux | 6.7+, 7.x+,  8.x+, 9.x+ | 8.6+, 9.0+ |
+| Red Hat | Red Hat Enterprise Linux | 6.7+, 7.x+,  8.x+, 9.x+, 10.x+ | 8.6+, 9.0+, 10.x+ |
 | CIQ | Rocky Linux | 9.x+ | 9.x+ |
 | SUSE | SLES | 12.x+, 15.x+ | 15.x SP4+ |
 | Canonical | Ubuntu (LTS releases)| 18.04+, 20.04+, 22.04+, 24.04+ | 20.04+, 22.04+, 24.04+ |
