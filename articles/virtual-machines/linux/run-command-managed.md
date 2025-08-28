@@ -175,7 +175,7 @@ Statuses         :
 ```
 `InstanceView.ExecutionState` -Status of user's Run Command script. Refer this state to know whether your script was successful or not.
 
-`ProvisioningState` - Status of general extension provisioning end to end ( whether extension platform was able to trigger Run Command script or not). 
+`ProvisioningState` - Status of general extension provisioning end to end (whether extension platform was able to trigger Run Command script or not). 
 
 ### Create or update Run Command on a VM using SourceScript (script text)
 Create or update Run Command on a VM passing the script content directly to -SourceScript parameter. Use `;` to separate multiple commands.
@@ -184,7 +184,7 @@ Create or update Run Command on a VM passing the script content directly to -Sou
 Set-AzVMRunCommand -ResourceGroupName MyRG0 -VMName MyVML -RunCommandName MyRunCommand2 -Location EastUS2EUAP -SourceScript "id; echo HelloWorld"
 ```
 ### Create or update Run Command on a VM using SourceCommandId
-Create or update Run Command on a VM using pre-existing `commandId`. Available commandIds can be retrieved using [Get-AzVMRunCommandDocument](/powershell/module/az.compute/get-azvmruncommanddocument).
+Create or update Run Command on a VM using preexisting `commandId`. Available commandIds can be retrieved using [Get-AzVMRunCommandDocument](/powershell/module/az.compute/get-azvmruncommanddocument).
 
 ```azurepowershell-interactive
 Set-AzVMRunCommand -ResourceGroupName MyRG0 -VMName MyVMEE -RunCommandName MyRunCommand -Location EastUS2EUAP -SourceCommandId ipconfig

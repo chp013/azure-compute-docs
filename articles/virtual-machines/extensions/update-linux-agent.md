@@ -14,7 +14,7 @@ ms.date: 08/18/2025
 # How to update the Azure Linux Agent on a VM
 
 > [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Support (EOS) status. Consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
+> This article references CentOS, a Linux distribution that is end of support (EOS) status. Consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
 
 To update your [Azure Linux Agent](https://github.com/Azure/WALinuxAgent) on a Linux VM in Azure, you must already have:
 
@@ -56,7 +56,7 @@ sudo apt-get install walinuxagent
 sudo cat /etc/waagent.conf | grep -i autoupdate
 ```
 
-- Find 'AutoUpdate.Enabled" if you see this output when auto udpate is enabled:
+- Find 'AutoUpdate.Enabled" if you see this output when auto update is enabled:
 
 ```config
 AutoUpdate.Enabled=y
@@ -355,7 +355,7 @@ sudo service waagent restart
 sudo systemctl status waagent
 ```
 
-- Execute the following commands and validate the waagent status one more time when encourting issues:
+- Execute the following commands and validate the waagent status one more time when encountering issues:
 
 ```bash
 sudo systemctl daemon-reload
