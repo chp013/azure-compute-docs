@@ -57,7 +57,7 @@ The AMD Software: Cloud Edition drivers must be installed to take advantage of t
 | OS | Driver |
 | -------- |------------- |
 | Windows 11 64-bit version 21H2, 22H2, 23H2, 24H2 <br/><br/> Windows 10 64-bit version 20H2, 21H2, 22H2, 23H2, 24H2 | [25.1.1](https://download.microsoft.com/download/44ee0d6c-74dd-4214-b6d5-24fbf2eac33b/whql-amd-software-cloud-edition-25.1.1-win10-win11-azure-ngads-v620.exe)|
-| Windows 11 EMS 64-bit 21H2, 22H2, 23H2, 24H2 <br/><br/> Windows Server 2022 64-bit Release 20348| [25.1.1](https://download.microsoft.com/download/6f834f98-109d-4dfc-89e6-d25ff02a9dd0/amd-software-cloud-edition-25.1.1-winsvr2022-azure-v620.exe)| 
+| Windows 11 EMS 64-bit 21H2, 22H2, 23H2, 24H2 <br/><br/> Windows Server 2022 64-bit | [25.1.1](https://download.microsoft.com/download/6f834f98-109d-4dfc-89e6-d25ff02a9dd0/amd-software-cloud-edition-25.1.1-winsvr2022-azure-v620.exe)| 
 | Windows 10 EMS 64-bit 21H2, 22H2, 23H2, 24H2 <br/><br/> Windows Server 2019 LTSC (version 1809)| [25.1.1](https://download.microsoft.com/download/066e6ff4-1a59-4d15-8411-fe1dd8e5de6d/amd-software-cloud-edition-25.1.1-winsvr2019-azure-v620.exe)|
 
 
