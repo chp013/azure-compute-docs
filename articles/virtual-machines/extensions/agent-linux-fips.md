@@ -22,7 +22,7 @@ To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https:/
 | Cloud | Region(s) |
 |:-----|:-----|
 | Commercial | Central US EUAP, East US 2 EUAP, West Central US, East Asia, Australia East, South India |
-| USGov | _Coming Soon_ |
+| USGov | DoDCentral |
 | China | _Coming Soon_ |
 
 **Linux VM Extensions with Confirmed Support**
