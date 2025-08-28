@@ -19,19 +19,11 @@ VM Extensions currently comply with FIPS 140-2 but update to the platform were r
 ### Enabled Regions
 To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https://github.com/Azure/WALinuxAgent/releases/tag/v2.14.0.1) release page.
 
-**Commercial Cloud**
-- Central US EUAP
-- East US 2 EUAP
-- West Central US
-- East Asia
-- Australia East
-- South India
-
-**USGov Cloud**
-- Coming Soon
-
-**China Cloud**
-- Coming Soon
+| Cloud | Region(s) |
+|:-----|:-----|
+| Commercial | Central US EUAP, East US 2 EUAP, West Central US, East Asia, Australia East, South India |
+| USGov | _Coming Soon_ |
+| China | _Coming Soon_ |
 
 **Linux VM Extensions with Confirmed Support**
 - MICROSOFT.AKS.COMPUTE.AKS.LINUX.AKSNODE
