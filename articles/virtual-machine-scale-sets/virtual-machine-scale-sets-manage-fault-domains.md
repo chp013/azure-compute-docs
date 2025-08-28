@@ -14,30 +14,30 @@ ms.custom: mimckitt, devx-track-azurecli
 ---
 # Choosing the right number of fault domains for Virtual Machine Scale Set
 
-The fault domain configuration for Virtual Machine Scale Sets varies depending on the orchestration mode:
+The fault domain (FD) configuration for Virtual Machine Scale Sets varies depending on the orchestration mode:
 
 ## Uniform Orchestration Mode
-Virtual Machine Scale Sets with Uniform orchestration are created with five fault domains by default in Azure regions with no zones. For regions that support zonal deployment of Virtual Machine Scale Sets and this option is selected, the default value of the fault domain count is 1 for each of the zones. A `platformFaultDomainCount` of one in this case implies that the VM instances belonging to the scale set will be spread across many racks on a best effort basis.
+Virtual Machine Scale Sets with Uniform orchestration are created with five fault domains by default in Azure regions with no zones. For regions that support zonal deployment of Virtual Machine Scale Sets and this option is selected, the default value of the fault domain count is 1 for each of the zones. A `platformFaultDomainCount` of `1`` in this case implies that the virtual machine (VM) instances belonging to the scale set are spread across many racks on a best effort basis.
 
-You can also consider aligning the number of scale set fault domains with the number of Managed Disks fault domains. This alignment can help prevent loss of quorum if an entire Managed Disks fault domain goes down. The FD count can be set to less than or equal to the number of Managed Disks fault domains available in each of the regions. Refer to this [document](../virtual-machines/availability-set-overview.md) to learn about the number of Managed Disks fault domains by region.
+You can also consider aligning the number of scale set fault domains with the number of Managed Disks fault domains. This alignment can help prevent loss of quorum if an entire Managed Disks fault domain goes down. The FD count can be set to less than or equal to the number of Managed Disks fault domains available in each of the regions. Refer to the [documentation](../virtual-machines/availability-set-overview.md) to learn about the number of Managed Disks fault domains by region.
 
 ## Flexible Orchestration Mode
 Virtual Machine Scale Sets with Flexible orchestration support different fault domain configurations depending on the deployment type:
 
-- **Regional deployments**: Support fault domain counts of 1, 2, or 3.
-- **Zonal deployments**: Support only fault domain count of 1.
+- **Regional deployments**: Support fault domain counts of `1`, `2`, or `3`.
+- **Zonal deployments**: Support only fault domain count of `1`.
 
-For zonal deployments, a `platformFaultDomainCount` of one implies that the VM instances belonging to the scale set will be spread across many racks within the zone on a best effort basis. Fault domain and update domain information is not exposed in the Instance View REST API response for Flexible scale sets, unlike Uniform orchestration mode.
+For zonal deployments, a `platformFaultDomainCount` of `1` implies that the VM instances belonging to the scale set are spread across many racks within the zone on a best effort basis. Fault domain and update domain information isn't exposed in the Instance View REST API response for Flexible scale sets, unlike Uniform orchestration mode.
 
 ### Instance View API Behavior
-When using the [Virtual Machines - Instance View REST API](/rest/api/compute/virtualmachines/instanceview) with Flexible VMSS:
-- The response does not include `faultDomain` and `updateDomain` properties
+When using the [Virtual Machines - Instance View REST API](/rest/api/compute/virtualmachines/instanceview) with Flexible orchestration mode:
+- The response doesn't include `faultDomain` and `updateDomain` properties
 - This is by design and differs from Uniform orchestration mode where these properties are returned
-- For regional deployments with multiple fault domains, the VM instances are distributed across the configured fault domains, but this information is not exposed through the API
+- For regional deployments with multiple fault domains, the VM instances are distributed across the configured fault domains, but this information isn't exposed through the API
 - For zonal deployments, the VM instances are distributed across multiple racks within the zone
 
 ## REST API
-For Uniform orchestration mode, you can set the property `properties.platformFaultDomainCount` to 1, 2, or 3 (default of 1 if not specified). For Flexible orchestration mode, you can set this property to 1, 2, or 3 for regional deployments, but only 1 is supported for zonal deployments. Refer to the REST API documentation for [Virtual Machine Scale Sets](/rest/api/compute/virtualmachinescalesets/createorupdate).
+For Uniform orchestration mode, you can set the property `properties.platformFaultDomainCount` to `1`, `2`, or `3`. If not set, the property will default to `1`. For Flexible orchestration mode, you can set this property to `1`, `2`, or `3` for regional deployments, and only `1` is supported for zonal deployments. Refer to the REST API documentation for [Virtual Machine Scale Sets](/rest/api/compute/virtualmachinescalesets/createorupdate).
 
 ## Azure CLI
 
@@ -86,7 +86,7 @@ az vmss create \
 ```
 
 > [!NOTE]
-> For zonal Flexible VMSS deployments, the fault domain count is automatically set to 1 and cannot be configured to a higher value.
+> For zonal Flexible VMSS deployments, the fault domain count is automatically set to 1 and can't be configured to a higher value.
 
 It takes a few minutes to create and configure all the scale set resources and VMs.
 
