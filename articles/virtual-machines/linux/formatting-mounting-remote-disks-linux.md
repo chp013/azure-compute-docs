@@ -32,7 +32,9 @@ Before formatting and mounting a data disk, ensure you have:
 > [!NOTE]
 > We recommend that you use the latest version of `parted` that's available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
-### Format SCSI controlled data disks
+Once you've identified the correct disk (e.g., `/dev/nvme0n2` for a data disk), you can format it:
+
+### [SCSI](#tab/scsi-format)
 
 The following example uses `parted` on `/dev/sdc`, which is where the first data disk will typically be on most VMs. Replace `sdc` with the correct option for your disk. We're also formatting it by using the [XFS](https://xfs.wiki.kernel.org/) file system.
 
@@ -42,20 +44,19 @@ sudo partprobe /dev/sdc
 sudo mkfs.xfs /dev/sdc1
 ```
 
-### Format NVMe controlled data disks
-For NVMe controlled disks, the process is similar but device names differ:
+### [NVMe](#tab/nvme-format)
 
-#### Traditional approach
+The following examples assume you have used [azure-vm-utils](azure-virtualmachine-utilities.md) to identify disks as shown in the [identifying disks](./add-disk.md#identifying-disks) section.
+
 ```bash
-# Example: Format NVMe disk (replace nvme1n1 with your disk)
-sudo parted /dev/nvme1n1 --script mklabel gpt mkpart xfspart xfs 0% 100%
-sudo partprobe /dev/nvme1n1
-sudo mkfs.xfs /dev/nvme1n1p1
+# Format the data disk (replace nvme0n2 with your identified disk from azure-nvme-id)
+sudo parted /dev/nvme0n2 --script mklabel gpt mkpart xfspart xfs 0% 100%
+sudo partprobe /dev/nvme0n2
+sudo mkfs.xfs /dev/nvme0n2p1
 ```
+---
 Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and file system. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new file system immediately.
 
-#### Formatting using azure-vm-utils
-**Content to be added**
 
 ## Mount the disk
 
@@ -64,26 +65,28 @@ Now, create a directory to mount the file system by using `mkdir`. The following
 ```bash
 sudo mkdir /datadrive
 ```
+Use `mount` to then mount the file system. The following example mounts the `/dev/sdc1` (for SCSI) or `/dev/nvme0n2p1` (for NVMe) partition to the `/datadrive` mount point:
 
-### Mounting SCSI controlled data disks
-
-Use `mount` to then mount the file system. The following example mounts the `/dev/sdc1` partition to the `/datadrive` mount point:
+### [SCSI](#tab/scsi-mount)
 
 ```bash
+# Mount the disk identified earlier (replace sdc1 with your identified disk's partition)
 sudo mount /dev/sdc1 /datadrive
 ```
 
-### Mounting NVMe controlled data disks
-
-#### Traditional approach
-For NVMe disks, use the appropriate NVMe device name:
+You can also use the Azure device path:
 
 ```bash
-# Example: Mount NVMe partition
-sudo mount /dev/nvme1n1p1 /datadrive
+sudo mount /dev/disk/azure/scsi1/lun0-part1 /datadrive
 ```
-#### Mounting using azure-vm-utils
-**Content to be added**
+
+### [NVMe](#tab/nvme-mount)
+
+```bash
+# Mount the disk identified earlier (replace nvme0n2p1 with your identified disk's partition)
+sudo mount /dev/nvme0n2p1 /datadrive
+```
+---
 
 
 ## Persist the mount
@@ -107,7 +110,7 @@ The output looks similar to the following example:
 > [!WARNING]
 > Improperly editing the `/etc/fstab` file could result in an unbootable system. If you're unsure, refer to the distribution's documentation for information on how to properly edit this file. We also recommend that you create a backup of the `/etc/fstab` file before editing.
 
-Next, open the `/etc/fstab` file in a text editor. Add a line to the end of the file, by using the UUID value for the `/dev/sdc1` device that was created in the previous steps, and the mountpoint of `/datadrive`. Using the example from this article, the new line would look like the following:
+Next, open the `/etc/fstab` file in a text editor. Add a line to the end of the file, by using the UUID value for the disk that was created in the previous steps, and the mountpoint of `/datadrive`. Using the example from this article, the new line would look like the following:
 
 ```
 UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,nofail   1   2
@@ -118,22 +121,24 @@ When you're done editing the file, save and close the editor.
 Alternatively, you can run the following command to add the disk to the `/etc/fstab` file:
 
 ```bash
-# Get UUID of the new filesystem
+# For SCSI disks
 UUID=$(sudo blkid -s UUID -o value /dev/sdc1)
 echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
+
+# For NVMe disks
+# UUID=$(sudo blkid -s UUID -o value /dev/nvme1n1p1)
+# echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
 ```
 
-### NVMe disk persistence considerations
-
-For NVMe disks, the fstab entry process is similar, but device names differ:
+If you're using azure-vm-utils, you can simplify this process:
 
 ```bash
-# Example for NVMe disk
-UUID=$(sudo blkid -s UUID -o value /dev/nvme1n1p1)
-echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
+# Install azure-vm-utils if not already installed
+sudo apt-get update && sudo apt-get install -y azure-vm-utils
+
+# Use azure-nvme-id to identify NVMe disks
+sudo azure-nvme-id
 ```
-
-
 
 > [!NOTE]
 > Later removing a data disk without editing fstab could cause the VM to fail to boot. Most distributions provide either the `nofail` and/or `nobootwait` fstab options. These options allow a system to boot even if the disk fails to mount at boot time. Consult your distribution's documentation for more information on these parameters.
@@ -157,21 +162,21 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,discard 
 
 • In some cases, the `discard` option may have performance implications. Alternatively, you can run the `fstrim` command manually from the command line, or add it to your crontab to run regularly:
 
-## [Ubuntu](#tab/ubuntu)
+### [Ubuntu](#tab/ubuntu)
 
 ```bash
 sudo apt install util-linux
 sudo fstrim /datadrive
 ```
 
-## [RHEL](#tab/rhel)
+### [RHEL](#tab/rhel)
 
 ```bash
 sudo yum install util-linux
 sudo fstrim /datadrive
 ```
 
-## [SLES](#tab/suse)
+### [SLES](#tab/suse)
 
 ```bash
 sudo zypper in util-linux

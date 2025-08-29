@@ -38,33 +38,31 @@ Before formatting temporary or resource disks:
 > [!WARNING]
 > Formatting will permanently erase all data on the disk. Ensure you're working with the correct disk and that no important data exists on it.
 
-### Format SCSI controlled resource disks
-
 > [!NOTE]
 > We recommend that you use the latest version of `parted` that's available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
+
+### [SCSI](#tab/scsi)
 
 The following example uses `parted` on `/dev/sdb`, which is typically where the resource disk appears. Replace `sdb` with the correct device for your disk. We're using the [XFS](https://xfs.wiki.kernel.org/) file system for better performance.
 
 ```bash
-sudo parted /dev/sdb --script mklabel gpt mkpart xfspart xfs 0% 100%
+sudo parted /dev/disk/azure/resource --script mklabel gpt mkpart xfspart xfs 0% 100%  
 sudo partprobe /dev/sdb
 sudo mkfs.xfs /dev/sdb1
 ```
 
-### Format NVMe controlled local disks
+### [NVMe](#tab/nvme)
 
-#### Traditional Approach
+The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, you can use it to identify local disks.
+
 ```bash
-# Example: Format local NVMe disk (replace nvme1n1 with your disk)
+# Example: Format local NVMe disk (replace nvme1n1 with your identified disk)
 sudo parted /dev/nvme1n1 --script mklabel gpt mkpart xfspart xfs 0% 100%
 sudo partprobe /dev/nvme1n1
 sudo mkfs.xfs /dev/nvme1n1p1
 ```
 
-#### Using azure-vm-utils
-**Content to be added**
-
-### Multiple local disk scenarios (RAID)
+### [RAID](#tab/raid)
 
 Some VM SKUs provide multiple local NVMe disks. You can set up RAID for better performance or redundancy:
 
@@ -74,7 +72,10 @@ sudo mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/nvme1n1 /dev/nvme2n
 sudo mkfs.xfs /dev/md0
 ```
 
+---
+
 Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and file system. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new file system immediately.
+
 
 ## Mount temporary and resource disks
 
@@ -84,7 +85,7 @@ Now, create a directory to mount the file system by using `mkdir`. For temporary
 sudo mkdir /mnt/temp
 ```
 
-### Mount SCSI resource disks
+### [SCSI](#tab/scsi-mount)
 
 Use `mount` to mount the file system. The following example mounts the `/dev/sdb1` partition to the `/mnt/temp` mount point:
 
@@ -92,18 +93,34 @@ Use `mount` to mount the file system. The following example mounts the `/dev/sdb
 sudo mount /dev/sdb1 /mnt/temp
 ```
 
-### Mount NVMe local disks
-
-For NVMe local disks:
+You can also use the Azure device path:
 
 ```bash
-# Example: Mount NVMe partition
-sudo mount /dev/nvme1n1p1 /mnt/temp
+sudo mount /dev/disk/azure/resource-part1 /mnt/temp
 ```
 
-### Mount using azure-vm-utils symlinks
+### [NVMe](#tab/nvme-mount)
 
-**Content to be added**
+The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, you can use it to identify local disks.
+
+```bash
+# Using direct device path (replace nvme1n1p1 with your identified disk's partition)
+sudo mount /dev/nvme1n1p1 /mnt/temp
+
+# Or using Azure device path
+sudo mount /dev/disk/azure/local/by-index/0-part1 /mnt/temp  
+```
+
+### [RAID](#tab/raid-mount)
+
+For RAID arrays created as shown in the formatting section:
+
+```bash
+sudo mkdir /mnt/raid
+sudo mount /dev/md0 /mnt/raid
+```
+---
+
 
 
 ## TRIM/UNMAP support for temporary disks
@@ -122,21 +139,21 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /mnt/temp   xfs   defaults,discard,n
 
 ```bash
 sudo apt install util-linux
-sudo fstrim /datadrive
+sudo fstrim /mnt/temp
 ```
 
 ### [RHEL](#tab/rhel)
 
 ```bash
 sudo yum install util-linux
-sudo fstrim /datadrive
+sudo fstrim /mnt/temp
 ```
 
 ### [SLES](#tab/suse)
 
 ```bash
 sudo zypper in util-linux
-sudo fstrim /datadrive
+sudo fstrim /mnt/temp
 ```
 ---
 

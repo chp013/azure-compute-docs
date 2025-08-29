@@ -52,7 +52,7 @@ Azure Linux virtual machines use different disk interfaces depending on the VM S
 - **Older VM SKUs**: Use SCSI interface for disk management
 - **Newer VM SKUs (v6 and newer)**: Might use NVMe interface for improved performance
 
-For more information about SCSI vs NVMe differences, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme). 
+For more information about SCSI vs NVMe differences, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme).
 
 ### Connect to the virtual machine
 
@@ -61,19 +61,44 @@ To identify disks associated with your Linux virtual machine (VM), connect to th
 ```bash
 ssh azureuser@10.123.123.25
 ```
+
 > [!NOTE]
 > Before identifying specific disks, determine whether your VM uses SCSI, NVMe, or a combination of both interfaces.
 
-### Identifying SCSI controlled disks
+### [Azure-VM-Utils](#tab/azure-vm-utils)
 
-After you connect to your VM, find the disk. In this example, we use `lsblk` to list SCSI disks.
+The [azure-vm-utils](azure-virtualmachine-utilities.md) package provides utilities to optimize the Linux experience on Azure VMs, making disk identification more reliable across different VM configurations.
+
+Use the following commands to list disks on the VM:
+
+```bash
+# List all disks
+sudo azure-disk-list
+
+# List NVMe disks with detailed information
+sudo azure-nvme-id
+```
+
+The output from `azure-nvme-id` is similar to:
+```
+/dev/nvme0n1: type=os
+/dev/nvme0n2: type=data, lun=0
+/dev/nvme1n1: type=local, index=1, name=nvme-50G-1
+```
+
+### [lsblk](#tab/lsblk)
+
+The `lsblk` command is a standard Linux utility that can identify both SCSI and NVMe disks. The command options differ slightly based on the disk controller type.
+
+#### SCSI disks
+
+For VMs with SCSI controllers, use the following command:
 
 ```bash
 lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
 ```
 
-The output is similar to the following example:
-
+The output is similar to:
 ```
 sda     0:0:0:0      30G
 ├─sda1             29.9G /
@@ -83,29 +108,29 @@ sdb     1:0:1:0      14G
 └─sdb1               14G /mnt
 sdc     3:0:0:0      50G
 ```
-Here, `sdc` is the data disk that we added. If you added multiple disks and aren't sure which disk it is based on size alone, you can go to the VM page in the portal, select **Disks**, and check the LUN number for the disk under **Data disks**. Compare the LUN number from the portal to the last number of the HCTL portion of the output, which is the LUN. 
 
-Another option is to list the contents of the `/dev/disk/azure/scsi1` directory:
+Here, `sdc` is the data disk we added. The last number in the HCTL field (e.g., 3:0:0:**0**) is the LUN number that corresponds to what you see in the Azure portal.
+
+You can also check the Azure disk symlinks:
 
 ```bash
 ls -l /dev/disk/azure/scsi1
 ```
 
-The output should be similar to the following example:
-
+Output:
 ```
 lrwxrwxrwx 1 root root 12 Mar 28 19:41 lun0 -> ../../../sdc
 ```
 
-### Identifying NVMe controlled disks
+#### NVMe disks
 
-Use the following command to list NVMe controlled disks:
+For VMs with NVMe controllers, use the following command:
 
 ```bash
 lsblk -o NAME,TYPE,SIZE,MOUNTPOINT | grep nvme
 ```
 
-The output is similar to the following example:
+The output is similar to:
 ```
 nvme0n1     disk    30G
 ├─nvme0n1p1 part   29.9G /
@@ -115,23 +140,13 @@ nvme1n1     disk   50G
 nvme0n2     disk   50G
 ```
 
-### Identifying disks using azure-vm-utils
+For more detailed information about NVMe devices, you can use the nvme command:
 
-The [azure-vm-utils](https://github.com/Azure/azure-vm-utils) package provides essential utilities and udev rules to optimize the Linux experience on Azure virtual machines. This package consolidates device management tools for SCSI, NVMe, MANA, and Mellanox devices, making disk identification and management more reliable and consistent across different VM configurations.
-
-See [azure-vm-utils](azure-virtualmachine-utilities.md) for additional information including instructions for installing the package if it isn't already included in the image.
-
-Use the following command to list NVMe controlled disks on the VM:
 ```bash
-sudo azure-nvme-id
+sudo nvme list
 ```
 
-The output is similar to the following example:
-```
-/dev/nvme0n1: type=os
-/dev/nvme0n2: type=data, lun=0
-/dev/nvme1n1: type=local, index=1, name=nvme-50G-1
-```
+---
 
 ## Next Steps
 
