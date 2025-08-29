@@ -143,7 +143,7 @@ To verify that azure-vm-utils is working correctly on your VM:
 
 1. Check if the package is installed:
    
-   ```bashhttps://microsoft-ce-csi.acrolinx.cloud/api/v1/checking/scorecards/6bbc580d-afe2-4890-ab90-5374159a494f
+   ```bash
    # For RPM-based systems
    rpm -qa | grep azure-vm-utils
    
