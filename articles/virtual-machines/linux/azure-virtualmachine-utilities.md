@@ -154,7 +154,8 @@ To verify that azure-vm-utils is working correctly on your VM:
 1. Verify udev rules are in place:
    
    ```bash
-   ls -la /usr/lib/udev/rules.d/*azure*
+   ls -al /usr/lib/udev/rules.d/10-azure-unmanaged-sriov.rules
+   ls -al /usr/lib/udev/rules.d/80-azure-disk.rules
    ```
 
 1. Check for Azure disk symlinks:
