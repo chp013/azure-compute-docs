@@ -57,7 +57,7 @@ The following examples assume you have identified your disk as shown in the [ide
 
 ```bash
 # Example: Format local NVMe disk (replace nvme1n1 with your identified disk)
-sudo parted /dev/nvme1n1 --script mklabel gpt mkpart xfspart xfs 0% 100%
+sudo parted /dev/disk/azure/local/by-index/0 --script mklabel gpt mkpart xfspart xfs 0% 100%
 sudo partprobe /dev/nvme1n1
 sudo mkfs.xfs /dev/nvme1n1p1
 ```
