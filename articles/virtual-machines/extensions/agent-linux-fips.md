@@ -44,9 +44,6 @@ To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https:/
 - MICROSOFT.MANAGEDSERVICES.APPLICATIONHEALTHLINUX
 - MICROSOFT.OSTCEXTENSIONS.VMACCESSFORLINUX
 
-## Known Issues
-
-
 ## Opt-In Guide
 ### Step 1: Enable FIPS on Linux
 To enable FIPS on Ubuntu, switch the system to FIPS mode by installing a designated set of cryptographic packages from the main repository. These packages, such as the Linux kernel and OpenSSL, form the cryptographic core set and undergo periodic testing and validation to meet FIPS 140-3 requirements for each Ubuntu LTS release.
@@ -157,7 +154,7 @@ az vm extension set --subscription <subid> --resource-group <group> --vm-name<vm
 If you’re doing this step, first deploy the modified ARM Template or execute the az cli commands, then do this step.
 
 > [!WARNING]
-> The current WALinuxAgent on RHEL 9.5+ and RHEL 9.6+ (version 2.7.0.6) has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS and before a new PFX is generated. We don't recommend this option on RHEL 9.5+ or RHEL 9.6+. Additional guidance will follow shortly.
+> The current WALinuxAgent (v2.7.0.6) on RHEL 9.5+ and 9.6+ has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS. We don't recommend this option on RHEL 9.5+ or RHEL 9.6+. Additional guidance will follow shortly.
 
 **Option 2: Add a Keyvault Certificate**
 
