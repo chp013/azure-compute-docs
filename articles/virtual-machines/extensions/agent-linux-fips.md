@@ -156,6 +156,18 @@ If you’re doing this step, first deploy the modified ARM Template or execute t
 > [!WARNING]
 > The current WALinuxAgent (v2.7.0.6) on RHEL 9.5+ and 9.6+ has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS. We don't recommend this option on RHEL 9.5+ or RHEL 9.6+. Additional guidance will follow shortly.
 
+**Workaround**
+
+```
+systemctl stop waagent
+# apply the patch
+sed -i -E '/(.+)(self._initialize_telemetry\(\))/s//\1# \2/' /usr/lib/python3.9/site-packages/azurelinuxagent/daemon/main.py
+# verify the patch (the output of grep must be "        # self._initialize_telemetry()"; the "#" characters removes the call to the problematic code
+grep self\._initialize_telemetry /usr/lib/python3.9/site-packages/azurelinuxagent/daemon/main.py
+        # self._initialize_telemetry() <<<<< OUTPUT
+systemcl start waagent
+```
+
 **Option 2: Add a Keyvault Certificate**
 
 Create the keyvault/certificate then add it to the modified ARM template and deploy.
