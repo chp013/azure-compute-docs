@@ -76,7 +76,7 @@ This property needs to be added to the **VM Model** (in the properties section):
 
 ```json
 "additionalCapabilities": {
-"enableFips1403Encryption": true
+    "enableFips1403Encryption": true
 }
 ```
 
