@@ -116,7 +116,7 @@ After azure-vm-utils is installed, you can use the predictable symlinks for disk
 List all Azure disk symlinks:
 
 ```bash
-ls -la /dev/disk/azure/
+find /dev/disk/azure/ -type l
 ```
 
 Access the OS disk:
