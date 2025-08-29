@@ -51,7 +51,7 @@ sudo partprobe /dev/sdb
 sudo mkfs.xfs /dev/sdb1
 ```
 
-### [NVMe](#tab/nvme)
+### [NVMe Temp/Local Disks](#tab/nvme)
 
 The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, you can use it to identify local disks.
 
