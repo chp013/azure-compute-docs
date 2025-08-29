@@ -161,5 +161,5 @@ To verify that azure-vm-utils is working correctly on your VM:
 1. Check for Azure disk symlinks:
    
    ```bash
-   ls -la /dev/disk/azure/
+   find /dev/disk/azure -type l
    ```
