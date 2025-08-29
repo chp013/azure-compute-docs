@@ -30,6 +30,7 @@ vCPUs (Qty.) and Memory for each size
 | Size Name | vCPUs (Qty.) | Memory (GiB) |
 | --- | --- | --- |
 | Standard_M896ixds_32_v3 | 896 | 30,400 |
+| Standard_M896ixds_24_v3 | 896 | 23088 |
 | Standard_M1792ixds_32_v3 | 1,792 | 30,400 |
 
 #### VM Basics resources
@@ -51,6 +52,7 @@ Local (temp) storage info for each size
 | Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) |
 | --- | --- | --- |
 | Standard_M896ixds_32_v3 | 1 | 4,096 |
+|  Standard_M896ixds_24_v3 | 1 | 4,096 |
 | Standard_M1792ixds_32_v3 | 1 | 4,096 |
 #### Storage resources
 - [Introduction to Azure managed disks](../../../virtual-machines/managed-disks-overview.md)
@@ -70,6 +72,7 @@ Remote (uncached) storage info for each size
 | Size Name | Max Remote Storage Disks (Qty.) | Max Uncached Premium SSD Disk IOPS | Max Uncached Premium SSD Throughput (MB/s) | Max Uncached Ultra Disk and Premium SSD v2 IOPS | Max Uncached Ultra Disk and Premium SSD v2 Throughput (MB/s) |
 | --- | --- | --- | --- | --- | --- |
 | Standard_M896ixds_32_v3 | 64 | 110,000 | 8,000 | 200,000 | 8,000 |
+|  Standard_M896ixds_24_v3 | 64 | 110,000 | 8,000 | 200,000 | 8,000 |
 | Standard_M1792ixds_32_v3 | 64 | 110,000 | 8,000 | 200,000 | 8,000 |
 
 #### Storage resources
@@ -93,6 +96,7 @@ Network interface info for each size
 | Size Name | Max NICs (Qty.) | Max Network Bandwidth (Mb/s) |
 | --- | --- | --- |
 | Standard_M896ixds_32_v3 | 8 | 185,000 |
+| Standard_M896ixds_24_v3 | 8 | 185,000 |
 | Standard_M1792ixds_32_v3 | 8 | 185,000 |
 
 #### Networking resources

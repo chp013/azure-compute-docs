@@ -98,7 +98,7 @@ The JSON configuration for a virtual machine extension must be nested inside the
 ## PowerShell 
 
 ### Set-AzVMAccessExtension - Reset Password
-[Set-AzVMAccessExtension](https://docs.microsoft.com/powershell/module/az.compute/set-azvmaccessextension?view=azps-5.7.0) 
+[Set-AzVMAccessExtension](/powershell/module/az.compute/set-azvmaccessextension) 
 
 ```powershell
 Set-AzVMAccessExtension `
@@ -122,7 +122,7 @@ Set-AzVMAccessExtension `
 ```
 
 ### Set-AzVMExtension - Reset Password
-[Set-AzVMExtension](https://docs.microsoft.com/powershell/module/az.compute/set-azvmextension?view=azps-5.7.0)
+[Set-AzVMExtension](/powershell/module/az.compute/set-azvmextension)
 
 ```powershell
 $Publicsettings = '{"UserName": "myuser"}'
@@ -141,7 +141,7 @@ Set-AzVMExtension `
 ```
 
 ### Set-AzVMExtension - Reset RDP Configuration
-[Set-AzVMExtension](https://docs.microsoft.com/powershell/module/az.compute/set-azvmextension?view=azps-5.7.0)
+[Set-AzVMExtension](/powershell/module/az.compute/set-azvmextension)
 
 ```powershell
 Set-AzVMExtension `
@@ -159,7 +159,7 @@ Set-AzVMExtension `
 ## CLI
 
 ### Azure CLI - Reset Password
-[az vm extension set](https://docs.microsoft.com/cli/azure/vm/extension?view=azure-cli-latest#az_vm_extension_set)
+[az vm extension set](/cli/azure/vm/extension#az_vm_extension_set)
 
 ```
 az vm extension set --name VMAccessAgent --publisher Microsoft.Compute --version 2.0 --vm-name "myVM" --resource-group "myRG" --settings '{"username":"myuser"}' --protected-settings '{"password":"myPassWord"}'

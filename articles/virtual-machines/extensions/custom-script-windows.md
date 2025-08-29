@@ -8,7 +8,7 @@ ms.author: gabsta
 author: GabstaMSFT
 ms.reviewer: jushiman
 ms.collection: windows
-ms.date: 04/04/2023
+ms.date: 08/18/2025
 # Customer intent: As a cloud administrator, I want to automate post-deployment configuration and management tasks on Windows VMs using scripts, so that I can ensure efficient and consistent setup without manual intervention.
 ---
 # Custom Script Extension for Windows
@@ -123,7 +123,7 @@ You can use this schema inside the VM resource or as a standalone resource. If t
 
 | Name | Value or example | Data type |
 | ---- | ---- | ---- |
-| apiVersion | `2015-06-15` | date |
+| apiVersion | `2018-06-01` | date |
 | publisher | `Microsoft.Compute` | string |
 | type | `CustomScriptExtension` | string |
 | typeHandlerVersion | `1.10` | int |
