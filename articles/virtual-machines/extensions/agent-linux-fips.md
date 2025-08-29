@@ -62,7 +62,7 @@ To enable FIPS on Ubuntu, switch the system to FIPS mode by installing a designa
 1.	fips-mode-setup -check
 
 ### Step 2: Get Feature Access for Subscription
-Because not all extensions are onboarded onto using FIPS 140-3 encryption yet, we’re requiring the subscription opt into this feature.
+Because not all extensions are onboarded onto using FIPS 140-3 encryption yet, we’re requiring the subscription to opt into this feature.
 
 **The Subscription needs to enable the feature:** “_Microsoft.Compute/OptInToFips1403Compliance_”
 
