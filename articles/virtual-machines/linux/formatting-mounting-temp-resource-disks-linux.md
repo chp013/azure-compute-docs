@@ -41,7 +41,7 @@ Before formatting temporary or resource disks:
 > [!NOTE]
 > We recommend that you use the latest version of `parted` that's available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
-### [SCSI](#tab/scsi)
+### [SCSI Resource Disk](#tab/scsi)
 
 The following example uses `parted` on `/dev/sdb`, which is typically where the resource disk appears. Replace `sdb` with the correct device for your disk. We're using the [XFS](https://xfs.wiki.kernel.org/) file system for better performance.
 
