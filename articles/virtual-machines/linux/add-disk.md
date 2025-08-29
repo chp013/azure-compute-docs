@@ -49,7 +49,7 @@ az vm disk attach -g myResourceGroup --vm-name myVM --name $diskId
 ## Identifying disks
 
 Azure Linux virtual machines use different disk interfaces depending on the VM SKU and generation:
-- **Older VM SKUs**: Use SCSI interface for disk management
+- **VM Sizes <= v5**: Use SCSI interface for disk management
 - **VM Sizes >= v6**: Use NVMe interface for improved performance
 
 For more information about SCSI vs NVMe differences, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme).
