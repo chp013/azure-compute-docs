@@ -145,10 +145,10 @@ To verify that azure-vm-utils is working correctly on your VM:
    
    ```bashhttps://microsoft-ce-csi.acrolinx.cloud/api/v1/checking/scorecards/6bbc580d-afe2-4890-ab90-5374159a494f
    # For RPM-based systems
-   rpm -qa | grep azure-vm-utils
+   rpm -qa azure-vm-utils
    
    # For DEB-based systems
-   dpkg -l | grep azure-vm-utils
+   dpkg -l azure-vm-utils
    ```
 
 1. Verify udev rules are in place:

@@ -18,9 +18,8 @@ This article covers how to format and mount temporary (local) and resource disks
 
 ## Understanding temporary and resource disks
 
-- **Temporary/Local disks**: Fast local storage for temporary data, not persistent across VM deallocations
+- **Temporary/Local disks**: High-performance NVMe-based local storage on newer VM SKUs, not persistent across VM deallocations
 - **Resource disks**: Traditional temporary storage, usually SCSI-based on older VMs
-- **NVMe local disks**: High-performance local storage on newer VM SKUs
 
 > [!WARNING]  
 > Temporary and resource disks aren't persistent. Data stored on these disks will be lost when the VM is deallocated, redeployed, or stopped for maintenance.
