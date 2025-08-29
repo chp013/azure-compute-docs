@@ -8,7 +8,7 @@ ms.author: gabsta
 ms.reviewer: jushiman
 author: GabstaMSFT
 ms.collection: windows
-ms.date: 03/13/2023
+ms.date: 08/18/2025
 # Customer intent: As a database administrator, I want to register Azure Backup for my SQL Server running in an Azure VM, so that I can ensure reliable backup and recovery of my database workloads.
 ---
 

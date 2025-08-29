@@ -11,6 +11,14 @@ ms.subservice: sizes
 ---
 # Migrate your NCv3-series virtual machines by September 30, 2025
 
+> [!NOTE]
+> If you're currently using the NCv3-series Azure VMs in either of these regions, you can disregard the general NCv3-series retirement date of September 30, 2025, and continue to use the NCv3-series Azure VMs in that region until the respective extension date: <br/><br/>
+> The US Central region has an extension and a retirement date of **December 1, 2025**. <br/><br/>
+> The West Europe region has an extension and a retirement date of **December 31, 2025**. <br/><br/>
+> The East US 2 region has an extension and a retirement date of **February 28, 2026**. <br/><br/>
+> The Canada Central region has an extension and a retirement date of **March 31, 2026**. <br/><br/>
+> The US Gov Virginia, US Gov Arizona, Jio India West, and China North 3 regions have an extension and a retirement date of **June 30, 2026**. 
+
 On September 30, 2025, Microsoft Azure will retire the Standard_NC6s_v3, Standard_NC12s_v3, Standard_NC24s_v3, and Standard_NC24rs_v3 virtual machines (VMs) in NCv3-series virtual machines (VMs). To avoid any disruption to your service, we recommend that you change the VM sizing for your workloads from the current NCv3-series VMs to the newer VM series in the same NC product line.
 
 Microsoft is recommending the Azure [NCadsH100_v5-series ](/azure/virtual-machines/ncads-h100-v5?source=recommendations)VMs, which offer greater GPU memory bandwidth per GPU, improved [accelerated networking](/azure/virtual-network/create-vm-accelerated-networking-cli) capabilities, and larger and faster local solid state drives. These VMs are targeted for GPU accelerated midrange AI training, batch inferencing, and high-performance computing simulation workloads. For regions where NCadsH100_v5 is not available, please migrate to the other recommended SKUs below. 

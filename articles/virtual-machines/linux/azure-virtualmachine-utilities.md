@@ -116,7 +116,7 @@ After azure-vm-utils is installed, you can use the predictable symlinks for disk
 List all Azure disk symlinks:
 
 ```bash
-ls -la /dev/disk/azure/
+find /dev/disk/azure/ -type l
 ```
 
 Access the OS disk:
@@ -143,7 +143,7 @@ To verify that azure-vm-utils is working correctly on your VM:
 
 1. Check if the package is installed:
    
-   ```bashhttps://microsoft-ce-csi.acrolinx.cloud/api/v1/checking/scorecards/6bbc580d-afe2-4890-ab90-5374159a494f
+   ```bash
    # For RPM-based systems
    rpm -qa azure-vm-utils
    
@@ -154,11 +154,12 @@ To verify that azure-vm-utils is working correctly on your VM:
 1. Verify udev rules are in place:
    
    ```bash
-   ls -la /usr/lib/udev/rules.d/*azure*
+   ls -al /usr/lib/udev/rules.d/10-azure-unmanaged-sriov.rules
+   ls -al /usr/lib/udev/rules.d/80-azure-disk.rules
    ```
 
 1. Check for Azure disk symlinks:
    
    ```bash
-   ls -la /dev/disk/azure/
+   find /dev/disk/azure -type l
    ```

@@ -96,9 +96,11 @@ resource azureImageBuilder 'Microsoft.VirtualMachineImages/imageTemplates@2022-0
 }
 
 ```
-Follow all [Best Practices](../image-builder-best-practices.md) while creating image templates.
 
 ---
+
+Follow all [Best Practices](../image-builder-best-practices.md) while creating image templates.
+
 ## API version
 The API version will change over time as the API changes. See [What's new in Azure VM Image Builder](../image-builder-api-update-release-notes.md) for all major API changes and feature updates for the Azure VM Image Builder service.
 

@@ -7,7 +7,7 @@ ms.subservice: extensions
 ms.author: gabsta
 author: GabstaMSFT
 ms.collection: windows
-ms.date: 02/27/2023 
+ms.date: 08/18/2025
 # Customer intent: "As a cloud administrator, I want to install and manage the Azure Windows VM Agent on my virtual machines, so that I can enable and utilize necessary extensions for configuration and recovery tasks effectively."
 ---
 
@@ -19,7 +19,7 @@ This article describes how to install and detect the Azure Windows VM Agent.
 
 ## Prerequisites
 
-The Azure Windows VM Agent supports the x64 architecture for these Windows operating systems:
+The Azure Windows VM Agent supports the x64 and ARM64 architecture for these Windows operating systems:
 
 | OS Version | x64 | ARM64 |
 |:-----|:-----:|:-----:|
@@ -83,8 +83,6 @@ To boot a VM, you must have the PA installed on the VM. However, the WinGA does 
 If you don't have the agents installed, you can't use some Azure services, such as Azure Backup or Azure Security. These services require an extension to be installed. If you deploy a VM without the WinGA, you can install the latest version of the agent later.
 
 ### Manual installation
-
-You can manually [install](/troubleshoot/azure/virtual-machines/windows/windows-azure-guest-agent#solution-2-manually-uninstall-and-reinstall-the-azure-vm-agent) the Azure Windows VM Agent by using a Windows Installer package. Manual installation might be necessary when you create a custom VM image that's deployed to Azure. 
 
 To manually install the Azure Windows VM Agent, [download the installer](https://github.com/Azure/WindowsVMAgent) and select the latest release. You can also search for a specific version in the [GitHub page for Azure Windows VM Agent releases](https://github.com/Azure/WindowsVMAgent/releases). The Azure Windows VM Agent is supported on Windows Server 2008 (64 bit) and later.
 
