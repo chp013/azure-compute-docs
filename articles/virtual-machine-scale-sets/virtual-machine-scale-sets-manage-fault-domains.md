@@ -17,7 +17,7 @@ ms.custom: mimckitt, devx-track-azurecli
 The fault domain (FD) configuration for Virtual Machine Scale Sets varies depending on the orchestration mode:
 
 ## Uniform Orchestration Mode
-Virtual Machine Scale Sets with Uniform orchestration are created with five fault domains by default in Azure regions with no zones. For regions that support zonal deployment of Virtual Machine Scale Sets and this option is selected, the default value of the fault domain count is 1 for each of the zones. A `platformFaultDomainCount` of `1`` in this case implies that the virtual machine (VM) instances belonging to the scale set are spread across many racks on a best effort basis.
+Virtual Machine Scale Sets with Uniform orchestration are created with five fault domains by default in Azure regions with no zones. For regions that support zonal deployment of Virtual Machine Scale Sets and this option is selected, the default value of the fault domain count is `1` for each of the zones. A `platformFaultDomainCount` of `1` in this case implies that the virtual machine (VM) instances belonging to the scale set are spread across many racks on a best effort basis.
 
 You can also consider aligning the number of scale set fault domains with the number of Managed Disks fault domains. This alignment can help prevent loss of quorum if an entire Managed Disks fault domain goes down. The FD count can be set to less than or equal to the number of Managed Disks fault domains available in each of the regions. Refer to the [documentation](../virtual-machines/availability-set-overview.md) to learn about the number of Managed Disks fault domains by region.
 
