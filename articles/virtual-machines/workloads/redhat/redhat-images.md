@@ -23,7 +23,7 @@ For information on Red Hat support policies for all versions of RHEL, see [Red H
 
 > [!IMPORTANT]
 > Between October 2nd, 2025 and October 8th, 2025, the meter IDs of RHEL on Azure will change. **There is no impact on pricing.** Read complete details about these changes in [this blog](https://techcommunity.microsoft.com/blog/linuxandopensourceblog/red-hat-enterprise-linux-billing-meter-id-updates-on-azure/4449348).   
-> For questions on pricing, see the [Red Hat Virtual Machines pricing page](https://azure.microsoft.com/en-us/pricing/details/virtual-machines/red-hat/). 
+> For questions on pricing, see the [Red Hat Virtual Machines pricing page](https://azure.microsoft.com/pricing/details/virtual-machines/red-hat/). 
 
 > [!IMPORTANT]
 > RHEL images currently available in Azure Marketplace support either bring your own subscription (BYOS) or pay-as-you-go licensing models. You can dynamically switch between BYOS and pay-as-you-go licensing through [Azure Hybrid Benefit](../../linux/azure-hybrid-benefit-linux.md).
