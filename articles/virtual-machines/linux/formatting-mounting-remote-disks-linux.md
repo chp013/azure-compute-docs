@@ -91,7 +91,9 @@ sudo mount /dev/nvme0n2p1 /datadrive
 
 ## Persist the mount
 
-To ensure that the drive is remounted automatically after a reboot, it must be added to the `/etc/fstab` file. It's also highly recommended that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than just the device name (such as /dev/sdc1). If the OS detects a disk error during boot, using the UUID avoids the incorrect disk being mounted to a given location. Remaining data disks would then be assigned those same device IDs. To find the UUID of the new drive, use the `blkid` utility:
+To ensure that the drive is remounted automatically after a reboot, it must be added to the `/etc/fstab` file.
+
+It's highly recommended that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than the device path (such as /dev/sdc1).  Device paths are not persistent and will change on reboot. To find the UUID of the new drive, use the `blkid` utility:
 
 ```bash
 sudo blkid
