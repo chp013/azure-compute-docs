@@ -6,7 +6,7 @@ ms.service: azure-disk-storage
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linux
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 08/30/2025
 ms.author: rogarana
 # Customer intent: As a system administrator managing Linux VMs, I want to attach and configure a persistent data disk using the command line, so that I can ensure data retention and improve performance for my applications.
 ---
