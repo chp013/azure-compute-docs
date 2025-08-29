@@ -128,18 +128,8 @@ UUID=$(sudo blkid -s UUID -o value /dev/sdc1)
 echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
 
 # For NVMe disks
-# UUID=$(sudo blkid -s UUID -o value /dev/nvme1n1p1)
-# echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
-```
-
-If you're using azure-vm-utils, you can simplify this process:
-
-```bash
-# Install azure-vm-utils if not already installed
-sudo apt-get update && sudo apt-get install -y azure-vm-utils
-
-# Use azure-nvme-id to identify NVMe disks
-sudo azure-nvme-id
+UID=$(sudo blkid -s UUID -o value /dev/nvme1n1p1)
+echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
 ```
 
 > [!NOTE]
