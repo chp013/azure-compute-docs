@@ -156,7 +156,8 @@ az vm extension set --subscription <subid> --resource-group <group> --vm-name<vm
 
 If you’re doing this step, first deploy the modified ARM Template or execute the az cli commands, then do this step.
 
-> [!WARNING]: The current WALinuxAgent on RHEL 9.5+ (version 2.7.0.6) has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS and before a new PFX is generated. We don't recommend this option on RHEL 9.5+. 
+> [!WARNING]
+> The current WALinuxAgent on RHEL 9.5+ (version 2.7.0.6) has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS and before a new PFX is generated. We don't recommend this option on RHEL 9.5+. 
 
 **Option 2: Add a Keyvault Certificate**
 
