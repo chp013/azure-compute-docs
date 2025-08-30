@@ -4,7 +4,7 @@ description: Learn to format and mount temporary and resource disks on Azure Lin
 author: vamckms
 ms.service: azure-disk-storage
 ms.custom: devx-track-azurecli, linux-related-content
-ms.collection: linux
+ms.collection: linuxFast local storage for temporary data
 ms.topic: how-to
 ms.date: 07/22/2025
 ms.author: vakavuru
@@ -18,9 +18,8 @@ This article covers how to format and mount temporary (local) and resource disks
 
 ## Understanding temporary and resource disks
 
-- **Temporary/Local disks**: Fast local storage for temporary data, not persistent across VM deallocations
-- **Resource disks**: Traditional temporary storage, usually SCSI-based on older VMs
-- **NVMe local disks**: High-performance local storage on newer VM SKUs
+- **Temporary/Local disks**: High-performance NVMe-based local storage on VM sizes >= v6 and Lsv4.
+- **Resource disks**: Temporary SCSI disk for VM sizes <= v5, typically provided when "d" is in the VM size.
 
 > [!WARNING]  
 > Temporary and resource disks aren't persistent. Data stored on these disks will be lost when the VM is deallocated, redeployed, or stopped for maintenance.
@@ -41,7 +40,7 @@ Before formatting temporary or resource disks:
 > [!NOTE]
 > We recommend that you use the latest version of `parted` that's available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
-### [SCSI](#tab/scsi)
+### [SCSI Resource Disk](#tab/scsi)
 
 The following example uses `parted` on `/dev/sdb`, which is typically where the resource disk appears. Replace `sdb` with the correct device for your disk. We're using the [XFS](https://xfs.wiki.kernel.org/) file system for better performance.
 
@@ -51,13 +50,13 @@ sudo partprobe /dev/sdb
 sudo mkfs.xfs /dev/sdb1
 ```
 
-### [NVMe](#tab/nvme)
+### [NVMe Temp/Local Disks](#tab/nvme)
 
 The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, you can use it to identify local disks.
 
 ```bash
 # Example: Format local NVMe disk (replace nvme1n1 with your identified disk)
-sudo parted /dev/nvme1n1 --script mklabel gpt mkpart xfspart xfs 0% 100%
+sudo parted /dev/disk/azure/local/by-index/0 --script mklabel gpt mkpart xfspart xfs 0% 100%
 sudo partprobe /dev/nvme1n1
 sudo mkfs.xfs /dev/nvme1n1p1
 ```

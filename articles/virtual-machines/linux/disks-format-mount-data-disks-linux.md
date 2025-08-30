@@ -91,7 +91,9 @@ sudo mount /dev/nvme0n2p1 /datadrive
 
 ## Persist the mount
 
-To ensure that the drive is remounted automatically after a reboot, add it to the `/etc/fstab` file. Make sure that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than just the device name (like /dev/sdc1). If the OS detects a disk error during boot, using the UUID avoids the incorrect disk being mounted to a given location. Remaining data disks would then be assigned those same device IDs. To find the UUID of the new drive, use the `blkid` utility:
+To ensure that the drive is remounted automatically after a reboot, add it to the `/etc/fstab` file.
+
+It's highly recommended that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than the device path (such as /dev/sdc1).  Device paths are not persistent and will change on reboot. To find the UUID of the new drive, use the `blkid` utility:
 
 ```bash
 sudo blkid
@@ -126,18 +128,8 @@ UUID=$(sudo blkid -s UUID -o value /dev/sdc1)
 echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
 
 # For NVMe disks
-# UUID=$(sudo blkid -s UUID -o value /dev/nvme1n1p1)
-# echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
-```
-
-If you're using azure-vm-utils, you can simplify this process:
-
-```bash
-# Install azure-vm-utils if not already installed
-sudo apt-get update && sudo apt-get install -y azure-vm-utils
-
-# Use azure-nvme-id to identify NVMe disks
-sudo azure-nvme-id
+UID=$(sudo blkid -s UUID -o value /dev/nvme1n1p1)
+echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /etc/fstab
 ```
 
 > [!NOTE]
