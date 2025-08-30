@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linux
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 08/29/2025
 ms.author: vakavuru
 ---
 
