@@ -1,6 +1,6 @@
 ---
-title: Managing remote data disks on Linux VMs using Azure CLI
-description: Learn to format, mount, and persist remote data disks on Linux VMs with both SCSI and NVMe interfaces
+title: Format and mount managed disks disks to Linux VMs  Azure CLI
+description: Learn to format, mount, and persist managed disks to Linux VMs with both SCSI and NVMe interfaces
 author: vamckms
 ms.service: azure-disk-storage
 ms.custom: devx-track-azurecli, linux-related-content
@@ -20,17 +20,16 @@ This article covers how to format, mount, and persist remote data disks on Azure
 
 Before formatting and mounting a data disk, ensure you have:
 
-1. [Identify the correct disk](./add-disk.md#identifying-disks) to avoid data loss
-2. SSH access to your VM
-3. Root or sudo privileges
+- [Identify the correct disk](./add-disk.md#identifying-disks) to avoid data loss
+- SSH access to your VM
+- Root or sudo privileges
 
 > [!WARNING]
 > Always verify you're working with the correct disk before formatting. Formatting the wrong disk will result in data loss.
 
 ## Format the disk
 
-> [!NOTE]
-> We recommend that you use the latest version of `parted` that's available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
+Use the latest version of `parted` available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
 Once you've identified the correct disk (e.g., `/dev/nvme0n2` for a data disk), you can format it:
 
@@ -55,7 +54,8 @@ sudo partprobe /dev/nvme0n2
 sudo mkfs.xfs /dev/nvme0n2p1
 ```
 ---
-Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and file system. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new file system immediately.
+
+Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to ensure the kernel is aware of the new partition and file system. If you don't use `partprobe`, then neither the `blkid` or the `lsblk` commands won't immediately return the UUID for the new file system.
 
 
 ## Mount the disk
@@ -91,7 +91,7 @@ sudo mount /dev/nvme0n2p1 /datadrive
 
 ## Persist the mount
 
-To ensure that the drive is remounted automatically after a reboot, it must be added to the `/etc/fstab` file. It's also highly recommended that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than just the device name (such as /dev/sdc1). If the OS detects a disk error during boot, using the UUID avoids the incorrect disk being mounted to a given location. Remaining data disks would then be assigned those same device IDs. To find the UUID of the new drive, use the `blkid` utility:
+To ensure that the drive is remounted automatically after a reboot, add it to the `/etc/fstab` file. Make sure that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than just the device name (like /dev/sdc1). If the OS detects a disk error during boot, using the UUID avoids the incorrect disk being mounted to a given location. Remaining data disks would then be assigned those same device IDs. To find the UUID of the new drive, use the `blkid` utility:
 
 ```bash
 sudo blkid
@@ -108,7 +108,7 @@ The output looks similar to the following example:
 ```
 
 > [!WARNING]
-> Improperly editing the `/etc/fstab` file could result in an unbootable system. If you're unsure, refer to the distribution's documentation for information on how to properly edit this file. We also recommend that you create a backup of the `/etc/fstab` file before editing.
+> Improperly editing the `/etc/fstab` file could result in an unbootable system. If you're unsure, see your distribution's documentation for information on how to properly edit this file. You should also create a backup of the `/etc/fstab` file before editing.
 
 Next, open the `/etc/fstab` file in a text editor. Add a line to the end of the file, by using the UUID value for the disk that was created in the previous steps, and the mountpoint of `/datadrive`. Using the example from this article, the new line would look like the following:
 
@@ -141,9 +141,9 @@ sudo azure-nvme-id
 ```
 
 > [!NOTE]
-> Later removing a data disk without editing fstab could cause the VM to fail to boot. Most distributions provide either the `nofail` and/or `nobootwait` fstab options. These options allow a system to boot even if the disk fails to mount at boot time. Consult your distribution's documentation for more information on these parameters.
+> Later removing a data disk without editing fstab could cause the VM to fail to boot. Most distributions provide either the `nofail` and/or `nobootwait` fstab options. These options allow a system to boot even if the disk fails to mount at boot time. See your distribution's documentation for details on these parameters.
 
-The `nofail` option ensures that the VM starts even if the filesystem is corrupt or the disk does not exist at boot time. Without this option, you may encounter behavior as described in [Cannot SSH to Linux VM due to FSTAB errors](/troubleshoot/azure/virtual-machines/linux-virtual-machine-cannot-start-fstab-errors)
+The `nofail` option ensures that the VM starts even if the filesystem is corrupt or the disk doesn't exist at boot time. Without this option, you may encounter behavior as described in [Cannot SSH to Linux VM due to FSTAB errors](/troubleshoot/azure/virtual-machines/linux-virtual-machine-cannot-start-fstab-errors)
 
 The Azure VM Serial Console can be used for console access to your VM if modifying fstab has resulted in a boot failure. More details are available in the [Serial Console documentation](/troubleshoot/azure/virtual-machines/serial-console-linux).
 
