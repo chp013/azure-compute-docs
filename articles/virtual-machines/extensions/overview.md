@@ -16,7 +16,7 @@ ms.date: 08/18/2025
 Extensions are small applications that provide post-deployment configuration and automation on Azure virtual machines (VMs). The Azure platform hosts many extensions covering VM configuration, monitoring, security, and utility applications. Publishers take an application, wrap it into an extension, and simplify the installation. All you need to do is provide mandatory parameters.
 
 > [!NOTE]
-> Extensions are only supported on [Endorsed Linux distributions on Azure](articles/virtual-machines/linux/endorsed-distros). 
+> Extensions are only supported on [Endorsed Linux distributions on Azure](../linux/endorsed-distros.md).
 
 ## View available extensions
 
