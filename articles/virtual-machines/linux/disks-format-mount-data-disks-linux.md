@@ -1,5 +1,5 @@
 ---
-title: Format and mount managed disks disks to Azure Linux VMs
+title: Format and mount managed disks to Azure Linux VMs
 description: Learn to format, mount, and persist managed disks to Linux VMs with both SCSI and NVMe interfaces
 author: roygara
 ms.service: azure-disk-storage
@@ -25,17 +25,17 @@ Before formatting and mounting a data disk, ensure you have:
 - Root or sudo privileges
 
 > [!WARNING]
-> Always verify you're working with the correct disk before formatting. Formatting the wrong disk will result in data loss.
+> Always verify you're working with the correct disk before formatting. Formatting the wrong disk can result in data loss.
 
 ## Format the disk
 
 Use the latest version of `parted` available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
-Once you've identified the correct disk (e.g., `/dev/nvme0n2` for a data disk), you can format it:
+Once you've identified the correct disk (for example, `/dev/nvme0n2` for a data disk), you can format it:
 
 ### [SCSI](#tab/scsi-format)
 
-The following example uses `parted` on `/dev/sdc`, which is where the first data disk will typically be on most VMs. Replace `sdc` with the correct option for your disk. We're also formatting it by using the [XFS](https://xfs.wiki.kernel.org/) file system.
+The following example uses `parted` on `/dev/sdc`, which is where the first data disk typically is on most VMs. Replace `sdc` with the correct option for your disk. It also formats the disk by using the [XFS](https://xfs.wiki.kernel.org/) file system.
 
 ```bash
 sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
@@ -45,7 +45,7 @@ sudo mkfs.xfs /dev/sdc1
 
 ### [NVMe](#tab/nvme-format)
 
-The following examples assume you have used [azure-vm-utils](azure-virtualmachine-utilities.md) to identify disks as shown in the [identifying disks](./add-disk.md#identifying-disks) section.
+The following examples assume you used [azure-vm-utils](azure-virtualmachine-utilities.md) to identify disks as shown in the [identifying disks](./add-disk.md#identifying-disks) section.
 
 ```bash
 # Format the data disk (replace nvme0n2 with your identified disk from azure-nvme-id)
@@ -55,7 +55,7 @@ sudo mkfs.xfs /dev/nvme0n2p1
 ```
 ---
 
-Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to ensure the kernel is aware of the new partition and file system. If you don't use `partprobe`, then neither the `blkid` or the `lsblk` commands won't immediately return the UUID for the new file system.
+Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to ensure the kernel is aware of the new partition and file system. If you don't use `partprobe`, then the `blkid` and the `lsblk` commands won't immediately return the UUID for the new file system.
 
 
 ## Mount the disk
@@ -93,7 +93,7 @@ sudo mount /dev/nvme0n2p1 /datadrive
 
 To ensure that the drive is remounted automatically after a reboot, add it to the `/etc/fstab` file.
 
-It's highly recommended that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than the device path (such as /dev/sdc1).  Device paths are not persistent and will change on reboot. To find the UUID of the new drive, use the `blkid` utility:
+It's highly recommended that the UUID (Universally Unique Identifier) is used in `/etc/fstab` to refer to the drive rather than the device path (such as /dev/sdc1).  Device paths aren't persistent and change on reboot. To find the UUID of the new drive, use the `blkid` utility:
 
 ```bash
 sudo blkid
@@ -135,9 +135,9 @@ echo "UUID=$UUID   /datadrive   xfs   defaults,nofail   1   2" | sudo tee -a /et
 > [!NOTE]
 > Later removing a data disk without editing fstab could cause the VM to fail to boot. Most distributions provide either the `nofail` and/or `nobootwait` fstab options. These options allow a system to boot even if the disk fails to mount at boot time. See your distribution's documentation for details on these parameters.
 
-The `nofail` option ensures that the VM starts even if the filesystem is corrupt or the disk doesn't exist at boot time. Without this option, you may encounter behavior as described in [Cannot SSH to Linux VM due to FSTAB errors](/troubleshoot/azure/virtual-machines/linux-virtual-machine-cannot-start-fstab-errors)
+The `nofail` option ensures that the VM starts even if the filesystem is corrupt or the disk doesn't exist at boot time. Without this option, you might encounter behavior as described in [Cannot SSH to Linux VM due to FSTAB errors](/troubleshoot/azure/virtual-machines/linux-virtual-machine-cannot-start-fstab-errors)
 
-The Azure VM Serial Console can be used for console access to your VM if modifying fstab has resulted in a boot failure. More details are available in the [Serial Console documentation](/troubleshoot/azure/virtual-machines/serial-console-linux).
+The Azure VM Serial Console can be used for console access to your VM if modifying fstab results in a boot failure. More details are available in the [Serial Console documentation](/troubleshoot/azure/virtual-machines/serial-console-linux).
 
 
 ## TRIM/UNMAP support for Linux in Azure
@@ -152,7 +152,7 @@ There are two ways to enable TRIM support in your Linux VM. As usual, consult yo
 UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,discard   1   2
 ```
 
-• In some cases, the `discard` option may have performance implications. Alternatively, you can run the `fstrim` command manually from the command line, or add it to your crontab to run regularly:
+• In some cases, the `discard` option might have performance implications. Alternatively, you can run the `fstrim` command manually from the command line, or add it to your crontab to run regularly:
 
 ### [Ubuntu](#tab/ubuntu)
 

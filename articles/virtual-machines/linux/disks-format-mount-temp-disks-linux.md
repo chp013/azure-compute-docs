@@ -14,7 +14,7 @@ ms.author: rogarana
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets 
 
-This article covers how to format and mount [temporary disks](../managed-disks-overview.md#temporary-disk) (also known as resource disks) on Azure Linux virtual machines (VMs). These disks may use either SCSI or NVMe interfaces, depending on your VM series. Temporary disks aren't managed disks, and aren't persistent.
+This article covers how to format and mount [temporary disks](../managed-disks-overview.md#temporary-disk) (also known as resource disks) on Azure Linux virtual machines (VMs). Depending on your VM series, temporary disks use either SCSI or NVMe interfaces. Temporary disks aren't managed disks, and aren't persistent.
 
 Store important data on managed disks instead of local temporary disks. Temporary disks are generally meant to store items like page files, swap files, or SQL Server tempdb files.
 
@@ -45,7 +45,7 @@ sudo mkfs.xfs /dev/sdb1
 
 ### [NVMe disks](#tab/nvme)
 
-The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, use it to identify local disks.
+The following examples assume you identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, use it to identify local disks.
 
 ```bash
 # Example: Format local NVMe disk (replace nvme1n1 with your identified disk)
@@ -66,7 +66,7 @@ sudo mkfs.xfs /dev/md0
 
 ---
 
-Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and file system. If you don't use `partprobe`, then `blkid` or `lsblk` commands may not return the UUID for the new file system immediately.
+Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and file system. If you don't use `partprobe`, then `blkid` or `lsblk` commands might not return the UUID for the new file system immediately.
 
 ## Mount temporary disks
 
@@ -92,7 +92,7 @@ sudo mount /dev/disk/azure/resource-part1 /mnt/temp
 
 ### [NVMe disks](#tab/nvme)
 
-The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, use it to identify local disks.
+The following examples assume you identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, use it to identify local disks.
 
 ```bash
 # Using direct device path (replace nvme1n1p1 with your identified disk's partition)

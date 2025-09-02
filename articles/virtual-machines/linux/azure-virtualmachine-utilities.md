@@ -39,7 +39,7 @@ The following new symlinks are provided for all instances with NVMe disks:
 - `/dev/disk/azure/local/by-serial/<serial>`
 - `/dev/disk/azure/os`
 
-For v6 and newer VM sizes with local NVMe disks that support namespace identifiers, the following additional links are available:
+For v6 and newer VM sizes with local NVMe disks that support namespace identifiers, the following links are also available:
 
 - `/dev/disk/azure/local/by-index/<index>`
 - `/dev/disk/azure/local/by-name/<name>`
@@ -74,7 +74,7 @@ If the package isn't present in the default platform image, install it via packa
 
 ### Manual installation
 
-For distributions where azure-vm-utils isn't pre-installed, build and install it manually:
+For distributions where azure-vm-utils isn't preinstalled, build and install it manually:
 
 ```bash
 # Clone the repository
