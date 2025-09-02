@@ -97,7 +97,7 @@ az vmss create \
 ```
 
 > [!NOTE]
-> For zonal Flexible VMSS deployments, the fault domain count is automatically set to 1 and can't be configured to a higher value.
+> For zonal Flexible virtual machine scale set deployments, the fault domain count is automatically set to 1 and can't be configured to a higher value.
 
 It takes a few minutes to create and configure all the scale set resources and VMs.
 
