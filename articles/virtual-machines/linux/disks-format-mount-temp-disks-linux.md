@@ -1,48 +1,41 @@
 ---
-title: Managing temporary and resource disks on Linux VMs
-description: Learn to format and mount temporary and resource disks on Azure Linux VMs with both SCSI and NVMe interfaces
-author: vamckms
+title: Format and mount temporary disks on Azure Linux VMs
+description: Learn to format and mount temporary disks (also known as resource disks) on Azure Linux VMs with both SCSI and NVMe interfaces
+author: roygara
 ms.service: azure-disk-storage
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linuxFast local storage for temporary data
 ms.topic: how-to
-ms.date: 07/22/2025
-ms.author: vakavuru
+ms.date: 09/02/2025
+ms.author: rogarana
 ---
 
-# Managing temporary and resource disks
+# Format and mount temporary disk to Azure Linux VMs
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets 
 
-This article covers how to format and mount temporary (local) and resource disks on Azure Linux VMs. These disks provide local storage that isn't persistent and might use either SCSI or NVMe interfaces depending on your VM SKU.
+This article covers how to format and mount [temporary disks](../managed-disks-overview.md#temporary-disk) (also known as resource disks) on Azure Linux virtual machines (VMs). These disks may use either SCSI or NVMe interfaces, depending on your VM series. Temporary disks aren't managed disks, and aren't persistent.
 
-## Understanding temporary and resource disks
-
-- **Temporary/Local disks**: High-performance NVMe-based local storage on VM sizes >= v6 and Lsv4.
-- **Resource disks**: Temporary SCSI disk for VM sizes <= v5, typically provided when "d" is in the VM size.
-
-> [!WARNING]  
-> Temporary and resource disks aren't persistent. Data stored on these disks will be lost when the VM is deallocated, redeployed, or stopped for maintenance.
+Store important data on managed disks instead of local temporary disks. Temporary disks are generally meant to store items like page files, swap files, or SQL Server tempdb files.
 
 ## Prerequisites
 
-Before formatting temporary or resource disks:
+Before formatting temporary disks:
 
-1. [Identify the correct disk](./add-disk.md#identifying-disks) to avoid data loss
-2. Understand that data isn't persistent across VM stops/deallocations
-3. Have SSH access to your VM with root or sudo privileges
+- [Identify the correct disk](./add-disk.md#identifying-disks) to avoid data loss
+- Understand that data isn't persistent across VM stops/deallocations
+- Have SSH access to your VM with root or sudo privileges
 
-## Format temporary and resource disks
+## Format disks
 
 > [!WARNING]
 > Formatting will permanently erase all data on the disk. Ensure you're working with the correct disk and that no important data exists on it.
 
-> [!NOTE]
-> We recommend that you use the latest version of `parted` that's available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
+Use the latest version of `parted` available for your distribution. If the disk size is 2 tebibytes (TiB) or larger, you must use GPT partitioning. If the disk size is under 2 TiB, then you can use either MBR or GPT partitioning.
 
-### [SCSI Resource Disk](#tab/scsi)
+### [SCSI disks](#tab/scsi)
 
-The following example uses `parted` on `/dev/sdb`, which is typically where the resource disk appears. Replace `sdb` with the correct device for your disk. We're using the [XFS](https://xfs.wiki.kernel.org/) file system for better performance.
+The following example uses `parted` on `/dev/sdb`, which is typically where the SCSI temporary disks appear. Replace `sdb` with the correct device for your disk. We're using the [XFS](https://xfs.wiki.kernel.org/) file system for better performance.
 
 ```bash
 sudo parted /dev/disk/azure/resource --script mklabel gpt mkpart xfspart xfs 0% 100%  
@@ -50,9 +43,9 @@ sudo partprobe /dev/sdb
 sudo mkfs.xfs /dev/sdb1
 ```
 
-### [NVMe Temp/Local Disks](#tab/nvme)
+### [NVMe disks](#tab/nvme)
 
-The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, you can use it to identify local disks.
+The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, use it to identify local disks.
 
 ```bash
 # Example: Format local NVMe disk (replace nvme1n1 with your identified disk)
@@ -63,7 +56,7 @@ sudo mkfs.xfs /dev/nvme1n1p1
 
 ### [RAID](#tab/raid)
 
-Some VM SKUs provide multiple local NVMe disks. You can set up RAID for better performance or redundancy:
+Some VM sizes provide multiple local NVMe disks. You can set up RAID for better performance or redundancy:
 
 ```bash
 # Example: Create RAID 0 with two local NVMe disks for performance
@@ -73,10 +66,9 @@ sudo mkfs.xfs /dev/md0
 
 ---
 
-Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and file system. Failure to use `partprobe` can cause the blkid or lsblk commands to not return the UUID for the new file system immediately.
+Use the [partprobe](https://linux.die.net/man/8/partprobe) utility to make sure the kernel is aware of the new partition and file system. If you don't use `partprobe`, then `blkid` or `lsblk` commands may not return the UUID for the new file system immediately.
 
-
-## Mount temporary and resource disks
+## Mount temporary disks
 
 Now, create a directory to mount the file system by using `mkdir`. For temporary storage, common mount points include `/mnt`, `/tmp`, or application-specific directories.
 
@@ -84,7 +76,7 @@ Now, create a directory to mount the file system by using `mkdir`. For temporary
 sudo mkdir /mnt/temp
 ```
 
-### [SCSI](#tab/scsi-mount)
+### [SCSI disks](#tab/scsi)
 
 Use `mount` to mount the file system. The following example mounts the `/dev/sdb1` partition to the `/mnt/temp` mount point:
 
@@ -98,9 +90,9 @@ You can also use the Azure device path:
 sudo mount /dev/disk/azure/resource-part1 /mnt/temp
 ```
 
-### [NVMe](#tab/nvme-mount)
+### [NVMe disks](#tab/nvme)
 
-The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, you can use it to identify local disks.
+The following examples assume you have identified your disk as shown in the [identifying disks](./add-disk.md#identifying-disks) section. If you have azure-vm-utils installed, use it to identify local disks.
 
 ```bash
 # Using direct device path (replace nvme1n1p1 with your identified disk's partition)
@@ -110,7 +102,7 @@ sudo mount /dev/nvme1n1p1 /mnt/temp
 sudo mount /dev/disk/azure/local/by-index/0-part1 /mnt/temp  
 ```
 
-### [RAID](#tab/raid-mount)
+### [RAID](#tab/raid)
 
 For RAID arrays created as shown in the formatting section:
 
@@ -119,8 +111,6 @@ sudo mkdir /mnt/raid
 sudo mount /dev/md0 /mnt/raid
 ```
 ---
-
-
 
 ## TRIM/UNMAP support for temporary disks
 
@@ -155,19 +145,6 @@ sudo zypper in util-linux
 sudo fstrim /mnt/temp
 ```
 ---
-
-## Important reminders
-
-> [!WARNING]
-> - Temporary and resource disk data is lost during VM deallocations, stops for maintenance, or redeployments
-> - Always use persistent Azure disks for important data
-> - Test your application's behavior with temporary disk data loss scenarios
-
-> [!TIP]  
-> - Use temporary disks for swap, cache, temporary files, and application working directories
-> - NVMe local disks offer the highest performance for temporary storage
-> - Monitor disk usage to avoid running out of temporary storage space
-> - Consider automated backup strategies if temporary disk content has any value
 
 ## Troubleshooting
 

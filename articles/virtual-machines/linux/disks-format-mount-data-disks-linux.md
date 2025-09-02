@@ -1,20 +1,20 @@
 ---
 title: Format and mount managed disks disks to Linux VMs  Azure CLI
 description: Learn to format, mount, and persist managed disks to Linux VMs with both SCSI and NVMe interfaces
-author: vamckms
+author: roygara
 ms.service: azure-disk-storage
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linux
 ms.topic: how-to
-ms.date: 07/22/2025
-ms.author: vakavuru
+ms.date: 09/02/2025
+ms.author: rogarana
 ---
 
-# Managing remote data disks
+# Format and mount managed disks
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets 
 
-This article covers how to format, mount, and persist remote data disks on Azure Linux VMs. Remote data disks are persistent storage attached to your VM that can use either SCSI or NVMe interfaces depending on your VM SKU.
+This article covers how to format, mount, and persist managed disks on Azure Linux virtual machines (VMs). Managed disks are persistent storage attached to your VM that can use either SCSI or NVMe interfaces depending on your VM size.
 
 ## Prerequisites
 
