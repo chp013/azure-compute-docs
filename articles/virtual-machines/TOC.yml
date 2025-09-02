@@ -1787,10 +1787,8 @@
     - name: Linux
       items:
       - name: Managed disks
-        displayName: format and mount remote disk
         href: ./linux/disks-format-mount-data-disks-linux.md
       - name: Temporary disks
-        displayName: format and mount temporary or resource disk
         href: ./linux/disks-format-mount-temp-disks-linux.md
   - name: Detach a disk
     items:
