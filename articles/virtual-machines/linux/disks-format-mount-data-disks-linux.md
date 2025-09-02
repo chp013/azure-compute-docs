@@ -1,9 +1,9 @@
 ---
-title: Format and mount managed disks disks to Linux VMs  Azure CLI
+title: Format and mount managed disks disks to Azure Linux VMs
 description: Learn to format, mount, and persist managed disks to Linux VMs with both SCSI and NVMe interfaces
 author: roygara
 ms.service: azure-disk-storage
-ms.custom: devx-track-azurecli, linux-related-content
+ms.custom: linux-related-content
 ms.collection: linux
 ms.topic: how-to
 ms.date: 09/02/2025
