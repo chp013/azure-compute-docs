@@ -31,7 +31,7 @@ Before starting the migration process, be aware of these important limitations a
 
 - **Windows ADE encryption patterns**: On Windows VMs, Azure Disk Encryption can only encrypt the OS disk alone OR all disks (OS + data disks). It's not possible to encrypt only data disks on Windows VMs.
 
-- **UDE flag persistence**: Disks encrypted with Azure Disk Encryption have a User Data Encryption (UDE) flag that persists even after decryption. Both snapshots and disk copies using the Copy option retain this UDE flag. The migration requires creating completely new managed disks using the Upload method and copying the VHD blob data, which creates a new disk object without any metadata from the source disk.
+- **UDE flag persistence**: Disks encrypted with Azure Disk Encryption have a Unified Data Encryption (UDE) flag that persists even after decryption. Both snapshots and disk copies using the Copy option retain this UDE flag. The migration requires creating completely new managed disks using the Upload method and copying the VHD blob data, which creates a new disk object without any metadata from the source disk.
 
 - **Downtime required**: The migration process requires VM downtime for disk operations and VM recreation.
 
@@ -110,7 +110,7 @@ az vm extension delete --resource-group "MyResourceGroup" --vm-name "MyVM" --nam
 
 ### Create new managed disks using Upload method
 
-To properly remove the UDE (User Data Encryption) flag, you must create new managed disks using the Upload method and copy the VHD blob data from the original disks. This process creates a completely new disk object without any metadata from the source disk, ensuring the UDE flag is not present.
+To properly remove the UDE (Unified Data Encryption) flag, you must create new managed disks using the Upload method and copy the VHD blob data from the original disks. This process creates a completely new disk object without any metadata from the source disk, ensuring the UDE flag is not present.
 
 > [!IMPORTANT]
 > **Critical requirement**: You must use the Upload method with AzCopy to copy the VHD blob data. This creates a new managed disk object without any metadata from the source disk, which is the only way to remove the UDE flag from ADE-encrypted disks.

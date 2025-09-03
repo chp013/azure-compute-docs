@@ -349,7 +349,7 @@ sections:
       - question: |
           Can I switch from Azure Disk Encryption to server-side encryption with either customer-managed keys or encryption at host?
         answer: |
-          Yes, it's possible to migrate from Azure Disk Encryption to encryption at host, though it requires creating new disks and VMs rather than in-place conversion. Azure Disk Encryption will be retired on September 15, 2028, so migration to encryption at host is recommended. For detailed step-by-step instructions, see [Migrate from Azure Disk Encryption to encryption at host](disk-encryption-azure-disk-encryption-migrate.md).
+          Yes, it's possible to migrate from Azure Disk Encryption to encryption at host, though it requires creating new disks and VMs rather than in-place conversion. Azure Disk Encryption will be retired on September 15, 2028, so migration to encryption at host is recommended. For detailed step-by-step instructions, see [Migrate from Azure Disk Encryption to encryption at host](disk-encryption-migrate.md).
 
       - question: |
           Can I switch from server-side encryption with customer-managed keys to Azure Disk Encryption?
