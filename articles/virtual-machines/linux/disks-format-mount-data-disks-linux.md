@@ -6,7 +6,7 @@ ms.service: azure-disk-storage
 ms.custom: linux-related-content
 ms.collection: linux
 ms.topic: how-to
-ms.date: 09/02/2025
+ms.date: 09/03/2025
 ms.author: rogarana
 ---
 
