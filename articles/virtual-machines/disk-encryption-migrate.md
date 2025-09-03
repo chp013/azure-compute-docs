@@ -23,7 +23,7 @@ For more information, see [Overview of managed disk encryption options](/azure/v
 
 ### Migration limitations and considerations
 
-Before starting the migration process, be aware of these important limitations and considerations that will affect your migration strategy:
+Before starting the migration process, be aware of these important limitations and considerations that affect your migration strategy:
 
 - **No in-place migration**: You cannot directly convert ADE-encrypted disks to encryption at host. Migration requires creating new disks and VMs.
 
@@ -31,11 +31,11 @@ Before starting the migration process, be aware of these important limitations a
 
 - **Windows ADE encryption patterns**: On Windows VMs, Azure Disk Encryption can only encrypt the OS disk alone OR all disks (OS + data disks). It's not possible to encrypt only data disks on Windows VMs.
 
-- **UDE flag persistence**: Disks encrypted with Azure Disk Encryption have a Unified Data Encryption (UDE) flag that persists even after decryption. Both snapshots and disk copies using the Copy option retain this UDE flag. The migration requires creating completely new managed disks using the Upload method and copying the VHD blob data, which creates a new disk object without any metadata from the source disk.
+- **UDE flag persistence**: Disks encrypted with Azure Disk Encryption have a Unified Data Encryption (UDE) flag that persists even after decryption. Both snapshots and disk copies using the Copy option retain this UDE flag. The migration requires creating new managed disks using the Upload method and copying the VHD blob data, which creates a new disk object without any metadata from the source disk.
 
 - **Downtime required**: The migration process requires VM downtime for disk operations and VM recreation.
 
-- **Domain-joined VMs**: If your VMs are part of an Active Directory domain, additional steps are required:
+- **Domain-joined VMs**: If your VMs are part of an Active Directory domain, more steps are required:
   - The original VM must be removed from the domain before deletion
   - After creating the new VM, it must be rejoined to the domain
   - For Linux VMs, domain joining can be accomplished using Azure AD extensions
@@ -48,9 +48,9 @@ Before starting the migration:
 
 1. **Backup your data**: Create backups of all critical data before beginning the migration process.
 
-1. **Test the process**: If possible, test the migration process on a non-production VM first.
+1. **Test the process**: If possible, test the migration process on a nonproduction VM first.
 
-1. **Prepare encryption resources**: Ensure your VM size supports encryption at host. Most current VM sizes support this feature.  For more information about VM size requirements, see [Enable end-to-end encryption using encryption at host](/azure/virtual-machines/disks-enable-host-based-encryption-portal).
+1. **Prepare encryption resources**: Ensure your VM size supports encryption at host. Most current VM sizes support this feature. For more information about VM size requirements, see [Enable end-to-end encryption using encryption at host](/azure/virtual-machines/disks-enable-host-based-encryption-portal).
 
 1. **Document configuration**: Record your current VM configuration, including network settings, extensions, and attached resources.
 
