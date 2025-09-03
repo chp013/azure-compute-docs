@@ -74,74 +74,30 @@ The migration approach depends on your VM's operating system and which disks are
 
 ## Migration steps
 
-This section outlines the detailed process for migrating from Azure Disk Encryption to encryption at host. The steps differ slightly depending on your operating system.
+This section outlines the detailed process for migrating from Azure Disk Encryption to encryption at host. The steps work for both Windows and Linux VMs, with specific differences noted for each operating system.
 
 ### Disable Azure Disk Encryption
 
-First, disable the existing Azure Disk Encryption:
+First step is to disable the existing Azure Disk Encryption when possible:
 
 - **Windows**: Follow the instructions in [Disable encryption and remove the encryption extension on Windows](windows/disk-encryption-windows.md#disable-encryption-and-remove-the-encryption-extension)
-- **Linux**: If only data disks are encrypted, follow [Disable encryption and remove the encryption extension on Linux](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension)
+- **Linux**: If **only data disks** are encrypted, follow [Disable encryption and remove the encryption extension on Linux](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension)
 
 > [!IMPORTANT]
-> Linux VMs with ADE-encrypted OS disks cannot be decrypted in-place. You must create a new VM with a new OS disk and migrate your data.
+> Linux VMs with ADE-encrypted OS disks cannot be decrypted in-place. You must create a new VM with a new OS disk and migrate your data. See the [Special considerations for Linux VMs with encrypted OS disks](#special-considerations-for-linux-vms-with-encrypted-os-disks) section for details.
 
 ### Create new managed disks
 
 Create new disks that don't carry over the ADE encryption metadata. This process works for both Windows and Linux VMs, with some specific considerations for Linux OS disks.
 
-#### PowerShell method (works for both Windows and Linux)
-
-1. **Get source disk information**:
-    ```azurepowershell
-    $sourceDisk = Get-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName "MySourceDisk"
-    ```
-
-2. **Create a new empty target disk**:
-    ```azurepowershell
-    # For Windows OS disks
-    $diskConfig = New-AzDiskConfig -Location $sourceDisk.Location -CreateOption Upload `
-      -UploadSizeInBytes $($sourceDisk.DiskSizeBytes+512) -OsType Windows `
-      -HyperVGeneration "V2"
-    
-    # For Linux OS disks (if not ADE-encrypted)
-    # $diskConfig = New-AzDiskConfig -Location $sourceDisk.Location -CreateOption Upload `
-    #   -UploadSizeInBytes $($sourceDisk.DiskSizeBytes+512) -OsType Linux `
-    #   -HyperVGeneration "V2"
-    
-    # For data disks (no OS type needed)
-    # $diskConfig = New-AzDiskConfig -Location $sourceDisk.Location -CreateOption Upload `
-    #   -UploadSizeInBytes $($sourceDisk.DiskSizeBytes+512)
-    
-    $targetDisk = New-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName "MyTargetDisk" -Disk $diskConfig
-    ```
-
-3. **Generate SAS URIs and copy the data**:
-    ```azurepowershell
-    # Get SAS URIs for both disks
-    $sourceSAS = Grant-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $sourceDisk.Name `
-      -Access Read -DurationInSecond 7200
-    $targetSAS = Grant-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $targetDisk.Name `
-      -Access Write -DurationInSecond 7200
-
-    # Copy the disk data using AzCopy
-    azcopy copy $sourceSAS.AccessSAS $targetSAS.AccessSAS --blob-type PageBlob
-
-    # Revoke SAS access when complete
-    Revoke-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $sourceDisk.Name
-    Revoke-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $targetDisk.Name
-    ```
-
-#### Azure CLI method (alternative for Linux users)
-
-For Linux users who prefer to use Azure CLI:
+# [CLI](#tab/CLI)
 
 ```azurecli
 # Get the source disk ID
 SOURCE_DISK_ID=$(az disk show --resource-group "MyResourceGroup" --name "MySourceDisk" --query "id" -o tsv)
 
 # Create a new disk from the source disk
-az disk create --resource-group "MyResourceGroup" --name "MyTargetDisk" \
+az disk create --resource-group "MyResourceGroup" --name "MyTargetDisk" 
   --source "$SOURCE_DISK_ID" --upload-type "Copy"
 
 # For OS disks, specify --os-type "Linux" or --os-type "Windows"
@@ -150,35 +106,93 @@ az disk create --resource-group "MyResourceGroup" --name "MyTargetDisk" \
 > [!NOTE]
 > This method creates new disks without the Azure Disk Encryption metadata (UDE flag), which is essential for a clean migration.
 >
-> **Important**: When copying a managed disk from Azure, add 512 bytes to the disk size to account for the footer that Azure omits when reporting disk size. The PowerShell example already includes this offset.
+> **Important**: When copying a managed disk from Azure, add 512 bytes to the disk size to account for the footer that Azure omits when reporting disk size.
+
+# [Azure PowerShell](#tab/azurepowershell)
+
+```azurepowershell
+# Get source disk information
+$sourceDisk = Get-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName "MySourceDisk"
+
+# Create a new empty target disk
+# For Windows OS disks
+$diskConfig = New-AzDiskConfig -Location $sourceDisk.Location -CreateOption Upload `
+  -UploadSizeInBytes $($sourceDisk.DiskSizeBytes+512) -OsType Windows `
+  -HyperVGeneration "V2"
+
+# For Linux OS disks (if not ADE-encrypted)
+# $diskConfig = New-AzDiskConfig -Location $sourceDisk.Location -CreateOption Upload `
+#   -UploadSizeInBytes $($sourceDisk.DiskSizeBytes+512) -OsType Linux `
+#   -HyperVGeneration "V2"
+
+# For data disks (no OS type needed)
+# $diskConfig = New-AzDiskConfig -Location $sourceDisk.Location -CreateOption Upload `
+#   -UploadSizeInBytes $($sourceDisk.DiskSizeBytes+512)
+
+$targetDisk = New-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName "MyTargetDisk" -Disk $diskConfig
+
+# Generate SAS URIs and copy the data
+# Get SAS URIs for both disks
+$sourceSAS = Grant-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $sourceDisk.Name `
+  -Access Read -DurationInSecond 7200
+$targetSAS = Grant-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $targetDisk.Name `
+  -Access Write -DurationInSecond 7200
+
+# Copy the disk data using AzCopy
+azcopy copy $sourceSAS.AccessSAS $targetSAS.AccessSAS --blob-type PageBlob
+
+# Revoke SAS access when complete
+Revoke-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $sourceDisk.Name
+Revoke-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $targetDisk.Name
+```
+
+---
 
 ### Create a new VM with encryption at host
 
-Create a new VM using the newly created disks with encryption at host enabled. The process differs slightly for OS disks versus data disks, and there are important OS-specific considerations.
+Create a new VM using the newly created disks with encryption at host enabled. The process differs slightly for OS disks versus data disks, with options for both Windows and Linux.
 
-#### OS disks (both Windows and Linux)
+# [CLI](#tab/CLI2)
 
-For Windows VMs (after disabling ADE) or Linux VMs (with new OS disks), create a new VM with the OS disk and enable encryption at host:
+**For OS disks:**
 
 ```azurecli
 # For Windows OS disks
-az vm create \
-  --resource-group "MyResourceGroup" \
-  --name "MyVM-New" \
-  --os-type "Windows" \
-  --attach-os-disk "MyTargetDisk" \
+az vm create 
+  --resource-group "MyResourceGroup" 
+  --name "MyVM-New" 
+  --os-type "Windows" 
+  --attach-os-disk "MyTargetDisk" 
   --encryption-at-host true
 
 # For Linux OS disks
-# az vm create \
-#   --resource-group "MyResourceGroup" \
-#   --name "MyVM-New" \
-#   --os-type "Linux" \
-#   --attach-os-disk "MyTargetDisk" \
+# az vm create 
+#   --resource-group "MyResourceGroup" 
+#   --name "MyVM-New" 
+#   --os-type "Linux" 
+#   --attach-os-disk "MyTargetDisk" 
 #   --encryption-at-host true
 ```
 
-PowerShell alternative:
+**For data disks:**
+
+```azurecli
+# Enable encryption at host on the VM
+az vm update 
+  --resource-group "MyResourceGroup" 
+  --name "MyVM-New" 
+  --encryption-at-host true
+
+# Attach the newly created data disk
+az vm disk attach 
+  --resource-group "MyResourceGroup" 
+  --vm-name "MyVM-New" 
+  --name "MyTargetDisk"
+```
+
+# [Azure PowerShell](#tab/azurepowershell2)
+
+**For OS disks:**
 
 ```azurepowershell
 # Define VM configuration
@@ -196,27 +210,7 @@ $vmConfig = Set-AzVMSecurityProfile -VM $vmConfig -EncryptionAtHost $true
 New-AzVM -ResourceGroupName "MyResourceGroup" -Location $targetDisk.Location -VM $vmConfig
 ```
 
-#### Data disks (both Windows and Linux)
-
-1. Create a new VM or use an existing one with encryption at host:
-
-```azurecli
-az vm update \
-  --resource-group "MyResourceGroup" \
-  --name "MyVM-New" \
-  --encryption-at-host true
-```
-
-2. Attach the newly created data disks:
-
-```azurecli
-az vm disk attach \
-  --resource-group "MyResourceGroup" \
-  --vm-name "MyVM-New" \
-  --name "MyTargetDisk"
-```
-
-PowerShell alternative for attaching data disks:
+**For data disks:**
 
 ```azurepowershell
 # Get the VM
@@ -229,41 +223,70 @@ $vm = Add-AzVMDataDisk -VM $vm -ManagedDiskId $targetDisk.Id -Lun 0 -CreateOptio
 Update-AzVM -ResourceGroupName "MyResourceGroup" -VM $vm
 ```
 
+---
+
 ### Verify and configure the new disks
 
 After creating the new VM with encryption at host, you need to verify and configure the disks properly for your operating system.
 
-#### For Windows VMs
+# [CLI](#tab/CLI3)
+
+**For Windows VMs:**
 
 - Verify disk letters are assigned correctly
 - Check that applications can access the disks correctly
 - Update any applications or scripts that reference specific disk IDs
 
-#### For Linux VMs
+**For Linux VMs:**
 
 - Update `/etc/fstab` with the new disk UUIDs
 - Mount the data disks to the correct mount points
 
 ```bash
-sudo blkid  # Get UUIDs of all disks
-sudo mount -a  # Mount all disks defined in fstab
+# Get UUIDs of all disks
+sudo blkid
+
+# Mount all disks defined in fstab
+sudo mount -a
 ```
+
+# [Azure PowerShell](#tab/azurepowershell3)
+
+**For Windows VMs:**
+
+- Verify disk letters are assigned correctly using disk management or PowerShell
+- Check that applications can access the disks correctly
+
+```powershell
+# List all disks and their partitions
+Get-Disk | Get-Partition | Format-Table -AutoSize
+
+# Check drive letters
+Get-PSDrive -PSProvider FileSystem
+```
+
+**For Linux VMs:**
+
+- You'll need to connect to the Linux VM via SSH to perform these tasks, but PowerShell can be used to verify the VM is running:
+
+```powershell
+# Verify VM is running
+Get-AzVM -ResourceGroupName "MyResourceGroup" -Name "MyVM-New" -Status
+```
+
+---
 
 Both Windows and Linux may require additional configuration steps specific to your applications or workloads.
 
 ### Verify encryption and cleanup
 
-Verify that encryption at host is properly configured on both Windows and Linux VMs:
+Verify that encryption at host is properly configured on both Windows and Linux VMs.
+
+# [CLI](#tab/CLI4)
 
 ```azurecli
+# Check encryption at host status
 az vm show --resource-group "MyResourceGroup" --name "MyVM-New" --query "securityProfile.encryptionAtHost"
-```
-
-PowerShell alternative:
-
-```azurepowershell
-Get-AzVM -ResourceGroupName "MyResourceGroup" -Name "MyVM-New" | `
-Select-Object -ExpandProperty SecurityProfile | Select-Object EncryptionAtHost
 ```
 
 After confirming that encryption at host is working properly:
@@ -273,13 +296,45 @@ After confirming that encryption at host is working properly:
 3. Delete the original resources when you're satisfied with the migration:
 
 ```azurecli
+# Delete the original VM
 az vm delete --resource-group "MyResourceGroup" --name "MyVM-Original" --yes
+
+# Delete the original disk
 az disk delete --resource-group "MyResourceGroup" --name "MySourceDisk" --yes
 ```
 
-## Special considerations for Linux VMs with encrypted OS disks
+# [Azure PowerShell](#tab/azurepowershell4)
 
-Since you cannot disable encryption on Linux OS disks, the process is different from Windows:
+```azurepowershell
+# Check encryption at host status
+Get-AzVM -ResourceGroupName "MyResourceGroup" -Name "MyVM-New" | `
+Select-Object -ExpandProperty SecurityProfile | Select-Object EncryptionAtHost
+
+# Verify disk encryption status
+Get-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName "MyTargetDisk" | Select-Object Name, Encryption
+```
+
+After confirming that encryption at host is working properly:
+
+1. Test VM functionality to ensure applications work correctly
+2. Verify that data is accessible and intact
+3. Delete the original resources when you're satisfied with the migration:
+
+```azurepowershell
+# Delete the original VM
+Remove-AzVM -ResourceGroupName "MyResourceGroup" -Name "MyVM-Original" -Force
+
+# Delete the original disk
+Remove-AzDisk -ResourceGroupName "MyResourceGroup" -DiskName "MySourceDisk" -Force
+```
+
+---
+
+## Migrating Linux VMs with encrypted OS disks
+
+Since you cannot disable encryption on Linux OS disks, the process is different from Windows.
+
+# [CLI](#tab/CLI5)
 
 1. Create a completely new VM with encryption at host enabled
 
@@ -294,16 +349,46 @@ Since you cannot disable encryption on Linux OS disks, the process is different 
    ```
 
 2. For data migration options:
-   - For application data: Use SCP, rsync, or other file transfer methods to copy data from the old VM to the new VM
-   - For configuration: Replicate important configuration files and application settings
+   - For application data: Use SCP, rsync, or other file transfer methods to copy data
+   - For configuration: Replicate important configuration files and settings
    - For complex applications: Use backup/restore procedures appropriate for your applications
 
-3. Configure the new VM to match the original environment
+   ```azurecli
+   # Example of using SCP to copy files from source to new VM
+   az vm run-command invoke -g MyResourceGroup -n MyVM-Original --command-id RunShellScript \
+     --scripts "scp -r /path/to/data azureuser@new-vm-ip:/path/to/destination"
+   ```
+
+# [Azure PowerShell](#tab/azurepowershell5)
+
+1. Create a completely new VM with encryption at host enabled
+
+   ```azurepowershell
+   # Create a new VM with encryption at host
+   $vmConfig = New-AzVMConfig -VMName "MyVM-New" -VMSize "Standard_D2s_v3" | 
+     Set-AzVMOperatingSystem -Linux -ComputerName "MyVM-New" -Credential (Get-Credential) |
+     Set-AzVMSourceImage -PublisherName "Canonical" -Offer "UbuntuServer" -Skus "18.04-LTS" -Version "latest" |
+     Set-AzVMSecurityProfile -EncryptionAtHost $true
+
+   # Add networking and create the VM
+   New-AzVM -ResourceGroupName "MyResourceGroup" -Location "EastUS" -VM $vmConfig
+   ```
+
+2. For data migration options:
+   - For application data: Use PowerShell remoting or scripts to copy data
+   - For configuration: Replicate important configuration files and settings
+   - For complex applications: Use backup/restore procedures appropriate for your applications
+
+---
+
+After creating the new VM:
+
+1. Configure the new VM to match the original environment
    - Set up the same network configurations
    - Install the same applications and services
    - Apply the same security settings
 
-4. Test thoroughly before decommissioning the original VM
+2. Test thoroughly before decommissioning the original VM
 
 This approach works for both Windows and Linux VMs, but is especially important for Linux VMs with encrypted OS disks that cannot be decrypted in-place.
 
