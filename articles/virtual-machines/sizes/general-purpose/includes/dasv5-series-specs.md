@@ -9,6 +9,7 @@ ms.date: 03/12/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
 ms.custom: include file
+# Customer intent: "As an IT administrator, I want to review the specifications of Dasv5-series VM sizes, so that I can determine which configurations meet my workload requirements."
 ---
 | Part | Quantity <br><sup>Count Units | Specs <br><sup>SKU ID, Performance Units, etc.  |
 |---|---|---|

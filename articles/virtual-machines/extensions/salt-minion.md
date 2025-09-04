@@ -7,7 +7,8 @@ ms.subservice: extensions
 ms.custom: devx-track-arm-template, devx-track-azurecli, devx-track-terraform, linux-related-content
 ms.author: gabsta
 author: GabstaMSFT
-ms.date: 01/24/2024
+ms.date: 08/18/2025
+# Customer intent: As a cloud administrator, I want to install Salt Minion on my Azure VMs using VM extensions, so that I can effectively manage and automate configurations across my infrastructure.
 ---
 # Install Salt Minion on Linux or Windows VMs using the VM Extension
 

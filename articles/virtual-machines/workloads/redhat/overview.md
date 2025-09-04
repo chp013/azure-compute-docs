@@ -9,6 +9,7 @@ ms.collection: linux
 ms.topic: overview
 ms.date: 10/28/2024
 ms.author: jushiman
+# Customer intent: As a cloud architect, I want to understand the Red Hat product offerings on Azure, so that I can make informed decisions on deploying RHEL workloads effectively and optimize our resource usage and costs.
 ---
 
 # Red Hat workloads on Azure

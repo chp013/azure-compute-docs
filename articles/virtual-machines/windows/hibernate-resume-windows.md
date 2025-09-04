@@ -8,6 +8,7 @@ ms.date: 05/16/2024
 ms.author: jainan
 ms.reviewer: mattmcinnes
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
+# Customer intent: "As an IT administrator, I want to enable hibernation on my Windows virtual machines, so that I can efficiently manage resources and reduce costs during downtime."
 ---
 
 # Hibernating Windows virtual machines

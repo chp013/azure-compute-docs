@@ -7,8 +7,9 @@ ms.subservice: extensions
 ms.author: gabsta
 author: GabstaMSFT
 ms.collection: linux
-ms.date: 05/24/2022
+ms.date: 08/18/2025
 ms.custom: GGAL-freshness822, devx-track-azurepowershell, devx-track-azurecli, linux-related-content
+# Customer intent: "As a system administrator managing Linux virtual machines, I want to utilize VM extensions for configuration and automation tasks, so that I can enhance operational efficiency and streamline deployment processes in Azure."
 ---
 
 # Virtual machine extensions and features for Linux
@@ -29,6 +30,9 @@ Each Azure VM extension has a specific use case. Examples include:
 In addition to process-specific extensions, a Custom Script extension is available for both Windows and Linux virtual machines. The [Custom Script extension for Linux](custom-script-linux.md) allows any Bash script to be run on a VM. Custom scripts are useful for designing Azure deployments that require configuration beyond what native Azure tooling can provide.
 
 ## Prerequisites
+
+> [!NOTE]
+> Extensions are only supported on [Endorsed Linux distributions on Azure](../linux/endorsed-distros.md).
 
 ### Azure Linux Agent
 
@@ -509,7 +513,6 @@ You can also remove an extension in the Azure portal:
 | --- | --- |
 | [Custom Script extension for Linux](custom-script-linux.md) |Run scripts against an Azure virtual machine. |
 | [VMAccess extension](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) |Regain access to an Azure virtual machine. You can also use it to [manage users and credentials](https://azure.microsoft.com/blog/using-vmaccess-extension-to-reset-login-credentials-for-linux-vm/). |
-| [Azure Diagnostics extension](https://azure.microsoft.com/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/) |Manage Azure Diagnostics. |
 
 ## Next steps
 
