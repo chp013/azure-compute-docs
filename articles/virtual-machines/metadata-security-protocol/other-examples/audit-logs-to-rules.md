@@ -202,25 +202,25 @@ Here's a sample `InVMAccessControlProfile` instance:
 
 ### Using PowerShell
 
-If you are using PowerShell to generate an `InVMAccessControlProfile`, ensure that you have the minimum version of 10.1.0 of [PowerShell](https://www.powershellgallery.com/packages/Az.Compute/10.1.0)
+If you're using PowerShell to generate an `InVMAccessControlProfile`, ensure that you have the minimum version of 10.1.0 of [PowerShell](https://www.powershellgallery.com/packages/Az.Compute/10.1.0)
 
 Follow the step-by-step guide below to generate an `InVMAccessControlProfile`:
 
-1. Log into your Azure Account
+1. Log in to your Azure Account
 
 
 ```powershell
 Connect-AzAccount 
 ```
 
-1. Create the Resource Group where the private gallery will be created. You can skip this step if you already have a Resource Group created.
+1. Create the Resource Group where the private gallery is created. You can skip this step if you already have a Resource Group created.
 
 ```powershell
 $resourceGroup = "MyResourceGroup4" 
 $location = "EastUS2EUAP" 
 New-AzResourceGroup -Name $resourceGroup -Location $location 
 ```
-1. Create a private gallery. This gallery will be used as a container for the `InVMAccessControlProfile` artifact
+1. Create a private gallery. This gallery is used as a container for the `InVMAccessControlProfile` artifact
 
 ```powershell
 $galleryName = "MyGallery4" 
@@ -255,8 +255,8 @@ Update-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -Ga
   
 1. Create `InVMAccessControlProfileVersion`
 
-To create an InVMAccessControlProfileVersion, a payload is required. Since these payloads can be quite large, especially due to the rules property, it's not practical to use a single PowerShell command to create the entire resource in one go.
-The rules property in any version payload consists of four arrays: privileges, roles, identities, and roleAssignments. These arrays can make the payload significantly large and complex.
+To create an InVMAccessControlProfileVersion, a payload is required. Since these payloads can be large, especially due to the rules property, it's not practical to use a single PowerShell command to create the entire resource in one go.
+The rules property in any version payload consists of four arrays: privileges, roles, identities, and roleAssignments. These arrays can make the payload large and complex.
 To simplify this process, we introduced the GalleryInVMAccessControlProfileVersionConfig PowerShell object. You can learn more about it [here.](https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azgalleryinvmaccesscontrolprofileversionconfig?view=azps-14.3.0)
 
 This object allows you to incrementally build the configuration using various commands to add or remove rule properties.
@@ -332,7 +332,7 @@ $inVMAccessConrolProfileVersion = New-AzGalleryInVMAccessControlProfileVersionCo
 
 ![create profile version config](../images/create-shared-image-gallery/create-profileversion-config.png)
 
-Run this command to add each privelege:
+Run this command to add each privilege:
 
 ```powershell
 Add-AzGalleryInVMAccessControlProfileVersionRulesPrivilege `
@@ -342,7 +342,7 @@ Add-AzGalleryInVMAccessControlProfileVersionRulesPrivilege `
   -QueryParameter @{ comp = "goalstate" }
  ```
 
- To remove a privelege:
+ To remove a privilege:
 
  ```powershell
  Remove-AzGalleryInVMAccessControlProfileVersionRulesPrivilege `
@@ -419,7 +419,7 @@ $ver = Get-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resource
 ```
 1. Update `InVMAccessControlProfileVersion`
 
-It is recommended to create a new `InVMAccessControlProfileVersion` since most parameters cannot be updated. Here is an example:
+It's recommended to create a new `InVMAccessControlProfileVersion` since most parameters can't be updated. Here's an example:
 
 ```powershell
 $targetRegions= @("EastUS2EUAP")
