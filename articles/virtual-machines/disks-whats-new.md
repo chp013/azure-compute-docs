@@ -18,7 +18,7 @@ Azure Disk Storage regularly receives updates for new features and enhancements.
 
 - [What's new in 2025](#whats-new-in-2025)
     -  [Quarter 3 (July, August, September)](#quarter-3-july-august-september)
-        - [Ultra Disk price reduction in West US 2, Central US, and UK South](#ultra-disk-price-reduction-in-west-us-2-central-us-and-uk-south)
+        - [Generally available: Ultra Disk price reduction in West US 2, Central US, and UK South](#generally-available-ultra-disk-price-reduction-in-west-us-2-central-us-and-uk-south)
   - [Quarter 2 (April, May, June)](#quarter-2-april-may-june)
     - [Generally available: Troubleshoot Disk Performance with Copilot in Azure](#generally-available-troubleshoot-disk-performance-with-copilot-in-azure)
     - [Generally Available: Availability Set support for Premium SSD v2 Disk Storage](#generally-available-availability-set-support-for-premium-ssd-v2-disk-storage)
@@ -42,9 +42,9 @@ Azure Disk Storage regularly receives updates for new features and enhancements.
 
 ### Quarter 3 (July, August, September)
 
-#### Ultra Disk price reduction in West US 2, Central US, and UK South
+#### Generally available: Ultra Disk price reduction in West US 2, Central US, and UK South
 
-To better support performance-sensitive and mission-critical workloads on Azure, Ultra Disk offers improved cost efficiency in West US 2, Central US, and UK South. These enhancements gives you access to the same high-performance storage at a lower cost. For details, see [West US 2](https://azure.microsoft.com/updates?id=499401), [Central US](https://azure.microsoft.com/updates?id=499406), and [UK South](https://azure.microsoft.com/updates?id=499411).
+To better support performance sensitive and mission critical workloads on Azure, Ultra Disk offers improved cost efficiency in West US 2, Central US, and UK South. These enhancements gives you access to the same high-performance storage at a lower cost. For details, see [West US 2](https://azure.microsoft.com/updates?id=499401), [Central US](https://azure.microsoft.com/updates?id=499406), and [UK South](https://azure.microsoft.com/updates?id=499411).
 
 ### Quarter 2 (April, May, June)
 
