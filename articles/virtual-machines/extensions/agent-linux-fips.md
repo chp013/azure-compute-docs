@@ -14,7 +14,14 @@ ms.date: 08/27/2025
 Linux VM Extensions currently comply with FIPS 140-2 but updates to the platform were required to add support for FIPS 140-3.  These changes are currently being enabled across the Commercial Cloud and Azure Government Clouds. Linux VM Extensions that use protected settings are also being updated to be able to use a FIPS 140-3 compliant encryption algorithm. This document helps enable support for FIPS 140-3 on Linux VMs where compliance with FIPS 140-3 is enforced.  This change is not needed on Windows images due to the way FIPS compliance is implemented.
 
 ## Prerequisites
+### Linux Guest Agent
 - Minimum Linux VM Guest Agent Version: [v2.14.0.1](https://github.com/Azure/WALinuxAgent/releases/tag/v2.14.0.1)
+
+### Supported Images
+- **Ubuntu**
+  - Use an Ubuntu pro client or pro image: https://documentation.ubuntu.com/pro-client/en/docs/howtoguides/enable_fips/
+- **Red Hat Enterprise Linux**
+  - Steps to enable FIPS on Redhat: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening
 
 ### Enabled Regions
 To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https://github.com/Azure/WALinuxAgent/releases/tag/v2.14.0.1) release page.
@@ -25,6 +32,16 @@ To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https:/
 | USGov | DoDCentral |
 | China | _Coming Soon_ |
 
+### Subscription Enablement
+Because not all extensions are onboarded onto using FIPS 140-3 encryption yet, we’re requiring the subscription to opt into this feature.
+- The Subscription needs to enable the feature:** “_Microsoft.Compute/OptInToFips1403Compliance_”
+
+**Azure CLI**
+```
+az feature register --namespace Microsoft.Compute --name OptInToFips1403Compliance
+```
+
+### Confirmed Supported Extensions
 **Linux VM Extensions with Confirmed Support**
 - MICROSOFT.AKS.COMPUTE.AKS.LINUX.AKSNODE
 - MICROSOFT.AKS.COMPUTE.AKS.LINUX.BILLING
@@ -45,42 +62,19 @@ To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https:/
 - MICROSOFT.OSTCEXTENSIONS.VMACCESSFORLINUX
 
 ## Opt-In Guide
-### Step 1: Enable FIPS on Linux
-To enable FIPS on Ubuntu, switch the system to FIPS mode by installing a designated set of cryptographic packages from the main repository. These packages, such as the Linux kernel and OpenSSL, form the cryptographic core set and undergo periodic testing and validation to meet FIPS 140-3 requirements for each Ubuntu LTS release.
+### New VMs
+**Step 1:**
+- Deploy VM from ARM Template or CLI ([Example ARM Template]())
 
-**Steps to Enable FIPS on Ubuntu**
-1. **Use an Ubuntu pro client or pro image:** https://documentation.ubuntu.com/pro-client/en/docs/howtoguides/enable_fips/
-2. Update and Upgrade: Ensure system is up to date. sudo apt update && sudo apt -y upgrade
-3. Enable FIPS Updates: sudo pro enable fips-updates
+**Step 2: Enable FIPS on Linux**
+- Information on enabling FIPS with Ubuntu: https://documentation.ubuntu.com/pro-client/en/docs/howtoguides/enable_fips/
+- Information for enabling FIPS on Redhat: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening
 
-**Steps to enable FIPS on Redhat**
-- https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening
-1.	Run fips-mode-setup –enable
-2.	Reboot the VM
-
-**Verify FIPS installation**
+**Step 3: Verify FIPS installation**
 1.	fips-mode-setup -check
 
-### Step 2: Get Feature Access for Subscription
-Because not all extensions are onboarded onto using FIPS 140-3 encryption yet, we’re requiring the subscription to opt into this feature.
-
-**The Subscription needs to enable the feature:** “_Microsoft.Compute/OptInToFips1403Compliance_”
-
-**Azure CLI**
-```
-az feature register --namespace Microsoft.Compute --name OptInToFips1403Compliance
-```
-
-### Step 3: VM Deployment
-This property needs to be added to the **VM Model** (in the properties section): 
-
-```json
-"additionalCapabilities": {
-    "enableFips1403Encryption": true
-}
-```
-
-**3.1: Existing VMs**
+### Existing VMs
+**Step 1: ARM template flag to enable**
 
 **Option 1: Az CLI**
 
@@ -124,13 +118,10 @@ $ az rest --method get --url 'https://...' \
     - Go to the VM in Portal
     - On the left side, go to Automation-> Export Template
     - Download the template
-2.	Add/modify the _additionalCapabilities_ section as mentioned (Full ARM Template Example).
+2.	Add/modify the _additionalCapabilities_ section as mentioned [Full ARM Template Example]().
 
-**3.2: New VMs**
 
-For new VMs use the sample ARM template below
-
-### Step 4: Generate new PFX Cert (Existing VMs Only)
+### Step 2: Generate new PFX Cert (Existing VMs Only)
 - For existing VMs, it might be necessary to generate a new PFX. 
 - To determine if so, try running an extension that uses protected settings first. 
 
