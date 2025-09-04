@@ -186,3 +186,257 @@ Parameter Files:
       ]
     },
 ```
+
+
+
+### Using PowerShell
+
+If you are using PowerShell to generate an `InVMAccessControlProfile`, ensure that you have the minimum version of 10.1.0 of [PowerShell](https://www.powershellgallery.com/packages/Az.Compute/10.1.0)
+
+Follow the step-by-step guide below to generate an `InVMAccessControlProfile`:
+
+1. Log into your Azure Account
+
+
+```powershell
+Connect-AzAccount 
+```
+
+1. Create the Resource Group where the private gallery will be created. You can skip this step if you already have a Resource Group created.
+
+```powershell
+$resourceGroup = "MyResourceGroup4" 
+$location = "EastUS2EUAP" 
+New-AzResourceGroup -Name $resourceGroup -Location $location 
+```
+1. Create a private gallery. This gallery will be used as a container for the `InVMAccessControlProfile` artifact
+
+```powershell
+$galleryName = "MyGallery4" 
+New-AzGallery -ResourceGroupName $resourceGroup -GalleryName $galleryName -Location $location -Description "My custom image gallery" 
+```
+
+1. Create the `InVMAccessControlProfile` artifact in the private gallery created in the previous step. [Click here](https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azgalleryinvmaccesscontrolprofile?view=azps-14.3.0) to learn more about the various parameters for this artifact. 
+
+```powershell
+$InVMAccessControlProfileName= "testInVMAccessControlProfileP"  
+
+New-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName -Location $location -OsType "Windows" -ApplicableHostEndPoint "WireServer" -Description "this test1" 
+```
+1. Get Gallery `InVMAccessControlProfile`
+
+```powershell
+$inVMAccessCP=Get-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName 
+```
+![Screenshot of the output for Get command for InVMAccessControlProfile](../images/create-shared-image-gallery/Get-command-InVMAccessControlProfile.png)
+
+1. Update Gallery `InVMAccessControlProfile`
+Once the `InVMAccessControlProfile` is created, the only attribute editable is the description. For any other changes, create a new artifact. 
+
+To update the description:
+
+```powershell
+Update-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName -Location $location -Description "this test2"
+```
+
+![Update InVMAccessControlProfile description ](../images/create-shared-image-gallery/update-description-INVMAccessControlProfile.png)
+
+  
+1. Create `InVMAccessControlProfileVersion`
+
+To create an InVMAccessControlProfileVersion, a payload is required. Since these payloads can be quite large, especially due to the rules property, it's not practical to use a single PowerShell command to create the entire resource in one go.
+The rules property in any version payload consists of four arrays: privileges, roles, identities, and roleAssignments. These arrays can make the payload significantly large and complex.
+To simplify this process, we introduced the GalleryInVMAccessControlProfileVersionConfig PowerShell object. You can learn more about it [here.](https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azgalleryinvmaccesscontrolprofileversionconfig?view=azps-14.3.0)
+
+This object allows you to incrementally build the configuration using various commands to add or remove rule properties.
+Once the configuration object is ready, you can use it to create an `InVMAccessControlProfileVersion`,  described in the upcoming sections.
+
+Alternatively, if you already have the rules property as a JSON string and prefer not to use the configuration object, you can skip these steps and create the InVMAccessControlProfileVersion using an ARM template deployment, which is also covered later in the section.
+
+Payload for reference:
+
+```json
+{
+  "name": "1.0.0",
+  "location": "East US 2 EUAP",
+  "properties": {
+    "mode": "Audit", 
+    "defaultAccess": "Deny", 
+    "rules": { 
+      "privileges": [
+        {
+          "name": "GoalState",
+          "path": "/machine",
+          "queryParameters": {
+            "comp": "goalstate"
+          }
+        }
+      ],
+      "roles": [
+        {
+          "name": "Provisioning",
+          "privileges": [
+            "GoalState"
+          ]
+        }
+      ],
+      "identities": [
+        {
+          "name": "WinPA",
+          "userName": "SYSTEM",
+          "groupName": "Administrators",
+          "exePath": "C:\\Windows\\System32\\cscript.exe",
+          "processName": "cscript"
+        }
+      ],
+      "roleAssignments": [
+        {
+          "role": "Provisioning",
+          "identities": [
+            "WinPA"
+          ]
+        }
+      ]
+    },
+    "targetLocations": [
+      {
+        "name": "East US 2 EUAP"
+      }
+    ],
+    "excludeFromLatest": false 
+  }
+}
+```
+1. Create `InVMAccessControlProfileVersion` Config
+
+```powershell
+$inVMAccessControlProfileVersionName= "1.0.0"
+$targetRegions= @("EastUS2EUAP", "CentralUSEUAP")
+$inVMAccessConrolProfileVersion = New-AzGalleryInVMAccessControlProfileVersionConfig `
+ -Name $inVMAccessControlProfileVersionName  `
+-Location $location  `
+-Mode "Audit"  `
+-DefaultAccess "Deny" -TargetLocation $targetRegions  -ExcludeFromLatest
+```
+
+![create profile version config](../images/create-shared-image-gallery/create-profileversion-config.png)
+
+Run this command to add each privelege:
+
+```powershell
+Add-AzGalleryInVMAccessControlProfileVersionRulesPrivilege `
+  -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion `
+  -PrivilegeName "GoalState" `
+  -Path "/machine" `
+  -QueryParameter @{ comp = "goalstate" }
+ ```
+
+ To remove a privelege:
+
+ ```powershell
+ Remove-AzGalleryInVMAccessControlProfileVersionRulesPrivilege `
+  -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion `
+  -PrivilegeName "GoalState2"
+ ```
+
+Run this command to add each role:
+
+ ```powershell
+Add-AzGalleryInVMAccessControlProfileVersionRulesRole `
+  -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion `
+  -RoleName "Provisioning" `
+  -Privilege @("GoalState")
+ ```
+
+ Run this command to remove roles:
+
+ ```powershell
+ Remove-AzGalleryInVMAccessControlProfileVersionRulesRole `
+  -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion `
+  -RoleName "Provisioning2" 
+```
+Add `RulesIdentity`:
+
+```powershell
+Add-AzGalleryInVMAccessControlProfileVersionRulesIdentity `
+  -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion `
+  -IdentityName "WinPA" `
+  -UserName "SYSTEM" `
+  -GroupName "Administrators" `
+  -ExePath "C:\Windows\System32\cscript.exe" `
+  -ProcessName "cscript"
+```
+
+Remove `RulesIdentity`:
+
+```powershell
+Remove-AzGalleryInVMAccessControlProfileVersionRulesIdentity `
+  -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion `
+  -IdentityName "WinPA2" 
+```
+
+Run this command to add each Role Assignment:
+
+```powershell
+Add-AzGalleryInVMAccessControlProfileVersionRulesRoleAssignment `
+  -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion `
+  -Role "Provisioning" `
+  -Identity @("WinPA")
+```
+
+Remove Role Assignment:
+
+```powershell
+Remove-AzGalleryInVMAccessControlProfileVersionRulesRoleAssignment `
+  -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion `
+  -Role "Provisioning2" 
+ ```
+
+ 1. Create Gallery `InVMAccessControlProfileVersion`
+
+ ```powershell
+ New-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGroup -GalleryName $galleryName -GalleryInVMAccessControlProfileName   $InVMAccessControlProfileName   -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion 
+ ```
+ ![create InVMAccessControlProfileVersion](../images/create-shared-image-gallery/create-gallery-invmaccesscontrolprofileversion.png)
+
+1. Get `InVMAccessControlProfileVersion`
+
+```powershell
+$ver = Get-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGroup -GalleryName $galleryName -GalleryInVMAccessControlProfileName   $InVMAccessControlProfileName `
+ -GalleryInVMAccessControlProfileVersionName  $inVMAccessControlProfileVersionName
+ $ver | ConvertTo-Json -Depth 10
+```
+1. Update `InVMAccessControlProfileVersion`
+
+It is recommended to create a new `InVMAccessControlProfileVersion` since most parameters cannot be updated. Here is an example:
+
+```powershell
+$targetRegions= @("EastUS2EUAP")
+ 
+$ver = Get-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGroup -GalleryName $galleryName -GalleryInVMAccessControlProfileName   $InVMAccessControlProfileName `
+ -GalleryInVMAccessControlProfileVersionName  $inVMAccessControlProfileVersionName
+ 
+ 
+Update-AzGalleryInVMAccessControlProfileVersion `
+  -GalleryInVmAccessControlProfileVersion $ver `
+-TargetLocation $targetRegions -ExcludeFromLatest $true
+```
+![update InVMAccessControlProfileVersion screenshot](../images/create-shared-image-gallery/update-invmaccesscontrolprofileversion.png)
+
+1. Delete `InVMAccessControlProfileVersion`
+
+```powershell
+Remove-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGroup -GalleryName $galleryName -GalleryInVMAccessControlProfileName   $InVMAccessControlProfileName `
+ -GalleryInVMAccessControlProfileVersionName  $inVMAccessControlProfileVersionName
+```
+
+![delete InVMAccessControlProfileVersion example screenshot](../images/create-shared-image-gallery/delete-invmaccesscontrolprofileversion.png)
+
+1. List all gallery `InVMAccessControlProfile`
+
+```powershell
+Get-AzGalleryInVMAccessControlProfile -ResourceGroupName "myResourceGroup" -GalleryName "myGallery"
+```
+
+![List all InVMAccessControlProfiles screenshot](../images/create-shared-image-gallery/get-list-invmaccesscontrolprofile.png)
+
