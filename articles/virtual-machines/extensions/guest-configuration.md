@@ -42,7 +42,7 @@ To learn more about private networking, see the following articles:
 
 ## Install the extension
 
-You can install and deploy the Azure Machine Configuration extension directly from the Azure Portal, Azure CLI or PowerShell. 
+You can install and deploy the Azure Machine Configuration extension directly from the Azure portal, Azure CLI or PowerShell. 
 
 ### [Azure Portal](#tab/portal) 
 
