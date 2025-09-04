@@ -3,7 +3,7 @@ title: What's new in Azure Disk Storage
 description: Learn about new features and enhancements in Azure Disk Storage.   
 author: roygara
 ms.author: rogarana
-ms.date: 11/11/2024
+ms.date: 09/04/2025
 ms.topic: concept-article
 ms.service: azure-disk-storage
 ms.custom: references_regions
@@ -37,27 +37,6 @@ Azure Disk Storage regularly receives updates for new features and enhancements.
       - [Generally available: Trusted launch support for Ultra Disks and Premium SSD v2](#generally-available-trusted-launch-support-for-ultra-disks-and-premium-ssd-v2)
       - [Expanded regional availability for Ultra Disks](#expanded-regional-availability-for-ultra-disks)
       - [Expanded regional availability for zone-redundant storage disks](#expanded-regional-availability-for-zone-redundant-storage-disks)
-- [What's new in 2023](#whats-new-in-2023)
-    - [Quarter 4 (October, November, December)](#quarter-4-october-november-december)
-        - [Encryption at host GA for Premium SSD v2 and Ultra Disks](#encryption-at-host-ga-for-premium-ssd-v2-and-ultra-disks)
-        - [New latency metrics (preview)](#new-latency-metrics-preview)
-        - [Expanded regional availability for Premium SSD v2](#expanded-regional-availability-for-premium-ssd-v2)
-        - [Expanded regional availability for ZRS disks](#expanded-regional-availability-for-zrs-disks)
-    - [Quarter 3 (July, August, September)](#quarter-3-july-august-september)
-        - [Expanded regional availability for ZRS disks (1)](#expanded-regional-availability-for-zrs-disks-1)
-        - [Expanded regional availability for Premium SSD v2](#expanded-regional-availability-for-premium-ssd-v2-1)
-        - [General Availability - Incremental Snapshots for Premium SSD v2 and Ultra Disks](#general-availability---incremental-snapshots-for-premium-ssd-v2-and-ultra-disks)
-    - [Quarter 2 (April, May, June)](#quarter-2-april-may-june)
-        - [Expanded regional availability for Premium SSD v2 (2)](#expanded-regional-availability-for-premium-ssd-v2-2)
-        - [Expanded regional availability for ZRS disks (2)](#expanded-regional-availability-for-zrs-disks-2)
-        - [Azure Backup support (preview) for Premium SSD v2](#azure-backup-support-preview-for-premium-ssd-v2)
-    - [Quarter 1 (January, February, March)](#quarter-1-january-february-march-1)
-        - [Expanded regional availability for Premium SSD v2 (3)](#expanded-regional-availability-for-premium-ssd-v2-3)
-        - [Preview - Performance plus](#preview---performance-plus)
-        - [Expanded regional availability for Ultra Disks](#expanded-regional-availability-for-ultra-disks-1)
-        - [More transactions at no extra cost - Standard SSDs](#more-transactions-at-no-extra-cost---standard-ssds)
-        - [GA: Create disks from snapshots encrypted with customer-managed keys across subscriptions](#ga-create-disks-from-snapshots-encrypted-with-customer-managed-keys-across-subscriptions)
-        - [GA: Entra ID support for managed disks](#ga-entra-id-support-for-managed-disks)
 
 ## What's new in 2025
 
