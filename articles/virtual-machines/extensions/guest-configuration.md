@@ -47,7 +47,7 @@ You can install and deploy the Azure Machine Configuration extension directly fr
 ### [Azure Portal](#tab/portal) 
 
 1. Open the [Azure portal](https://portal.azure.com).
-2. In the search box, enter **Virtual machines** and then select **Virtual machines** to display the list of available Virtual machines.
+2. In the search box, enter **Virtual machines** and then select **Virtual machines** to display the list of available VMs.
 3. Select the Virtual machines that you would like to use. The Virtual machine page for that Virtual machine appears.
 4. In the search box of Virtual machine page, enter **Extensions+applications** and then select it.
 5. Click on Add in the extensions page.
