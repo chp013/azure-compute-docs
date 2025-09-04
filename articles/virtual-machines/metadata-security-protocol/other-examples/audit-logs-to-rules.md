@@ -239,7 +239,7 @@ New-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -Galle
 ```powershell
 $inVMAccessCP=Get-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName 
 ```
-![Screenshot of the output for Get command for InVMAccessControlProfile](../images/create-shared-image-gallery/Get-command-InVMAccessControlProfile.png)
+![Screenshot of the output for Get command for InVMAccessControlProfile](../images/create-shared-image-gallery/get-command-invmaccesscontrolprofile.png)
 
 1. Update Gallery `InVMAccessControlProfile`
 Once the `InVMAccessControlProfile` is created, the only attribute editable is the description. For any other changes, create a new artifact. 
@@ -250,7 +250,7 @@ To update the description:
 Update-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName -Location $location -Description "this test2"
 ```
 
-![Update InVMAccessControlProfile description ](../images/create-shared-image-gallery/update-description-INVMAccessControlProfile.png)
+![Update InVMAccessControlProfile description ](../images/create-shared-image-gallery/update-description-invmaccesscontrolprofile.png)
 
   
 1. Create `InVMAccessControlProfileVersion`
