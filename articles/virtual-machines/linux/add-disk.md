@@ -68,7 +68,7 @@ ssh azureuser@10.123.123.25
 
 ### [Azure-VM-Utils](#tab/azure-vm-utils)
 
-The [azure-vm-utils](azure-virtualmachine-utilities.md) package provides utilities to optimize the Linux experience on Azure VMs, making disk identification more reliable across different VM configurations.
+The [azure-vm-utils](azure-virtual-machine-utilities.md) package provides utilities to optimize the Linux experience on Azure VMs, making disk identification more reliable across different VM configurations.
 
 Use the following commands to list disks on the VM:
 
@@ -152,4 +152,4 @@ sudo nvme list
 ## Next Steps
 
 - Format and mount the disks based on your requirements and use case. Review instructions for formatting and mounting [managed disks](disks-format-mount-data-disks-linux.md) and [temporary disks](disks-format-mount-temp-disks-linux.md).
-- [Learn about Azure-VM-Utils](azure-virtualmachine-utilities.md).
+- [Learn about Azure-VM-Utils](azure-virtual-machine-utilities.md).
