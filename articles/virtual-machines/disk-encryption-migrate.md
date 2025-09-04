@@ -84,7 +84,7 @@ First step is to disable the existing Azure Disk Encryption when possible:
 - **Linux**: If **only data disks** are encrypted, follow [Disable encryption and remove the encryption extension on Linux](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension)
 
 > [!IMPORTANT]
-> Linux VMs with ADE-encrypted OS disks cannot be decrypted in-place. You must create a new VM with a new OS disk and migrate your data. See the [Special considerations for Linux VMs with encrypted OS disks](#special-considerations-for-linux-vms-with-encrypted-os-disks) section for details.
+> Linux VMs with ADE-encrypted OS disks cannot be decrypted in-place. You must create a new VM with a new OS disk and migrate your data. See the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks) section for details.
 
 ### Create new managed disks
 
@@ -148,9 +148,32 @@ Revoke-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $targetDisk.N
 
 ---
 
-### Create a new VM with encryption at host
+### Create a new VM with encryption
 
-Create a new VM using the newly created disks with encryption at host enabled. The process differs slightly for OS disks versus data disks, with options for both Windows and Linux.
+Create a new VM using the newly created disks with your chosen encryption method. You can choose from several encryption options, depending on your security requirements. This article provides steps for [creating a new VM with encryption at host](#create-a-new-vm-with-encryption-at-host), which is the most common migration path.
+
+#### Encryption options (overview)
+
+There are several encryption options are available for your new VM:
+
+| Encryption Method | Best For | Key Management | Performance Impact | Notable Features |
+|-------------------|----------|----------------|-------------------|------------------|
+| **Encryption at host** | ADE-equivalent coverage | Microsoft-managed | Minimal | Encrypts temp disks and caches |
+| **SSE + CMK** | Key control | Customer-managed | None | BYOK support, key rotation |
+| **Double encryption** | High security | Customer + Platform | None | Two encryption layers |
+| **End-to-end encryption** | Maximum security | Customer + Host | Minimal | Complete coverage with key control |
+
+Steps for using [creating a new VM with encryption at host](#create-a-new-vm-with-encryption-at-host) is covered in this article. Here are the other encryption options available:
+
+- **Server-side encryption with customer-managed keys (SSE + CMK)**: Uses your own encryption keys stored in Azure Key Vault, giving you control over key management. Enable via [PowerShell](/azure/virtual-machines/windows/disks-enable-customer-managed-keys-powershell), [CLI](/azure/virtual-machines/linux/disks-enable-customer-managed-keys-cli), or [portal](/azure/virtual-machines/disks-enable-customer-managed-keys-portal).
+
+- **Double encryption at rest**: Provides an additional layer of encryption at the infrastructure layer with platform-managed keys. Ideal for high-security environments. Enable via [portal](/azure/virtual-machines/disks-enable-double-encryption-at-rest-portal).
+
+- **End-to-end encryption**: Combines SSE + CMK + encryption at host for maximum security. Enable via [PowerShell](/azure/virtual-machines/windows/disks-enable-host-based-encryption-powershell), [CLI](/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli), or [portal](/azure/virtual-machines/disks-enable-host-based-encryption-portal).
+
+#### Create a new VM with encryption at host
+
+Encryption at host provides the closest equivalent to Azure Disk Encryption's coverage, and will be covered in this section.
 
 # [CLI](#tab/CLI2)
 
