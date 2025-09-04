@@ -10,6 +10,7 @@ ms.collection: linux
 ms.topic: concept-article
 ms.date: 10/23/2024
 ms.author: jushiman
+# Customer intent: As a cloud administrator, I want to provision Red Hat Enterprise Linux Gold Images using my existing subscription on Azure, so that I can manage costs while maintaining compliance and support for my cloud-based workloads.
 ---
 
 # Red Hat Enterprise Linux bring-your-own-subscription Gold Images in Azure
@@ -128,7 +129,7 @@ The following instructions walk you through the initial deployment process for a
 1. SSH into your VM, and verify that you have an unentitled image. To do this step, run `sudo yum repolist`. For RHEL 8 or 9, use `sudo dnf repolist`. The output asks you to use Subscription-Manager to register the VM with Red Hat.
 
 >[!NOTE]
->On RHEL 8 and 9, `dnf` and `yum` are interchangeable. For more information, see the [RHEL 8 admin guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/packaging_and_distributing_software/index) and [RHEL 9 admin guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/packaging_and_distributing_software/index).
+>On RHEL 8 and up, `dnf` and `yum` are interchangeable. For more information, see the [RHEL 8 admin guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/packaging_and_distributing_software/index).
 
 ## Use the Red Hat Gold Images from PowerShell
 

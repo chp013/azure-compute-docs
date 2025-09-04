@@ -9,6 +9,7 @@ ms.author: guywild
 ms.reviewer: jushiman
 ms.collection: windows
 ms.date: 01/14/2025
+# Customer intent: As a system administrator, I want to deploy the Azure Monitor Dependency agent on Windows virtual machines, so that I can monitor application dependencies and ensure optimal performance of my applications within the Azure environment.
 ---
 # Azure Monitor Dependency virtual machine extension for Windows
 

@@ -10,6 +10,7 @@ ms.date: 04/01/2025
 ms.reviewer: mimckitt
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 
+# Customer intent: As a cloud architect, I want to deploy Azure Spot Virtual Machines within scale sets, so that I can optimize costs for interruptible workloads while managing capacity fluctuations effectively.
 ---
 
 # Azure Spot Virtual Machines for Virtual Machine Scale Sets 

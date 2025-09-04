@@ -4,12 +4,13 @@ description: Learn how to securely pass credentials to Azure virtual machines us
 ms.topic: how-to
 ms.service: azure-virtual-machines
 ms.subservice: extensions
-author: bobbytreed
-ms.author: robreed
+author: mgreenegit
+ms.author: migreene
 ms.reviewer: jushiman
 ms.collection: windows
-ms.date: 03/06/2023
+ms.date: 08/20/2025
 ms.custom:
+# Customer intent: As an Azure system administrator, I want to securely pass credentials to virtual machines using PowerShell Desired State Configuration, so that I can efficiently configure user accounts and services without compromising security.
 ---
 # Pass credentials to the Azure DSCExtension handler
 

@@ -3,12 +3,13 @@ title: Server-side encryption of Azure managed disks
 description: Azure Storage protects your data by encrypting it at rest before persisting it to Storage clusters. You can use customer-managed keys to manage encryption with your own keys, or you can rely on Microsoft-managed keys for the encryption of your managed disks.
 author: roygara
 ms.date: 03/28/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: rogarana
 ms.service: azure-disk-storage
 ms.custom:
   - references_regions
   - ignite-2023
+# Customer intent: "As a security administrator, I want to learn about the various server-side encryption options for Azure managed disks, so that I can implement the most appropriate security measures for protecting data in Azure virtual machines."
 ---
 
 # Server-side encryption of Azure Disk Storage
@@ -48,7 +49,7 @@ You must use one of the following Azure key stores to store your customer-manage
 
 You can either import [your RSA keys](/azure/key-vault/keys/hsm-protected-keys) to your Key Vault or generate new RSA keys in Azure Key Vault. Azure managed disks handles the encryption and decryption in a fully transparent fashion using envelope encryption. It encrypts data using an [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) 256 based data encryption key (DEK), which is, in turn, protected using your keys. The Storage service generates data encryption keys and encrypts them with customer-managed keys using RSA encryption. The envelope encryption allows you to rotate (change) your keys periodically as per your compliance policies without impacting your VMs. When you rotate your keys, the Storage service re-encrypts the data encryption keys with the new customer-managed keys. 
 
-Managed disks and the Key Vault or managed HSM must be in the same Azure region, but they can be in different subscriptions. They must also be in the same Microsoft Entra tenant, unless you're using [Encrypt managed disks with cross-tenant customer-managed keys (preview)](disks-cross-tenant-customer-managed-keys.md).
+Managed disks and the Key Vault or managed HSM must be in the same Azure region, but they can be in different subscriptions. They must also be in the same Microsoft Entra tenant, unless you're using [Encrypt managed disks with cross-tenant customer-managed keys](disks-cross-tenant-customer-managed-keys.md).
 
 #### Full control of your keys
 
@@ -80,7 +81,7 @@ To revoke access to customer-managed keys, see [Azure Key Vault PowerShell](/pow
 
 #### Automatic key rotation of customer-managed keys
 
-Generally, if you're using customer-managed keys, you should enable automatic key rotation to the latest key version. Automatic key rotation helps ensure your keys are secure. A disk references a key via its disk encryption set. When you enable automatic rotation for a disk encryption set, the system will automatically update all managed disks, snapshots, and images referencing the disk encryption set to use the new version of the key within one hour. To learn how to enable customer-managed keys with automatic key rotation, see [Set up an Azure Key Vault and DiskEncryptionSet with automatic key rotation](windows/disks-enable-customer-managed-keys-powershell.md#set-up-an-azure-key-vault-and-diskencryptionset-optionally-with-automatic-key-rotation).
+Generally, if you're using customer-managed keys, you should enable automatic key rotation to the latest key version. Automatic key rotation helps ensure your keys are secure. A disk references a key via its disk encryption set. When you enable automatic rotation for a disk encryption set, the system will automatically update all managed disks, snapshots, and images referencing the disk encryption set to use the new version of the key within one hour. To learn how to enable customer-managed keys with automatic key rotation, see [Set up an Azure Key Vault and DiskEncryptionSet with automatic key rotation](windows/disks-enable-customer-managed-keys-powershell.md#set-up-an-azure-key-vault-and-diskencryptionset-with-automatic-key-rotation).
 
 > [!NOTE]
 > Virtual Machines aren't rebooted during automatic key rotation.

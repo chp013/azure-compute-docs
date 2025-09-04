@@ -5,10 +5,11 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/27/2025
 ms.custom: references_regions
 
+# Customer intent: As a cloud architect, I want to understand the resource availability and quota limits for Azure Container Instances so that I can effectively plan and optimize container deployments based on regional capacities and service limitations.
 ---
 # Resource availability & quota limits for ACI
 
@@ -29,8 +30,6 @@ Certain default limits and quotas can be increased. To request an increase of on
 
 > [!IMPORTANT]  
 > Not all limit increase requests are guaranteed to be approved.
-> Deployments with GPU resources aren't supported in an Azure virtual network deployment and are only available on Linux container groups.
-> Using GPU resources (preview) isn't fully supported yet and any support is provided on a best-effort basis.
 
 ### Unchangeable (Hard) Limits 
 
@@ -51,7 +50,6 @@ The following limits are default limits that can’t be increased through a quot
 | --- | :--- | 
 | Standard sku container groups per region per subscription | 100 | 
 | Standard sku cores (CPUs) per region per subscription | 100 |  
-| Standard sku cores (CPUs) for V100 GPU per region per subscription | 0 | 
 | Container group creates per hour |300<sup>1</sup> | 
 | Container group creates per 5 minutes | 100<sup>1</sup> | 
 | Container group deletes per hour | 300<sup>1</sup> | 
@@ -66,18 +64,7 @@ The following limits are default limits that can’t be increased through a quot
 
 By default, the following resources are available general purpose (standard core SKU) containers in general deployments and [Azure virtual network](container-instances-vnet.md) deployments) for Linux & Windows containers. These maximums are hard limits and can't be increased.
 
-#### Generally Available Limits: 
-
-| Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
-| :---: | :---: | :----: | :-----: | :-------: |
-| 4 | 16 | 4 | 16 | 50 | 
-
 For a general list of available regions for Azure Container Instances, see [available regions](https://azure.status.microsoft/status/#services/). 
-
-#### Preview Limits: 
-
-> [!NOTE]
-> Big Container SKUs are in preview, and you may experience errors in some regions that you deploy. Preview features aren't ideal for critical workloads. If you're experiencing errors when deploying containers with greater than 4 vCPU and 16 GB in a certain region, please submit an [Azure support request][azure-support] (select "Quota" for **Support type**).
 
 | Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
 | :---: | :---: | :----: | :-----: | :-------: |
@@ -88,17 +75,6 @@ The following resources are available in all Azure Regions supported by Azure Co
 ## Confidential Container Resources
 
 The following maximum resources are available to a container group deployed using [Confidential Containers](container-instances-confidential-overview.md). These maximums are hard limits and can't be increased.
-
-#### Generally Available Limits: 
-
-| Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
-| :---: | :---: | :----: | :-----: | :-------: |
-| 4 | 16 | 4 | 256 | 50 | 
-
-#### Preview Limits: 
-
-> [!NOTE]
-> Big Container SKUs are in preview, and you may experience errors in some regions that you deploy. Preview features aren't ideal for critical workloads. If you're experiencing errors when deploying containers with greater than 4 vCPU and 16 GB in a certain region, please submit an [Azure support request][azure-support] (select "Quota" for **Support type**).
 
 | Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
 | :---: | :---: | :----: | :-----: | :-------: |
@@ -118,12 +94,7 @@ The following maximum resources are available to a container group deployed usin
 ## GPU Container Resources (Preview) 
 
 > [!IMPORTANT]
-> K80 and P100 GPU SKUs were retired on August 31st, 2023. This is due to the retirement of the underlying VMs used: [NC Series](../virtual-machines/nc-series-retirement.md) and [NCv2 Series](../virtual-machines/ncv2-series-retirement.md) Although V100 SKUs will be available, it's recommended to use Azure Kubernetes Service instead. GPU resources aren't fully supported and shouldn't be used for production workloads. Use the following resources to migrate to AKS today: [How to Migrate to AKS](/azure/aks/aks-migration).
-
-> [!NOTE]
-> Not all limit increase requests are guaranteed to be approved.
-> Deployments with GPU resources aren't supported in an Azure virtual network deployment and are only available on Linux container groups.
-> Using GPU resources (preview) isn't fully supported yet and any support is provided on a best-effort basis.
+> This product is retired as of July 14, 2025.
 
 The following maximum resources are available to a container group deployed with [GPU resources](container-instances-gpu.md) (preview). These maximums are hard limits and can't be increased.
 
