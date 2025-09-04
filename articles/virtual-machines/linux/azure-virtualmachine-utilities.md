@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linux
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 09/03/2025
 ms.author: vakavuru
 ---
 
@@ -18,7 +18,7 @@ The [azure-vm-utils](https://github.com/Azure/azure-vm-utils) package provides e
 
 ## NVMe Udev Rules
 
-Newer virtual machines (VMs) SKUs on Azure use the NVMe interface for disk management. VMs with NVMe interfaces interpret and present disks differently from VMs that use SCSI interfaces. For reference, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme). 
+Newer virtual machines (VMs) SKUs on Azure use the NVMe interface for disk management. VMs with NVMe interfaces interpret and present disks differently from VMs that use SCSI interfaces. For details, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme). 
 
 NVMe udev rules in this package consolidate critical tools and udev rules to create stable, predictable symlinks for Azure disks. This package provides an easy and reliable way to identify disks, making automation, troubleshooting, and management simpler.
 
@@ -33,20 +33,16 @@ WALinuxAgent currently includes udev rules to provide several symlinks for SCSI 
 
 The rules found in WALinuxAgent are being extended with azure-vm-utils to add identification support for NVMe devices.
 
-The following new symlinks are provided for all instances with NVMe disks:
+The following symlinks are provided for all instances with NVMe disks:
 
 - `/dev/disk/azure/data/by-lun/<lun>`
 - `/dev/disk/azure/local/by-serial/<serial>`
 - `/dev/disk/azure/os`
 
-For v6 and newer VM sizes with local NVMe disks that support namespace identifiers, the following additional links are available:
+For v6 and newer VM sizes with local NVMe disks that support namespace identifiers, the following links are also available:
 
 - `/dev/disk/azure/local/by-index/<index>`
 - `/dev/disk/azure/local/by-name/<name>`
-
-For future VM sizes with remote NVMe disks that support namespace identifiers, the following additional links will be available:
-
-- `/dev/disk/azure/data/by-name/<name>`
 
 ### SCSI Compatibility
 
@@ -56,7 +52,7 @@ To ensure backward compatibility for disks using SCSI controllers, azure-vm-util
 - `/dev/disk/azure/resource`
 
 > [!NOTE]
-> Some VM sizes come with both NVMe local disks in addition to a SCSI temp resource disk. These temp resource disks are separate from local disks, which are dedicated to local NVMe disks to avoid confusion.
+> Some VM sizes come with both a NVMe temporary disk in addition to a SCSI temporary disk.
 
 ### Linux distribution support
 
@@ -74,7 +70,7 @@ If the package isn't present in the default platform image, install it via packa
 
 ### Manual installation
 
-For distributions where azure-vm-utils isn't pre-installed, build and install it manually:
+For distributions where azure-vm-utils isn't preinstalled, build and install it manually:
 
 ```bash
 # Clone the repository

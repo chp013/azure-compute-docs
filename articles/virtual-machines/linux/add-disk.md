@@ -6,7 +6,7 @@ ms.service: azure-disk-storage
 ms.custom: devx-track-azurecli, linux-related-content
 ms.collection: linux
 ms.topic: how-to
-ms.date: 12/09/2024
+ms.date: 09/03/2025
 ms.author: rogarana
 # Customer intent: As a system administrator managing Linux VMs, I want to attach and configure a persistent data disk using the command line, so that I can ensure data retention and improve performance for my applications.
 ---
@@ -15,7 +15,7 @@ ms.author: rogarana
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 
-This article shows you how to attach a persistent disk to your VM to preserve your data, even if your VM is reprovisioned due to maintenance or resizing.
+This article shows you how to attach a persistent disk to your virtual machine (VM) to preserve your data, even if your VM is reprovisioned due to maintenance or resizing.
 
 ## Attach a new disk to a VM
 
@@ -32,7 +32,7 @@ az vm disk attach \
 
 ### Lower latency
 
-In select regions, disk attach latency has been reduced, so you'll see an improvement of up to 15%. This improvement is useful if you have planned or unplanned failovers between VMs, you're scaling your workload, or you're running a high-scale stateful workload such as Azure Kubernetes Service. However, this improvement is limited to the explicit disk attach command, `az vm disk attach`. You won't see the performance improvement if you call a command that might implicitly perform an attach, like `az vm update`. You don't need to take any action other than calling the explicit attach command to see this improvement.
+In select regions, disk attach latency is reduced. In those regions, there's an improvement of up to 15%. This improvement is useful if you have planned or unplanned failovers between VMs, you're scaling your workload, or you're running a high-scale stateful workload such as Azure Kubernetes Service. However, this improvement is limited to the explicit disk attach command, `az vm disk attach`. You won't see the performance improvement if you call a command that might implicitly perform an attach, like `az vm update`. You don't need to take any action other than calling the explicit attach command to see this improvement.
 
 [!INCLUDE [virtual-machines-disks-fast-attach-detach-regions](../includes/virtual-machines-disks-fast-attach-detach-regions.md)]
 
@@ -48,15 +48,16 @@ az vm disk attach -g myResourceGroup --vm-name myVM --name $diskId
 
 ## Identifying disks
 
-Azure Linux virtual machines use different disk interfaces depending on the VM SKU and generation:
-- **VM Sizes <= v5**: Use SCSI interface for disk management
-- **VM Sizes >= v6**: Use NVMe interface for improved performance
+Azure Linux VMs use different disk interfaces depending on the VM size and generation:
+- VM sizes v6 and newer: Use NVMe interface for improved performance
+- VM sizes v5 and older: Use SCSI interface for disk management
 
-For more information about SCSI vs NVMe differences, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme).
+
+For details about SCSI vs NVMe differences, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme).
 
 ### Connect to the virtual machine
 
-To identify disks associated with your Linux virtual machine (VM), connect to the VM by using SSH. For more information, see [How to use SSH with Linux on Azure](/azure/virtual-machines/linux/mac-create-ssh-keys). The following example connects to a VM with the public IP address of 10.123.123.25 with the username azureuser:
+To identify disks associated with your Linux VM, connect to the VM by using SSH. For details, see [How to use SSH with Linux on Azure](/azure/virtual-machines/linux/mac-create-ssh-keys). The following example connects to a VM with the public IP address of 10.123.123.25 with the username azureuser:
 
 ```bash
 ssh azureuser@10.123.123.25
@@ -109,7 +110,7 @@ sdb     1:0:1:0      14G
 sdc     3:0:0:0      50G
 ```
 
-Here, `sdc` is the data disk we added. The last number in the HCTL field (e.g., 3:0:0:**0**) is the LUN number that corresponds to what you see in the Azure portal.
+Here, `sdc` is the data disk we added. The last number in the HCTL field (for example, 3:0:0:**0**) is the LUN number that corresponds to what you see in the Azure portal.
 
 You can also check the Azure disk symlinks:
 
@@ -140,7 +141,7 @@ nvme1n1     disk   50G
 nvme0n2     disk   50G
 ```
 
-For more detailed information about NVMe devices, you can use the nvme command:
+For more detailed information about NVMe devices, use the `nvme` command:
 
 ```bash
 sudo nvme list
@@ -150,4 +151,5 @@ sudo nvme list
 
 ## Next Steps
 
-- Format and mount the disks based on your requirements and use case. Review instructions for formatting and mounting [temp disks](formatting-mounting-temp-resource-disks-linux.md) and [remote disks](formatting-mounting-remote-disks-linux.md).
+- Format and mount the disks based on your requirements and use case. Review instructions for formatting and mounting [managed disks](disks-format-mount-data-disks-linux.md) and [temporary disks](disks-format-mount-temp-disks-linux.md).
+- [Learn about Azure-VM-Utils](azure-virtualmachine-utilities.md).

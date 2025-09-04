@@ -1786,12 +1786,10 @@
     items:
     - name: Linux
       items:
-      - name: Format and mount remote disk
-        displayName: format and mount remote disk
-        href: ./linux/formatting-mounting-remote-disks-linux.md
-      - name: Format and mount temporary or resource disk
-        displayName: format and mount temporary or resource disk
-        href: ./linux/formatting-mounting-temp-resource-disks-linux.md
+      - name: Managed disks
+        href: ./linux/disks-format-mount-data-disks-linux.md
+      - name: Temporary disks
+        href: ./linux/disks-format-mount-temp-disks-linux.md
   - name: Detach a disk
     items:
     - name: Linux
