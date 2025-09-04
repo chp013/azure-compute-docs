@@ -27,12 +27,62 @@ An allowlist consists of:
 
 ## Collect audit logs
 
-If you enable MSP in `Audit` or `Enforce` mode, the Guest Proxy Agent (GPA) creates audit logs in the following folders inside the virtual machine (VM):
+#### If you enable MSP in `audit` or `enforce` mode, you can collect log data from virtual machine client via [Azure Monitor.](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection) 
+ 
+-	Windows: [Azure monitoring agent](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-windows-events)  collects Windows Events via Custom XPath ```Windows Azure!*[System[Provider[@Name=`GuestProxyAgent`]]]```
 
-| Operating system | Audit log location |
-|--|--|
-| Linux | `/var/lib/azure-proxy-agent/ProxyAgent.Connection.log` |
-| Windows | `C:\WindowsAzure\ProxyAgent\Logs\ProxyAgent.Connection.log` |
+- Linux: Collect Syslog events with [Azure Monitor Agent](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-syslog) by selecting `Log_DAEMON` and `LOG_DEBUG`
+
+## Query Audit logs
+
+Once the audit logs are collected  as explained in the previous section, you can verify the logs:
+
+Windows Kusto Query: [Go to Log Analytics and run query](https://ms.portal.azure.com/#@72f988bf-86f1-41af-91ab-2d7cd011db47/blade/Microsoft_OperationsManagementSuite_Workspace/Logs.ReactView/resourceId/%2fsubscriptions%2fa53f7094-a16c-47af-abe4-b05c05d0d79a%2fresourcegroups%2fmayankdaruka-logs-rg%2fproviders%2fmicrosoft.operationalinsights%2fworkspaces%2flog-workspace1/source/LogsBlade.AnalyticsShareLinkToQuery/q/H4sIAAAAAAAAA3MtS80r4apRKM9ILUpVCMnMTXVPzUstSixJTVGwS0zP1zBM0YRLu4IU%252B%252BSnK9jaKiiFZ%252Bal5JcXKzhWlRalKikk5qUoBOeXFiWngmXdS1OLSwKK8isqHdOBmpS4ABekrZVpAAAA)
+```kusto
+/// Windows VMs
+Event
+| where TimeGenerated >ago(1d)
+| where EventLog == "Windows Azure" and Source == "GuestProxyAgent"
+| where _ResourceId startswith "/subscriptions/<your subscription id>/resourcegroups/<your recrouce group>" 
+| where RenderedDescription  has  "processFullPath" and RenderedDescription  has "runAsElevated" and RenderedDescription has "processCmdLine"
+| extend json = parse_json(RenderedDescription)
+| extend method = json.method, url = json.url, processFullPath = json.processFullPath, username = json.userName, runAsElevated = json.runAsElevated 
+| extend userGroups = json.userGroups, ip = json.ip, port = json.port, processCmdLine = json.processCmdLine 
+| project TimeGenerated, _ResourceId, url, ip, port, processFullPath, method, username, runAsElevated, processCmdLine
+```
+Linux Kusto Query: [Go to Log Analytics and run query](https://ms.portal.azure.com/#@72f988bf-86f1-41af-91ab-2d7cd011db47/blade/Microsoft_OperationsManagementSuite_Workspace/Logs.ReactView/resourceId/%2fsubscriptions%2fa53f7094-a16c-47af-abe4-b05c05d0d79a%2fresourcegroups%2fmayankdaruka-logs-rg%2fproviders%2fmicrosoft.operationalinsights%2fworkspaces%2flog-workspace1/source/LogsBlade.AnalyticsShareLinkToQuery/q/H4sIAAAAAAAAA3MtS80r4apRKM9ILUpVCMnMTXVPzUstSixJTVGwS0zP1zBM0YRLu4IU%252B%252BSnK9jaKiiFZ%252Bal5JcXKzhWlRalKikk5qUoBOeXFiWngmXdS1OLSwKK8isqHdOBmpS4ABekrZVpAAAA)
+
+```kusto
+/// Linux VMs
+Syslog
+| where TimeGenerated >ago(1d)
+| where  ProcessName == "azure-proxy-agent"
+| where _ResourceId startswith "/subscriptions/<your subscription id>/resourcegroups/<your recrouce group>" 
+| where SyslogMessage  has  "processFullPath" and SyslogMessage  has "runAsElevated" and SyslogMessage has "processCmdLine"
+| extend message = substring(SyslogMessage, indexof(SyslogMessage, "{"))
+| extend json = parse_json(message)
+| extend method = json.method, url = json.url, processFullPath = json.processFullPath, username = json.userName, runAsElevated = json.runAsElevated 
+| extend userGroups = json.userGroups, ip = json.ip, port = json.port, processCmdLine = json.processCmdLine 
+| project TimeGenerated, _ResourceId, url, ip, port, processFullPath, method, username, runAsElevated, processCmdLine
+```
+### If you own the Azure VM, you can get the file logs inside the Azure VM by following these steps:
+
+1. Find the Proxy Agent json config file:
+
+    - Windows VM: `GuestProxyAgent.json` under the folder as `GuestProxyAgent windows service`
+    - Linux VM:  `etc/azure/proxy-agent.json` file 
+2. Turn on the file log by updating setting `logFolder` in the json config file. Set it to
+    - `%SYSTEMDRIVE%\\WindowsAzure\\ProxyAgent\\Logs` for Windows VMs 
+    - `/var/log/azure-proxy-agent` for Linux VMs.
+1. Restart Service
+- `GuestProxyAgent` for Windows VMs
+-  `azure-proxy-agent` for Linux VMs4
+
+4. Wait for `ProxyAgent.Connection.log` to populate while customer services is running.
+1. Pull the ProxyAgent connection file logs from the Azure VMs
+    - Windows: `C:\WindowsAzure\ProxyAgent\Logs\ProxyAgent.Connection.log`
+    
+    - Linux: `/var/log/azure-proxy-agent/ProxyAgent.Connection.log`
 
 ## Convert logs to rules
 
@@ -81,20 +131,6 @@ A simple rules schema might look like the following example.
     - Host endpoint type (WireServer or Instance Metadata Service)
 
 1. Create a specific version.
-
-Templates for the above:
-
-1. Create gallery template: [CreateGalleryTemplate.json](../samples/create-sig/CreateGalleryTemplate-d408ae07-7bcc-4a7b-bd37-3b194cff81d5.json)
-2. InVMAccessControlProfile definition template: [CreateInVMAccessControlProfileTemplate.json](../samples/create-sig/CreateInVMAccessControlProfileTemplate-0239e5dc-9074-45d2-a845-2fd4225d9c69.json)
-3. InVMAccessControlProfile version template: [CreateInVMAccessControlProfileVersionTemplate.json](../samples/create-sig/CreateInVMAccessControlProfileVersionTemplate-b9a2aa55-49ce-4443-8db3-4ef9e9d867d9.json)
-
-Parameter Files:
-
-- Windows Wireserver: [InVMAccessControlProfileParameter-WindowsWireServer.json](../samples/create-sig/InVMAccessControlProfileParameter-WindowsWireServer-6df07a8f-a789-4137-8a93-23e4e3379777.json)
-- Windows IMDS: [InVMAccessControlProfileParameter-WindowsIMDS.json](../samples/create-sig/InVMAccessControlProfileParameter-WindowsIMDS-3174ebb2-a67b-48b9-8f15-e9f7793e987d.json)
-- Linux Wireserver:[InVMAccessControlProfileParameter-LinuxWireServer.json](../samples/create-sig/InVMAccessControlProfileParameter-LinuxWireServer-9e269e26-6256-4b60-a9e5-7486d815f499.json)
-- Linux IMDS: [InVMAccessControlProfileParameter-LinuxIMDS.json](../samples/create-sig/InVMAccessControlProfileParameter-LinuxIMDS-9526e42b-5f89-4d88-a066-0efd10b05fa7.json)
-
 
 ## Sample InVMAccessControlProfile
 
@@ -213,35 +249,35 @@ Follow the step-by-step guide below to generate an `InVMAccessControlProfile`:
 Connect-AzAccount 
 ```
 
-1. Create the Resource Group where the private gallery is created. You can skip this step if you already have a Resource Group created.
+2. Create the Resource Group where the private gallery is created. You can skip this step if you already have a Resource Group created.
 
 ```powershell
 $resourceGroup = "MyResourceGroup4" 
 $location = "EastUS2EUAP" 
 New-AzResourceGroup -Name $resourceGroup -Location $location 
 ```
-1. Create a private gallery. This gallery is used as a container for the `InVMAccessControlProfile` artifact
+3. Create a private gallery. This gallery is used as a container for the `InVMAccessControlProfile` artifact
 
 ```powershell
 $galleryName = "MyGallery4" 
 New-AzGallery -ResourceGroupName $resourceGroup -GalleryName $galleryName -Location $location -Description "My custom image gallery" 
 ```
 
-1. Create the `InVMAccessControlProfile` artifact in the private gallery created in the previous step. [Click here](https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azgalleryinvmaccesscontrolprofile?view=azps-14.3.0) to learn more about the various parameters for this artifact. 
+4. Create the `InVMAccessControlProfile` artifact in the private gallery created in the previous step. [Click here](https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azgalleryinvmaccesscontrolprofile?view=azps-14.3.0) to learn more about the various parameters for this artifact. 
 
 ```powershell
 $InVMAccessControlProfileName= "testInVMAccessControlProfileP"  
 
 New-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName -Location $location -OsType "Windows" -ApplicableHostEndPoint "WireServer" -Description "this test1" 
 ```
-1. Get Gallery `InVMAccessControlProfile`
+5. Get Gallery `InVMAccessControlProfile`
 
 ```powershell
 $inVMAccessCP=Get-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName 
 ```
 ![Screenshot of the output for Get command for InVMAccessControlProfile](../images/create-shared-image-gallery/get-command-invmaccesscontrolprofile.png)
 
-1. Update Gallery `InVMAccessControlProfile`
+6. Update Gallery `InVMAccessControlProfile`
 Once the `InVMAccessControlProfile` is created, the only attribute editable is the description. For any other changes, create a new artifact. 
 
 To update the description:
@@ -253,7 +289,7 @@ Update-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -Ga
 ![Update InVMAccessControlProfile description ](../images/create-shared-image-gallery/update-description-invmaccesscontrolprofile.png)
 
   
-1. Create `InVMAccessControlProfileVersion`
+7. Create `InVMAccessControlProfileVersion`
 
 To create an InVMAccessControlProfileVersion, a payload is required. Since these payloads can be large, especially due to the rules property, it's not practical to use a single PowerShell command to create the entire resource in one go.
 The rules property in any version payload consists of four arrays: privileges, roles, identities, and roleAssignments. These arrays can make the payload large and complex.
@@ -318,7 +354,7 @@ Payload for reference:
   }
 }
 ```
-1. Create `InVMAccessControlProfileVersion` Config
+8. Create `InVMAccessControlProfileVersion` Config
 
 ```powershell
 $inVMAccessControlProfileVersionName= "1.0.0"
@@ -403,21 +439,21 @@ Remove-AzGalleryInVMAccessControlProfileVersionRulesRoleAssignment `
   -Role "Provisioning2" 
  ```
 
- 1. Create Gallery `InVMAccessControlProfileVersion`
+9. Create Gallery `InVMAccessControlProfileVersion`
 
  ```powershell
  New-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGroup -GalleryName $galleryName -GalleryInVMAccessControlProfileName   $InVMAccessControlProfileName   -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion 
  ```
  ![create InVMAccessControlProfileVersion](../images/create-shared-image-gallery/create-gallery-invmaccesscontrolprofileversion.png)
 
-1. Get `InVMAccessControlProfileVersion`
+10. Get `InVMAccessControlProfileVersion`
 
 ```powershell
 $ver = Get-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGroup -GalleryName $galleryName -GalleryInVMAccessControlProfileName   $InVMAccessControlProfileName `
  -GalleryInVMAccessControlProfileVersionName  $inVMAccessControlProfileVersionName
  $ver | ConvertTo-Json -Depth 10
 ```
-1. Update `InVMAccessControlProfileVersion`
+11. Update `InVMAccessControlProfileVersion`
 
 It's recommended to create a new `InVMAccessControlProfileVersion` since most parameters can't be updated. Here's an example:
 
@@ -434,7 +470,7 @@ Update-AzGalleryInVMAccessControlProfileVersion `
 ```
 ![update InVMAccessControlProfileVersion screenshot](../images/create-shared-image-gallery/update-invmaccesscontrolprofileversion.png)
 
-1. Delete `InVMAccessControlProfileVersion`
+12. Delete `InVMAccessControlProfileVersion`
 
 ```powershell
 Remove-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGroup -GalleryName $galleryName -GalleryInVMAccessControlProfileName   $InVMAccessControlProfileName `
@@ -443,7 +479,7 @@ Remove-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGrou
 
 ![delete InVMAccessControlProfileVersion example screenshot](../images/create-shared-image-gallery/delete-invmaccesscontrolprofileversion.png)
 
-1. List all gallery `InVMAccessControlProfile`
+13. List all gallery `InVMAccessControlProfile`
 
 ```powershell
 Get-AzGalleryInVMAccessControlProfile -ResourceGroupName "myResourceGroup" -GalleryName "myGallery"
