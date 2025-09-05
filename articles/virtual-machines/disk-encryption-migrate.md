@@ -54,25 +54,17 @@ Before starting the migration:
 
 1. **Document configuration**: Record your current VM configuration, including network settings, extensions, and attached resources.
 
-## Migration scenarios
+## Migration steps
 
-The migration approach depends on your VM's operating system and which disks are encrypted:
+The migration process follows the same general steps for all scenarios, with one key difference:
 
-| Scenario | Supported | Migration Method |
-|----------|-----------|------------------|
-| Windows VM - OS disk only encrypted | ✅ Yes | Disable ADE, create new disks without encryption settings, create new VM with encryption at host |
-| Windows VM - OS and data disks encrypted | ✅ Yes | Disable ADE, create new disks without encryption settings, create new VM with encryption at host |
-| Linux VM - Data disks only encrypted | ✅ Yes | Disable ADE, create new disks without encryption settings, attach to new/existing VM with encryption at host |
-| Linux VM - OS disk only encrypted | ❌ Limited | Create new VM with encryption at host, migrate data using new disks without encryption settings |
-| Linux VM - OS disk encrypted | ❌ Limited | Create new VM with encryption at host, migrate data using new disks without encryption settings |
-| Linux VM - OS and data disks encrypted | ❌ Limited | Create new VM with encryption at host, migrate data using new disks without encryption settings |
+- **Most scenarios**: Disable ADE → Create new disks → Create new VM with encryption at host
+- **Linux VMs with encrypted OS disks**: Create completely new VM → Migrate data manually (because Linux OS disks cannot be decrypted)
+
+The following steps work for both Windows and Linux VMs. Specific differences and limitations are noted throughout, with detailed guidance for the Linux OS disk scenario in the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks) section.
 
 > [!NOTE]
-> **Windows ADE VolumeType limitations**: Windows VMs cannot have only data disks encrypted with ADE - you cannot encrypt data disks without first encrypting the OS disk. The VolumeType parameter for Windows can be omitted (defaults to "All") or set to either "All" or "OS", but cannot be set to "Data" alone. Therefore, the "Windows VM - Data disks only encrypted" scenario is not possible with Azure Disk Encryption.
->
-> **Linux ADE VolumeType requirements**: The VolumeType parameter is required when encrypting Linux virtual machines and must be set to a value ("Os", "Data", or "All") supported by the Linux distribution.
-
-## Migration steps
+> For important limitations about Windows and Linux encryption patterns, see the [Migration limitations and considerations](#migration-limitations-and-considerations) section.
 
 This section outlines the detailed process for migrating from Azure Disk Encryption to encryption at host. The steps work for both Windows and Linux VMs, with specific differences noted for each operating system.
 
@@ -525,6 +517,14 @@ After successful migration and verification:
 - [Enable end-to-end encryption using encryption at host - Azure CLI](/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli)
 - [Server-side encryption of Azure Disk Storage](/azure/virtual-machines/disk-encryption)
 - [Azure Disk Encryption for Windows VMs](/azure/virtual-machines/windows/disk-encryption-overview)
+- [Azure Disk Encryption for Linux VMs](/azure/virtual-machines/linux/disk-encryption-overview)
+- [Azure Disk Encryption FAQ](/azure/virtual-machines/linux/disk-encryption-faq)
+- [Upload a VHD to Azure or copy a managed disk to another region](/azure/virtual-machines/windows/disks-upload-vhd-to-managed-disk-powershell)
+- [Azure Disk Encryption for Linux VMs](/azure/virtual-machines/linux/disk-encryption-overview)
+- [Azure Disk Encryption FAQ](/azure/virtual-machines/linux/disk-encryption-faq)
+- [Upload a VHD to Azure or copy a managed disk to another region](/azure/virtual-machines/windows/disks-upload-vhd-to-managed-disk-powershell)
+- [Azure Disk Encryption FAQ](/azure/virtual-machines/linux/disk-encryption-faq)
+- [Upload a VHD to Azure or copy a managed disk to another region](/azure/virtual-machines/windows/disks-upload-vhd-to-managed-disk-powershell)
 - [Azure Disk Encryption for Linux VMs](/azure/virtual-machines/linux/disk-encryption-overview)
 - [Azure Disk Encryption FAQ](/azure/virtual-machines/linux/disk-encryption-faq)
 - [Upload a VHD to Azure or copy a managed disk to another region](/azure/virtual-machines/windows/disks-upload-vhd-to-managed-disk-powershell)
