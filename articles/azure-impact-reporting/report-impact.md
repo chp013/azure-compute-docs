@@ -41,7 +41,7 @@ To report an issue, follow these steps.
 When your issue is reported, you should see this message. 
 ![Screenshot of the message your report is a success.](images/report-an-issue-success.png)
 
-If an outage is found, you see it on the portal.
+If an outage is found, you will see it on the portal.
 
 If you get this error, it means you don’t have permission.
 
