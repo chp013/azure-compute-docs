@@ -56,10 +56,7 @@ Before starting the migration:
 
 ## Migration steps
 
-The following migration steps work for most scenarios, with specific differences noted for each operating system. 
-
-> [!IMPORTANT]
-> Linux VMs with encrypted OS disks cannot be decrypted in-place. For these VMs, see the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks) section after reviewing the general process below.
+The following migration steps work for most scenarios, with specific differences noted for each operating system.
 
 ### Disable Azure Disk Encryption
 
@@ -69,7 +66,7 @@ First step is to disable the existing Azure Disk Encryption when possible:
 - **Linux**: If **only data disks** are encrypted, follow [Disable encryption and remove the encryption extension on Linux](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension)
 
 > [!IMPORTANT]
-> Linux VMs with ADE-encrypted OS disks cannot be decrypted in-place. You must create a new VM with a new OS disk and migrate your data. See the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks) section for details.
+> Linux VMs with encrypted OS disks cannot be decrypted in-place. For these VMs, you must create a new VM with a new OS disk and migrate your data. See the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks) section after reviewing the general process below.
 
 ### Create new managed disks
 
@@ -401,7 +398,6 @@ After creating the new VM:
 This approach works for both Windows and Linux VMs, but is especially important for Linux VMs with encrypted OS disks that cannot be decrypted in-place.
 
 For guidance on data migration, see [Upload a VHD to Azure](/azure/virtual-machines/linux/disks-upload-vhd-to-managed-disk-cli) and [Copy files to a Linux VM using SCP](/azure/virtual-machines/linux/copy-files-to-linux-vm-using-scp).
-
 
 ## Domain-joined VM considerations
 
