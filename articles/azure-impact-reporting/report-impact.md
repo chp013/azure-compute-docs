@@ -5,9 +5,8 @@ author: rolandnyamo #Required; your GitHub user alias, with correct capitalizati
 ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
 ms.topic: how-to #Required; leave this attribute/value as-is.
 ms.service: azure #Required; use either service or product per approved list. 
-ms.date: 11/01/2022 #Required; mm/dd/yyyy format.
+ms.date: 09/04/2025 #Required; mm/dd/yyyy format.
 ms.custom: template-overview #Required; leave this attribute/value as-is.
-# Customer intent: As a cloud administrator, I want to report impacts to Azure workloads using the REST API, so that I can ensure timely notifications and resolutions for resource issues affecting system performance.
 ---
 
 # Report Impact (Preview)
@@ -19,10 +18,10 @@ In addition to Azure Service Health "Report an Issue" and our REST API, you can 
 ## Report Workload Impact
 
 The following channels can be used to report a workload: 
-1. Azure Service Health Portal
+1. Azure Service Health portal blade
 2. REST API
 
-#### [Azure Service Health Portal](#tab/ash/)
+#### [Azure Service Health](#tab/ash/)
 To report an issue, follow these steps.
 1. Select **Report an Issue**.
 
@@ -75,3 +74,4 @@ az rest --method PUT --url "https://management.azure.com/subscriptions/<Subscrip
 ## Next steps
 
 - [Get allowed impact category list](view-impact-categories.md)
+- [View insights from reported issues](view-impact-insights.md)
