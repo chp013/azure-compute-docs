@@ -56,17 +56,10 @@ Before starting the migration:
 
 ## Migration steps
 
-The migration process follows the same general steps for all scenarios, with one key difference:
+The following migration steps work for most scenarios, with specific differences noted for each operating system. 
 
-- **Most scenarios**: Disable ADE → Create new disks → Create new VM with encryption at host
-- **Linux VMs with encrypted OS disks**: Create completely new VM → Migrate data manually (because Linux OS disks cannot be decrypted)
-
-The following steps work for both Windows and Linux VMs. Specific differences and limitations are noted throughout, with detailed guidance for the Linux OS disk scenario in the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks) section.
-
-> [!NOTE]
-> For important limitations about Windows and Linux encryption patterns, see the [Migration limitations and considerations](#migration-limitations-and-considerations) section.
-
-This section outlines the detailed process for migrating from Azure Disk Encryption to encryption at host. The steps work for both Windows and Linux VMs, with specific differences noted for each operating system.
+> [!IMPORTANT]
+> Linux VMs with encrypted OS disks cannot be decrypted in-place. For these VMs, see the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks) section after reviewing the general process below.
 
 ### Disable Azure Disk Encryption
 
@@ -165,7 +158,7 @@ Steps for using [creating a new VM with encryption at host](#create-a-new-vm-wit
 
 #### Create a new VM with encryption at host
 
-Encryption at host provides the closest equivalent to Azure Disk Encryption's coverage, and will be covered in this section.
+Encryption at host provides the closest equivalent to Azure Disk Encryption's coverage, and is covered in this section.
 
 # [CLI](#tab/CLI2)
 
@@ -282,7 +275,7 @@ Get-PSDrive -PSProvider FileSystem
 
 **For Linux VMs:**
 
-- You'll need to connect to the Linux VM via SSH to perform these tasks, but PowerShell can be used to verify the VM is running:
+- You need to connect to the Linux VM via SSH to perform these tasks, but PowerShell can be used to verify the VM is running:
 
 ```powershell
 # Verify VM is running
@@ -351,7 +344,7 @@ Since you cannot disable encryption on Linux OS disks, the process is different 
 
 # [CLI](#tab/CLI5)
 
-1. Create a completely new VM with encryption at host enabled
+1. Create a new VM with encryption at host enabled
 
    ```azurecli
    az vm create \
@@ -376,7 +369,7 @@ Since you cannot disable encryption on Linux OS disks, the process is different 
 
 # [Azure PowerShell](#tab/azurepowershell5)
 
-1. Create a completely new VM with encryption at host enabled
+1. Create a new VM with encryption at host enabled
 
    ```azurepowershell
    # Create a new VM with encryption at host
@@ -414,10 +407,10 @@ For guidance on data migration, see [Upload a VHD to Azure](/azure/virtual-machi
 
 If your VMs are members of an Active Directory domain, additional steps are required during the migration process:
 
-### Pre-migration domain steps
+### Premigration domain steps
 
 1. **Document domain membership**: Record the current domain, organizational unit (OU), and any special group memberships
-2. **Note computer account**: The computer account in Active Directory will need to be managed
+2. **Note computer account**: The computer account in Active Directory needs to be managed
 3. **Backup domain-specific configurations**: Save any domain-specific settings, group policies, or certificates
 
 ### Domain removal process
@@ -455,8 +448,8 @@ For more information, see [What is Microsoft Entra Domain Services?](/entra/iden
 
 ### Important domain considerations
 
-- The new VM will have a different computer SID, which may affect some applications
-- Kerberos tickets and cached credentials will need to be refreshed
+- The new VM has a different computer SID, which may affect some applications
+- Kerberos tickets and cached credentials must be refreshed
 - Some domain-integrated applications may require reconfiguration
 - Plan for potential temporary loss of domain services during migration
 
