@@ -14,11 +14,7 @@ ms.custom: template-overview #Required; leave this attribute/value as-is.
 > [!IMPORTANT]
 > Azure Impact Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-You can call our REST API to file an impact report, or use a [connector](./azure-monitor-connector.md) to automatically report impact from Azure Monitor Alerts.
-
-> [!TIP]
-> Since most workloads have monitoring in place to detect failures, we recommend creating an integration through a logic app or Azure Function to file an impact report when your monitoring identifies a problem that you think is caused by the infrastructure.
->
+In addition to Azure Service Health "Report an Issue" and our REST API, you can also report an impact automatically using an Azure Monitor [connector](./azure-monitor-connector.md) when certain alerts get triggered Azure Monitor Alerts.
 
 ## Report Workload Impact
 
@@ -54,6 +50,9 @@ If you get this error, it means you don’t have permission.
 
 
 #### [REST API](#tab/api/)
+> [!TIP]
+> Since most workloads have monitoring in place to detect failures, we recommend creating an integration through a logic app or Azure Function to file an impact report when your monitoring identifies a problem that you think is caused by the infrastructure.
+>
 Review our full [REST API reference](https://aka.ms/ImpactRP/APIDocs) for more examples.
 
 ```json
