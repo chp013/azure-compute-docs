@@ -12,6 +12,9 @@ ms.date: 08/29/2024
 
 # Virtual network scenarios and resources
 
+> [!IMPORTANT]
+> If you deploy your container group into a virtual network, you must use a NAT gateway for outbound connectivity. This is the only supported configuration for outbound connectivity from your container group in a virtual network. See [Configure a NAT gateway for static IP address for outbound traffic from a container group](./container-instances-nat-gateway.md) for more information on how to configure this.
+
 [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) provides secure, private networking for your Azure and on-premises resources. By deploying container groups into an Azure virtual network, your containers can communicate securely with other resources in the virtual network. 
 
 This article provides background about virtual network scenarios, limitations, and resources. For deployment examples using the Azure CLI, see [Deploy container instances into an Azure virtual network](container-instances-vnet.md).
@@ -63,6 +66,13 @@ A virtual network defines the address space in which you create one or more subn
 Subnets segment the virtual network into separate address spaces usable by the Azure resources you place in them. You create one or several subnets within a virtual network.
 
 The subnet that you use for container groups can contain only container groups. Before you deploy a container group to a subnet, you must explicitly delegate the subnet before provisioning. Once delegated, the subnet can be used only for container groups. If you attempt to deploy resources other than container groups to a delegated subnet, the operation fails.
+
+### Outbound connectivity
+NAT gateway should be configured with public IP so the container groups outbound flows through that public IP. This also allows customers to use service tagged IPs and/or have appropriate NSG rules.
+
+Use the following [az network nat gateway create][az-network-nat-gateway-create] to create a NAT gateway that uses the public IP you created in the previous step.
+
+:::code language="azurecli" source="~/azure_cli_scripts/container-instances/nat-gateway.sh" id="natgateway":::
 
 ### Network profile
 

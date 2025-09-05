@@ -1032,6 +1032,6 @@
   - name: Service Updates
     href: https://azure.microsoft.com/updates/?product=service-fabric
   - name: Videos
-    href: https://azure.microsoft.com/documentation/videos/index/?services=service-fabric
+    href: https://azure.microsoft.com/resources/videos/?services=service-fabric
 - name: Support and troubleshooting
   href: service-fabric-support.md

@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.collection: windows
 author: GabstaMSFT
 ms.author: jushiman
-ms.date: 12/02/2024
+ms.date: 08/18/2025
 ms.topic: how-to
 ms.reviewer: jushiman
 ms.custom: devx-track-azurecli
@@ -81,7 +81,7 @@ The entity was not found in this Azure location
 | **ResetRDPCert** | Removes the TLS/SSL certificate tied to the RDP listener and restores the RDP listener security to default. Use this script if you see any issues with the certificate. |
 | **SetRDPPort** | Sets the default or user-specified port number for Remote Desktop connections. Enables firewall rules for inbound access to the port. |
 | **IMDSCertCheck** | Checks from within the virtual machine for known configuration issues that may be causing IMDS to not function properly. |
-| **WindowsActivationValidation** | Checks from within the virtual machine for known Windows Activation issues or concerns that may cause acation to fail. |
+| **WindowsActivationValidation** | Checks from within the virtual machine for known Windows Activation issues or concerns that may cause action to fail. |
 
 ## Azure CLI
 
@@ -131,7 +131,7 @@ Invoke-AzVMRunCommand -ResourceGroupName '<myResourceGroup>' -Name '<myVMName>' 
 
 Listing the run commands or showing the details of a command requires the `Microsoft.Compute/locations/runCommands/read` permission on Subscription Level. The built-in [Reader](/azure/role-based-access-control/built-in-roles#reader) role and higher levels have this permission.
 
-Running a command requires the `Microsoft.Compute/virtualMachines/runCommands/action` permission. The [Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor) role and higher levels have this permission.
+Running a command requires the `Microsoft.Compute/virtualMachines/runCommand/action` permission. The [Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor) role and higher levels have this permission.
 
 You can use one of the [built-in roles](/azure/role-based-access-control/built-in-roles) or create a [custom role](/azure/role-based-access-control/custom-roles) to use Run Command.
 

@@ -38,6 +38,9 @@ Azure Virtual machine Scale sets supports enabling Trusted launch on existing [U
     > - Virtual machine size can be changed along with Trusted launch upgrade. Ensure quota for new VM Size is in-place to avoid upgrade failures. Refer to [Check vCPU quotas](quotas.md).
     > - Change to Virtual machine size re-creates the Virtual machine instance with new size and requires downtime of individual Virtual machine instance. It can be done in a Rolling Upgrade fashion to avoid Scale set downtime.
 - Scale set should be configured with [Trusted launch supported OS Image](trusted-launch.md#operating-systems-supported). For [Azure compute gallery OS image](azure-compute-gallery.md), ensure image definition is marked as [TrustedLaunchSupported](trusted-launch-portal.md#deploy-a-trusted-launch-vm-from-an-azure-compute-gallery-image)
+    > [!IMPORTANT]
+    >
+    > Changing the OS image of a scale set recreates the OS disks for all VM instances using the new image. This change means any data or custom configurations stored on the current OS disks is lost post upgrade. Ensure back up of any important information before proceeding.
 
 ## Enable Trusted launch on existing Scale set Uniform
 
@@ -277,10 +280,10 @@ Make sure the latest [Azure PowerShell](/powershell/azure/install-azps-windows) 
     $vmss = Get-AzVmss -VMScaleSetName MyVmssName -ResourceGroupName MyResourceGroup
 
     # Enable Trusted Launch
-    Set-AzVmssSecurityProfile -virtualMachineScaleSet $vmss -SecurityType TrustedLaunch
+    $vmss = Set-AzVmssSecurityProfile -virtualMachineScaleSet $vmss -SecurityType TrustedLaunch
 
     # Enable Trusted Launch settings
-    Set-AzVmssUefi -VirtualMachineScaleSet $vmss -EnableVtpm $true -EnableSecureBoot $true
+    $vmss = Set-AzVmssUefi -VirtualMachineScaleSet $vmss -EnableVtpm $true -EnableSecureBoot $true
 
     Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName `
         -VMScaleSetName $vmss.Name -VirtualMachineScaleSet $vmss `
