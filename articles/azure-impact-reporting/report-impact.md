@@ -20,8 +20,40 @@ You can call our REST API to file an impact report, or use a [connector](./azure
 > Since most workloads have monitoring in place to detect failures, we recommend creating an integration through a logic app or Azure Function to file an impact report when your monitoring identifies a problem that you think is caused by the infrastructure.
 >
 
-## Report Impact via Azure REST API
+## Report Workload Impact
 
+The following channels can be used to report a workload: 
+1. Azure Service Health Portal
+2. REST API
+
+#### [Azure Service Health Portal](#tab/ash/)
+To report an issue, follow these steps.
+1. Select **Report an Issue**.
+
+![Screenshot of the screen to report an issue.](images/report-an-issue-main.png)
+
+2. Select **Single resource**.
+
+![Screenshot of the screen to select single resource.](images/report-an-issue-submit.png)
+
+3. Fill out the required fields.
+    - Subscription
+    - Impacted resource
+    - What is the business impact?
+    - Impact start date and time.
+4. Select **Submit**.
+
+When your issue is reported, you should see this message. 
+![Screenshot of the message your report is a success.](images/report-an-issue-success.png)
+
+If an outage is found, you see it on the portal.
+
+If you get this error, it means you don’t have permission.
+
+![Screenshot of the message you don't have access.](images/report-an-issue-error.png)
+
+
+#### [REST API](#tab/api/)
 Review our full [REST API reference](https://aka.ms/ImpactRP/APIDocs) for more examples.
 
 ```json

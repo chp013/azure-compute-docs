@@ -34,7 +34,7 @@ landingContent:
       - linkListType: quickstart
         links:
           - text: Report Impact on an Azure Virtual Machine
-            url: report-vm-impact.md
+            url: report-impact.md
           - text: View Reported Impacts
             url: view-impact-insights.md
           - text: View Allowed Impact Categories
@@ -47,7 +47,7 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Report Impact on an Azure Virtual Machine
-            url: report-vm-impact.md
+            url: report-impact.md
           - text: Report Impacts Using a Logic App
             url: creating-logic-app.md
       - linkListType: tutorial

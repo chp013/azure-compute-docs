@@ -30,5 +30,5 @@ Examples of impacts include:
 
 ## Next steps
 <!-- Add a context sentence for the following links -->
-* [File an impact report](report-vm-impact.md)
+* [File an impact report](report-impact.md)
 <!-- - [View previous impact reports](links-how-to.md) -->

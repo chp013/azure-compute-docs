@@ -17,7 +17,7 @@
 - name: Tutorials (Preview)
   items:
   - name: Report Impact on an Azure Virtual Machine
-    href: report-vm-impact.md
+    href: report-impact.md
   - name: Report Impacts Using a Logic App
     href: creating-logic-app.md
   - name: View Reported Impacts
