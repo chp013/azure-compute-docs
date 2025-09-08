@@ -10,6 +10,9 @@ ms.custom: linux-related-content
 ms.collection: linux
 ms.date: 08/27/2025
 ---
+
+[[_TOC_]]
+
 # Overview
 Linux VM Extensions currently comply with FIPS 140-2 but updates to the platform were required to add support for FIPS 140-3.  These changes are currently being enabled across the Commercial Cloud and Azure Government Clouds. Linux VM Extensions that use protected settings are also being updated to be able to use a FIPS 140-3 compliant encryption algorithm. This document helps enable support for FIPS 140-3 on Linux VMs where compliance with FIPS 140-3 is enforced.  This change is not needed on Windows images due to the way FIPS compliance is implemented.
 
