@@ -1500,6 +1500,8 @@
     items:
     - name: Disk encryption overview
       href: disk-encryption-overview.md
+    - name: Migrate from Azure Disk Encryption to encryption at host
+      href: disk-encryption-migrate.md
     - name: Server-side encryption
       items:
       - name: Server-side encryption overview
