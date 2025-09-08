@@ -4,7 +4,7 @@ description: Learn about the retirement of the capability to use Standard HDD as
 author: roygara
 ms.service: azure-disk-storage
 ms.topic: how-to
-ms.date: 08/19/2025
+ms.date: 09/08/2025
 ms.author: rogarana
 
 ---
@@ -13,7 +13,7 @@ ms.author: rogarana
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
-On September 8, 2028, the ability to use Standard HDD disks as [OS disks](managed-disks-overview.md#os-disk) will be retired. After that date, all Standard HDD disks being used as OS disks will be automatically converted to Standard SSD disks of equivalent size. To avoid potential service disruptions during the conversion to Standard SSD after the retirement date, you should convert your Standard HDD OS disks to either Standard SSD or Premium SSD disks before the retirement date.
+On September 8, 2028, the ability to use Standard HDD disks as [OS disks](managed-disks-overview.md#os-disk) will be retired. After that date, all Standard HDD disks being used as OS disks will be automatically converted to Standard SSD disks of equivalent size. To avoid potential service disruptions during the conversion to Standard SSD after the retirement date, convert your Standard HDD OS disks to either Standard SSD or Premium SSD disks before the retirement date.
 
 If you're using Standard HDD as OS disks, begin planning a migration now. Generally, Standard SSD provides the closest price to performance ratio as Standard HDD disks. If you need higher performance, migrate to Premium SSD.
 
