@@ -1,7 +1,7 @@
 --
 title: DCadsv6 series specs include
 description: Include file containing specifications of DCasv6-series VM sizes.
-author: rakeshginjupalli
+author: linuxelf001
 ms.topic: include
 ms.service: azure-virtual-machines
 ms.subservice: sizes
