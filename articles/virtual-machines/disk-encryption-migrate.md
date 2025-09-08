@@ -132,26 +132,9 @@ Revoke-AzDiskAccess -ResourceGroupName "MyResourceGroup" -DiskName $targetDisk.N
 
 ### Create a new VM with encryption
 
-Create a new VM using the newly created disks with your chosen encryption method. You can choose from several encryption options, depending on your security requirements. This article provides steps for [creating a new VM with encryption at host](#create-a-new-vm-with-encryption-at-host), which is the most common migration path.
+Create a new VM using the newly created disks with your chosen encryption method.
 
-#### Encryption options (overview)
-
-There are several encryption options are available for your new VM:
-
-| Encryption Method | Best For | Key Management | Performance Impact | Notable Features |
-|-------------------|----------|----------------|-------------------|------------------|
-| **Encryption at host** | ADE-equivalent coverage | Microsoft-managed | Minimal | Encrypts temp disks and caches |
-| **SSE + CMK** | Key control | Customer-managed | None | BYOK support, key rotation |
-| **Double encryption** | High security | Customer + Platform | None | Two encryption layers |
-| **End-to-end encryption** | Maximum security | Customer + Host | Minimal | Complete coverage with key control |
-
-Steps for using [creating a new VM with encryption at host](#create-a-new-vm-with-encryption-at-host) is covered in this article. Here are the other encryption options available:
-
-- **Server-side encryption with customer-managed keys (SSE + CMK)**: Uses your own encryption keys stored in Azure Key Vault, giving you control over key management. Enable via [PowerShell](/azure/virtual-machines/windows/disks-enable-customer-managed-keys-powershell), [CLI](/azure/virtual-machines/linux/disks-enable-customer-managed-keys-cli), or [portal](/azure/virtual-machines/disks-enable-customer-managed-keys-portal).
-
-- **Double encryption at rest**: Provides an additional layer of encryption at the infrastructure layer with platform-managed keys. Ideal for high-security environments. Enable via [portal](/azure/virtual-machines/disks-enable-double-encryption-at-rest-portal).
-
-- **End-to-end encryption**: Combines SSE + CMK + encryption at host for maximum security. Enable via [PowerShell](/azure/virtual-machines/windows/disks-enable-host-based-encryption-powershell), [CLI](/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli), or [portal](/azure/virtual-machines/disks-enable-host-based-encryption-portal).
+You can choose from several encryption options, depending on your security requirements. This article provides steps for creating a new VM with encryption at host, which is the most common migration path. Other encryption options are covered in [Overview of managed disk encryption options](/azure/virtual-machines/disk-encryption-overview).
 
 #### Create a new VM with encryption at host
 
