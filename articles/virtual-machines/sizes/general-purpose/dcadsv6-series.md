@@ -1,7 +1,7 @@
 ---
 title: DCadsv6 size series
 description: Information on and specifications of the DCadsv6-series sizes
-author: rakeshginjupalli
+author: linuxelf001
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
