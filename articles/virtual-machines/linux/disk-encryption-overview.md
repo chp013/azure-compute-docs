@@ -15,7 +15,7 @@ ms.custom: linux-related-content
 # Azure Disk Encryption for Linux VMs
 
 > [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
+> **CentOS End Of Life Notice**: This article references CentOS, which has reached End Of Life status. If you're using CentOS, review your deployment plans and consider migrating to a supported Linux distribution. For migration guidance and timelines, see [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 
@@ -89,45 +89,45 @@ Linux server distributions that are not endorsed by Azure do not support Azure D
 | OpenLogic | CentOS 7.5 | 7.5 | OpenLogic:CentOS:7.5:latest | OS and data disk |
 | OpenLogic | CentOS 7.4 | 7.4 | OpenLogic:CentOS:7.4:latest | OS and data disk |
 | OpenLogic | CentOS 6.8 | 6.8 | OpenLogic:CentOS:6.8:latest | Data disk only |
-| Oracle | Oracle Linux 8.6 | 8.6 | Oracle:Oracle-Linux:ol86-lvm:latest | OS and data disk (see note below) |
-| Oracle | Oracle Linux 8.6 Gen 2 | 8.6 | Oracle:Oracle-Linux:ol86-lvm-gen2:latest | OS and data disk (see note below) |
-| Oracle | Oracle Linux 8.5 | 8.5 | Oracle:Oracle-Linux:ol85-lvm:latest | OS and data disk (see note below) |
-| Oracle | Oracle Linux 8.5 Gen 2 | 8.5 | Oracle:Oracle-Linux:ol85-lvm-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9.4 | 9.4 | RedHat:RHEL:9_4:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9.4 Gen 2 | 9.4 | RedHat:RHEL:94_gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9.3 | 9.3 | RedHat:RHEL:9_3:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9.3 Gen 2 | 9.3 | RedHat:RHEL:93-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9.2 | 9.2 | RedHat:RHEL:9_2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9.2 Gen 2 | 9.2 | RedHat:RHEL:92-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9.0 | 9.0 | RedHat:RHEL:9_0:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9.0 Gen 2 | 9.0 | RedHat:RHEL:90-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9-lvm | 9-lvm | RedHat:RHEL:9-lvm:latest | OS and data disk (see note below) |
-| RedHat | RHEL 9-lvm Gen 2 | 9-lvm-gen2 | RedHat:RHEL:9-lvm-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.9 | 8.9 | RedHat:RHEL:8_9:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.9 Gen 2 | 8.9 | RedHat:RHEL:89-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.8 | 8.8 | RedHat:RHEL:8_8:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.8 Gen 2 | 8.8 | RedHat:RHEL:88-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.7 | 8.7 | RedHat:RHEL:8_7:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.7 Gen 2 | 8.7 | RedHat:RHEL:87-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.6 | 8.6 | RedHat:RHEL:8_6:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.6 Gen 2 | 8.6 | RedHat:RHEL:86-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.5 | 8.5 | RedHat:RHEL:8_5:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.5 Gen 2 | 8.5 | RedHat:RHEL:85-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.4 | 8.4 | RedHat:RHEL:8.4:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.3 | 8.3 | RedHat:RHEL:8.3:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8-LVM | 8-LVM | RedHat:RHEL:8-LVM:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8-LVM Gen 2 | 8-lvm-gen2 | RedHat:RHEL:8-lvm-gen2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.2 | 8.2 | RedHat:RHEL:8.2:latest | OS and data disk (see note below) |
-| RedHat | RHEL 8.1 | 8.1 | RedHat:RHEL:8.1:latest | OS and data disk (see note below) |
-| RedHat | RHEL 7-LVM | 7-LVM | RedHat:RHEL:7-LVM:7.9.2020111202 | OS and data disk (see note below) |
-| RedHat | RHEL 7.9 | 7_9 | RedHat:RHEL:7_9:latest | OS and data disk (see note below) |
-| RedHat | RHEL 7.8 | 7.8 | RedHat:RHEL:7.8:latest | OS and data disk (see note below) |
-| RedHat | RHEL 7.7 | 7.7 | RedHat:RHEL:7.7:latest | OS and data disk (see note below) |
-| RedHat | RHEL 7.6 | 7.6 | RedHat:RHEL:7.6:latest | OS and data disk (see note below) |
-| RedHat | RHEL 7.5 | 7.5 | RedHat:RHEL:7.5:latest | OS and data disk (see note below) |
-| RedHat | RHEL 7.4 | 7.4 | RedHat:RHEL:7.4:latest | OS and data disk (see note below) |
-| RedHat | RHEL 6.8 | 6.8 | RedHat:RHEL:6.8:latest | Data disk (see note below) |
-| RedHat | RHEL 6.7 | 6.7 | RedHat:RHEL:6.7:latest | Data disk (see note below) |
+| Oracle | Oracle Linux 8.6 | 8.6 | Oracle:Oracle-Linux:ol86-lvm:latest | OS and data disk (see note) |
+| Oracle | Oracle Linux 8.6 Gen 2 | 8.6 | Oracle:Oracle-Linux:ol86-lvm-gen2:latest | OS and data disk (see note) |
+| Oracle | Oracle Linux 8.5 | 8.5 | Oracle:Oracle-Linux:ol85-lvm:latest | OS and data disk (see note) |
+| Oracle | Oracle Linux 8.5 Gen 2 | 8.5 | Oracle:Oracle-Linux:ol85-lvm-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 9.4 | 9.4 | RedHat:RHEL:9_4:latest | OS and data disk (see note) |
+| RedHat | RHEL 9.4 Gen 2 | 9.4 | RedHat:RHEL:94_gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 9.3 | 9.3 | RedHat:RHEL:9_3:latest | OS and data disk (see note) |
+| RedHat | RHEL 9.3 Gen 2 | 9.3 | RedHat:RHEL:93-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 9.2 | 9.2 | RedHat:RHEL:9_2:latest | OS and data disk (see note) |
+| RedHat | RHEL 9.2 Gen 2 | 9.2 | RedHat:RHEL:92-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 9.0 | 9.0 | RedHat:RHEL:9_0:latest | OS and data disk (see note) |
+| RedHat | RHEL 9.0 Gen 2 | 9.0 | RedHat:RHEL:90-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 9-lvm | 9-lvm | RedHat:RHEL:9-lvm:latest | OS and data disk (see note) |
+| RedHat | RHEL 9-lvm Gen 2 | 9-lvm-gen2 | RedHat:RHEL:9-lvm-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.9 | 8.9 | RedHat:RHEL:8_9:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.9 Gen 2 | 8.9 | RedHat:RHEL:89-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.8 | 8.8 | RedHat:RHEL:8_8:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.8 Gen 2 | 8.8 | RedHat:RHEL:88-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.7 | 8.7 | RedHat:RHEL:8_7:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.7 Gen 2 | 8.7 | RedHat:RHEL:87-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.6 | 8.6 | RedHat:RHEL:8_6:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.6 Gen 2 | 8.6 | RedHat:RHEL:86-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.5 | 8.5 | RedHat:RHEL:8_5:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.5 Gen 2 | 8.5 | RedHat:RHEL:85-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.4 | 8.4 | RedHat:RHEL:8.4:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.3 | 8.3 | RedHat:RHEL:8.3:latest | OS and data disk (see note) |
+| RedHat | RHEL 8-LVM | 8-LVM | RedHat:RHEL:8-LVM:latest | OS and data disk (see note) |
+| RedHat | RHEL 8-LVM Gen 2 | 8-lvm-gen2 | RedHat:RHEL:8-lvm-gen2:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.2 | 8.2 | RedHat:RHEL:8.2:latest | OS and data disk (see note) |
+| RedHat | RHEL 8.1 | 8.1 | RedHat:RHEL:8.1:latest | OS and data disk (see note) |
+| RedHat | RHEL 7-LVM | 7-LVM | RedHat:RHEL:7-LVM:7.9.2020111202 | OS and data disk (see note) |
+| RedHat | RHEL 7.9 | 7_9 | RedHat:RHEL:7_9:latest | OS and data disk (see note) |
+| RedHat | RHEL 7.8 | 7.8 | RedHat:RHEL:7.8:latest | OS and data disk (see note) |
+| RedHat | RHEL 7.7 | 7.7 | RedHat:RHEL:7.7:latest | OS and data disk (see note) |
+| RedHat | RHEL 7.6 | 7.6 | RedHat:RHEL:7.6:latest | OS and data disk (see note) |
+| RedHat | RHEL 7.5 | 7.5 | RedHat:RHEL:7.5:latest | OS and data disk (see note) |
+| RedHat | RHEL 7.4 | 7.4 | RedHat:RHEL:7.4:latest | OS and data disk (see note) |
+| RedHat | RHEL 6.8 | 6.8 | RedHat:RHEL:6.8:latest | Data disk (see note) |
+| RedHat | RHEL 6.7 | 6.7 | RedHat:RHEL:6.7:latest | Data disk (see note) |
 | SUSE | openSUSE 42.3 | 42.3 | SUSE:openSUSE-Leap:42.3:latest | Data disk only |
 | SUSE | SLES 12-SP4 | 12-SP4 | SUSE:SLES:12-SP4:latest | Data disk only |
 | SUSE | SLES HPC 12-SP3 | 12-SP3 | SUSE:SLES-HPC:12-SP3:latest | Data disk only |
@@ -136,7 +136,7 @@ Linux server distributions that are not endorsed by Azure do not support Azure D
 
 > [!NOTE]
 > RHEL:
-> - The new Azure Disk Encryption implementation is supported for RHEL OS and data disk for RHEL7 Pay-As-You-Go images.
+> - The new Azure Disk Encryption implementation is supported for RHEL OS and data disk for RHEL7 pay-as-you-go images.
 > - ADE is also supported for RHEL Bring-Your-Own-Subscription Gold Images, but only **after** the subscription has been registered . For more information, see [Red Hat Enterprise Linux Bring-Your-Own-Subscription Gold Images in Azure](../workloads/redhat/byos.md#encrypt-red-hat-enterprise-linux-bring-your-own-subscription-gold-images)
 >
 > All distros:

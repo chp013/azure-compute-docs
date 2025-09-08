@@ -13,7 +13,7 @@ ms.date: 03/03/2025
 
 # Azure Disk Encryption for Windows VMs
 
-**Applies to:** :heavy_check_mark: Windows VMs :heavy_check_mark: Flexible scale sets 
+**Applies to:** :heavy_check_mark: Windows VMs :heavy_check_mark: Flexible scale sets.
 
 Azure Disk Encryption helps protect and safeguard your data to meet your organizational security and compliance commitments. It uses the [BitLocker](/windows/security/operating-system-security/data-protection/bitlocker/) feature of Windows to provide volume encryption for the OS and data disks of Azure virtual machines (VMs), and is integrated with [Azure Key Vault](/azure/key-vault/) to help you control and manage the disk encryption keys and secrets.
 
@@ -24,9 +24,9 @@ If you use [Microsoft Defender for Cloud](/azure/security-center/), you're alert
 ![Microsoft Defender for Cloud disk encryption alert](../media/disk-encryption/security-center-disk-encryption-fig1.png)
 
 > [!WARNING]
-> - If you have previously used Azure Disk Encryption with Microsoft Entra ID to encrypt a VM, you must continue use this option to encrypt your VM. See [Azure Disk Encryption with Microsoft Entra ID (previous release)](disk-encryption-overview-aad.md) for details. 
-> - Certain recommendations might increase data, network, or compute resource usage, resulting in additional license or subscription costs. You must have a valid active Azure subscription to create resources in Azure in the supported regions.
-> - Do not use BitLocker to manually decrypt a VM or disk that was encrypted through Azure Disk Encryption.
+> - For VMs previously encrypted using Azure Disk Encryption with Microsoft Entra ID, you must continue using that same method. See [Azure Disk Encryption with Microsoft Entra ID (previous release)](disk-encryption-overview-aad.md) for details.
+> - Implementation of these recommendations may increase your data, network, or compute resource usage, potentially resulting in more license or subscription costs. A valid active Azure subscription is required to create resources in supported regions.
+> - Never use BitLocker directly to decrypt VMs or disks that were encrypted through Azure Disk Encryption, as this can lead to data loss.
 
 You can learn the fundamentals of Azure Disk Encryption for Windows in just a few minutes with the [Create and encrypt a Windows VM with Azure CLI quickstart](disk-encryption-cli-quickstart.md) or the [Create and encrypt a Windows VM with Azure PowerShell quickstart](disk-encryption-powershell-quickstart.md).
 
@@ -40,7 +40,7 @@ Azure Disk Encryption is not available on [Basic, A-series VMs, v6 series VMs](h
 
 ### Supported operating systems
 
-All versions of Windows which support BitLocker and are configured to meet the requirements of BitLocker. For more information, see [BitLocker overview](/windows/security/operating-system-security/data-protection/bitlocker/).
+All versions of Windows that support BitLocker and are configured to meet the requirements of BitLocker. For more information, see [BitLocker overview](/windows/security/operating-system-security/data-protection/bitlocker/).
  
 > [!NOTE]
 > Windows Server 2022 and Windows 11 do not support an RSA 2048 bit key. For more information, see [FAQ: What size should I use for my key encryption key?](disk-encryption-faq.yml#what-size-should-i-use-for-my-key-encryption-key--kek--)

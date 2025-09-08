@@ -66,7 +66,7 @@ The following migration steps work for most scenarios, with specific differences
 First step is to disable the existing Azure Disk Encryption when possible:
 
 - **Windows**: Follow the instructions in [Disable encryption and remove the encryption extension on Windows](windows/disk-encryption-windows.md#disable-encryption-and-remove-the-encryption-extension)
-- **Linux**: If **only data disks** are encrypted, follow [Disable encryption and remove the encryption extension on Linux](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension). If the OS disk is encrypted, see the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks) section for details.
+- **Linux**: If **only data disks** are encrypted, follow [Disable encryption and remove the encryption extension on Linux](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension). If **the OS disk is encrypted**, see the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks).
 
 ### Create new managed disks
 
