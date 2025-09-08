@@ -1,7 +1,7 @@
 ---
 title: ECadsv6 size series
 description: Information on and specifications of the ECadsv6-series sizes
-author: Rakesh
+author: linuxelf001
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
