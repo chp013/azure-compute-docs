@@ -1740,6 +1740,8 @@
       href: ./windows/migrate-to-managed-disks.md
     - name: Unmanaged Disks retirement
       href: ./unmanaged-disks-deprecation.md
+    - name: Migrate your Standard HDD OS disks
+      href: disks-hdd-os-retirement.md
     - name: Unmanaged VM to Managed Disks
       items:
       - name: CLI
