@@ -1,5 +1,5 @@
 ---
-title: Fadsv7 size series (Preview)
+title: Fadsv7 size series
 description: Information on and specifications of the Fadsv7-series sizes
 author: archatC
 ms.service: azure-virtual-machines

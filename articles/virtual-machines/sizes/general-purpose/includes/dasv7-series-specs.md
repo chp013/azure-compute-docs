@@ -9,7 +9,7 @@ ms.date: 07/29/2025
 ms.author: archat
 ms.reviewer: mattmcinnes
 ms.custom: include file
-# Customer intent: "As a cloud infrastructure planner, I want to review the specifications of Dasv7-series VM sizes, so that I can select the appropriate virtual machine configuration for my workload requirements."
+# Customer intent: "As a cloud infrastructure planner, I want to review the specifications of Dasv7-series virtual machine sizes, so that I can select the appropriate virtual machine configuration for my workload requirements."
 ---
 | Part | Quantity <br><sup>Count Units | Specs <br><sup>SKU ID, Performance Units, etc.  |
 |---|---|---|

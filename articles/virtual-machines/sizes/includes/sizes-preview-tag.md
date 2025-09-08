@@ -1,5 +1,5 @@
 ---
- title: Header for sizes in preview.
+ title: Header for sizes in preview
  description: Include file for sizes in preview. Remove this include from the page when the size is generally available.
  services: virtual-machines
  author: mattmcinnes
