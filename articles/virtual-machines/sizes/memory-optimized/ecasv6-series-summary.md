@@ -10,7 +10,6 @@ ms.author: raginjup
 ms.reviewer: raginjup
 ms.custom: include file
 ---
-
 Azure's ECasv6-series virtual machines provide robust [confidential computing](/azure/confidential-computing/confidential-vm-overview) capabilities, ensuring code and data remain secure during processing. Companies can migrate sensitive workloads to cloud infrastructure without modifying existing applications. The series runs on AMD's fourth-generation EPYC™ processors configured for multi-threaded operations with enhanced L3 cache architecture.
 AMD's SEV-SNP technology creates hardware-isolated environments that prevent unauthorized access from hypervisors, host management systems, and administrative users. This isolation protects virtual machines from neighboring VMs, hypervisor vulnerabilities, and both hardware and software-based security threats.
 
