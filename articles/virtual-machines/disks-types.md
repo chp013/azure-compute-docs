@@ -26,6 +26,8 @@ Azure managed disks currently offers five disk types, each intended to address a
 
 The following table provides a comparison of the five disk types to help you decide which to use.
 
+[!INCLUDE [disks-hdd-os-statement](includes/disks-hdd-os-statement.md)]
+
 |         | Ultra Disk | Premium SSD v2 | Premium SSD | Standard SSD | <nobr>Standard HDD</nobr> |
 | ------- | ---------- | ----------- | ------------ | ------------ | ------------ |
 | **Disk type** | SSD | SSD |SSD | SSD | HDD |
