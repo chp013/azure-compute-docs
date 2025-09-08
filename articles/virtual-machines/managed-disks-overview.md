@@ -135,7 +135,7 @@ Most VMs contain a temporary disk, which isn't a managed disk. The temporary dis
 
 Data on the temporary disk might be lost during a [maintenance event](./understand-vm-reboots.md), when you [redeploy a VM](/troubleshoot/azure/virtual-machines/redeploy-to-new-node-windows?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json), or when you stop the VM. During a successful standard restart of the VM, data on the temporary disk persists. For more information about VMs without temporary disks, see [Azure VM sizes with no local temporary disk](azure-vms-no-temp-disk.yml).
 
-On Azure Linux VMs, the temporary disk is typically */dev/sdb*. On Windows VMs, the temporary disk is drive D by default. The temporary disk isn't encrypted unless:
+On Azure Linux VMs, the temporary disk is typically */dev/disk/azure/resource*. On Windows VMs, the temporary disk is drive D by default. The temporary disk isn't encrypted unless:
 
 - You're using an Azure VM that is version 5 and above (such as Dsv5 or Dsv6). Azure VMs version 5 and above automatically encrypt their temporary disks and (if in use) their ephemeral OS disks with encryption-at-rest.
 - For server-side encryption, you enable [encryption at host](disk-encryption.md#encryption-at-host---end-to-end-encryption-for-your-vm-data).

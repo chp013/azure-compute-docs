@@ -31,6 +31,9 @@ In addition to process-specific extensions, a Custom Script extension is availab
 
 ## Prerequisites
 
+> [!NOTE]
+> Extensions are only supported on [Endorsed Linux distributions on Azure](../linux/endorsed-distros.md).
+
 ### Azure Linux Agent
 
 To handle the extension on the VM, you need the [Azure Linux Agent](agent-linux.md) installed. Some individual extensions have prerequisites, such as access to resources or dependencies.
