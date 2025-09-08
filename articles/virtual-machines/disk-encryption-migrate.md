@@ -136,7 +136,7 @@ Create a new VM using the newly created disks with your chosen encryption method
 
 #### Encryption options (overview)
 
-There are several encryption options are available for your new VM:
+There are several encryption options available for your new VM:
 
 | Encryption Method | Best For | Key Management | Performance Impact | Notable Features |
 |-------------------|----------|----------------|-------------------|------------------|
