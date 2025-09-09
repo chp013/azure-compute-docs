@@ -33,7 +33,7 @@ An allowlist consists of:
 
 - Linux: Collect Syslog events with [Azure Monitor Agent](https://learn.microsoft.com/azure/azure-monitor/vm/data-collection-syslog) by selecting `Log_DAEMON` and `LOG_DEBUG`
 
-## Query Audit logs
+## Query audit logs
 
 Once the audit logs are collected  as explained in the previous section, you can verify the logs:
 
@@ -65,7 +65,7 @@ Syslog
 | extend userGroups = json.userGroups, ip = json.ip, port = json.port, processCmdLine = json.processCmdLine 
 | project TimeGenerated, _ResourceId, url, ip, port, processFullPath, method, username, runAsElevated, processCmdLine
 ```
-### If you own the Azure VM, you can get the file logs inside the Azure VM by following these steps:
+### If you own the Azure VM, you can get the file logs inside the Azure VM by following these steps
 
 1. Find the Proxy Agent json config file:
 
@@ -275,7 +275,7 @@ New-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -Galle
 ```powershell
 $inVMAccessCP=Get-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName 
 ```
-![Screenshot of the output for Get command for InVMAccessControlProfile](../images/create-shared-image-gallery/get-command-invmaccesscontrolprofile.png)
+![Screenshot of the output for Get command for InVMAccessControlProfile.](../images/create-shared-image-gallery/get-command-invmaccesscontrolprofile.png)
 
 6. Update Gallery `InVMAccessControlProfile`
 Once the `InVMAccessControlProfile` is created, the only attribute editable is the description. For any other changes, create a new artifact. 
@@ -286,7 +286,7 @@ To update the description:
 Update-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName -Location $location -Description "this test2"
 ```
 
-![Update InVMAccessControlProfile description ](../images/create-shared-image-gallery/update-description-invmaccesscontrolprofile.png)
+![Screenshot of Update InVMAccessControlProfile description. ](../images/create-shared-image-gallery/update-description-invmaccesscontrolprofile.png)
 
   
 7. Create `InVMAccessControlProfileVersion`
@@ -366,7 +366,7 @@ $inVMAccessConrolProfileVersion = New-AzGalleryInVMAccessControlProfileVersionCo
 -DefaultAccess "Deny" -TargetLocation $targetRegions  -ExcludeFromLatest
 ```
 
-![create profile version config](../images/create-shared-image-gallery/create-profileversion-config.png)
+![Screenshot of create profile version config.](../images/create-shared-image-gallery/create-profileversion-config.png)
 
 Run this command to add each privilege:
 
@@ -444,7 +444,7 @@ Remove-AzGalleryInVMAccessControlProfileVersionRulesRoleAssignment `
  ```powershell
  New-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGroup -GalleryName $galleryName -GalleryInVMAccessControlProfileName   $InVMAccessControlProfileName   -GalleryInVmAccessControlProfileVersion $inVMAccessConrolProfileVersion 
  ```
- ![create InVMAccessControlProfileVersion](../images/create-shared-image-gallery/create-gallery-invmaccesscontrolprofileversion.png)
+ ![Screenshot of create InVMAccessControlProfileVersion.](../images/create-shared-image-gallery/create-gallery-invmaccesscontrolprofileversion.png)
 
 10. Get `InVMAccessControlProfileVersion`
 
@@ -468,7 +468,7 @@ Update-AzGalleryInVMAccessControlProfileVersion `
   -GalleryInVmAccessControlProfileVersion $ver `
 -TargetLocation $targetRegions -ExcludeFromLatest $true
 ```
-![update InVMAccessControlProfileVersion screenshot](../images/create-shared-image-gallery/update-invmaccesscontrolprofileversion.png)
+![Screenshot of update InVMAccessControlProfileVersion screenshot.](../images/create-shared-image-gallery/update-invmaccesscontrolprofileversion.png)
 
 12. Delete `InVMAccessControlProfileVersion`
 
@@ -477,7 +477,7 @@ Remove-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGrou
  -GalleryInVMAccessControlProfileVersionName  $inVMAccessControlProfileVersionName
 ```
 
-![delete InVMAccessControlProfileVersion example screenshot](../images/create-shared-image-gallery/delete-invmaccesscontrolprofileversion.png)
+![Screenshot of delete InVMAccessControlProfileVersion example.](../images/create-shared-image-gallery/delete-invmaccesscontrolprofileversion.png)
 
 13. List all gallery `InVMAccessControlProfile`
 
@@ -485,5 +485,5 @@ Remove-AzGalleryInVMAccessControlProfileVersion -ResourceGroupName $resourceGrou
 Get-AzGalleryInVMAccessControlProfile -ResourceGroupName "myResourceGroup" -GalleryName "myGallery"
 ```
 
-![List all InVMAccessControlProfiles screenshot](../images/create-shared-image-gallery/get-list-invmaccesscontrolprofile.png)
+![Screenshot of List all InVMAccessControlProfiles.](../images/create-shared-image-gallery/get-list-invmaccesscontrolprofile.png)
 
