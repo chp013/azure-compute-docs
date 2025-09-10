@@ -71,11 +71,10 @@ az feature register --namespace Microsoft.Compute --name OptInToFips1403Complian
 - Information on enabling FIPS with Ubuntu: https://documentation.ubuntu.com/pro-client/en/docs/howtoguides/enable_fips/
 - Information for enabling FIPS on Redhat: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening
 
-**Step 3: Verify FIPS installation**
-- fips-mode-setup -check
-
 ### Existing VMs
 **Step 1: ARM template flag to enable**
+
+*NOTE:* For the Goverment cloud use "https://management.usgovcloudapi.net" instead of "https://management.azure.com"
 
 **Option 1: Az CLI**
 
@@ -84,7 +83,7 @@ Updates to SDK/CLI are still in progress, you can still use AZ CLI to add the pr
 ```
 az rest \
 --method put \
---url 'https://management.azure.com//subscriptions/<SUBSCRIPTION ID>/resourceGroups/<RESOURCE GROUP>/providers/Microsoft.Compute/virtualMachines/<VM NAME>/?api-version=2024-11-01' \
+--url 'https://management.azure.com/subscriptions/<SUBSCRIPTION ID>/resourceGroups/<RESOURCE GROUP>/providers/Microsoft.Compute/virtualMachines/<VM NAME>/?api-version=2024-11-01' \
 --body '{"location": "<LOCATION>", "properties": {"additionalCapabilities": {"enableFips1403Encryption": true}}}'
 ```
 
@@ -92,7 +91,7 @@ az rest \
 ``` 
 az rest \
 --method get \
---url 'https://management.azure.com//subscriptions/<SUBSCRIPTION ID>/resourceGroups/<RESOURCE GROUP>/providers/Microsoft.Compute/virtualMachines/<VM NAME>/?api-version=2024-11-01'
+--url 'https://management.azure.com/subscriptions/<SUBSCRIPTION ID>/resourceGroups/<RESOURCE GROUP>/providers/Microsoft.Compute/virtualMachines/<VM NAME>/?api-version=2024-11-01'
 ```
 
 **Expected Result:**

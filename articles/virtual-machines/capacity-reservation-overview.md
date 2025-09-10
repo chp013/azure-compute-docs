@@ -96,6 +96,7 @@ From this example accumulation of Minutes Not Available, here's the calculation 
     - NC_A100_v4 series
     - NV-series, v3 and newer
     - NVadsA10_v5 series
+    - NVads V710_v5 series
     - NGads V620_v1 series
     - M-series, v2
     - M-series, v3
