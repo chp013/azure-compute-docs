@@ -25,11 +25,11 @@ The following channels can be used to report a workload:
 To report an issue, follow these steps.
 1. Select **Report an Issue**.
 
-[ ![Screenshot of the screen to report an issue.](images/report-an-issue-main.png) ](images/report-an-issue-main.png)
+[ ![Screenshot of the screen to report an issue.](images/report-an-issue-main.png) ](images/report-an-issue-main.png#lightbox)
 
 2. Select **Single resource**.
 
-[ ![Screenshot of the screen to select single resource.](images/report-an-issue-submit.png) ](images/report-an-issue-submit.png)
+[ ![Screenshot of the screen to select single resource.](images/report-an-issue-submit.png) ](images/report-an-issue-submit.png#lightbox)
 
 3. Fill out the required fields.
     - Subscription
@@ -39,13 +39,13 @@ To report an issue, follow these steps.
 4. Select **Submit**.
 
 When your issue is reported, you should see this message. 
-[ ![Screenshot of the message your report is a success.](images/report-an-issue-success.png) ](images/report-an-issue-success.png)
+[ ![Screenshot of the message your report is a success.](images/report-an-issue-success.png) ](images/report-an-issue-success.png#lightbox)
 
 If an outage is found, you will see it on the portal.
 
 If you get this error, it means you don’t have permission.
 
-[ ![Screenshot of the message you don't have access.](images/report-an-issue-error.png) ](images/report-an-issue-error.png)
+[ ![Screenshot of the message you don't have access.](images/report-an-issue-error.png) ](images/report-an-issue-error.png#lightbox)
 
 
 [REST API](#tab/api/)
