@@ -21,7 +21,7 @@ The following channels can be used to report a workload:
 * Azure Service Health portal blade
 * REST API
 
-[Azure Service Health](#tab/ash/)
+#### [Azure Service Health] (#tab/ash/)
 To report an issue, follow these steps.
 1. Select **Report an Issue**.
 
@@ -45,10 +45,10 @@ If an outage is found, you will see it on the portal.
 
 If you get this error, it means you don’t have permission.
 
-[ ![Screenshot of the message you don't have access.](images/report-an-issue-error.png) ](images/report-an-issue-error.png#lightbox)
+[ ![Screenshot of the message you don't have access.](images/report-an-issue-error.png) ](images/report-an-issue-error.png)
 
 
-[REST API](#tab/api/)
+#### [REST API](#tab/api/)
 > [!TIP]
 > Given that most workloads have monitoring in place to detect failures, we recommend creating an integration through a logic app or Azure Function to file an impact report when your monitoring identifies a problem that you think is due to the platform.
 >
@@ -70,6 +70,8 @@ Review our full [REST API reference](https://aka.ms/ImpactRP/APIDocs) for more e
 az rest --method PUT --url "https://management.azure.com/subscriptions/<Subscription_id>/providers/Microsoft.Impact/workloadImpacts/<impact_name>?api-version=2022-11-01-preview"  --body <body_above>
 
 ```
+
+---
 
 ## Next steps
 
