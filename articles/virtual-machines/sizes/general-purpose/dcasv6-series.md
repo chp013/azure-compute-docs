@@ -5,7 +5,7 @@ author: Rakesh
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
-ms.date: 09/01/2025
+ms.date: 09/11/2025
 ms.author: raginjup
 ms.reviewer: raginjup
 ---
