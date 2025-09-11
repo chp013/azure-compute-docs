@@ -9,9 +9,11 @@ ms.date: 09/06/2025
 ms.author: raginjup
 ms.reviewer: raginjup
 ---
+# ECadsv6 sizes series
 
 [!INCLUDE [ecadsv6-summary](./includes/ecadsv6-series-summary.md)]
 
+## Host specifications
 [!INCLUDE [ecadv6-series-specs](./includes/ecadsv6-series-specs.md)]
 
 ## Feature support
