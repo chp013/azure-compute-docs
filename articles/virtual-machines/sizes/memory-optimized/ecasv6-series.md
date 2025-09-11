@@ -9,8 +9,12 @@ ms.date: 09/06/2025
 ms.author: raginjup
 ms.reviewer: raginjup
 ---
+
+# ECasv6 sizes series
+
 [!INCLUDE [ecasv6-summary](./includes/ecasv6-series-summary.md)]
 
+## Host specifications
 [!INCLUDE [ecasv6-series-specs](./includes/ecasv6-series-specs.md)]
 
 ## Feature support
