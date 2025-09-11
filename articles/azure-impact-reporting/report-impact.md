@@ -13,23 +13,23 @@ ms.custom: template-overview #Required; leave this attribute/value as-is.
 > [!IMPORTANT]
 > Azure Impact Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-In addition to Azure Service Health "Report an Issue" and our REST API, you can also report an impact automatically using an Azure Monitor [connector](./azure-monitor-connector.md) when certain alerts get triggered Azure Monitor Alerts.
+In addition to Azure Service Health "Report an Issue" and our REST API, you can also report an impact automatically using an Azure Monitor [connector](./azure-monitor-connector.md) when certain alerts get triggered.
 
 ## Report Workload Impact
 
 The following channels can be used to report a workload: 
-1. Azure Service Health portal blade
-2. REST API
+* Azure Service Health portal blade
+* REST API
 
-#### [Azure Service Health](#tab/ash/)
+[Azure Service Health](#tab/ash/)
 To report an issue, follow these steps.
 1. Select **Report an Issue**.
 
-![Screenshot of the screen to report an issue.](images/report-an-issue-main.png)
+[ ![Screenshot of the screen to report an issue.](images/report-an-issue-main.png) ]()
 
 2. Select **Single resource**.
 
-![Screenshot of the screen to select single resource.](images/report-an-issue-submit.png)
+[ ![Screenshot of the screen to select single resource.](images/report-an-issue-submit.png) ]()
 
 3. Fill out the required fields.
     - Subscription
@@ -39,16 +39,16 @@ To report an issue, follow these steps.
 4. Select **Submit**.
 
 When your issue is reported, you should see this message. 
-![Screenshot of the message your report is a success.](images/report-an-issue-success.png)
+[ ![Screenshot of the message your report is a success.](images/report-an-issue-success.png) ]()
 
 If an outage is found, you will see it on the portal.
 
 If you get this error, it means you don’t have permission.
 
-![Screenshot of the message you don't have access.](images/report-an-issue-error.png)
+[ ![Screenshot of the message you don't have access.](images/report-an-issue-error.png) ]()
 
 
-#### [REST API](#tab/api/)
+[REST API](#tab/api/)
 > [!TIP]
 > Given that most workloads have monitoring in place to detect failures, we recommend creating an integration through a logic app or Azure Function to file an impact report when your monitoring identifies a problem that you think is due to the platform.
 >

@@ -19,19 +19,19 @@ Previously submitted impact reports and insights can be viewed through the REST 
 You need either the "**Impact Reporter**" role or `read` action on `Microsoft.Impact/WorkloadImpact/*` at the right scope (root, subscription, or resource group).
 
 The following channels can be used to view Impact Reports and/or insights: 
-1. Azure portal
-2. Query ARG 
-3. REST API
+* Azure portal
+* Query ARG 
+* REST API
 
 #### [Portal](#tab/portal/)
 1. Go to the Azure Impact Reporting Portal. Look for your subscription and select the date range. 
-    ![Screenshot of the Azure Impact Reporting portal dashboard.](images/impact-reporting-portal.png) 
+    [ ![Screenshot of the Azure Impact Reporting portal dashboard.](images/impact-reporting-portal.png) ]()
 2. To view the insights generated from the impacts, navigate to the bottom of the page. The tabular view shows the count of the insights for each of the resource name. 
-    ![Screenshot of Impact insights on the Azure portal.](images/insights.png)
-3. Select the insight count to see recommended actions for each of the insights
+    [ ![Screenshot of Impact insights on the Azure portal.](images/insights.png) ]()
+3. Select the insight count to see recommended actions for each of the insights.
 
 #### [REST API](#tab/restapi/)
-##### View Impacts using REST API: 
+##### View Impacts using REST API
 You can use the Impact Reporting REST API to view previously filed impact reports.
 Review the full [REST API reference](https://aka.ms/ImpactRP/APIDocs).
 
