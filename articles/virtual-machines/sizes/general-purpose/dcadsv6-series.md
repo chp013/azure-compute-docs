@@ -41,7 +41,8 @@ vCPUs (Qty.) and Memory for each size
 
 ### [Local storage](#tab/sizestoragelocal)
 
-Local (temp) storage info for each size 
+Local (temp) storage info for each size
+
 | Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Temp Disk Random Read (RR)<sup>1</sup> IOPS | Temp Disk Random Read (RR)<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- |
 | Standard_DC2ads_v6 | 1 | 75 | 9000 | 125 |
