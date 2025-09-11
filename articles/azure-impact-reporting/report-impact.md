@@ -21,7 +21,7 @@ The following channels can be used to report a workload:
 * Azure Service Health portal blade
 * REST API
 
-#### [Azure Service Health] (#tab/ash/)
+#### [Azure Service Health](#tab/ash/)
 To report an issue, follow these steps.
 1. Select **Report an Issue**.
 
