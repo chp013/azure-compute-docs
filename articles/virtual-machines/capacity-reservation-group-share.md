@@ -47,7 +47,7 @@ Configuring a Capacity Reservation Group sharing relationship has three steps:
 
 If the ODCR owner from the Provider subscription has either Owner or Contributor Azure role in the consumer subscription, then no further action is needed for granting share permission. To learn more on how to assign an Azure role, see [Role Asiignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
   
-2. In the producer subscription, add the consumer subscription id to the Capacity Reservation Group “shared” list. See [Share a capacity Reservation Group](#Share-a-capacity-reservation-group) to learn how to add a consumer subscription to the sharing profile.
+2. In the producer subscription, add the consumer subscription id to the Capacity Reservation Group “shared” list. See [Share a capacity Reservation Group](#share-a-capacity-reservation-group) to learn how to add a consumer subscription to the sharing profile.
  
 
 3. In the producer subscription, configure at least one VM owner in the consumer subscription with the following rights: 
