@@ -304,6 +304,10 @@
           href: ./sizes/general-purpose/dcasv5-series.md
         - name: DCadsv5 series
           href: ./sizes/general-purpose/dcadsv5-series.md
+        - name: DCasv6 series
+          href: ./sizes/general-purpose/dcasv6-series.md
+        - name: DCadsv6 series
+          href: ./sizes/general-purpose/dcadsv6-series.md
         - name: DCesv6 series
           href: ./sizes/general-purpose/dcesv6-series.md
         - name: DCas_cc_v5 series
@@ -429,6 +433,10 @@
           href: ./sizes/memory-optimized/ec-family.md
         - name: ECasv5 and ECadsv5 series
           href: ecasv5-ecadsv5-series.md
+        - name: ECasv6 series
+          href: ./sizes/memory-optimized/ecasv6-series.md
+        - name: ECadsv6 series
+          href: ./sizes/memory-optimized/ecadsv6-series.md
         - name: ECesv6 series
           href: ecesv5-ecedsv5-series.md
         - name: ECas_cc_v5 and ECads_cc_v5 series
