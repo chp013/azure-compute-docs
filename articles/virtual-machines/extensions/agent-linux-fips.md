@@ -16,7 +16,7 @@ Linux VM Extensions currently comply with FIPS 140-2 but updates to the platform
 
 ## Prerequisites
 ### Linux Guest Agent
-- Minimum Linux VM Guest Agent Version: [v2.14.0.1](https://github.com/Azure/WALinuxAgent/releases/tag/v2.14.0.1)
+- Minimum [Goal State Agent](https://github.com/Azure/WALinuxAgent/wiki/FAQ#what-does-goal-state-agent-mean-in-waagent---version-output) Version: [v2.14.0.1](https://github.com/Azure/WALinuxAgent/releases/tag/v2.14.0.1)
 
 ### Supported Images
 - **Ubuntu**
@@ -29,7 +29,7 @@ To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https:/
 
 | Cloud | Region(s) |
 |:-----|:-----|
-| Commercial | Central US EUAP, East US 2 EUAP, West Central US, East Asia, Australia East, South India |
+| Commercial | Central US EUAP, East US 2 EUAP, West Central US, Australia East, South India |
 | USGov | DoDCentral |
 
 
@@ -145,7 +145,7 @@ az vm extension set --subscription <subid> --resource-group <group> --vm-name<vm
 If you’re doing this step, first deploy the modified ARM Template or execute the az cli commands, then do this step.
 
 > [!WARNING]
-> The current WALinuxAgent (v2.7.0.6) on RHEL 9.5+ and 9.6+ has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS. We don't recommend this option on RHEL 9.5+ or RHEL 9.6+.
+> We don't recommend option 1 on RHEL 9.5 or RHEL 9.6. The current WALinuxAgent (v2.7.0.6) has an issue that can send the Agent into an infinite loop if the machine is rebooted after enabling FIPS. 
 
 **Workaround**
 
