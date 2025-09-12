@@ -101,30 +101,6 @@ Before you deploy an instance mix scale set:
 - For consistent performance, use VM sizes of similar type (for example, both D-series).
 - For reservation or savings-plan benefits, use `Prioritized` and place reservation-backed sizes at higher priority.
 
-## Compatible VM mix examples
-
-The following examples show VM size combinations that work together based on the documented limitations:
-
-### Premium storage compatible sizes
-These VM sizes all support premium storage and can be mixed together:
-- `Standard_D4s_v5`, `Standard_D8s_v5`, `Standard_D16s_v5` (D-series with premium storage)
-- `Standard_E4s_v5`, `Standard_E8s_v5`, `Standard_E16s_v5` (E-series with premium storage)
-- `Standard_F4s_v2`, `Standard_F8s_v2`, `Standard_F16s_v2` (F-series with premium storage)
-
-### Standard storage compatible sizes
-These VM sizes use standard storage and can be mixed together:
-- `Standard_D4_v5`, `Standard_D8_v5`, `Standard_D16_v5` (D-series with standard storage)
-- `Standard_E4_v5`, `Standard_E8_v5`, `Standard_E16_v5` (E-series with standard storage)
-- `Standard_A4_v2`, `Standard_A8_v2` (A-series with standard storage)
-
-### Architecture and interface considerations
-- **x64 compatible**: Most D, E, F, A, and B series VMs use x64 architecture and NVMe storage interface
-- **Same security profile**: Standard VMs without special security requirements can be mixed
-- **Local disk consistency**: VMs without local disks or with similar local disk configurations
-
-> [!TIP]
-> To verify compatibility, check that your selected VM sizes share the same architecture (x64/Arm64), storage interface (SCSI/NVMe), storage type (premium/standard), and security requirements before creating your instance mix configuration.
-
 ## Limitations and unsupported scenarios
 
 - Orchestration mode: instance mix is available only with Flexible Orchestration Mode.
@@ -134,7 +110,7 @@ These VM sizes use standard storage and can be mixed together:
 - VMs with different storage interfaces (SCSI vs NVMe) can't be mixed.
 - You can't mix VM SKUs that use premium storage and non-premium storage in the same instance mix.
 - All VMs must share the same Security Profile and local disk configuration.
-- Instance mix doesn't support: Standby Pools, Azure Dedicated Host, or Proximity Placement Groups.
+- Instance mix doesn't support: Standby Pools, Azure Dedicated Host, Proximity Placement Groups, or on-demand capacity reservations.
 
 ## Next steps
 Learn how to [create a scale set using instance mix](instance-mix-create.md).
