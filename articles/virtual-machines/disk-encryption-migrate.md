@@ -460,8 +460,24 @@ After successful migration and verification:
 
 1. **Delete old VM**: Remove the original ADE-encrypted VM
 2. **Delete old disks**: Remove the original encrypted disks
-3. **Clean up resources**: Remove any temporary resources created during migration
-4. **Update documentation**: Update your infrastructure documentation to reflect the migration to encryption at host
+3. **Update Key Vault access policies**: Other disk encryption solutions use standard Key Vault authorization mechanisms. If you no longer need the Key Vault for Azure Disk Encryption, update its access policies to disable the special disk encryption setting:
+
+   # [CLI](#tab/CLI-cleanup)
+
+   ```azurecli
+   az keyvault update --name "YourKeyVaultName" --resource-group "YourResourceGroup" --enabled-for-disk-encryption false
+   ```
+
+   # [Azure PowerShell](#tab/azurepowershell-cleanup)
+
+   ```azurepowershell
+   Update-AzKeyVault -VaultName "YourKeyVaultName" -ResourceGroupName "YourResourceGroup" -EnabledForDiskEncryption $false
+   ```
+
+   ---
+
+4. **Clean up resources**: Remove any temporary resources created during migration
+5. **Update documentation**: Update your infrastructure documentation to reflect the migration to encryption at host
 
 ## Common issues and solutions
 
