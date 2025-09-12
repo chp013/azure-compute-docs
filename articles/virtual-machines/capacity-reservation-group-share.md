@@ -45,12 +45,12 @@ Configuring a Capacity Reservation Group sharing relationship has three steps:
 
 1. In the consumer subscription, configure an On Demand capacity Reservation (ODCR) owner from the producer subscription with the rights “Microsoft.Compute/capacityReservationGroups/share/action” .
 
-If the ODCR owner from the Provider subscription has either Owner or Contributor Azure role in the Consumer subscription, then no further action is needed for granting share permission. To learn more on how to assign an Azure role, see [Role Asiignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
+If the ODCR owner from the Provider subscription has either Owner or Contributor Azure role in the consumer subscription, then no further action is needed for granting share permission. To learn more on how to assign an Azure role, see [Role Asiignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
   
-3. In the producer subscription, add the consumer subscription id to the Capacity Reservation Group “shared” list. 
+2. In the producer subscription, add the consumer subscription id to the Capacity Reservation Group “shared” list. See [Share a capacity Reservation Group](#Share-a-capacity-reservation-group) to learn how to add a consumer subscription to the sharing profile.
  
 
-4. In the producer subscription, configure at least one VM owner in the consumer subscription with the following rights: 
+3. In the producer subscription, configure at least one VM owner in the consumer subscription with the following rights: 
 
  
 - Microsoft.Compute/capacityReservationGroups/read 
@@ -203,7 +203,7 @@ The following example creates a shared capacity reservation group in the West Eu
  az capacity reservation group create 
  -n reservationGroupName 
  -g myResourceGroup
- --sharing-profile "subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" "subscriptions/yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy" -l westEurope 
+ --sharing-profile "subscriptions/{consumer-subscription-id1}" "subscriptions/{consumer-subscription-id2}" -l westEurope 
  ```
 
 To learn more, go to Azure PowerShell command [AzCapacityReservation](/cli/azure/capacity/reservation/group)
@@ -219,7 +219,7 @@ New-AzCapacityReservationGroup
 -ResourceGroupName myRG
 -Location eastus
 -Name myCapacityReservationGroup
--SharingProfile "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "/subscriptions/yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy" 
+-SharingProfile "/subscriptions/{consumer-subscription-id1}", "/subscriptions/{consumer-subscription-id2}" 
 ```
 
 To learn more, see Azure PowerShell command [New-AzCapacityReservation](/powershell/module/az.compute/new-azcapacityreservationgroup)
@@ -264,10 +264,10 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 				{
 					"subscriptionIds" : [
                         {
-                          "id": "/subscriptions/SharedSubscriptionID1"
+                          "id": "/subscriptions/consumerSubscriptionID1"
                         },
                         {
-                          "id": "/subscriptions/SharedSubscriptionID2"
+                          "id": "/subscriptions/consumerSubscriptionID2"
                         }
 					]
 				}
@@ -296,10 +296,10 @@ To add sharing profile to an existing Capacity Reservation group, construct the 
 Following example adds sharing profile to an existing Capacity Reservation group called 'myCapacityReservationGroup' and shared with three subscription IDs: 
 
 ```rest
-PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01 
+PUT https://management.azure.com/subscriptions/{Provider-subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01 
 ``` 
     
-In the request body, include the subscription ID to share the Capacity Reservation Group in the `sharing profile`
+In the request body, include the consumer subscription IDs to share the Capacity Reservation Group in the `sharing profile`
     
 ```json
 {
@@ -314,13 +314,13 @@ In the request body, include the subscription ID to share the Capacity Reservati
         "sharingProfile": {
             "subscriptionIds": [
                 {
-                    "id": "/subscriptions/{subscription-id1}"
+                    "id": "/subscriptions/{consumer-subscription-id1}"
                 },
                 {
-                    "id": "/subscriptions/{subscription-id2}"
+                    "id": "/subscriptions/{consumer-subscription-id2}"
                 },
                 {
-                    "id": "/subscriptions/{subscription-id3}"
+                    "id": "/subscriptions/{consumer-subscription-id3}"
                 }
             ]
         }
@@ -340,7 +340,7 @@ Update a Capacity Reservation group with sharing profile using `az capacity rese
  az capacity reservation group update
  -n ReservationGroupName 
  -g myResourceGroup
- --sharing-profile "subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+ --sharing-profile "subscriptions/{consumer-subscription-id1}"
  ```
 
 To learn more, go to Azure PowerShell command [AzCapacityReservationGroupUpdate](/cli/azure/capacity/reservation/group)
@@ -355,7 +355,7 @@ The following example is to update an existing capacity reservation group named 
 Update-AzCapacityReservationGroup
 -ResourceGroupName myRG
 -Name myCapacityReservationGroup
--SharingProfile "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "/subscriptions/yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy" 
+-SharingProfile "/subscriptions/{consumer-subscription-id1}", "/subscriptions/{consumer-subscription-id2}" 
 ```
 
 To learn more, see Azure PowerShell command [Update-AzCapacityReservation](/powershell/module/az.compute/update-azcapacityreservationgroup)
@@ -376,7 +376,7 @@ Once unsharing happens, any virtual machine or virtual machine scale set previou
 
 To unshare a capacity Reservation Group with a subscription from Sharing profile, the subscription has to be removed from sharing profile. 
 
-Consider an example where a Capacity Reservation Group was shared with Subscription ID 1, Subscription ID 2, and Subscription ID 3. The goal is to remove Subscription ID 3 only from the sharing profile. 
+Consider an example where a Capacity Reservation Group was shared with Consumer Subscription ID 1, Consumer Subscription ID 2, and Consumer Subscription ID 3. The goal is to remove Consumer Subscription ID 3 only from the sharing profile. 
 When updating the sharing profile of the Capacity Reservation Group, only Subscription ID 3 must be removed and not Subscription ID 1 and Subscription ID 2.
 
 #### [API](#tab/api-3)
@@ -404,10 +404,10 @@ In the request body, include the subscription ID to share the Capacity Reservati
         "sharingProfile": {
             "subscriptionIds": [
                 {
-                    "id": "/subscriptions/{subscription-id1}"
+                    "id": "/subscriptions/{consumer-subscription-id1}"
                 },
                 {
-                    "id": "/subscriptions/{subscription-id2}"
+                    "id": "/subscriptions/{consumer-subscription-id2}"
                 }
             ]
         }
@@ -422,13 +422,13 @@ To learn more, see [Capacity Reservation Groups - Create Or Update](/rest/api/co
 #### [CLI](#tab/cli-3)
 
 You can remove a subscription ID from the sharing profile of an existing Capacity Reservation group  using `az capacity reservation group update`. 
-Following example removes two subscription IDs from sharing profile of an existing Capacity Reservation  that was shared with three subscription IDs: 
+Following example removes two consumer subscription IDs from sharing profile of an existing Capacity Reservation  that was shared with three consumer subscription IDs: 
 
  ```azurecli-interactive
  az capacity reservation group update
  -n ReservationGroupName 
  -g myResourceGroup
- --sharing-profile "subscriptions/yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
+ --sharing-profile "subscriptions/{consumer-subscription-id1}"
  ```
 
 To learn more, go to [AzCapacityReservationGroupUpdate](/cli/azure/capacity/reservation/group).
@@ -436,15 +436,15 @@ To learn more, go to [AzCapacityReservationGroupUpdate](/cli/azure/capacity/rese
 
 #### [PowerShell](#tab/powershell-3)
 
-You can remove a subscriptions ID from the sharing profile of an existing capacity reservation group using  `Update-AzCapacityReservationGroup`.  
+You can remove a consumer subscription ID from the sharing profile of an existing capacity reservation group using  `Update-AzCapacityReservationGroup`.  
 
-The following example is to remove two subscriptions IDs from the sharing profile of an existing capacity reservation group named 'myCapacityReservationGroup' that was shared with three subscriptions IDs. 
+The following example is to remove two subscriptions IDs from the sharing profile of an existing capacity reservation group named 'myCapacityReservationGroup' that was shared with three consumer subscriptions IDs. 
 
 ```powershell-interactive
 Update-AzCapacityReservationGroup
 -ResourceGroupName myRG
 -Name myCapacityReservationGroup
--SharingProfile "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+-SharingProfile "/subscriptions/{consumer-subscription-id1}"
 ```
 
 To learn more, see [Update-AzCapacityReservation](/powershell/module/az.compute/update-azcapacityreservationgroup).
@@ -455,16 +455,16 @@ To learn more, see [Update-AzCapacityReservation](/powershell/module/az.compute/
 
 ### Unsharing a Capacity Reservation Group with all subscriptions
 
-To unshare a Capacity Reservation Group with all subscriptions, remove all subscriptions from the sharing profile. 
+To unshare a Capacity Reservation Group with all consumer subscriptions, remove all subscriptions from the sharing profile. 
 
 #### [API](#tab/api-4)
 
-To remove all subscriptions from the sharing profile of an existing Capacity Reservation group, construct the following PUT request on Microsoft.Compute provider.  
+To remove all consumer subscriptions from the sharing profile of an existing Capacity Reservation group, construct the following PUT request on Microsoft.Compute provider.  
 
-Following example removes all subscriptions from sharing profile to an existing Capacity Reservation group called 'myCapacityReservationGroup'
+Following example removes all consumer subscriptions from sharing profile to an existing Capacity Reservation group called 'myCapacityReservationGroup'
 
 ```rest
-PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01 
+PUT https://management.azure.com/subscriptions/{Provider-subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01 
 ``` 
     
 In the request body, include the subscription ID to share the Capacity Reservation Group in the `sharing profile`
@@ -496,7 +496,7 @@ ARM templates let you deploy groups of related resources. In a single template, 
 
 If your environment meets the prerequisites and you're familiar with using ARM templates, use any of the following templates: 
 
-The following ARM template unshared a capacity reservation group shared with all subscriptions. If your environment meets the prerequisites and you're familiar with using ARM templates, use the following template.
+The following ARM template unshared a capacity reservation group shared with all consumer subscriptions. If your environment meets the prerequisites and you're familiar with using ARM templates, use the following template.
 
 
  ```json
@@ -531,8 +531,8 @@ The following ARM template unshared a capacity reservation group shared with all
 
 #### [CLI](#tab/cli-4)
 
-You can remove all subscription ID from the sharing profile of an existing Capacity Reservation group  using `az capacity reservation group update`.
-Following example removes all subscription IDs from sharing profile of an existing Capacity Reservation  that was previously shared with one or more subscription IDs:
+You can remove all consumer subscription ID from the sharing profile of an existing Capacity Reservation group  using `az capacity reservation group update`.
+Following example removes all consumer subscription IDs from sharing profile of an existing Capacity Reservation  that was previously shared with one or more consumer subscription IDs:
 
  ```azurecli-interactive
  az capacity reservation group update
@@ -546,9 +546,9 @@ To learn more, [AzCapacityReservationGroup](/cli/azure/capacity/reservation/grou
 
 #### [PowerShell](#tab/powershell-4)
 
-You can remove all subscriptions ID from the sharing profile of an existing capacity reservation group using  `Update-AzCapacityReservationGroup`.
+You can remove all consumer subscriptions ID from the sharing profile of an existing capacity reservation group using  `Update-AzCapacityReservationGroup`.
 
-The following example removes all subscriptions IDs from the sharing profile of an existing capacity reservation group named 'myCapacityReservationGroup' that was shared with one or more subscriptions IDs.  
+The following example removes all consumer subscriptions IDs from the sharing profile of an existing capacity reservation group named 'myCapacityReservationGroup' that was shared with one or more consumer subscriptions IDs.  
 
 
 ```powershell-interactive
@@ -566,8 +566,7 @@ To learn more, see [Update-AzCapacityReservation](/powershell/module/az.compute/
 
 ## Deletion of shared Capacity Reservation Group
 
-- Users with sufficient rights only within the subscription creating the shared Capacity Reservation Group can delete the Capacity Reservation Group
-- Users from shared subscriptions can't delete the shared Capacity Reservation Group
+- Users with sufficient rights can delete the shared Capacity Reservation Group 
 - Azure allows a capacity reservation group to be deleted when all the member capacity reservations are deleted
 - Azure allows a capacity reservation to be deleted when no VMs are associated to the CR
 - Unsharing of CRG with shared subscription happens as part of shared Capacity Reservation Group deletion process
@@ -576,10 +575,10 @@ See [Modify a capacity reservation](/azure/virtual-machines/capacity-reservation
 
 ## Using shared Capacity Reservation Group
 
-Once the Capacity Reservation Group is successfully shared, users with sufficient rights from shared subscription can deploy Virtual Machines or Virtual Machine Scale Set in shared Capacity Reservation Group.
+Once the Capacity Reservation Group is successfully shared, users with sufficient rights from consumer subscription can deploy Virtual Machines or Virtual Machine Scale Set in shared Capacity Reservation Group.
 
 > [!NOTE]
-> The subscription deploying the shared CRG will need to hold their own quota for deploying the CRG. Subscription making a deployment in the shared reservation will need to hold its own quota
+> The consumer subscription deploying the shared CRG will need to hold their own quota for deploying the CRG. Subscription making a deployment in the shared reservation will need to hold its own quota
 
 
 ### Availability zone mapping with shared zonal Capacity Reservation Groups 
@@ -589,7 +588,7 @@ For example, subscription A and subscription B can have different logical mappin
 
 Consider the following example: 
 
-If Sub A deploys to AZ1, the deployment goes to physical zone 1. But if Sub B deploys to AZ1, the deployment goes to physical zone 2:
+If Sub A (Provider subscription) deploys to AZ1, the deployment goes to physical zone 1. But if Sub B (consumer subscription) deploys to AZ1, the deployment goes to physical zone 2:
 :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-a-b-mapping.png" alt-text="A screenshot showing subscription A and subscription B having different physical to logical zone mapping.":::
 
 Now consider a Capacity Reservation deployed by Subscription A to logical AZ1. The result is reserved capacity in physical zone 1.  
@@ -648,24 +647,24 @@ To learn more, see [Create a Capacity Reservation](/azure/virtual-machines/capac
 ### [API](#tab/api-5)
 
 ```rest
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/capacityReservationGroups/{capacityReservationGroupName}?api-version=2023-07-01
+GET https://management.azure.com/subscriptions/{Provider-subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/capacityReservationGroups/{capacityReservationGroupName}?api-version=2023-07-01
 ``` 
     
     
 ```json
 {
     "name": "SharedCRG",
-    "id": "/subscriptions/{subscriptionID1}/resourceGroups/{MyRG}/providers/Microsoft.Compute/capacityReservationGroups/SharedCRG",
+    "id": "/subscriptions/{Provider-subscriptionID1}/resourceGroups/{MyRG}/providers/Microsoft.Compute/capacityReservationGroups/SharedCRG",
     "type": "Microsoft.Compute/capacityReservationGroups",
     "location": "eastus2",
     "properties": {
         "capacityReservations": [{
-                "id": "/subscriptions/{subscriptionID1}/resourceGroups/{MyRG}/providers/Microsoft.Compute/capacityReservationGroups/{SharedCRG}/capacityReservations/{CR1}"
+                "id": "/subscriptions/{Provider-subscriptionID1}/resourceGroups/{MyRG}/providers/Microsoft.Compute/capacityReservationGroups/{SharedCRG}/capacityReservations/{CR1}"
             },
         ],
         "sharingProfile": {
             "subscriptionIds": [{
-                    "id": "/subscriptions/{subscriptionID2}"
+                    "id": "/subscriptions/{consumer-subscriptionID2}"
                 }
             ]
         },
@@ -856,7 +855,7 @@ Enables fetching Resource IDs for all capacity reservation group resources share
 $query = @"
 resources
 | where type == "microsoft.compute/capacityreservationgroups"
-| where tostring(properties["sharingProfile"]) contains "c1a24fcd-16ab-441b-882c-f90560a72600"
+| where tostring(properties["sharingProfile"]) contains "{subscriptionId1}"
 | project name, id
 "@
 
