@@ -19,10 +19,10 @@ ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell
 
 On-demand Capacity Reservation Group (CRG) can be shared with other subscriptions. Using this option can make it easier to manage some common configuration needs: 
 
-1. Reuse of capacity reserved if there's disaster recovery –  customers often want assurance of capacity in another region or zone if their main region or zones become unavailable. On-demand capacity reservation is the primary method to gain such assurance. Now the reserved capacity can be shared with subscriptions hosting less critical workloads such as development and testing or batch. When the capacity isn't needed for disaster recovery, reuse by less critical workloads saves on total capacity costs and drives more value from the reserved capacity. 
+1. Reuse of capacity reserved reserved for disaster recovery – reserved capacity is the primary means to obtain capacity assurance in another region or zone in the event of the primary region or zone becoming unavailable. Reservation sharing supports reuse of disaster recovery capacity by subscriptions hosting less critical workloads such as development and testing, or subscriptions used to run job-oriented workloads. Capacity reuse can save on total capacity costs and drive more value from the reserved capacity.
 
 
-2. Central management of capacity – a central operations team often administers quota requests and term commitments as part of cost management. Now reserved capacity needs can be assessed and managed more centrally to align all three aspects of capacity cost management. 
+2. Central management of capacity – quota requests and term commitments are often administered by a central operations team as part of cost management. Now reserved capacity needs can be assessed and managed more centrally to align all three aspects of capacity and cost management.  
 
  
 3. Separate security and capacity concerns - applications implemented with multiple subscriptions for security reasons can operate from a common pool of capacity. This pattern is common with service providers serving their own end customers. 
@@ -33,7 +33,38 @@ On-demand Capacity Reservation Group (CRG) can be shared with other subscription
 
 ## How to share a Capacity Reservation Group
 
-Sharing a Capacity Reservation Group with other subscriptions requires configuration of rights to share the CRG to a target subscription and then rights in the target subscription to see and use a shared CRG. Once completed, a user in the target subscription can reference the shared Capacity Reservation Group in a virtual machine (VM) or virtual machine scale set (VMSS) deployment to obtain Capacity Reservation Service Level Agreement (SLA).
+Sharing reserved capacity requires at least two subscriptions: 
+
+1. Provider subscription – the subscription that creates and hosts the Capacity Reservation Group and member Capacity Reservations. 
+ 
+
+2. Consumer subscription - another subscription that is granted access to the reserved capacity, obtaining the ability to deploy virtual machines (VMs) with the Capacity Reservation Service Level Agreement (SLA). 
+
+
+Configuring a Capacity Reservation Group sharing relationship has three steps: 
+
+1. In the consumer subscription, configure an On Demand capacity Reservation (ODCR) owner from the producer subscription with the following rights: 
+ 
+- “Microsoft.Compute/capacityReservationGroups/share/action” 
+ 
+
+2. In the producer subscription, add the consumer subscription id to the Capacity Reservation Group “shared” list. 
+ 
+
+3. In the producer subscription, configure at least one VM owner in the consumer subscription with the following rights: 
+
+ 
+- Microsoft.Compute/capacityReservationGroups/read 
+
+- Microsoft.Compute/capacityReservationGroups/deploy 
+
+- Microsoft.Compute/capacityReservationGroups/capacityReservations/read 
+
+- Microsoft.Compute/capacityReservationGroups/capacityReservations/deploy 
+
+ 
+Once complete, a VM owner in the consumer subscription can enumerate the shared CRG and deploy VMs by setting the capacityReservationGroup property on Virtual Machines or Virtual Machine Scale Sets. However, the ability to modify the Capacity Reservation Group (CRG) remains only with the ODCR administrator in the producer subscription. 
+
 
 > [!NOTE]
 > There are no extra charges for using the shared Capacity Reservation Group feature. Unused reservations are charged to the subscription that owns the reservation. VM usage is charged to the subscription that uses the capacity reservation as it does today. For details on how Reserved Instance (RI) applies to the feature, see [Use of Reserved Instances with shared Capacity Reservation Groups](#use-of-reserved-instances-with-shared-capacity-reservation-groups) section.
