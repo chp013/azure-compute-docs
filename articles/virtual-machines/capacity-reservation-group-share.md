@@ -45,7 +45,7 @@ Configuring a Capacity Reservation Group sharing relationship has three steps:
 
 1. In the consumer subscription, configure an On Demand capacity Reservation (ODCR) owner from the producer subscription with the rights “Microsoft.Compute/capacityReservationGroups/share/action” .
 
-If the ODCR owner from the Provider subscription has either Owner or Contributor role in the Consumer subscription, then no further action is needed for granting share permission. To learn more on how to assign an Azure role, see [Role Asiignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
+If the ODCR owner from the Provider subscription has either Owner or Contributor Azure role in the Consumer subscription, then no further action is needed for granting share permission. To learn more on how to assign an Azure role, see [Role Asiignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
   
 3. In the producer subscription, add the consumer subscription id to the Capacity Reservation Group “shared” list. 
  
@@ -59,7 +59,9 @@ If the ODCR owner from the Provider subscription has either Owner or Contributor
 
 - Microsoft.Compute/capacityReservationGroups/capacityReservations/read 
 
-- Microsoft.Compute/capacityReservationGroups/capacityReservations/deploy 
+- Microsoft.Compute/capacityReservationGroups/capacityReservations/deploy
+  
+If the VM owner from the Contributor subscription has either Owner or Contributor Azure role in the Provider subscription, then no further action is needed for granting read and deploy permissions. To learn more on how to assign an Azure role, see [Role Asiignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
 
 Once complete, a VM owner in the consumer subscription can enumerate the shared CRG and deploy VMs by setting the capacityReservationGroup property on Virtual Machines or Virtual Machine Scale Sets. However, the ability to modify the Capacity Reservation Group (CRG) remains only with the ODCR administrator in the producer subscription. 
 
@@ -159,7 +161,7 @@ You can share a Capacity Reservation Group on creation by adding subscriptions i
 To share a Capacity Reservation group on creation, construct the following PUT request on Microsoft.Compute provider: 
 
 ```rest
-PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01 
+PUT https://management.azure.com/subscriptions/{provider-subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/capacityReservationGroups/myCapacityReservationGroup?api-version=2024-03-01 
 ``` 
     
 In the request body, include the subscription ID to share the Capacity Reservation Group in the `sharing profile`
@@ -176,9 +178,9 @@ In the request body, include the subscription ID to share the Capacity Reservati
     "properties": {
         "sharingProfile": {
             "subscriptionIds": [{
-                    "id": "/subscriptions/{subscription-id1}"
+                    "id": "/subscriptions/{consumer-subscription-id1}"
                 }, {
-                    "id": "/subscriptions/{subscription-id2}"
+                    "id": "/subscriptions/{consumer-subscription-id2}"
                 }
             ]
         }
