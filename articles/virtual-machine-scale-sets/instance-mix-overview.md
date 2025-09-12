@@ -5,7 +5,7 @@ author: brittanyrowe
 ms.author: brittanyrowe
 ms.topic: concept-article
 ms.service: azure-virtual-machine-scale-sets
-ms.date: 08/19/2025
+ms.date: 09/12/2025
 ms.reviewer: jushiman
 # Customer intent: As a cloud administrator, I want to utilize multiple VM sizes in a scale set with instance mix, so that I can optimize cost, capacity, and flexibility for my diverse workload requirements.
 ---
@@ -89,7 +89,7 @@ Instance mix supports three allocation strategies. Choose the strategy that matc
 
 Before you deploy an instance mix scale set:
 
-- Verify Flexible Orchestration Mode is enabled for the scale set.
+- Verify the scale set is using Flexible Orchestration Mode.
 - Confirm VM quotas for each selected size in the target subscription and region.
 - Ensure all selected VM sizes have consistent architecture, storage interface, local disk configuration, and security profile.
 - Choose an allocation strategy that matches your goals (cost, availability, predictability).
@@ -100,6 +100,30 @@ Before you deploy an instance mix scale set:
 - To ensure balanced load distribution, use VM sizes with similar vCPU and memory.
 - For consistent performance, use VM sizes of similar type (for example, both D-series).
 - For reservation or savings-plan benefits, use `Prioritized` and place reservation-backed sizes at higher priority.
+
+## Compatible VM mix examples
+
+The following examples show VM size combinations that work together based on the documented limitations:
+
+### Premium storage compatible sizes
+These VM sizes all support premium storage and can be mixed together:
+- `Standard_D4s_v5`, `Standard_D8s_v5`, `Standard_D16s_v5` (D-series with premium storage)
+- `Standard_E4s_v5`, `Standard_E8s_v5`, `Standard_E16s_v5` (E-series with premium storage)
+- `Standard_F4s_v2`, `Standard_F8s_v2`, `Standard_F16s_v2` (F-series with premium storage)
+
+### Standard storage compatible sizes
+These VM sizes use standard storage and can be mixed together:
+- `Standard_D4_v5`, `Standard_D8_v5`, `Standard_D16_v5` (D-series with standard storage)
+- `Standard_E4_v5`, `Standard_E8_v5`, `Standard_E16_v5` (E-series with standard storage)
+- `Standard_A4_v2`, `Standard_A8_v2` (A-series with standard storage)
+
+### Architecture and interface considerations
+- **x64 compatible**: Most D, E, F, A, and B series VMs use x64 architecture and NVMe storage interface
+- **Same security profile**: Standard VMs without special security requirements can be mixed
+- **Local disk consistency**: VMs without local disks or with similar local disk configurations
+
+> [!TIP]
+> To verify compatibility, check that your selected VM sizes share the same architecture (x64/Arm64), storage interface (SCSI/NVMe), storage type (premium/standard), and security requirements before creating your instance mix configuration.
 
 ## Limitations and unsupported scenarios
 
