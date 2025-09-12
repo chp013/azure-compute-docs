@@ -460,7 +460,7 @@ After successful migration and verification:
 
 1. **Delete old VM**: Remove the original ADE-encrypted VM
 2. **Delete old disks**: Remove the original encrypted disks
-3. **Update Key Vault access policies**: If you no longer need the Key Vault for disk encryption, update its access policies to disable the disk encryption setting:
+3. **Update Key Vault access policies**: Other disk encryption solutions use standard Key Vault authorization mechanisms. If you no longer need the Key Vault for Azure Disk Encryption, update its access policies to disable the special disk encryption setting:
 
    # [CLI](#tab/CLI-cleanup)
 
