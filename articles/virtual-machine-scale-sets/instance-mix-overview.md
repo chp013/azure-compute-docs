@@ -108,6 +108,7 @@ Before you deploy an instance mix scale set:
 - Up to five VM sizes can be specified.
 - You can't mix VM architectures (for example, Arm64 and x64) in the same instance mix.
 - VMs with different storage interfaces (SCSI vs NVMe) can't be mixed.
+- You can't mix VM SKUs that use premium storage and non-premium storage in the same instance mix.
 - All VMs must share the same Security Profile and local disk configuration.
 - Instance mix doesn't support: Standby Pools, Azure Dedicated Host, or Proximity Placement Groups.
 
