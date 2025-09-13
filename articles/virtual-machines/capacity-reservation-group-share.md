@@ -45,7 +45,6 @@ Configuring a Capacity Reservation Group sharing relationship has three steps:
 
 1. In the consumer subscription, configure an On Demand capacity Reservation (ODCR) owner from the producer subscription with the rights “Microsoft.Compute/capacityReservationGroups/share/action” .
 
-If the ODCR owner from the Provider subscription has either Owner or Contributor Azure role in the consumer subscription, then no further action is needed for granting share permission. To learn more on how to assign an Azure role, see [Role Asiignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
   
 2. In the producer subscription, add the consumer subscription id to the Capacity Reservation Group “shared” list. See [Share a capacity Reservation Group](#share-a-capacity-reservation-group) to learn how to add a consumer subscription to the sharing profile.
  
@@ -61,7 +60,7 @@ If the ODCR owner from the Provider subscription has either Owner or Contributor
 
 - Microsoft.Compute/capacityReservationGroups/capacityReservations/deploy
   
-If the VM owner from the Contributor subscription has either Owner or Contributor Azure role in the Provider subscription, then no further action is needed for granting read and deploy permissions. To learn more on how to assign an Azure role, see [Role Asiignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
+If the ODCR owner and the VM owner already have either Owner or Contributor Azure role in both the Provider and Consumer subscriptions, then no further action is needed for granting permissions. To learn more on how to assign an Azure role, see [Role Asiignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
 
 Once complete, a VM owner in the consumer subscription can enumerate the shared CRG and deploy VMs by setting the capacityReservationGroup property on Virtual Machines or Virtual Machine Scale Sets. However, the ability to modify the Capacity Reservation Group (CRG) remains only with the ODCR administrator in the producer subscription. 
 
