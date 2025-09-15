@@ -35,7 +35,7 @@ This process applies to:
 
 Azure Hybrid Benefit gives you the option to make seamless bidirectional conversions between the two subscription models on eligible VM instances.
 
-You might see combined savings estimated to up to 76% with Azure Hybrid Benefit for Linux and three-year Azure Reserved VM Instances. Savings estimates are based on one standard D2s v5 Azure VM with an RHEL or SLES subscription in the East US region running at a PAYG rate versus a reduced rate for a three-year reserved instance plan. The savings estimates are based on Azure pricing as of September 2024. Prices are subject to change. Actual savings might vary based on location, instance type, or usage.
+You might see combined savings estimated to up to 76% with Azure Hybrid Benefit for Linux and three-year Azure Reserved VM Instances. Savings estimates are based on one standard D2s v5 Azure VM, with an RHEL or SLES subscription, in the East US region, running at a PAYG rate versus a reduced rate for a three-year reserved instance plan. The savings estimates are based on Azure pricing as of September 2024. Prices are subject to change. Actual savings might vary based on location, instance type, or usage.
 
 > [!TIP]
 > Try the [Azure Pricing calculator](https://azure.microsoft.com/pricing/calculator/) to visualize the cost-saving benefits of this feature at a Virtual Machine level.
@@ -91,7 +91,7 @@ Only SLES images *published by SUSE* are eligible to use for the PAYG to BYOS co
 
 The following SUSE-published SLES PAYG offers are eligible for Azure Hybrid Benefit. Links to the offers in Azure Marketplace are included.
 
-Some of the offerings are EOL (see [Product Support Lifecycle Dates](https://www.suse.com/lifecycle)) and only valid with an additional Long Term Servicepack Support (LTSS) subscription which can purchased from SUSE.
+Some of the offerings are EOL (see [Product Support Lifecycle Dates](https://www.suse.com/lifecycle)) and only valid with additional Long Term Servicepack Support (LTSS) subscription, purchased directly from SUSE.
 
 Within these offers, associated plans and images are described as a "Pay-As-You-Go" subscription of SLES.
 
@@ -277,7 +277,7 @@ For SUSE you do not need the extension, the functionality is covered by the SUSE
    az vm get-instance-view -g MyResourceGroup -n myVm --query instanceView.extensions
    ```
 
-1. Red Hat and SUSE: Use the following command to review the license type that's applied to the VM:
+1. Red Hat and SUSE: Use the following command to review the license type applied to the VM:
 
    ```azurecli
    az vm get-instance-view -g MyResourceGroup -n myVM --query licenseType
@@ -611,7 +611,7 @@ If you use the Azure Hybrid Benefit BYOS to PAYG capability for SLES and want mo
 
 * **Q: Can I use a license type of `RHEL_BYOS` with a SLES image or vice versa?**
 
-  * A: No, you can't. Trying to enter a license type that incorrectly matches the distribution running on your VM won't update any billing metadata. But if you accidentally enter the wrong license type, updating your VM again to the correct license type still enables Azure Hybrid Benefit.
+  * A: No, you can't. Trying to enter a license type that incorrectly matches the distribution running on your VM will not update any billing metadata. But if you accidentally enter the wrong license type, updating your VM again to the correct license type still enables Azure Hybrid Benefit.
 
 * **Q: I've registered with Red Hat Cloud Access but still can't enable Azure Hybrid Benefit on my RHEL VMs. What should I do?**
 
