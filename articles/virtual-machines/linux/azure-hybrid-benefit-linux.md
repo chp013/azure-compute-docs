@@ -357,15 +357,15 @@ If the license type of the VM isn't modified, this command returns an empty stri
 
 ---
 
-## Convert PAYG to BYOS
+## Convert between PAYG and BYOS subscription models
 
-If you deployed an Azure Marketplace image by using a PAYG licensing model and want to convert licensing to BYOS, complete the following steps.
+Use the Azure CLI to convert a PAYG Azure Marketplace image to a BYOS subscription model, or to convert a BYOS or migrated VM to a PAYG subscription model.
 
 ---
 
 ### Convert a PAYG image to BYOS by using the Azure CLI
 
-Use the Azure CLI to convert a PAYG Azure Marketplace image to a BYOS subscription model.
+If you deployed an Azure Marketplace image by using a PAYG licensing model and want to convert licensing to BYOS, complete the following steps.
 
 #### [Red Hat (RHEL)](#tab/rhelAzcliByosConv)
 
@@ -404,9 +404,10 @@ Use the Azure CLI to convert a PAYG Azure Marketplace image to a BYOS subscripti
    ```
 > [!NOTE]
 > This is not possible for the SUSE offerings "+ Patching", they can only be moved back to "SLES".
+
 ---
 
-## Convert BYOS to PAYG
+### Convert BYOS to PAYG
 
 Converting to a PAYG subscription model is supported for Azure Marketplace images labeled "BYOS" and for machines imported from on-premises or from a third-party cloud provider.
 
@@ -478,7 +479,9 @@ Converting to a PAYG subscription model is supported for Azure Marketplace image
     az vm update -g myResourceGroup -n myVmName --license-type NONE
     ```
 
-#### Multiple VMs
+---
+
+### Multiple VMs
 
 The following command converts the VMs that are specified in the argument to BYOS:
 
