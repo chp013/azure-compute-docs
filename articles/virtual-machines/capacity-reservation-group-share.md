@@ -603,14 +603,7 @@ The solution is to reconcile the logical to physical mappings for Subscription A
 When using a shared Capacity Reservation Group with zones, all subscriptions have the logical view of availability zones from the CRG subscription which is likely different than the logical view of availability zones from the target subscription. When deploying a VM or VMSS to a shared CRG, the user must remap the zones. To ensure that the Azure resources are efficiently distributed across Availability zones in a Region, each subscription has independent logical zone mapping for Availability zones. This means that logical to physical zone mapping may or may not be the same across subscriptions. 
 
 
-To check the Physical Zone and Logical Zone mapping for your subscription: 
-
-- Open [Subscriptions - List Locations - REST API (Azure Resource Management)](/rest/api/resources/subscriptions/list-locations)
-- Enter your subscription name in the field 'subscriptionId' in the Parameters section
-- Execute 'Run'
-- Check the logical to physical zone mapping information in the JSON returned 
-
-For more information, see [Physical and Logical availability zones](/azure/reliability/availability-zones-overview?tabs=azure-cli#physical-and-logical-availability-zones).
+To check the Physical Zone and Logical Zone mapping for your subscription, see [Subscriptions - List Locations - REST API (Azure Resource Management)](/rest/api/resources/subscriptions/list-locations). For more information, see [Physical and Logical availability zones](/azure/reliability/availability-zones-overview?tabs=azure-cli#physical-and-logical-availability-zones).
 
 ### Use of Reserved Instances with shared Capacity Reservation Groups 
 
