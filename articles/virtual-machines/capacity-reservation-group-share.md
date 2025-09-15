@@ -62,7 +62,7 @@ Configuring a Capacity Reservation Group sharing relationship has three steps:
   
   If the ODCR owner and the VM owner already have either Owner or Contributor Azure role in both the Provider and Consumer subscriptions, then no further action is needed for granting share, read and deploy permissions. To learn more on how to assign an Azure role, see [Role Assignment Steps](/azure/role-based-access-control/role-assignments-steps) or [Azure custom role](/azure/role-based-access-control/custom-roles)
 
-Once complete, a VM owner in the consumer subscription can enumerate the shared CRG and deploy VMs by setting the capacityReservationGroup property on Virtual Machines or Virtual Machine Scale Sets. However, the ability to modify the Capacity Reservation Group (CRG) remains only with the ODCR administrator in the producer subscription. 
+Once complete, a VM owner in the consumer subscription can enumerate the shared CRG (see [View the list of Capacity Reservation Groups for a subscription](view-the-list-of-capacity-reservation-groups-for-a-subscription)) and deploy VMs by setting the capacityReservationGroup property on Virtual Machines or Virtual Machine Scale Sets. However, the ability to modify the Capacity Reservation Group (CRG) remains only with the ODCR administrator in the producer subscription. 
 
 
 > [!NOTE]
@@ -609,7 +609,7 @@ To check the Physical Zone and Logical Zone mapping for your subscription, see [
 
 Sharing a Capacity Reservation Group doesn't alter the scope of any Reserved Instances or Savings Plans. If either the CRG or the VM is deployed from a scope not covered by prepaid discounts, the pay-as-you-go price is charged. 
 
-To share Reserved Instance discounts between a Capacity Reservation Group and VMs deployed from another subscription, the Provider subscription and the Consumer subscription must share the same RI scope. If the two subscriptions share an enrollment or a management group, then Reserved Instances set to the corresponding scope works automatically. 
+To share Reserved Instance discounts between a Capacity Reservation Group and VMs deployed from Consumer subscription, the Provider subscription and the Consumer subscription must share the same RI scope. If the two subscriptions share an enrollment or a management group, then Reserved Instances set to the corresponding scope works automatically. 
 
 #### Associate or create a single Virtual Machine with shared Capacity Reservation Group
 
