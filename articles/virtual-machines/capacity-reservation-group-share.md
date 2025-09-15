@@ -40,6 +40,7 @@ Sharing reserved capacity requires at least two subscriptions:
 
 2. Consumer subscription - another subscription that is granted access to the reserved capacity, obtaining the ability to deploy virtual machines (VMs) with the Capacity Reservation Service Level Agreement (SLA). 
 
+A given Capacity Reservation Group can be shared with up to 100 consumer subscriptions. All the member Capacity Reservations in the Group will be accessible from consumer subscriptions. 
 
 Configuring a Capacity Reservation Group sharing relationship has three steps: 
 
