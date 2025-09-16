@@ -37,6 +37,19 @@ ms.author: mattmcinnes
 
 [!INCLUDE [dcadsv5-series-specs](./includes/dcadsv5-series-specs.md)]
 
+#### [DCasv6-series](#tab/dcasv6)
+[!INCLUDE [dcasv6-series-summary](./includes/dcasv6-series-summary.md)]
+
+[View the full DCasv6-series page](./dcasv6-series.md).
+
+[!INCLUDE [dcasv6-series-specs](./includes/dcasv6-series-specs.md)]
+
+#### [DCadsv6-series](#tab/dcadsv6)
+[!INCLUDE [dcadsv6-series-summary](./includes/dcadsv6-series-summary.md)]
+
+[View the full DCadsv6-series page](./dcadsv6-series.md).
+
+[!INCLUDE [dcadsv6-series-specs](./includes/dcadsv6-series-specs.md)]
 ---
 ### DCesv6 and DCedsv5-series
 #### [DCesv6-series](#tab/dcesv6)
