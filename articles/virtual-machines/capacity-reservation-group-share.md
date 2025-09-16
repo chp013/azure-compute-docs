@@ -144,7 +144,7 @@ Limitations by design:
 Limitations for Public Preview:
 - Portal support isn't yet available; API and other Azure clients are available.  
 - Reprovisioning of Virtual Machine Scale Set VMs using a shared Capacity Reservation Group isn't supported during a zone outage
-- There is a known issue of [Capacity Reservation Groups-List by Subscription ID](#capacity-reservation-groups-list-by-subscription-id) not giving the right response if there is no CRG created in the subscription making the GET call to get the list of shared CRGs. To get the correct response, please ensure you have a local CRG created in the subscription making the API call. Alternatively you can also use the [Azure Resource Graph](#azure-resource-graph) query provided to get the list of CRGs shared with your subscription.
+- There is a known issue of [Capacity Reservation Groups-List by Subscription ID](#capacity-reservation-groups-list-by-subscription-id) not giving the right response if there is no CRG created by subscription making the GET call to get the list of shared CRGs in the region. To get the correct response, please ensure you have a local CRG created in the subscription making the API call in the same region where you would like to enumerate the shared CRGs. Alternatively you can also use the [Azure Resource Graph](#azure-resource-graph) query provided to get the list of CRGs shared with your subscription.
 
 ## Share a Capacity Reservation Group: 
 
@@ -705,7 +705,7 @@ Enables fetching Resource IDs for all capacity reservation group resources share
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/capacityReservationGroups?api-version=2023-09-01&resourceIdsOnly=All 
 ``` 
 
-Enables fetching Resource IDs for all capacity reservation group resources shared with the subscription and created in the subscription: 
+Enables fetching Resource IDs for all capacity reservation group resources created in the subscription: 
 
 ```rest
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/capacityReservationGroups?api-version=2023-09-01&resourceIdsOnly=CreatedInSubscription 
