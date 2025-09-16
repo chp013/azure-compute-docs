@@ -298,7 +298,7 @@ List of high performance computing optimized VM size families:
 
 | Family | Workloads | Series List |
 |----|---|---|
-| [HB-family](./high-performance-compute/hb-family.md) | High memory bandwidth <br> Fluid Dynamics <br> Weather modeling |  [HBv2-series](./high-performance-compute/hbv2-series.md) <br> [HBv3-series](./high-performance-compute/hbv3-series.md) <br> [HBv4-series](./high-performance-compute/hbv4-series.md) | <br> [HBv5-series](./high-performance-compute/hbv5-series.md) |
+| [HB-family](./high-performance-compute/hb-family.md) | High memory bandwidth <br> Fluid Dynamics <br> Weather modeling |  [HBv2-series](./high-performance-compute/hbv2-series.md) <br> [HBv3-series](./high-performance-compute/hbv3-series.md) <br> [HBv4-series](./high-performance-compute/hbv4-series.md) <br> [HBv5-series](./high-performance-compute/hbv5-series.md) |
 | [HC-family](./high-performance-compute/hc-family.md) | High density compute <br> Finite element analysis <br> Molecular dynamics <br> Computational chemistry | [HC-series](./high-performance-compute/hc-series.md) |
 | [HX-family](./high-performance-compute/hx-family.md) | Large memory capacity <br> Electronic Design Automation (EDA) | [HX-series](./high-performance-compute/hx-series.md) |
 
