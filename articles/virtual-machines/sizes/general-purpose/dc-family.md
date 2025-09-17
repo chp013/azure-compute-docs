@@ -33,6 +33,7 @@ ms.author: mattmcinnes
 [View the full DCadsv6-series page](./dcadsv6-series.md).
 [!INCLUDE [dcadsv6-series-specs](./includes/dcadsv6-series-specs.md)]
 
+---
 ### DCasv5 and DCadsv5-series
 #### [DCasv5-series](#tab/dcasv5)
 [!INCLUDE [dcasv5-series-summary](./includes/dcasv5-series-summary.md)]
