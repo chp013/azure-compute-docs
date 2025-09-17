@@ -96,6 +96,7 @@ From this example accumulation of Minutes Not Available, here's the calculation 
     - NC_A100_v4 series
     - NV-series, v3 and newer
     - NVadsA10_v5 series
+    - NVads V710_v5 series
     - NGads V620_v1 series
     - M-series, v2
     - M-series, v3
@@ -121,8 +122,8 @@ From this example accumulation of Minutes Not Available, here's the calculation 
     - Virtual Machine Scale Sets with single placement group set to `true` 
     - Azure Ultra Disk Storage (formerly UltraSSD)
     - VMs resuming from hibernation 
-    - VMs requiring virtual network encryption
 - A pinned subscription can't use the feature.
+- Deployments using On demand capacity reservations are compatible with vNet Encryption when deployed using a supported VM size. For more information on which VM sizes this feature supports, see [Virtual Network Encryption](/azure/virtual-network/virtual-network-encryption-overview).
 - Only the subscription that created the reservation can use it.
 - Reservations are only available to paid Azure customers. Sponsored accounts such as Free Trial and Azure for Students aren't eligible to use this feature.
 - Clouds supported for capacity reservation:
