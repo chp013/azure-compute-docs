@@ -275,7 +275,7 @@ New-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -Galle
 ```powershell
 $inVMAccessCP=Get-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -GalleryName $galleryName   -GalleryInVMAccessControlProfileName $InVMAccessControlProfileName 
 ```
-![Screenshot of the output for Get command for InVMAccessControlProfile.](../images/create-shared-image-gallery/get-command-invmaccesscontrolprofile.png)
+![Screenshot of the output for Get command for InVMAccessControlProfile.](../images/
 
 6. Update Gallery `InVMAccessControlProfile`
 Once the `InVMAccessControlProfile` is created, the only attribute editable is the description. For any other changes, create a new artifact. 
