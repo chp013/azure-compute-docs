@@ -487,3 +487,152 @@ Get-AzGalleryInVMAccessControlProfile -ResourceGroupName "myResourceGroup" -Gall
 
 ![Screenshot of List all InVMAccessControlProfiles.](../images/create-shared-image-gallery/get-list-invmaccesscontrolprofile.png)
 
+### Using CLI
+
+Follow the step-by-step guide below to generate an `InVMAccessControlProfile`:
+
+1. Log in to your Azure Account
+
+
+```cli
+az login
+```
+
+2. Create a resource group in your desired location
+
+```cli
+az group create  --resource-group ResourceGroupForINVM  --location eastus
+```
+
+3. Create a gallery that will house the `InVMAccessControlProfile` resource
+
+```cli
+ az sig create --resource-group ResourceGroupForINVM --gallery-name MyGallery67 --location eastus 
+ ```
+
+3. Create an `InVMAccessControlProfile` under the gallery created in the prior step
+For additional details of commands: [az sig in-vm-access-control-profile | Microsoft Learn](https://learn.microsoft.com/cli/azure/sig/in-vm-access-control-profile?view=azure-cli-latest)
+
+```cli
+ az sig in-vm-access-control-profile create --resource-group ResourceGroupForINVM --gallery-name MyGallery67 --name myInVMAccessControlProfileName --location eastus --os-type Linux  --applicable-host-endpoint WireServer 
+```
+
+Run this command to see additional details about the commands and properties
+
+```cli
+az sig in-vm-access-control-profile create --help 
+```
+
+![Screenshot of getting details about InVMAccessControlProfile properties](../images/create-shared-image-gallery/details-cli.png)
+
+4. Update the `InVMAccessControlProfile`  
+You can only update the description of the `InVMAccessControlProfile`. If additional changes needed, delete the current `InVMAccessControlProfile` and create a new one
+
+```cli
+az sig in-vm-access-control-profile update --resource-group ResourceGroupForINVM --gallery-name MyGallery67 --name myInVMAccessControlProfileName  --description test 
+```
+![Screenshot of updating description of InVMAccessControlProfile](../images/create-shared-image-gallery/update-cli.png)
+
+5. Get operation for `InVMAccessControlProfile`
+
+```cli
+az sig in-vm-access-control-profile show --resource-group ResourceGroupForINVM --gallery-name MyGallery67 --name myInVMAccessControlProfileName 
+```
+![Screenshot of get operation for InVMAccessControlProfile](../images/create-shared-image-gallery/get-cli.png)
+
+6. List all `InVMAccessControlProfile` artifacts
+
+This command shows the list of all `InVMAccessControlProfile` under a specific gallery
+
+```cli
+az sig in-vm-access-control-profile show --resource-group ResourceGroupForINVM --gallery-name MyGallery67 
+```
+![Screenshot of list command to show all `InVMAccessControlProfile` artifacts under a specific gallery](../images/create-shared-image-gallery/list-cli.png)
+
+7. Create `InVMAccessControlProfileVersion`
+
+You must provide a payload to create an `InVMAccessControlProfileVersion`. This payload can be large, especially because of the rule’s property, which may contain extensive configurations.
+Instead of passing individual parts of the rules property directly, we’ve introduced a rules parameter that accepts a JSON file as an input. This approach simplifies the process and keeps the command clean and manageable.
+Here is an example rules.json file:
+
+```
+ 1. { 
+ 2.   "privileges": [
+ 3. 	{
+ 4. 	  "name": "GoalState",
+ 5. 	  "path": "/machine",
+ 6. 	  "queryParameters": {
+ 7. 		"comp": "goalstate"
+ 8. 	  }
+ 9. 	}
+10.   ],
+11.   "roles": [
+12. 	{
+13. 	  "name": "Provisioning",
+14. 	  "privileges": [
+15. 		"GoalState"
+16. 	  ]
+17. 	}
+18.   ],
+19.   "identities": [
+20. 	{
+21. 	  "name": "WinPA",
+22. 	  "userName": "SYSTEM",
+23. 	  "groupName": "Administrators",
+24. 	  "exePath": "C:\\Windows\\System32\\cscript.exe",
+25. 	  "processName": "cscript"
+26. 	}
+27.   ],
+28.   "roleAssignments": [
+29. 	{
+30. 	  "role": "Provisioning",
+31. 	  "identities": [
+32. 		"WinPA"
+33. 	  ]
+34. 	}
+35.   ]
+36. } 
+```
+
+See addtional command details here: [az sig in-vm-access-control-profile-version | Microsoft Learn](https://learn.microsoft.com/cli/azure/sig/in-vm-access-control-profile?view=azure-cli-latest)
+
+Once you have create your version of rules.json file, use the following command to create the `InVMAccessControlProfileVersion`
+
+```cli
+ az sig in-vm-access-control-profile-version create \
+   --resource-group ResourceGroupForINVM  \
+   --gallery-name MyGallery67  \
+   --profile-name myInVMAccessControlProfileName \
+   --version-name 1.0.0 \
+   --mode Audit \
+   --default-access Deny  \
+   --target-regions EastUS2EUAP  \
+   --exclude-from-latest true \
+   --rules @rules.json
+```
+8. Get `InVMAccessControlProfileVersion`
+
+```cli
+az sig in-vm-access-control-profile-version show --resource-group ResourceGroupForINVM --gallery-name MyGallery67 --profile-name myInVMAccessControlProfileName --profile-version 1.0.0
+```
+![Screenshot of get command for profile version](../images/create-shared-image-gallery/version-get.png)
+
+9. List all `InVMAccessControlProfileVersion` artifacts
+
+```cli
+az sig in-vm-access-control-profile-version list --resource-group ResourceGroupForINVM --gallery-name MyGallery67 --profile-name myInVMAccessControlProfileName
+```
+
+10. Delete `InVMAccessControlProfileVersion`
+
+Before you delete any `InVMAccessControlProfileVersion` ensure it is not being used by any `InVMAccessControlProfile` on any Virtual Machine or Vitual Machine Scale Sets.
+```cli
+az sig in-vm-access-control-profile-version delete --resource-group ResourceGroupForINVM --gallery-name MyGallery67 --profile-name myInVMAccessControlProfileName --profile-version 1.0.0
+```
+
+11. Delete `InVMAccessControlProfile`
+
+```cli
+az sig in-vm-access-control-profile delete --resource-group ResourceGroupForINVM --gallery-name MyGallery67 --name myInVMAccessControlProfileName 
+```
+
