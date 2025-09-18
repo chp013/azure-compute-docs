@@ -16,7 +16,7 @@ ms.author: vakavuru
 
 The [azure-vm-utils](https://github.com/Azure/azure-vm-utils) package provides essential utilities and udev rules to optimize the Linux experience on Azure Virtual Machines. This package consolidates device management tools for Small Computer System Interface (SCSI), Non-Volatile Memory Express (NVMe), Microsoft Azure Network Adapter ([MANA](/azure/virtual-network/accelerated-networking-mana-overview)), and Mellanox devices, making disk identification and management more reliable and consistent across different VM configurations.
 
-## NVMe Udev Rules
+## NVMe udev rules
 
 Newer virtual machines (VMs) SKUs on Azure use the NVMe interface for disk management. VMs with NVMe interfaces interpret and present disks differently from VMs that use SCSI interfaces. For details, see [SCSI to NVMe conversion](/azure/virtual-machines/nvme-linux#scsi-vs-nvme). 
 
