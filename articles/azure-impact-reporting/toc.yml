@@ -28,6 +28,16 @@
       href: connectors-troubleshooting-guide.md
     - name: Impact Reporting Connectors FAQ
       href: connectors-faq.md
+- name: Guest Health Reporting (Preview)
+  items:
+  - name: Overview
+    href: ghr-overview.md
+  - name: Report Guest Health Impact
+    href: ghr-impact-report.md
+  - name: HPC Impact Categories
+    href: hpc-impact-categories.md
+  - name: FAQ
+    href: ghr-faq.md
 - name: FAQ
   href: faq.md
   
