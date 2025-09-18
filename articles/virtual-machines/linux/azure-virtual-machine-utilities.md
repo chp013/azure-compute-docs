@@ -44,7 +44,7 @@ For v6 and newer VM sizes with local NVMe disks that support namespace identifie
 - `/dev/disk/azure/local/by-index/<index>`
 - `/dev/disk/azure/local/by-name/<name>`
 
-### SCSI Compatibility
+### SCSI compatibility
 
 To ensure backward compatibility for disks using SCSI controllers, azure-vm-utils supports the following links:
 
