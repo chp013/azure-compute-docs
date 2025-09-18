@@ -33,7 +33,7 @@ Use the latest version of `parted` available for your distribution. If the disk 
 
 Once you've identified the correct disk (for example, `/dev/nvme0n2` for a data disk), you can format it:
 
-### [SCSI](#tab/scsi-format)
+### [SCSI](#tab/scsi)
 
 The following example uses `parted` on `/dev/sdc`, which is where the first data disk typically is on most VMs. Replace `sdc` with the correct option for your disk. It also formats the disk by using the [XFS](https://xfs.wiki.kernel.org/) file system.
 
@@ -43,9 +43,9 @@ sudo partprobe /dev/sdc
 sudo mkfs.xfs /dev/sdc1
 ```
 
-### [NVMe](#tab/nvme-format)
+### [NVMe](#tab/nvme)
 
-The following examples assume you used [azure-vm-utils](azure-virtualmachine-utilities.md) to identify disks as shown in the [identifying disks](./add-disk.md#identifying-disks) section.
+The following examples assume you used [azure-vm-utils](azure-virtual-machine-utilities.md) to identify disks as shown in the [identifying disks](./add-disk.md#identifying-disks) section.
 
 ```bash
 # Format the data disk (replace nvme0n2 with your identified disk from azure-nvme-id)
@@ -67,7 +67,7 @@ sudo mkdir /datadrive
 ```
 Use `mount` to then mount the file system. The following example mounts the `/dev/sdc1` (for SCSI) or `/dev/nvme0n2p1` (for NVMe) partition to the `/datadrive` mount point:
 
-### [SCSI](#tab/scsi-mount)
+### [SCSI](#tab/scsi)
 
 ```bash
 # Mount the disk identified earlier (replace sdc1 with your identified disk's partition)
@@ -80,7 +80,7 @@ You can also use the Azure device path:
 sudo mount /dev/disk/azure/scsi1/lun0-part1 /datadrive
 ```
 
-### [NVMe](#tab/nvme-mount)
+### [NVMe](#tab/nvme)
 
 ```bash
 # Mount the disk identified earlier (replace nvme0n2p1 with your identified disk's partition)
