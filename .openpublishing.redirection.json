@@ -11,6 +11,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/azure-impact-reporting/report-vm-impact.md",
+      "redirect_url": "/azure/azure-impact-reporting/report-impact",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/virtual-machines/workloads/mainframe-rehosting/partner-workloads.md",
       "redirect_url": "/previous-versions/azure/virtual-machines/workloads/mainframe-rehosting/partner-workloads",
       "redirect_document_id": false
