@@ -14,7 +14,7 @@ ms.custom: template-overview #Required; leave this attribute/value as-is.
 > [!IMPORTANT]
 > Guest Health Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-Review health reporting [prerequisites](ghr-overview.md#onboarding-process).
+Review health reporting [prerequisites](guest-health-overview.md#onboarding-process).
 
 ## REST Client Reporting
 ```
@@ -167,6 +167,6 @@ To aid Guest Health Reporting in taking the correct action, you can provide more
 
 ## Next steps
 <!-- Add a context sentence for the following links -->
-* [What is Guest Health Reporting](ghr-overview.md)
-* [HPC Impact Categories](ghr-impact-categories.md)
+* [What is Guest Health Reporting](guest-health-overview.md)
+* [HPC Impact Categories](guest-health-impact-categories.md)
 <!-- - [View previous impact reports](links-how-to.md) -->

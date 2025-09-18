@@ -49,5 +49,5 @@ For regular GHR request to UA/OFR the node, if customer doesn't deallocate VMs i
     ```
 
 ## Next steps
-* [What is Guest Health Reporting](ghr-overview.md)
-* [Report node health](ghr-impact-report.md)
+* [What is Guest Health Reporting](guest-health-overview.md)
+* [Report Node Health](guest-health-impact-report.md)

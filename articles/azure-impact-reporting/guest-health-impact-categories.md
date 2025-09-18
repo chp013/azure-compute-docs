@@ -1,6 +1,6 @@
 ---
 title: Azure HPC Guest Health Reporting - Impact Categories #Required; page title is displayed in search results. Include the brand.
-description: Share supercomputing VM device health status with Azure. #Required; article description that is displayed in search results. 
+description: View GHR impact categories #Required; article description that is displayed in search results. 
 author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
 ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
 ms.service: azure #Required; use either service or product per approved list. 
@@ -54,6 +54,6 @@ There are three main types of HPC impact categories:
 
 ## Next steps
 <!-- Add a context sentence for the following links -->
-* [What is Guest Health Reporting](ghr-overview.md)
-* [Report node health](ghr-impact-report.md)
+* [What is Guest Health Reporting](guest-health-overview.md)
+* [Report Node Health](guest-health-impact-report.md)
 <!-- - [View previous impact reports](links-how-to.md) -->
