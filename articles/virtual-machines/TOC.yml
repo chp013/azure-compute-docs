@@ -1825,6 +1825,14 @@
         href: ./windows/attach-managed-disk-portal.yml
       - name: Change temp disk drive letter
         href: ./windows/change-drive-letter.md
+  - name: Format and mount a disk
+    items:
+    - name: Linux
+      items:
+      - name: Managed disks
+        href: ./linux/disks-format-mount-data-disks-linux.md
+      - name: Temporary disks
+        href: ./linux/disks-format-mount-temp-disks-linux.md
   - name: Detach a disk
     items:
     - name: Linux
@@ -1862,6 +1870,8 @@
       href: ./linux/azure-to-guest-disk-mapping.md
     - name: Map managed disk to guest disk - Windows
       href: ./windows/azure-to-guest-disk-mapping.md
+    - name: Azure VM utilities - Linux
+      href: ./linux/azure-virtual-machine-utilities.md
     - name: File storage
       items:
       - name: Copy files to a VM
