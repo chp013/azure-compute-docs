@@ -9,7 +9,7 @@ ms.date: 09/18/2025
 ms.custom: template-overview 
 ---
 
-# Report Guest Health Status (Preview)
+# Report Guest Health status (preview)
 > [!IMPORTANT]
 > Guest Health Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
@@ -131,7 +131,7 @@ timeout 100 gcc -o /root/scripts/GPU/kvp_client /root/scripts/GPU/kvp_client.c
 timeout 60 sudo /root/scripts/GPU/kvp_client | grep "PhysicalHostName;" | awk '{print$4}' | tee PhysicalHostName.txt
 ```
 
-### HPC Additional Properties
+### HPC additional properties
 
 To aid Guest Health Reporting in taking the correct action, you can provide more information about the issue using the additionalProperties field. <br>
 `Resource.Hpc.*` fields:

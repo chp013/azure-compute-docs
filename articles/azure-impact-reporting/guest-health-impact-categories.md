@@ -9,7 +9,7 @@ ms.date: 09/18/2025
 ms.custom: template-overview 
 ---
 
-# Guest Health Reporting Impact Categories (Preview)
+# Guest Health Reporting impact categories (preview)
 > [!IMPORTANT]
 > Guest Health Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
@@ -20,7 +20,7 @@ There are three main types of HPC impact categories:
 2. `Reboot`: Request a node reboot.
 3. `Unhealthy`: Issues are observed on the node. Node should be taken out of production for further diagnostics and repair.
 
-## Detailed HPC Impact Categories
+## Detailed HPC impact categories
 
 | Category                                          | Description                                   | Mark OFR |
 |--------------------------------------------------|-----------------------------------------------|----------|

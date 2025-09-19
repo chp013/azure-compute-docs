@@ -9,13 +9,13 @@ ms.date: 09/18/2025
 ms.custom: template-overview 
 ---
 
-# What is Guest Health Reporting (GHR)? (Preview)
+# What is Guest Health Reporting (GHR)? (preview)
 > [!IMPORTANT]
 > Guest Health Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 The Guest Health Reporting service allows Azure supercomputing customers to provide VM device health statuses to Azure. Based on these status updates, Azure HPC can make decisions to remove problematic nodes out of production and send them for repair.
 
-## Onboarding Process
+## Onboarding process
 
 To use Guest Health Reporting to report the health of a node, the subscription that hosts the resources needs to be onboarded to the Impact service using the following steps:
 
@@ -29,7 +29,7 @@ To use Guest Health Reporting to report the health of a node, the subscription t
 5. Go to the left pane -> Settings -> Overview and retrieve your Subscription ID and send it to the Azure team member assisting you to complete the onboarding process.
 6. **Wait for confirmation that the onboarding process is complete before proceeding with using GHR requests submission.**
 
-## Access Management and Role assignment
+## Access management and role assignment
 
 To submit GHR requests from a resource within Azure, the appropriate access management roles must be assigned.
 1. Create a User or System Assigned Managed Identity.

@@ -9,7 +9,7 @@ ms.date: 09/18/2025
 ms.custom: template-overview 
 ---
 
-# Azure Guest Health Reporting FAQ (Preview)
+# Azure Guest Health Reporting FAQ (preview)
 > [!IMPORTANT]
 > Azure Guest Health Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
@@ -29,7 +29,7 @@ For regular GHR request to UA/OFR the node, if customer doesn't deallocate VMs i
     az storage blob upload –file “path/to/local/file.zip” –blob-url
     https://[storageAccount].blob.core.windows.net/[container]/[datetime]_[randomHash].zip?[SasToken]
     ```
-3. Trim off SAS token and send report with `LogUrl` filed"
+3. Trim off SAS token and send report with `LogUrl` filed:
     ```json
     {
         "properties": {
