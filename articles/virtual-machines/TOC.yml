@@ -577,6 +577,8 @@
           href: ./sizes/gpu-accelerated/nvv3-series.md
         - name: NVv4 series
           href: ./sizes/gpu-accelerated/nvv4-series.md
+        - name: NVv4 series retirement
+          href: ./sizes/gpu-accelerated/nvv4-retirement.md
         - name: NVadsA10_v5 series
           href: ./sizes/gpu-accelerated/nvadsa10v5-series.md
         - name: Nvads V710 v5-series
