@@ -13,6 +13,8 @@ ms.date:     06/13/2025
 ---
 
 # Migrate your NVv4-series virtual machines by September 30, 2026
+> [!NOTE]
+> There is a known resize operation error that occurs when migrating from the NVv4-series to the NVadsV710_v5-series. Microsoft is working on a fix that will be implemented Q2 FY26. In the meantime, we suggest that you follow this [workaround](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---).
 
 On September 30, 2026, Microsoft Azure will retire the Standard_NV4as_v4, Standard_NV8as_v4, Standard_NV16as_v4, and Standard_NV32as_v4 virtual machines (VMs) in NVv4-series virtual machines (VMs). To avoid any disruption to your service, we recommend that you change the VM sizing for your workloads from the current NVv4-series VMs to the newer VM series in the same NV product line.
 
