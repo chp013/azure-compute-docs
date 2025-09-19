@@ -1,6 +1,6 @@
 ---
 title: Azure HPC Guest Health Reporting - Impact Categories 
-description: View GHR impact categories
+description: View Guest Health Reporting impact categories.
 author: rolandnyamo 
 ms.author: ronyamo 
 ms.service: azure 
@@ -10,15 +10,17 @@ ms.custom: template-overview
 ---
 
 # Guest Health Reporting impact categories (preview)
+
 > [!IMPORTANT]
-> Guest Health Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> Guest Health Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 To properly report issues to Guest Health Reporting, you must use an impact category that starts with `Resource.HPC`.
 
 There are three main types of HPC impact categories:
-1. `Reset`: Request a refresh of the node health state.
-2. `Reboot`: Request a node reboot.
-3. `Unhealthy`: Issues are observed on the node. Node should be taken out of production for further diagnostics and repair.
+
+* `Reset`: Request a refresh of the node health state.
+* `Reboot`: Request a node reboot.
+* `Unhealthy`: Issues are observed on the node. Node should be taken out of production for further diagnostics and repair.
 
 ## Detailed HPC impact categories
 
@@ -51,6 +53,7 @@ There are three main types of HPC impact categories:
 | Resource.Hpc.Unhealthy.GPUMemoryBWFailure        | GPU memory bandwidth failure                  | Yes      |
 | Resource.Hpc.Unhealthy.CPUPerformance            | CPU performance issue                         | Yes      |
 
-## Next steps
+## Related content
+
 * [What is Guest Health Reporting](guest-health-overview.md)
 * [Report Node Health](guest-health-impact-report.md)

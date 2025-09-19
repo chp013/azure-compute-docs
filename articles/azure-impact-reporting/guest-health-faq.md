@@ -10,14 +10,15 @@ ms.custom: template-overview
 ---
 
 # Azure Guest Health Reporting FAQ (preview)
+
 > [!IMPORTANT]
-> Azure Guest Health Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> Guest Health Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 Here are answers to common questions about Azure Guest Health Reporting.
 
-## What happens if I don’t deallocate the node after sending the request to GHR?
+## What happens if I don't deallocate the node after sending the request to Guest Health Reporting?
 
-For regular GHR request to UA/OFR the node, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will automatically get into HI (HumanInvestigate). For reset request, there's no timeout as it doesn't require customers to deallocate VMs. For reboot request, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will be set to Available, means the customer's request to reboot the node will get ignored.
+For regular Guest Health Reporting request to UA/OFR the node, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will automatically get into HI (HumanInvestigate). For reset request, there's no timeout as it doesn't require customers to deallocate VMs. For reboot request, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will be set to Available, means the customer's request to reboot the node will get ignored.
 
 ## How do I upload logs?
 
@@ -25,11 +26,14 @@ For regular GHR request to UA/OFR the node, if customer doesn't deallocate VMs i
 `/subscriptions/[subscriotionId]/providers/Microsft.Impact/getUploadtoken?api-version=2025-01-01preview`.
 
 2. Upload logs using the upload URL/token:
+
     ```bash
-    az storage blob upload –file “path/to/local/file.zip” –blob-url
+    az storage blob upload –file "path/to/local/file.zip" –blob-url
     https://[storageAccount].blob.core.windows.net/[container]/[datetime]_[randomHash].zip?[SasToken]
     ```
+
 3. Trim off SAS token and send report with `LogUrl` filed:
+
     ```json
     {
         "properties": {
@@ -47,6 +51,7 @@ For regular GHR request to UA/OFR the node, if customer doesn't deallocate VMs i
 
     ```
 
-## Next steps
+## Related content
+
 * [What is Guest Health Reporting](guest-health-overview.md)
 * [Report Node Health](guest-health-impact-report.md)
