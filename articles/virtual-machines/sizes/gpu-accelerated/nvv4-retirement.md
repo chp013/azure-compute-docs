@@ -15,6 +15,7 @@ ms.date:     06/13/2025
 # Migrate your NVv4-series virtual machines by September 30, 2026
 > [!NOTE]
 > There is a known resize operation error that occurs when migrating from the NVv4-series to the NVadsV710_v5-series. Microsoft is working on a fix that will be implemented Q2 FY26. In the meantime, we suggest that you follow this [workaround](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---).
+
 > [!NOTE]
 > We are ending 1-year and 3-year RI purchases for the NVv4-series starting October 1, 2025. 
 
