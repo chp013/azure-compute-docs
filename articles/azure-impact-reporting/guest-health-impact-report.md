@@ -1,13 +1,12 @@
 ---
-title: Azure Guest Health Reporting - Report Node Health #Required; page title is displayed in search results. Include the brand.
-description: Share supercomputing VM device health status with Azure. #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.topic: overview #Required; leave this attribute/value as-is.
-ms.date: 09/18/2025 #Required; mm/dd/yyyy format.
-ms.custom: template-overview #Required; leave this attribute/value as-is.
-# Customer intent: As a cloud administrator, I want to utilize impact reporting tools to document performance issues in my Azure workloads, so that I can quickly identify and address platform-related problems to maintain service reliability.
+title: Azure Guest Health Reporting - Report Node Health 
+description: Share supercomputing VM device health status with Azure. 
+author: rolandnyamo 
+ms.author: ronyamo 
+ms.service: azure 
+ms.topic: overview 
+ms.date: 09/18/2025 
+ms.custom: template-overview 
 ---
 
 # Report Guest Health Status (Preview)
@@ -44,7 +43,7 @@ Descriptions of URI parameters are as follows:
 }
 
 ```
---
+
 ### [Missing GPU](#tab/missingGPU/)
 
 ```json
@@ -67,7 +66,7 @@ Descriptions of URI parameters are as follows:
 }
 
 ```
---
+
 ### [Investigate Node](#tab/investigate/)
 
 ```json
@@ -86,7 +85,7 @@ Descriptions of URI parameters are as follows:
 }
 
 ```
---
+
 ### [Unhealthy Non GPU](#tab/unhealthynongpu/)
 
 ```json
@@ -105,7 +104,7 @@ Descriptions of URI parameters are as follows:
 }
 
 ```
---
+
 
 | **Field Name**       | **Required** | **Data Type** | **Description**                                                                 |
 |-----------------------|--------------|---------------|---------------------------------------------------------------------------------|
@@ -130,6 +129,7 @@ Descriptions of URI parameters are as follows:
 timeout 100 gcc -o /root/scripts/GPU/kvp_client /root/scripts/GPU/kvp_client.c
 timeout 60 sudo /root/scripts/GPU/kvp_client | grep "PhysicalHostName;" | awk '{print$4}' | tee PhysicalHostName.txt
 ```
+---
 
 ### HPC Additional Properties
 
@@ -166,7 +166,5 @@ To aid Guest Health Reporting in taking the correct action, you can provide more
 
 
 ## Next steps
-<!-- Add a context sentence for the following links -->
 * [What is Guest Health Reporting](guest-health-overview.md)
 * [HPC Impact Categories](guest-health-impact-categories.md)
-<!-- - [View previous impact reports](links-how-to.md) -->

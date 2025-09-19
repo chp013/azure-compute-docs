@@ -1,13 +1,12 @@
 ---
-title: Azure HPC Guest Health Reporting - FAQ #Required; page title is displayed in search results. Include the brand.
-description: Frequently asked questions for Azure Guest Health Reporting. #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
-ms.topic: faq #Required; leave this attribute/value as-is.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.date: 09/18/2025 #Required; mm/dd/yyyy format
-ms.custom: template-overview #Required; leave this attribute/value as-is.
-# Customer intent: As an Azure administrator, I want to troubleshoot and configure Azure Impact Reporting Connectors, so that I can ensure successful integration with Azure Monitor and manage permissions effectively.
+title: Azure HPC Guest Health Reporting - FAQ 
+description: Frequently asked questions for Azure Guest Health Reporting.
+author: rolandnyamo 
+ms.author: ronyamo 
+ms.topic: faq 
+ms.service: azure 
+ms.date: 09/18/2025 
+ms.custom: template-overview 
 ---
 
 # Azure Guest Health Reporting FAQ (Preview)
@@ -18,19 +17,19 @@ Here are answers to common questions about Azure Guest Health Reporting.
 
 ## What happens if I don’t deallocate the node after sending the request to GHR?
 
-For regular GHR request to UA/OFR the node, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will automatically get into HI (HumanInvestigate). For reset request, there's no timeout as it doesn't require customers to deallocate VMs. For reboot request, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will be set to Available, means the customer's request to reboot the node will get ignored
+For regular GHR request to UA/OFR the node, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will automatically get into HI (HumanInvestigate). For reset request, there's no timeout as it doesn't require customers to deallocate VMs. For reboot request, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will be set to Available, means the customer's request to reboot the node will get ignored.
 
 ## How do I upload logs?
 
 1. Get access token to customers storage account/container via
-`/subscriptions/[subscriotionId]/providers/Microsft.Impact/getUploadtoken?api-version=2025-01-01preview`
+`/subscriptions/[subscriotionId]/providers/Microsft.Impact/getUploadtoken?api-version=2025-01-01preview`.
 
-2. Upload logs using the upload URL/token
+2. Upload logs using the upload URL/token:
     ```bash
     az storage blob upload –file “path/to/local/file.zip” –blob-url
     https://[storageAccount].blob.core.windows.net/[container]/[datetime]_[randomHash].zip?[SasToken]
     ```
-3. Trim off SAS token and send report with `LogUrl` filed
+3. Trim off SAS token and send report with `LogUrl` filed"
     ```json
     {
         "properties": {

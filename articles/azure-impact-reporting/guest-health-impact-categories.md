@@ -1,13 +1,12 @@
 ---
-title: Azure HPC Guest Health Reporting - Impact Categories #Required; page title is displayed in search results. Include the brand.
-description: View GHR impact categories #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.topic: overview #Required; leave this attribute/value as-is.
-ms.date: 09/18/2025 #Required; mm/dd/yyyy format.
-ms.custom: template-overview #Required; leave this attribute/value as-is.
-# Customer intent: As a cloud administrator, I want to utilize impact reporting tools to document performance issues in my Azure workloads, so that I can quickly identify and address platform-related problems to maintain service reliability.
+title: Azure HPC Guest Health Reporting - Impact Categories 
+description: View GHR impact categories
+author: rolandnyamo 
+ms.author: ronyamo 
+ms.service: azure 
+ms.topic: overview 
+ms.date: 09/18/2025 
+ms.custom: template-overview 
 ---
 
 # Guest Health Reporting Impact Categories (Preview)
@@ -53,7 +52,5 @@ There are three main types of HPC impact categories:
 | Resource.Hpc.Unhealthy.CPUPerformance            | CPU performance issue                         | Yes      |
 
 ## Next steps
-<!-- Add a context sentence for the following links -->
 * [What is Guest Health Reporting](guest-health-overview.md)
 * [Report Node Health](guest-health-impact-report.md)
-<!-- - [View previous impact reports](links-how-to.md) -->
