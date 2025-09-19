@@ -104,6 +104,7 @@ Descriptions of URI parameters are as follows:
 }
 
 ```
+---
 
 
 | **Field Name**       | **Required** | **Data Type** | **Description**                                                                 |
@@ -129,7 +130,6 @@ Descriptions of URI parameters are as follows:
 timeout 100 gcc -o /root/scripts/GPU/kvp_client /root/scripts/GPU/kvp_client.c
 timeout 60 sudo /root/scripts/GPU/kvp_client | grep "PhysicalHostName;" | awk '{print$4}' | tee PhysicalHostName.txt
 ```
----
 
 ### HPC Additional Properties
 
