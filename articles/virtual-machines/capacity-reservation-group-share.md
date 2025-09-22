@@ -150,8 +150,6 @@ Limitations for Public Preview:
 
 Capacity Reservation Groups can be shared by adding Consumer subscriptions in the sharing profile of new or existing Capacity Reservation Groups. Once shared, the subscriptions which are part of the sharing profile can deploy Virtual Machines or Virtual Machine Scale Sets in the shared Capacity Reservation Group. 
 
-The Capacity Reservation Group can be shared with subscriptions who are in the same or different Entra ID of the subscription who creates the Capacity Reservation Group. 
-
 ### Add sharing profile on CRG creation
 
 You can share a Capacity Reservation Group on creation by adding subscriptions in the sharing profile.
