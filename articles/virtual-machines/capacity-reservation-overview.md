@@ -58,7 +58,7 @@ From this example accumulation of Minutes Not Available, here's the calculation 
 - Creating capacity reservations is currently limited to certain VM series and sizes. The compute [Resource SKUs list](/rest/api/compute/resource-skus/list) advertises the set of supported VM sizes.
 - The following VM series support the creation of capacity reservations:
 
-  Reserved capacity for these VM series supports high availability using multi-zone or fault domains. The fault domain count for a Virtual Machine Scale Sets is limited to 3, enforced at deployment.  
+  Reserved capacity for these VM series supports high availability using multi-zone or fault domains. The fault domain count for a Virtual Machine Scale Set is limited to 3, enforced at deployment.  
 
   | Type | VM Series |
   | ----- | ----------- |
