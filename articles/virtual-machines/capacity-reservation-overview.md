@@ -63,7 +63,7 @@ From this example accumulation of Minutes Not Available, here's the calculation 
   | Type | VM Series |
   | ----- | ----------- |
   | General Purpose (Burstable) | B <br> Bsv2 (Intel), Basv2 (AMD), Bpsv2 (ARM) |
-  | General Purpose (General use A, D) | Av2 <br> D and Ds series, v2 and newer (Intel) <br> Dd and Dds, v4 and newer (Intel, local disk) <br> Dls and Dlds, v5 and newer (Intel, low memory) <br> Da and Das, v4 series and newer (AMD) <br> Dads, v5 and newer (AMD, local disk) <br> Dalsv6 and Daldsv6 (AMD) <br> Dps and Dpds series, v5 and newer (ARM) <br> Dpls and Dplds series, v5 and newer (ARM, low memory) |
+  | General Purpose (General use A, D) | Av2 (Intel) <br> D and Ds series, v2 and newer (Intel) <br> Dd and Dds, v4 and newer (Intel, local disk) <br> Dls and Dlds, v5 and newer (Intel, low memory) <br> Da and Das, v4 series and newer (AMD) <br> Dads, v5 and newer (AMD, local disk) <br> Dalsv6 and Daldsv6 (AMD) <br> Dps and Dpds series, v5 and newer (ARM) <br> Dpls and Dplds series, v5 and newer (ARM, low memory) |
   | General Purpose (General use, high memory, E )| E and Es, all versions (Intel) <br> Ed and Eds series, v4 and newer (Intel, local disk) <br> Ebdsv5 and Ebsv5 series (Intel, block storage) <br> Ea and Eas, v4 and newer (AMD) <br> Eads, v5 series (AMD, local disk) <br> Eps and Epds series, v5 and newer (ARM) |
   | General Purpose (General use, compute optimized, F) | Fsv2 series (Intel) <br> Fasv6 and Falsv6 series (AMD)  <br> Famsv6 (AMD) <br> FX series (Intel) <br> FXmsv2 (Intel) <br> FXmdsv2 (Intel) |
   | Storage optimized| Lsv2 (Intel)-Preview <br> Lsv3 (Intel) <br> Lasv3 (AMD) |
