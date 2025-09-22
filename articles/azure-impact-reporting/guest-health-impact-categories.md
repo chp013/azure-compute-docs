@@ -47,7 +47,7 @@ There are three main types of impact categories for high-performance computing (
 | `Resource.Hpc.Unhealthy.HpcDcgmiThermalReport`     | DCGMI reports thermal violations.              | Yes      |
 | `Resource.Hpc.Unhealthy.ECCPageRetirementTableFull`| Page retirements for double-bit ECC errors are over the threshold. | Yes |
 | `Resource.Hpc.Unhealthy.DBEOverLimit`              | GPU has more than 10 retired pages for double-bit ECC errors in seven days. | Yes |
-| `Resource.Hpc.Unhealthy.GpuXIDError`               | GPU reports a Xid error other than 48, 79 , 94, or 95. | Yes      |
+| `Resource.Hpc.Unhealthy.GpuXIDError`               | GPU reports a Xid error other than 48, 79, 94, or 95. | Yes      |
 | `Resource.Hpc.Unhealthy.AmdGpuResetFailed`         | AMD GPU error for an unrecoverable reset failure. | Yes      |
 | `Resource.Hpc.Unhealthy.EROTFailure`               | Failure of GPU memory External Root of Trust (eRoT).                       | Yes      |
 | `Resource.Hpc.Unhealthy.GPUMemoryBWFailure`        | Failure of GPU memory bandwidth.                  | Yes      |

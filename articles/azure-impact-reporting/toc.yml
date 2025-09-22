@@ -1,34 +1,34 @@
-- name: Azure Impact Reporting (Preview)
+- name: Azure Impact Reporting Preview
   href: index.yml
 - name: Overview
   href: overview.md
 - name: Quickstarts
   items:
-  - name: Report A Resource Impact
+  - name: Report a resource impact
     href: report-impact.md
-  - name: View Reported Impacts
+  - name: View reported impacts
     href: view-impact-insights.md
-- name: Tutorials (Preview)
+- name: Tutorials
   items:
-  - name: Report A Resource Impact
+  - name: Report a resource impact
     href: report-impact.md
-  - name: Report Impacts Using a Logic App
+  - name: Report impacts by using a logic app
     href: creating-logic-app.md
-  - name: View Reported Impacts
+  - name: View reported impacts
     href: view-impact-insights.md
-  - name: View Allowed Impact Categories
+  - name: View allowed impact categories
     href: view-impact-categories.md
-- name: Impact Reporting Connector for Azure Monitor (Preview)
+- name: Impact connectors for Azure Monitor (preview)
   items:
     - name: Overview
       href: azure-monitor-connector.md
-    - name: Create an Impact Connector for Azure Monitor Alerts
+    - name: Create an impact connector for Azure Monitor alerts
       href: create-azure-monitor-connector.md
-    - name: Impact Connector for Azure Monitor TSG
+    - name: Troubleshoot impact connectors for Azure Monitor
       href: connectors-troubleshooting-guide.md
-    - name: Impact Reporting Connectors FAQ
+    - name: FAQ for impact connectors
       href: connectors-faq.md
-- name: Guest Health Reporting (Preview)
+- name: Guest Health Reporting (preview)
   items:
   - name: Overview
     href: guest-health-overview.md
@@ -36,7 +36,7 @@
     href: guest-health-impact-report.md
   - name: Impact categories
     href: guest-health-impact-categories.md
-  - name: FAQ
+  - name: FAQ for Guest Health Reporting
     href: guest-health-faq.md
 - name: FAQ
   href: faq.md
