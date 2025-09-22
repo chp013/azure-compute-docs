@@ -32,9 +32,9 @@
   items:
   - name: Overview
     href: guest-health-overview.md
-  - name: Report Guest Health Impact
+  - name: Report node health
     href: guest-health-impact-report.md
-  - name: HPC Impact Categories
+  - name: Impact categories
     href: guest-health-impact-categories.md
   - name: FAQ
     href: guest-health-faq.md
