@@ -26,9 +26,7 @@ To use Guest Health Reporting to report the health of a node, you need to onboar
 
    :::image type="content" source="images/guest-health-onboarding-subscription.png" alt-text="Screenshot that shows subscription settings with the link for resource providers.":::
 
-1. Search for and select the **Microsoft.Impact** resource provider.
-
-1. Select **Register**.
+1. Search for and select the **Microsoft.Impact** resource provider, and then select **Register**.
 
    :::image type="content" source="images/guest-health-registration.png" alt-text="Screenshot that shows the button for registering a resource provider.":::
 
@@ -40,7 +38,7 @@ To use Guest Health Reporting to report the health of a node, you need to onboar
 
 1. On the left pane, go to **Settings** > **Overview**. Retrieve your subscription ID and send it to the Azure team member who's helping you complete the onboarding process.
 
-Wait for confirmation that the onboarding process is complete before you proceed with submitting Guest Health Reporting requests.
+1. Wait for confirmation that the onboarding process is complete before you proceed with submitting Guest Health Reporting requests.
 
 ## Access management and role assignment
 
@@ -48,7 +46,7 @@ To submit Guest Health Reporting requests from a resource within Azure, you must
 
 1. Create a user-assigned or system-assigned managed identity.
 
-2. On the left menu, go to **Access control (IAM)** and select **Add role assignment**.
+2. On the left menu, go to **Access control (IAM)**. Then select **Add role assignment**.
 
    :::image type="content" source="images/guest-health-add-role.png" alt-text="Screenshot that shows selections for adding a role assignment.":::
 
@@ -58,9 +56,9 @@ To submit Guest Health Reporting requests from a resource within Azure, you must
 
 4. Go to the **Members** tab. Search for and select the user identity, app ID, or  service principal. Then select **Members**. The app ID is the service principal for the app to be used for reporting.
 
-5. Review and assign the app ID or managed identity.
+5. Review and assign the app ID or the managed identity.
 
 ## Related content
 
 * [Report node health by using Guest Health Reporting](guest-health-impact-report.md)
-* [Guest Health Reporting impact categories](guest-health-impact-categories.md)
+* [Impact categories for Guest Health Reporting](guest-health-impact-categories.md)

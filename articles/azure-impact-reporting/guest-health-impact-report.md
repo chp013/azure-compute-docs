@@ -134,11 +134,13 @@ timeout 100 gcc -o /root/scripts/GPU/kvp_client /root/scripts/GPU/kvp_client.c
 timeout 60 sudo /root/scripts/GPU/kvp_client | grep "PhysicalHostName;" | awk '{print$4}' | tee PhysicalHostName.txt
 ```
 
-## HPC additional properties
+## Additional HPC properties
 
 To aid Guest Health Reporting in taking the correct action, you can provide more information about the issue by using the `additionalProperties` field for high-performance computing (HPC).
 
-Use these `Resource.Hpc.*` fields:
+### Resource HPC
+
+`Resource.Hpc.*` fields:
 
 * `LogUrl` (string): URL to the relevant log file.
 * `PhysicalHostName` (string): Physical host name of the node (alphanumeric).
@@ -147,33 +149,29 @@ Use these `Resource.Hpc.*` fields:
 > [!IMPORTANT]
 > All HPC impact requests must include either `PhysicalHostName` (preferred) or `VmUniqueId`. The VM in question can be from any subscription. It isn't limited to the VMs in the subscription that you're reporting from.
 
-These `Resource.Hpc.Unhealthy.*` fields are specific to GPUs:
+`Resource.Hpc.Unhealthy.*` fields specific to GPUs:
 
 * `Manufacturer` (string): Manufacturer of the GPU.
 * `SerialNumber` (string): Serial number of the GPU.
 * `ModelNumber` (string): Model number of the GPU.
 * `Location` (string): Physical location of the GPU.
 
-Use this `Resource.Hpc.Investigate.*` field:
+`Resource.Hpc.Investigate.*` field:
 
 * `CollectTelemetry` (Boolean, `0`/`1`): Tell HPC to collect telemetry from the affected VM.
 
-Use this `gpu_row_remap_failure` field:
+### GPU row remapping
+
+`gpu_row_remap_failure` field:
 
 * `SerialNumber` (string): Serial number of the GPU.
+* Flag: `gpu_row_remap_failure: GPU # (SXM# SN:#): row remap failure. This is an official end of life condition: decommission the GPU`
 
-The following flag relates to `gpu_row_remap_failure`:
-
-`gpu_row_remap_failure: GPU # (SXM# SN:#): row remap failure. This is an official end of life condition: decommission the GPU`
-
-Use these `gpu_row_remap_*` fields:
+`gpu_row_remap_*` fields:
 
 * `UCE` (string): Count of uncorrectable errors in histogram data.
 * `SerialNumber` (string): Serial number of the GPU.
-
-The following flag relates to `gpu_row_remap_*`:
-
-`gpu_row_remap_*: GPU # (SXM# SN:#): bank with multiple row remaps: partial 1, low 0, none 0. CE: 0, UCE: #`
+* Flag: `gpu_row_remap_*: GPU # (SXM# SN:#): bank with multiple row remaps: partial 1, low 0, none 0. CE: 0, UCE: #`
 
 > [!IMPORTANT]
 > We advise you to include detailed row-remapping fields with the specified information in their claims to expedite node restoration.
@@ -181,4 +179,4 @@ The following flag relates to `gpu_row_remap_*`:
 ## Related content
 
 * [What is Guest Health Reporting?](guest-health-overview.md)
-* [Guest Health Reporting impact categories](guest-health-impact-categories.md)
+* [Impact categories for Guest Health Reporting](guest-health-impact-categories.md)

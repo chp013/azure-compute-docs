@@ -9,7 +9,7 @@ ms.date: 09/18/2025
 ms.custom: template-overview 
 ---
 
-# Guest Health Reporting (preview) impact categories
+# Impact categories for Guest Health Reporting (preview)
 
 To properly report issues to Guest Health Reporting, you must use an impact category that starts with `Resource.HPC`.
 
@@ -42,7 +42,7 @@ There are three main types of impact categories for high-performance computing (
 | `Resource.Hpc.Unhealthy.XID94ContainedECCError`    | GPU contained ECC error (Xid 94).              | Yes      |
 | `Resource.Hpc.Unhealthy.XID79FallenOffBus`         | GPU fell off the Peripheral Component Interconnect Express (PCIe) bus (Xid 79).            | Yes      |
 | `Resource.Hpc.Unhealthy.XID48DoubleBitECC`         | GPU reports a double-bit ECC error (Xid 48).   | Yes      |
-| `Resource.Hpc.Unhealthy.UnhealthyGPUNvidiasmi`     | NVIDIA System Management Interface (nvidia-smi) hangs and might not recover. | Yes      |
+| `Resource.Hpc.Unhealthy.UnhealthyGPUNvidiasmi`     | NVIDIA System Management Interface (nvidia-smi) stops responding and might not recover. | Yes      |
 | `Resource.Hpc.Unhealthy.NvLink`                    | NvLink is down.                                | Yes      |
 | `Resource.Hpc.Unhealthy.HpcDcgmiThermalReport`     | DCGMI reports thermal violations.              | Yes      |
 | `Resource.Hpc.Unhealthy.ECCPageRetirementTableFull`| Page retirements for double-bit ECC errors are over the threshold. | Yes |
