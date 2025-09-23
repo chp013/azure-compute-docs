@@ -70,10 +70,10 @@ https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rgNa
 
 When creating a new Gallery:
 
-1. On the page for the gallery, select **Sharing** from the left menu.
+1. On the Basics tab.
 
-1. On the top of the pane, select **Share**.
+1. At the bottom of the page, select **Enables soft delete for Image versions**.
 
-   :::image type="content" source="media/create-gallery/share.png" alt-text="Screenshot that shows the Share button for sharing a gallery with the community.":::
+   :::image type="content" source="media/soft-delete/enable-soft-delete-on-create.png" alt-text="Screenshot that shows the Share button for sharing a gallery with the community.":::
 
 1. When you finish, select **Save**.
