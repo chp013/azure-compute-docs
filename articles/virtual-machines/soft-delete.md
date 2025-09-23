@@ -74,6 +74,6 @@ When creating a new Gallery:
 
 1. At the bottom of the page, select **Enables soft delete for Image versions**.
 
-   :::image type="content" source="media/soft-delete/enable-soft-delete-on-create.png" alt-text="Screenshot that shows the Share button for sharing a gallery with the community.":::
+   :::image type="content" source="media/soft-delete/enable-soft-delete-on-create.png" alt-text="Screenshot that shows the enabling of Soft Delete on new Gallery creation.":::
 
 1. When you finish, select **Save**.
