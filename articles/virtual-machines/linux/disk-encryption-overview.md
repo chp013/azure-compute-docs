@@ -7,12 +7,14 @@ ms.subservice: security
 ms.collection: linux
 ms.topic: concept-article
 ms.author: mbaldwin
-ms.date: 03/03/2025
+ms.date: 09/23/2025
 ms.custom: linux-related-content
 # Customer intent: "As a system administrator managing Linux virtual machines, I want to enable disk encryption on my VMs, so that I can ensure data security and comply with organizational security standards."
 ---
 
 # Azure Disk Encryption for Linux VMs
+
+[!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
 > [!CAUTION]
 > **CentOS End Of Life Notice**: This article references CentOS, which has reached End Of Life status. If you're using CentOS, review your deployment plans and consider migrating to a supported Linux distribution. For migration guidance and timelines, see [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).

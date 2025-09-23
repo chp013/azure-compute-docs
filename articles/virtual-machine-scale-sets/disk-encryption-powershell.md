@@ -6,12 +6,14 @@ ms.author: jushiman
 ms.topic: how-to
 ms.service: azure-virtual-machine-scale-sets
 ms.subservice: disks
-ms.date: 06/14/2024
+ms.date: 09/23/2025
 ms.reviewer: mimckitt
 ms.custom: mimckitt, devx-track-azurepowershell
 
 # Customer intent: As an IT administrator, I want to encrypt disks for my Virtual Machine Scale Sets using PowerShell, so that I can ensure the security and compliance of the data stored on those virtual machines.
 ---
+
+[!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
 # Encrypt OS and attached data disks in a Virtual Machine Scale Set with Azure PowerShell
 

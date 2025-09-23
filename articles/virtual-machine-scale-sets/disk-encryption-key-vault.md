@@ -6,12 +6,14 @@ ms.author: jushiman
 ms.topic: tutorial
 ms.service: azure-virtual-machine-scale-sets
 ms.subservice: disks
-ms.date: 06/14/2024
+ms.date: 09/23/2025
 ms.reviewer: mimckitt
 ms.custom: mimckitt, devx-track-azurecli, devx-track-azurepowershell
 ms.devlang: azurecli
 # Customer intent: "As an IT administrator, I want to create and configure a key vault for Azure Disk Encryption, so that I can securely manage disk encryption keys and enhance the security of my virtual machines."
 ---
+
+[!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
 # Create and configure a key vault for Azure Disk Encryption
 
