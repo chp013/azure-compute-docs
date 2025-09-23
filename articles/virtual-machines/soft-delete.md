@@ -76,4 +76,45 @@ When creating a new Gallery:
 
    :::image type="content" source="media/soft-delete/enable-soft-delete-on-create.png" alt-text="Screenshot that shows the enabling of Soft Delete on new Gallery creation.":::
 
-1. When you finish, select **Save**.
+1. When you're done, select **Review + Create**.
+
+## How to Soft Delete an Image
+Once the Soft Delete is Enabled on the Gallery, all images in the Gallery will be soft deleted.
+
+### [REST](#tab/rest)
+To Soft Delete an Image, send the following `DELETE` request on the resource you intend to delete.
+
+```rest
+DELETE 
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rgName}/providers/Microsoft.Compute/galleries/{gallery-name}/images/{image-defination-name}/versions/{version-name}?api-version=2024-03-03
+```
+### [Portal](#tab/portal)
+
+Soft Delete an Image:
+
+1. On the Image Definitions (or) Image Versions.
+
+1. At the bottom of the page, select the **Image Version** to be deleted and click on **Delete** **Enables soft delete for Image versions**.
+
+   :::image type="content" source="media/soft-delete/soft-delete-image.png" alt-text="Screenshot that shows soft deleting an image.":::
+
+## List all the Soft Deleted Images
+To view the list of soft deleted images in a Gallery/Image Definition. You can make a Get API call (or) go to the image definition in the Portal to list all the soft deleted images.
+
+### [REST](#tab/rest)
+To list the Soft deleted images in a Gallery. send the following `GET` request on the resource on the image definition to list all the soft deleted images.
+
+```rest
+GET 
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rgName}/providers/Microsoft.Compute/galleries/{gallery-name}/softDeletedArtifactTypes/Images/artifacts/{image-defination-name}/versions?api-version=2024-03-03
+```
+
+### [Portal](#tab/portal)
+
+List all Soft Deleted Images
+
+1. On the Image Definitions blade.
+
+1. Switch the toggle button to select **Show soft deleted versions** to list all the soft deleted image versions
+
+   :::image type="content" source="media/soft-delete/list-soft-deleted-images.png" alt-text="Screenshot that list all the soft deleted images in a gallery.":::
