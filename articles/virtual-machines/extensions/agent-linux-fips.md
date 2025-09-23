@@ -29,8 +29,9 @@ To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https:/
 
 | Cloud | Region(s) |
 |:-----|:-----|
-| Commercial | Central US EUAP, East US 2 EUAP, West Central US, Australia East, South India |
-| USGov | DoDCentral |
+| Commercial | Central US EUAP, East US 2 EUAP, West Central US, East Asia, UK South, Australia East, South India |
+| USGov | DoD Central, DoD East, Virgina |
+| Air-Gap | US Sec |
 
 
 ### Subscription Enablement
