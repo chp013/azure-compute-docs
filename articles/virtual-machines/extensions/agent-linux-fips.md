@@ -38,7 +38,7 @@ Linux Virtual Machine (VM) Extensions currently comply with FIPS 140-2 but updat
 
 ## Prerequisites
 
-There are 4 requirements to being able to use a FIPS 140-3 compliant VM in Azure, which will each be covered in detail
+There are 4 requirements to being able to use a FIPS 140-3 compliant VM in Azure:
 
 1. The Virtual Machine must be in a region where FIPS 140-3 platform changes are rolled out
 2. Your Azure Subscription must be opted-in to FIPS 140-3 enablement
@@ -54,7 +54,7 @@ Once these steps have been followed, validation should be done to ensure that th
 ### 1. Enabled Regions
 To view the latest supported regions, use the Linux VM Guest [v2.14.0.1](https://github.com/Azure/WALinuxAgent/releases/tag/v2.14.0.1) release page.
 
-| Cloud | Region(s) |
+| Cloud | Region |
 |:-----|:-----|
 | Commercial | Central US EUAP, East US 2 EUAP, West Central US, East Asia, UK South, Australia East, South India |
 | USGov | All Regions |
@@ -125,7 +125,7 @@ az rest \
 --body '{"location": "<LOCATION>", "properties": {"additionalCapabilities": {"enableFips1403Encryption": true}}}'
 ```
 
-Running the `put` command will output the resulting json for the modified VM.  For later verification, this `get` command can be run against the VM object, which will output the full JSON again
+Running the `put` command outputs the resulting json for the modified VM.  For later verification, this `get` command can be run against the VM object, which outputs the full JSON again
 
 ``` 
 az rest \
@@ -141,7 +141,7 @@ The command output should include
 }
 ```
 
-In order to more easily find the property in the output, you can add `jq` to parse out the specific section needed.  This is the new command
+In order to more easily find the property in the output, you can add `jq` to parse out the specific section needed.  This block is the new command
 
 ```
 az rest \
@@ -196,7 +196,7 @@ AutoUpdate.Enabled=y
 ```
 
 > [!WARNING]
-> For RedHat 9 versions using version 2.7.0.6 of WALinuxAgent, there is an issue which will surface after rebooting, after the FIPS enablement and required reboot has been done.  In these VMs the `waagent.service` will enter an internal loop and never come to a "Ready" state, and because of this no extensions will function.
+> For RedHat 9 versions using version 2.7.0.6 of WALinuxAgent, there is an issue which will surface after rebooting, after the FIPS enablement and required reboot has been done.  In these VMs the `waagent.service` will enter an internal loop and never come to a "Ready" state, and because of this error, no extensions will be able to function.
 
 ##### RedHat 9 Workaround
 
@@ -217,10 +217,10 @@ grep self\._initialize_telemetry /usr/lib/python3.9/site-packages/azurelinuxagen
 
 ```
 
-The output should be this:
+The output should be exactly this text:
 
 ```
-        # self._initialize_telemetry() <<<<< OUTPUT
+        # self._initialize_telemetry()
 ```
 
 Once verified, restart the agent
@@ -261,7 +261,7 @@ Use the [Custom Script Extension](https://learn.microsoft.com/en-us/azure/virtua
 
 ### Fixing a validation failure
 
-If the validations fail to execute, it is required to force the Azure platform to generate a new PFX package.  There are two methods to force this to happen.  Reallocating the VM or applying a Keyvault Certificate.
+If the validations fail to execute, it is required to force the Azure platform to generate a new PFX package.  There are two methods to force this regeneration to happen.  Reallocating the VM or applying a Keyvault Certificate.
 
 #### Deallocate/Reallocate the VM
 
