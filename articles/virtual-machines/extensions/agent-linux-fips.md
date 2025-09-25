@@ -10,6 +10,7 @@ ms.custom: linux-related-content; references_regions
 ms.collection: linux
 ms.date: 09/25/2025
 ---
+[What is the Federal Information Processing Standards (FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips)
 
 # FIPS 140-3 support for Azure Linux VM Extensions and Guest Agent
 
