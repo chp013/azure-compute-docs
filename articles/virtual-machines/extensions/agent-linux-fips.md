@@ -10,11 +10,11 @@ ms.custom: linux-related-content; references_regions
 ms.collection: linux
 ms.date: 09/25/2025
 ---
-[What is the Federal Information Processing Standards (FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips)
-
 # FIPS 140-3 support for Azure Linux VM Extensions and Guest Agent
 
-Linux Virtual Machine (VM) Extensions currently comply with FIPS 140-2 but updates to the platform were required to add support for FIPS 140-3.  These changes are currently being enabled across the Commercial Cloud and Azure Government Clouds. Linux VM Extensions that use protected settings are also being updated to be able to use a FIPS 140-3 compliant encryption algorithm. This document helps enable support for FIPS 140-3 on Linux VMs where compliance with FIPS 140-3 is enforced.  This change is not needed on Windows images due to the way FIPS compliance is implemented.
+[What is the Federal Information Processing Standards (FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips)
+
+Linux Virtual Machine (VM) Extensions currently comply with FIPS 140-2 but updates to the platform were required to add support for FIPS 140-3.  These changes are currently being enabled across the Commercial Cloud and Azure Government Clouds. Linux VM Extensions that use protected settings are also being updated to be able to use a FIPS 140-3 compliant encryption algorithm. This document helps enable support for FIPS 140-3 on Linux VMs where compliance with FIPS 140-3 is enforced.  This change isn't needed on Windows images due to the way FIPS compliance is implemented.
 
 ## Confirmed Supported Extensions
 
@@ -38,7 +38,7 @@ Linux Virtual Machine (VM) Extensions currently comply with FIPS 140-2 but updat
 
 ## Prerequisites
 
-There are 4 requirements to being able to use a FIPS 140-3 compliant VM in Azure:
+There are four requirements to being able to use a FIPS 140-3 compliant VM in Azure:
 
 1. The Virtual Machine must be in a region where FIPS 140-3 platform changes are rolled out
 2. Your Azure Subscription must be opted-in to FIPS 140-3 enablement
@@ -94,7 +94,7 @@ There are different methods available for opting-in each VM.  The changes can be
 
 #### Deploying a new VM
 
-In order to deploy a new VM with FIPS 140-3 enablement turned on immediately, use an ARM Template or CLI ([Example ARM Template](#example-arm-template)) and add the `enableFips1403Encryption` property to the `additionalCapabilities` section of the `virtualMachines` object definition
+In order to deploy a new VM with FIPS 140-3 enablement turned on immediately, use an ARM Template or CLI and add the `enableFips1403Encryption` property to the `additionalCapabilities` section of the `virtualMachines` object definition
 
 ```json
 {
@@ -114,7 +114,7 @@ In order to deploy a new VM with FIPS 140-3 enablement turned on immediately, us
 
 ##### az cli commands
 
-*NOTE:* For the Goverment cloud use "https://management.usgovcloudapi.net" instead of "https://management.azure.com"
+*NOTE:* For the Government cloud use "https://management.usgovcloudapi.net" instead of "https://management.azure.com"
 
 While updates to SDK/CLI are still in progress, you can still use AZ CLI to add the property. 
 
@@ -150,13 +150,13 @@ az rest \
 | jq .properties.additionalCapabilities
 ```
 
-For comparison, one possible outcome when trying to enable FIPS 140-3 on a VM when the VM is not in an enabled region, the `put` command can output the following, indicating the the action is not possible in the region
+For comparison, one possible outcome when trying to enable FIPS 140-3 on a VM when the VM isn't in an enabled region, the `put` command can output the following, indicating the action isn't possible in the region
 
 ```json
 ({
   "error": {
     "code": "BadRequest",
-    "message": "Creation of VMs using a Fips 140-3 compliant encryption for extension settings is not supported in this region."
+    "message": "Creation of VMs using a Fips 140-3 compliant encryption for extension settings isn't supported in this region."
   }
 })
 ```
@@ -183,7 +183,7 @@ The following distributions support FIPS 140-3 and provide instructions for enab
   - Steps to enable FIPS on Redhat: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening
 
 
-Older versions of these operating systems operate at the FIPS 140-2 level and do not require any of these special considerations.
+Older versions of these operating systems operate at the FIPS 140-2 level and don't require any of these special considerations.
 
 
 #### Linux Guest Agent
@@ -196,11 +196,11 @@ AutoUpdate.Enabled=y
 ```
 
 > [!WARNING]
-> For RedHat 9 versions using version 2.7.0.6 of WALinuxAgent, there is an issue which will surface after rebooting, after the FIPS enablement and required reboot has been done.  In these VMs the `waagent.service` will enter an internal loop and never come to a "Ready" state, and because of this error, no extensions will be able to function.
+> For RedHat 9 versions using version 2.7.0.6 of WALinuxAgent, there's an issue which will surface after rebooting, after the FIPS enablement and required reboot has been done.  In these VMs the `waagent.service` will enter an internal loop and never come to a "Ready" state, and because of this error, no extensions will be able to function.
 
 ##### RedHat 9 Workaround
 
-It is not avised to update the Azure guest agent outside of the RedHat repositories, such as downloading the agent code from github.  Doing an 'out-of-band' update in this way will cause inconsistent behavior with future package updates.  Instead use the following code modification to remove a single function call and restore functionality
+It isn't advised to update the Azure guest agent outside of the RedHat repositories, such as downloading the agent code from GitHub.  Doing an 'out-of-band' update in this way will cause inconsistent behavior with future package updates.  Instead use the following code modification to remove a single function call and restore functionality
 
 ```
 systemctl stop waagent
@@ -236,7 +236,7 @@ systemctl start waagent
 To validate proper functionality of the VM Extensions
 - Check that the agent status is 'Ready'
 - Test an extension utilizing the "protected settings" of the VM extensions
-  - Using the "Reset Password" function of the Azure Portal or az cli, reset a password or create a new temporary user.
+  - Using the "Reset Password" function of the Azure portal or az cli, reset a password or create a new temporary user.
   - Run a custom script
 
 If these tests fail, it is necessary to force the Azure platform to generate a new PFX.
@@ -244,7 +244,7 @@ If these tests fail, it is necessary to force the Azure platform to generate a n
 
 ### Reset Password
 
-Using either the Azure Portal, or an az cli command such as this example, to set a user's password or create a temporary user.  Check the execution state for success or failure.
+Using either the Azure portal, or an az cli command such as this example, to set a user's password or create a temporary user.  Check the execution state for success or failure.
 
 ```bash
 az vm user update \
@@ -257,7 +257,7 @@ az vm user update \
 
 ### Run a custom script
 
-Use the [Custom Script Extension](https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-linux) documentation to send a basic script such as `cat /etc/os-release` to test extension functionality
+Use the [Custom Script Extension](https://learn.microsoft.com/azure/virtual-machines/extensions/custom-script-linux) documentation to send a basic script such as `cat /etc/os-release` to test extension functionality
 
 ### Fixing a validation failure
 
@@ -265,7 +265,7 @@ If the validations fail to execute, it is required to force the Azure platform t
 
 #### Deallocate/Reallocate the VM
 
-Using any method such as Azure CLI, the Azure Portal, or any other method to deallocate the VM, wait for the deallocation to occur, then start the VM.  
+Using any method such as Azure CLI, the Azure portal, or any other method to deallocate the VM, wait for the deallocation to occur, then start the VM.  
 
 #### Add a Keyvault Certificate
 
