@@ -32,9 +32,9 @@ vCPUs (Qty.) and Memory for each size
 | Standard_EC4as_v6 | 4 | 32 |
 | Standard_EC8as_v6 | 8 | 64 |
 | Standard_EC16as_v6 | 16 | 128 |
-| Standard_EC32as_v6 | 32 | 192 |
-| Standard_EC48as_v6 | 48 | 256 |
-| Standard_EC64as_v6 | 64 | 384 |
+| Standard_EC32as_v6 | 32 | 256 |
+| Standard_EC48as_v6 | 48 | 384 |
+| Standard_EC64as_v6 | 64 | 512 |
 | Standard_EC96as_v6 | 96 | 672 |
 
 #### VM Basics resources

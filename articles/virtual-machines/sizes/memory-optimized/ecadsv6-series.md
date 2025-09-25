@@ -31,9 +31,9 @@ vCPUs (Qty.) and Memory for each size
 | Standard_EC4ads_v6 | 4 | 32 |
 | Standard_EC8ads_v6 | 8 | 64 |
 | Standard_EC16ads_v6 | 16 | 128 |
-| Standard_EC32ads_v6 | 32 | 192 |
-| Standard_EC48ads_v6 | 48 | 256 |
-| Standard_EC64ads_v6 | 64 | 384 |
+| Standard_EC32ads_v6 | 32 | 256 |
+| Standard_EC48ads_v6 | 48 | 384 |
+| Standard_EC64ads_v6 | 64 | 512 |
 | Standard_EC96ads_v6 | 96 | 672 |
 
 #### VM Basics resources
