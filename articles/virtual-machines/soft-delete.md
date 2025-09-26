@@ -22,12 +22,13 @@ Soft delete is available for the following Gallery types:
 -	Community Gallery
 
 When a resource such as an image is deleted using Soft Delete, it is not immediately removed from the system. Instead, it enters a "soft-deleted" state, during which it remains recoverable for up to seven days. This grace period gives administrators or users time to review and restore any resources that may have been mistakenly deleted, thereby preventing permanent loss. 
-After the retention window expires, however, the deleted items are automatically purged and cannot be recovered by any means. Soft Delete is particularly useful in environments where accidental deletions can disrupt workflows or cause data loss. 
+After the retention window expires, however, the deleted items are automatically purged and cannot be recovered by any means. Soft Delete is particularly useful in environments where accidental deletions can disrupt workflows or cause data loss.
 
 ## Pre-requisites for using the Soft Delete Feature
 
 - The Soft Delete feature is currently in preview and is subject to the [preview terms for Azure Compute Gallery](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). This Preview is intended for testing, evaluation, and feedback purposes only. Production workloads aren't recommended. Some aspects of this feature might change with general availability (GA).
 - Register the "Azure Compute Gallery Soft Delete Feature" [Preview Feature](https://learn.microsoft.com/azure/azure-resource-manager/management/preview-features?tabs=azure-portal)
+- Register the "Azure Compute Gallery Soft Delete Feature" [Preview Feature](articles/azure-resource-manager/management/preview-features.md)
 - Minimum API version required to use Soft Delete is 2024-03-03
 
 ## Limitations
