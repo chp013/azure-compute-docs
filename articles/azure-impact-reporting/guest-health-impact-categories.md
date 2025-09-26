@@ -24,7 +24,7 @@ There are three main types of impact categories for high-performance computing (
 
 ## Detailed HPC impact categories
 
-| Category                                          | Description                                   | Operational functionality review |
+| Category                                          | Description                                   | Mark as out for repair |
 |--------------------------------------------------|-----------------------------------------------|----------|
 | `Resource.Hpc.Reset`                               | Reset node health status.                      | No       |
 | `Resource.Hpc.Reboot`                              | Restart the node.                              | No       |

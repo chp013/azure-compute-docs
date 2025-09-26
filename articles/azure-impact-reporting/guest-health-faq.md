@@ -18,11 +18,11 @@ Here are answers to common questions about Guest Health Reporting.
 
 ## What happens if I don't deallocate a node after sending the request to Guest Health Reporting?
 
-For a regular Guest Health Reporting request for a node's user acceptance (UA) or operational functionality review (OFR), if you don't deallocate virtual machines (VMs) within 30 days after the node reaches UA, the node automatically enters a **HumanInvestigate** status.
+For regular Guest Health Reporting requests to mark a node as unallocatable (UA) or out for repair (OFR), if you don't deallocate virtual machines (VMs) within 30 days after the node becomes UA, the node automatically enters a **HumanInvestigate** status.
 
 For a reset request, there's no timeout because the request doesn't require you to deallocate VMs.
 
-For a restart request, if you don't deallocate VMs within 30 days after the node reaches UA, the node is set to **Available**. This status means that your request to restart the node is ignored.
+For a restart request, if you don't deallocate VMs within 30 days after the node becomes UA, the node is set to **Available**. This status means that your request to restart the node is ignored.
 
 ## How do I upload logs?
 
