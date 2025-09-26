@@ -6,12 +6,14 @@ ms.author: mbaldwin
 ms.service: azure-virtual-machines
 ms.subservice: security
 ms.topic: quickstart
-ms.date: 05/14/2025
+ms.date: 09/23/2025
 ms.custom: mode-ui, linux-related-content
 # Customer intent: As a cloud administrator, I want to create and encrypt a Linux virtual machine using the portal so that I can ensure my virtual machine's data is secure and compliant with security regulations.
 ---
 
 # Quickstart: Create and encrypt a virtual machine with the Azure portal
+
+[!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 

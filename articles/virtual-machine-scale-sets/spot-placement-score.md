@@ -87,7 +87,7 @@ POST https://management.azure.com/subscriptions/{subscription}/providers/Microso
 
 ```json 
 { 
-"desiredLocations": "",
+"desiredLocations": [""],
 "desiredSizes": [{ 
    "sku": "" 
    }], 

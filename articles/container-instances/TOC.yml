@@ -118,7 +118,7 @@
     - name: Encrypt deployment data
       href: container-instances-encrypt-data.md
     - name: Availability zones and disaster recovery 
-      href: /azure/reliability/reliability-containers
+      href: /azure/reliability/reliability-container-instances
       maintainContext: true
     - name: Configure DNS name reuse
       href: how-to-reuse-dns-names.md
@@ -264,7 +264,7 @@
   - name: Stack Overflow
     href: https://stackoverflow.com/questions/tagged/azure-container-instances
   - name: Videos
-    href: https://azure.microsoft.com/resources/videos/index/?services=container-instances&sort=newest
+    href: https://azure.microsoft.com/resources/videos/?services=container-instances&sort=newest
   - name: FAQ
     href: container-instances-faq.yml
 - name: Support and troubleshooting

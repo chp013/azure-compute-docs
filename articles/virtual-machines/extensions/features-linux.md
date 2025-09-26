@@ -7,7 +7,7 @@ ms.subservice: extensions
 ms.author: gabsta
 author: GabstaMSFT
 ms.collection: linux
-ms.date: 05/24/2022
+ms.date: 08/18/2025
 ms.custom: GGAL-freshness822, devx-track-azurepowershell, devx-track-azurecli, linux-related-content
 # Customer intent: "As a system administrator managing Linux virtual machines, I want to utilize VM extensions for configuration and automation tasks, so that I can enhance operational efficiency and streamline deployment processes in Azure."
 ---
@@ -31,6 +31,9 @@ In addition to process-specific extensions, a Custom Script extension is availab
 
 ## Prerequisites
 
+> [!NOTE]
+> Extensions are only supported on [Endorsed Linux distributions on Azure](../linux/endorsed-distros.md).
+
 ### Azure Linux Agent
 
 To handle the extension on the VM, you need the [Azure Linux Agent](agent-linux.md) installed. Some individual extensions have prerequisites, such as access to resources or dependencies.
@@ -48,7 +51,7 @@ Extension packages are downloaded from the Azure Storage extension repository. E
 If you use a [supported version of the Azure Linux Agent](https://support.microsoft.com/en-us/help/4049215/extensions-and-virtual-machine-agent-minimum-version-support), you don't need to allow access to Azure Storage in the VM region. You can use the agent to redirect the communication to the Azure fabric controller for agent communications. If you're on an unsupported version of the agent, you need to allow outbound access to Azure Storage in that region from the VM.
 
 > [!IMPORTANT]
-> If you've blocked access to the private IP address 168.63.129.16 by using the guest firewall, extensions fail even if you're using a supported version of the agent or you've configured outbound access.
+> If you've blocked access to the private IP address 168.63.129.16 by using the guest firewall, extensions fail even if you're using a supported version of the agent or you've configured outbound access. Additionally, if the Virtual Machine has no outbound access to*.blob.windows.net and *.blob.storage.azure.net, initialization of the Azure Linux Agent and installation of extensions will incur additional delays. To avoid those delays, ensure access to these endpoints is allowed.
 
 Agents can only be used to download extension packages and reporting status. For example, if an extension installation needs to download a script from GitHub (Custom Script extension) or needs access to Azure Storage (Azure Backup), then you need to open additional firewall or network security group (NSG) ports. Different extensions have different requirements, because they're applications in their own right. For extensions that require access to Azure Storage, you can allow access by using Azure NSG [service tags](/azure/virtual-network/network-security-groups-overview#service-tags).
 
@@ -510,7 +513,6 @@ You can also remove an extension in the Azure portal:
 | --- | --- |
 | [Custom Script extension for Linux](custom-script-linux.md) |Run scripts against an Azure virtual machine. |
 | [VMAccess extension](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) |Regain access to an Azure virtual machine. You can also use it to [manage users and credentials](https://azure.microsoft.com/blog/using-vmaccess-extension-to-reset-login-credentials-for-linux-vm/). |
-| [Azure Diagnostics extension](https://azure.microsoft.com/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/) |Manage Azure Diagnostics. |
 
 ## Next steps
 
