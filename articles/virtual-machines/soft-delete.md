@@ -170,7 +170,7 @@ Hard delete an image
 
 1. Switch the toggle button to select **Show soft deleted versions** to list all the soft deleted image versions and select the image version to hard delete and click on delete
 
-   :::image type="content" source="media/soft-delete/hard-soft-an-images.png" alt-text="Screenshot that shows how to hard delete an image":::
+   :::image type="content" source="media/soft-delete/hard-soft-an-image.png" alt-text="Screenshot that shows how to hard delete an image":::
 
 ---
 
