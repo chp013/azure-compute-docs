@@ -118,3 +118,63 @@ List all Soft Deleted Images
 1. Switch the toggle button to select **Show soft deleted versions** to list all the soft deleted image versions
 
    :::image type="content" source="media/soft-delete/list-soft-deleted-images.png" alt-text="Screenshot that list all the soft deleted images in a gallery.":::
+
+## Recover a Soft Deleted Image
+In this example, you will see how to recover a soft deleted image.
+
+### [REST](#tab/rest)
+To recover Soft deleted images in a Gallery. send the following `PUT` request on the image version to be recovered along with the home region of the image
+
+```rest
+PUT 
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rgName}/providers/Microsoft.Compute/galleries/{gallery-name}/images/{image-defination-name}/versions/{version-name}?api-version=2024-03-03
+{
+    "location": "eastus2euap"
+}
+```
+
+### [Portal](#tab/portal)
+
+Recover a Soft Deleted Image
+
+1. On the Image Definitions blade.
+
+1. Switch the toggle button to select **Show soft deleted versions** to list all the soft deleted image versions
+
+   :::image type="content" source="media/soft-delete/list-soft-deleted-images.png" alt-text="Screenshot that list all the soft deleted images in a gallery.":::
+
+## Hard Delete the Images
+Hard delete will permanently delete the image without the posibility of a recovery.
+
+### [REST](#tab/rest)
+To hard delete an image in a Gallery. send the following `DELETE` request on the image version to be hard deleted
+
+```rest
+DELETE  
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rgName}/providers/Microsoft.Compute/galleries/{gallery-name}/softDeletedArtifactTypes/Images/artifacts/{image-defination-name}/versions/{version-name}?api-version=2024-03-03
+```
+
+### [Portal](#tab/portal)
+
+Hard delete an image
+
+1. On the Image Definitions blade.
+
+1. Switch the toggle button to select **Show soft deleted versions** to list all the soft deleted image versions and select the image version to hard delete and click on delete
+
+   :::image type="content" source="media/soft-delete/hard-soft-an-images.png" alt-text="Screenshot that shows how to hard delete an image":::
+
+## Frequently Asked Questions
+
+### Does Soft Delete become effective immediately upon being enabled in the Gallery?
+Yes, as long as the soft delete operation completes successfully. 
+
+### Can I enable Soft Delete on an existing Gallery and instantly delete and recover images, or is there a delay?
+Yes, as long as the soft delete operation completes successfully.
+
+### Can I update the retention period beyond 7 days?
+No, cannot update retention period but it will be supported in the future.
+
+### Can I delete a Gallery (or) Image definition that has soft deleted images?
+No, however users can either delete all the soft deleted images (or) disable soft delete on the Gallery to delete the image definition
+
