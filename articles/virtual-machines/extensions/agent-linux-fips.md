@@ -258,7 +258,7 @@ az vm user update \
 
 ### Run a custom script
 
-Use the [Custom Script Extension](https://learn.microsoft.com/azure/virtual-machines/extensions/custom-script-linux) documentation to send a basic script such as `cat /etc/os-release` to test extension functionality
+Use the [Custom Script Extension](/azure/virtual-machines/extensions/custom-script-linux) documentation to send a basic script such as `cat /etc/os-release` to test extension functionality
 
 ### Fixing a validation failure
 
@@ -271,7 +271,7 @@ Using any method such as Azure CLI, the Azure portal, or any other method to dea
 #### Add a Keyvault Certificate
 
 Create the keyvault/certificate then add it to the modified ARM template and deploy.
-- [Get started with Key Vault certificates | Microsoft Learn](https://learn.microsoft.com/azure/key-vault/certificates/certificate-scenarios)
+- [Get started with Key Vault certificates | Microsoft Learn](/azure/key-vault/certificates/certificate-scenarios)
 
 Example: 'properties' section of the VM model:
 
