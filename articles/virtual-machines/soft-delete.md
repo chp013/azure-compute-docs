@@ -7,7 +7,7 @@ ms.subservice: gallery
 ms.topic: how-to
 ms.date: 09/30/2025
 ms.author: saraic
-ms.reviewer: cynthn, mattmcinnes
+ms.reviewer: jushiman
 ms.custom: template-how-to
 ms.devlang: azurecli
 # Customer intent: As a cloud service provider or cloud administrator, I want to enable soft delete on Azure compute gallery, so that I can recover images that were accidentally deleted.
