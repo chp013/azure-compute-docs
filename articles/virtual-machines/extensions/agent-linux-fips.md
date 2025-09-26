@@ -14,7 +14,7 @@ ms.date: 09/25/2025
 
 [What is the Federal Information Processing Standards (FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips)
 
-Linux Virtual Machine (VM) Extensions currently comply with FIPS 140-2 but updates to the platform were required to add support for FIPS 140-3.  These changes are currently being enabled across the Commercial Cloud and Azure Government Clouds. Linux VM Extensions that use protected settings are also being updated to be able to use a FIPS 140-3 compliant encryption algorithm. This document helps enable support for FIPS 140-3 on Linux VMs where compliance with FIPS 140-3 is enforced.  This change isn't needed on Windows images due to the way FIPS compliance is implemented.
+Linux Virtual Machine (VM) Extensions currently comply with FIPS 140-2 but updates to the platform were required to add support for FIPS 140-3. These changes are currently being enabled across the Commercial Cloud and Azure Government Clouds. Linux VM Extensions that use protected settings are also being updated to be able to use a FIPS 140-3 compliant encryption algorithm. This document helps enable support for FIPS 140-3 on Linux VMs where compliance with FIPS 140-3 is enforced. This change isn't needed on Windows images due to the way FIPS compliance is implemented.
 
 ## Confirmed Supported Extensions
 
@@ -43,9 +43,9 @@ There are four requirements to being able to use a FIPS 140-3 compliant VM in Az
 1. The Virtual Machine must be in a region where FIPS 140-3 platform changes are rolled out
 2. Your Azure Subscription must be opted-in to FIPS 140-3 enablement
 3. Each VM must be enrolled in FIPS 140-3 enablement in the Azure Resource Manager
-4. Inside of the guest OS, the operating system must be running in a FIPS 140 enabled mode and be running a version of the Azure guest agent (waagent) which is also FIPS 140-3 compliant.
+4. Inside of the guest OS, the operating system must be configured for FIPS 140 mode, and running a version of the Azure guest agent (waagent) which is also FIPS 140-3 compliant.
 
-Once these steps have been followed, validation should be done to ensure that the VM extensions will function
+Once these steps are followed, validation should be done to ensure functionality of VM extensions.
 
 ---
 
@@ -90,7 +90,7 @@ az feature list | jq '.[] | select(.name=="Microsoft.Compute/OptInToFips1403Comp
 
 ### 3. Per-VM Opt-In
 
-There are different methods available for opting-in each VM.  The changes can be made at deployment for a new VM, or an existing VM can be altered to add the FIPS 140-3 enablement on the Azure platform.
+There are different methods available for opting-in each VM. The changes can be made at deployment for a new VM, or an existing VM can be altered to add the FIPS 140-3 enablement on the Azure platform.
 
 #### Deploying a new VM
 
@@ -114,7 +114,8 @@ In order to deploy a new VM with FIPS 140-3 enablement turned on immediately, us
 
 ##### az cli commands
 
-*NOTE:* For the Government cloud use "https://management.usgovcloudapi.net" instead of "https://management.azure.com"
+> [!NOTE]
+> For the Government cloud, use "https://management.usgovcloudapi.net" instead of "https://management.azure.com"
 
 While updates to SDK/CLI are still in progress, you can still use AZ CLI to add the property. 
 
@@ -125,7 +126,7 @@ az rest \
 --body '{"location": "<LOCATION>", "properties": {"additionalCapabilities": {"enableFips1403Encryption": true}}}'
 ```
 
-Running the `put` command outputs the resulting json for the modified VM.  For later verification, this `get` command can be run against the VM object, which outputs the full JSON again
+Running the `put` command outputs the resulting json for the modified VM. For later verification, this `get` command can be run against the VM object, which outputs the full JSON again
 
 ``` 
 az rest \
@@ -141,7 +142,7 @@ The command output should include
 }
 ```
 
-In order to more easily find the property in the output, you can add `jq` to parse out the specific section needed.  This block is the new command
+In order to more easily find the property in the output, you can add `jq` to parse out the specific section needed. This block is the new command
 
 ```
 az rest \
@@ -188,7 +189,7 @@ Older versions of these operating systems operate at the FIPS 140-2 level and do
 
 #### Linux Guest Agent
 
-Minimum [Goal State Agent](https://github.com/Azure/WALinuxAgent/wiki/FAQ#what-does-goal-state-agent-mean-in-waagent---version-output) Version: [v2.14.0.1](https://github.com/Azure/WALinuxAgent/releases/tag/v2.14.0.1).  To be sure the goal state is updating, the `AutoUpdate.Enabled` flag should be `y` or commented out entirely so that the default behavior is used
+Minimum [Goal State Agent](https://github.com/Azure/WALinuxAgent/wiki/FAQ#what-does-goal-state-agent-mean-in-waagent---version-output) Version: [v2.14.0.1](https://github.com/Azure/WALinuxAgent/releases/tag/v2.14.0.1). To be sure the goal state is updating, the `AutoUpdate.Enabled` flag should be `y` or commented out entirely so that the default behavior is used
 
 /etc/waagent.conf:
 ```
@@ -196,11 +197,11 @@ AutoUpdate.Enabled=y
 ```
 
 > [!WARNING]
-> For RedHat 9 versions using version 2.7.0.6 of WALinuxAgent, there's an issue which will surface after rebooting, after the FIPS enablement and required reboot has been done.  In these VMs the `waagent.service` will enter an internal loop and never come to a "Ready" state, and because of this error, no extensions will be able to function.
+> For RedHat 9 versions using version 2.7.0.6 of WALinuxAgent, there's an issue that will surface after rebooting, after the FIPS enablement and subsequent reboot. In these VMs the `waagent.service` will enter an internal loop and never come to a "Ready" state, and because of this error, no extensions are able to function.
 
 ##### RedHat 9 Workaround
 
-It isn't advised to update the Azure guest agent outside of the RedHat repositories, such as downloading the agent code from GitHub.  Doing an 'out-of-band' update in this way will cause inconsistent behavior with future package updates.  Instead use the following code modification to remove a single function call and restore functionality
+Updating the Azure guest agent outside of the RedHat repositories, such as downloading the agent code from GitHub, is not advised. Doing an 'out-of-band' update in this way will cause inconsistent behavior with future package updates. Instead use the following code modification to remove a single function call and restore functionality
 
 ```
 systemctl stop waagent
@@ -210,7 +211,7 @@ sed -i -E '/(.+)(self._initialize_telemetry\(\))/s//\1# \2/' /usr/lib/python3.9/
 
 ```
 
-Use the following command to verify that the above change has been applied successfully
+Use the following command to verify that the previous change was applied successfully
 
 ```
 grep self\._initialize_telemetry /usr/lib/python3.9/site-packages/azurelinuxagent/daemon/main.py
@@ -244,7 +245,7 @@ If these tests fail, it is necessary to force the Azure platform to generate a n
 
 ### Reset Password
 
-Using either the Azure portal, or an az cli command such as this example, to set a user's password or create a temporary user.  Check the execution state for success or failure.
+Using either the Azure portal, or an az cli command such as this example, to set a user's password or create a temporary user. Check the execution state for success or failure.
 
 ```bash
 az vm user update \
@@ -261,18 +262,18 @@ Use the [Custom Script Extension](https://learn.microsoft.com/azure/virtual-mach
 
 ### Fixing a validation failure
 
-If the validations fail to execute, it is required to force the Azure platform to generate a new PFX package.  There are two methods to force this regeneration to happen.  Reallocating the VM or applying a Keyvault Certificate.
+If the validations fail to execute, it is required to force the Azure platform to generate a new PFX package. There are two methods to force this regeneration to happen. Reallocating the VM or applying a Keyvault Certificate.
 
 #### Deallocate/Reallocate the VM
 
-Using any method such as Azure CLI, the Azure portal, or any other method to deallocate the VM, wait for the deallocation to occur, then start the VM.  
+Using any method such as Azure CLI, the Azure portal, or any other method to deallocate the VM, wait for the deallocation to occur, then start the VM.
 
 #### Add a Keyvault Certificate
 
 Create the keyvault/certificate then add it to the modified ARM template and deploy.
 - [Get started with Key Vault certificates | Microsoft Learn](https://learn.microsoft.com/azure/key-vault/certificates/certificate-scenarios)
 
-Example: “properties” section of the VM model:
+Example: 'properties' section of the VM model:
 
 ```json
       "secrets": [
