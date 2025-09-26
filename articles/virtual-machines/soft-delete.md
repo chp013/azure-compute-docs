@@ -27,8 +27,11 @@ After the retention window expires, however, the deleted items are automatically
 ## Pre-requisites for using the Soft Delete Feature
 
 - The Soft Delete feature is currently in preview and is subject to the [preview terms for Azure Compute Gallery](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). This Preview is intended for testing, evaluation, and feedback purposes only. Production workloads aren't recommended. Some aspects of this feature might change with general availability (GA).
-- Register the "Azure Compute Gallery Soft Delete Feature" [Preview Feature](https://learn.microsoft.com/azure/azure-resource-manager/management/preview-features?tabs=azure-portal)
-- Register the "Azure Compute Gallery Soft Delete Feature" [Preview Feature](articles/azure-resource-manager/management/preview-features.md)
+- Register the "Azure Compute Gallery Soft Delete Feature" [Preview Feature](articles/azure-resource-manager/management/preview-features.md) from Portal.
+- Alternatively, you can also register by running the following az feature register command from CLI
+   ```
+   az feature register --name SIGSoftDelete --namespace Microsoft.Compute 
+   ```
 - Minimum API version required to use Soft Delete is 2024-03-03
 
 ## Limitations
