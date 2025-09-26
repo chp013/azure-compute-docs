@@ -2,7 +2,7 @@
 title: Migrate from Azure Disk Encryption to encryption at host
 description: Learn how to migrate your virtual machines from Azure Disk Encryption (ADE) to encryption at host
 author: msmbaldwin
-ms.date: 08/21/2025
+ms.date: 09/23/2025
 ms.topic: how-to
 ms.author: mbaldwin
 ms.service: azure-virtual-machines
@@ -12,6 +12,8 @@ ms.custom: references_regions
 ---
 
 # Migrate from Azure Disk Encryption to encryption at host
+
+[!INCLUDE [Azure Disk Encryption retirement notice](~/reusable-content/ce-skilling/azure/includes/security/azure-disk-encryption-retirement.md)]
 
 This article provides step-by-step guidance for migrating your virtual machines from Azure Disk Encryption (ADE) to encryption at host. The migration process requires creating new disks and VMs, as in-place conversion is not supported.
 
@@ -67,6 +69,20 @@ First step is to disable the existing Azure Disk Encryption when possible:
 
 - **Windows**: Follow the instructions in [Disable encryption and remove the encryption extension on Windows](windows/disk-encryption-windows.md#disable-encryption-and-remove-the-encryption-extension)
 - **Linux**: If **only data disks** are encrypted, follow [Disable encryption and remove the encryption extension on Linux](linux/disk-encryption-linux.md#disable-encryption-and-remove-the-encryption-extension). If **the OS disk is encrypted**, see the [Migrating Linux VMs with encrypted OS disks](#migrating-linux-vms-with-encrypted-os-disks).
+
+After running the ADE disable command, the VM encryption status in the Azure portal changes to "SSE + PMK" immediately. However, the actual decryption process at the OS level takes time and depends on the amount of data encrypted. You must verify that OS-level decryption is completed before proceeding to the next step.
+
+**For Windows VMs:**
+- Open Command Prompt as Administrator and run: `manage-bde -status`
+- Verify that all volumes show "Fully Decrypted" status
+- The decryption percentage should show 100% for all encrypted volumes
+
+**For Linux VMs (data disks only):**
+- Run: `sudo cryptsetup status /dev/mapper/<device-name>`
+- Verify that encrypted devices are no longer active
+- Check with: `lsblk` to confirm no encrypted mappings remain
+
+Wait for complete decryption before continuing with disk migration to ensure data integrity.
 
 ### Create new managed disks
 
