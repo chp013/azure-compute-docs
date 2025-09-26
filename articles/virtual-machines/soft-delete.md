@@ -78,6 +78,8 @@ When creating a new Gallery:
 
 1. When you're done, select **Review + Create**.
 
+---
+
 ## How to Soft Delete an Image
 Once the Soft Delete is Enabled on the Gallery, all images in the Gallery will be soft deleted.
 
@@ -97,6 +99,8 @@ Soft Delete an Image:
 1. At the bottom of the page, select the **Image Version** to be deleted and click on **Delete** **Enables soft delete for Image versions**.
 
    :::image type="content" source="media/soft-delete/soft-delete-image.png" alt-text="Screenshot that shows soft deleting an image.":::
+
+---
 
 ## List all the Soft Deleted Images
 To view the list of soft deleted images in a Gallery/Image Definition. You can make a Get API call (or) go to the image definition in the Portal to list all the soft deleted images.
@@ -118,6 +122,8 @@ List all Soft Deleted Images
 1. Switch the toggle button to select **Show soft deleted versions** to list all the soft deleted image versions
 
    :::image type="content" source="media/soft-delete/list-soft-deleted-images.png" alt-text="Screenshot that list all the soft deleted images in a gallery.":::
+
+---
 
 ## Recover a Soft Deleted Image
 In this example, you will see how to recover a soft deleted image.
@@ -143,6 +149,8 @@ Recover a Soft Deleted Image
 
    :::image type="content" source="media/soft-delete/list-soft-deleted-images.png" alt-text="Screenshot that list all the soft deleted images in a gallery.":::
 
+---
+
 ## Hard Delete the Images
 Hard delete will permanently delete the image without the posibility of a recovery.
 
@@ -163,6 +171,8 @@ Hard delete an image
 1. Switch the toggle button to select **Show soft deleted versions** to list all the soft deleted image versions and select the image version to hard delete and click on delete
 
    :::image type="content" source="media/soft-delete/hard-soft-an-images.png" alt-text="Screenshot that shows how to hard delete an image":::
+
+---
 
 ## Frequently Asked Questions
 
