@@ -50,7 +50,7 @@ $port = New-AzContainerInstancePortObject -Port 80 -Protocol TCP
 Now that you have a resource group and port, you can run a container exposed to the internet in Azure. To create a container instance with Azure PowerShell, you first need to create a `ContainerInstanceObject` by providing a name, image, and port for the container. In this quickstart, you use the public `mcr.microsoft.com/azuredocs/aci-helloworld` image.
 
 ```azurepowershell-interactive
-New-AzContainerInstanceObject -Name myContainer -Image mcr.microsoft.com/azuredocs/aci-helloworld -Port @($port)
+$containerInstance = New-AzContainerInstanceObject -Name myContainer -Image mcr.microsoft.com/azuredocs/aci-helloworld -Port @($port)
 ```
 
 Next, use the [New-AzContainerGroup][New-AzContainerGroup] cmdlet. You need to provide a name for the container group, your resource group's name, a location for the container group, the container instance you created, the operating system type, and a unique IP address DNS name label.
