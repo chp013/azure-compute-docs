@@ -1,6 +1,6 @@
 ---
 title: Azure HPC Guest Health Reporting - FAQ 
-description: Frequently asked questions for Azure Guest Health Reporting.
+description: Frequently asked questions for Guest Health Reporting.
 author: rolandnyamo 
 ms.author: ronyamo 
 ms.topic: faq 
@@ -9,27 +9,35 @@ ms.date: 09/18/2025
 ms.custom: template-overview 
 ---
 
-# Azure Guest Health Reporting FAQ (preview)
+# FAQ for Guest Health Reporting (preview)
+
+Here are answers to common questions about Guest Health Reporting.
+
 > [!IMPORTANT]
-> Azure Guest Health Reporting is currently in Preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> Guest Health Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Here are answers to common questions about Azure Guest Health Reporting.
+## What happens if I don't deallocate a node after sending the request to Guest Health Reporting?
 
-## What happens if I don’t deallocate the node after sending the request to GHR?
+For regular Guest Health Reporting requests to mark a node as unallocatable (UA) or out for repair (OFR), if you don't deallocate virtual machines (VMs) within 30 days after the node becomes UA, the node automatically enters a **HumanInvestigate** status.
 
-For regular GHR request to UA/OFR the node, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will automatically get into HI (HumanInvestigate). For reset request, there's no timeout as it doesn't require customers to deallocate VMs. For reboot request, if customer doesn't deallocate VMs in 30 days after the node is UA, the node will be set to Available, means the customer's request to reboot the node will get ignored.
+For a reset request, there's no timeout because the request doesn't require you to deallocate VMs.
+
+For a restart request, if you don't deallocate VMs within 30 days after the node becomes UA, the node is set to **Available**. This status means that your request to restart the node is ignored.
 
 ## How do I upload logs?
 
-1. Get access token to customers storage account/container via
-`/subscriptions/[subscriotionId]/providers/Microsft.Impact/getUploadtoken?api-version=2025-01-01preview`.
+1. Get an access token to your storage account or container via
+`/subscriptions/[subscriptionId]/providers/Microsft.Impact/getUploadtoken?api-version=2025-01-01preview`.
 
-2. Upload logs using the upload URL/token:
+2. Upload logs by using the upload URL or the shared access signature (SAS) token:
+
     ```bash
-    az storage blob upload –file “path/to/local/file.zip” –blob-url
+    az storage blob upload –file "path/to/local/file.zip" –blob-url
     https://[storageAccount].blob.core.windows.net/[container]/[datetime]_[randomHash].zip?[SasToken]
     ```
-3. Trim off SAS token and send report with `LogUrl` filed:
+
+3. Trim off the SAS token and send the report with `LogUrl` filled in:
+
     ```json
     {
         "properties": {
@@ -47,6 +55,7 @@ For regular GHR request to UA/OFR the node, if customer doesn't deallocate VMs i
 
     ```
 
-## Next steps
-* [What is Guest Health Reporting](guest-health-overview.md)
-* [Report Node Health](guest-health-impact-report.md)
+## Related content
+
+* [What is Guest Health Reporting?](guest-health-overview.md)
+* [Report node health by using Guest Health Reporting](guest-health-impact-report.md)
