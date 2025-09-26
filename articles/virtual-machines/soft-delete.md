@@ -30,7 +30,7 @@ After the retention window expires, however, the deleted items are automatically
 - Register the "Azure Compute Gallery Soft Delete Feature" [Preview Feature](https://learn.microsoft.com/azure/azure-resource-manager/management/preview-features?tabs=azure-portal)
 - Minimum API version required to use Soft Delete is 2024-03-03
 
-## Limitations for sharing images with the community
+## Limitations
 
 -	Only supported via Portal/RestAPI with some limitations.
 -	Cannot update the retention policy
