@@ -180,7 +180,7 @@ https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rgNa
 ```
 
 ### [Azure portal](#tab/portal-5)
-Go to the image definition in the Azure portal to hard deleted an image.
+Go to the image definition in the Azure portal to hard delete an image.
 
 1. In the [Azure portal](https://portal.azure.com), go to **Azure compute galleries**. 
 
@@ -207,6 +207,6 @@ Yes, as long as the soft delete operation completes successfully.
 ### Can I update the retention period beyond seven days?
 No, currently you can't update the retention period.
 
-### Can I delete a aallery or image definition that has soft deleted images?
+### Can I delete a gallery or image definition that has soft deleted images?
 No, you can either delete all the soft deleted images or disable soft delete on the gallery to delete the image definition.
 
