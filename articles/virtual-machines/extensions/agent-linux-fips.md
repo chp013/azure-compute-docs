@@ -157,7 +157,7 @@ sed -i -E '/(.+)(self._initialize_telemetry\(\))/s//\1# \2/' /usr/lib/python3.9/
 # verify the patch (the output of grep must be "        # self._initialize_telemetry()"; the "#" characters removes the call to the problematic code
 grep self\._initialize_telemetry /usr/lib/python3.9/site-packages/azurelinuxagent/daemon/main.py
         # self._initialize_telemetry() <<<<< OUTPUT
-systemcl start waagent
+systemctl restart waagent
 ```
 
 **Option 2: Add a Keyvault Certificate**
