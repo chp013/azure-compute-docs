@@ -30,7 +30,7 @@ When a resource, such as an image, is deleted using Soft Delete, it isn't immedi
 After the retention window expires, the deleted items are automatically purged and can't be recovered. Soft Delete is useful in environments where accidental deletions can disrupt workflows or cause data loss.
 
 ## Prerequisites
-- Register the [Azure Compute Gallery Soft Delete feature](/azure-resource-manager/management/preview-features) in the Azure portal.
+- Register the [Azure Compute Gallery Soft Delete feature](/azure/azure-resource-manager/management/preview-features) in the Azure portal.
 - Alternatively, register Azure Compute Gallery Soft Delete feature by running the following `az feature register` command from CLI:
    ```
    az feature register --name SIGSoftDelete --namespace Microsoft.Compute 
