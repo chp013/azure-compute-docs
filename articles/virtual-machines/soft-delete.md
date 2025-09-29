@@ -5,7 +5,7 @@ author: sandeepraichura
 ms.service: azure-virtual-machines
 ms.subservice: gallery
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 09/29/2025
 ms.author: saraic
 ms.reviewer: jushiman
 ms.custom: template-how-to
