@@ -74,7 +74,7 @@ This page outlines the naming conventions used for Azure VMs. VMs use these nami
 |---|---|
 | Family | M | 
 | # of vCPUs | 8 |
-| # of constrained (actual) vCPUs | 2 |
+| Constrained vCPUs | 2 |
 | Additive Features | m = memory intensive <br> s = Premium Storage capable |
 | Version | v2 |
 
