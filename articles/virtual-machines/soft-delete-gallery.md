@@ -80,8 +80,6 @@ To enable Soft Delete on a new gallery, find the feature on the Basics tab durin
 1. Select **Create** on the **Azure compute galleries** page. 
 
 1. In the **Basics** tab, turn on the **Enables soft delete for image versions** option under the **Soft delete** section. 
- 
-   :::image type="content" source="media/soft-delete/enable-soft-delete-on-create.png" alt-text="Screenshot that shows the enabling of Soft Delete on a new gallery.":::
 
 1. When you're done, select **Review + Create**.
 
@@ -107,8 +105,6 @@ Soft delete an image in the Azure portal.
 
 1. At the bottom of the page, select the **Image Version** to be deleted and click on **Delete**.
 
-   :::image type="content" source="media/soft-delete/soft-delete-image.png" alt-text="Screenshot that shows soft deleting an image.":::
-
 ---
 
 ## List all soft deleted images
@@ -132,8 +128,6 @@ Go to the image definition in the Azure portal to list all the soft deleted imag
 1. Go to the **Image Definitions** blade.
 
 1. Switch the toggle button to select **Show soft deleted versions** to list all the soft deleted image versions.
-
-   :::image type="content" source="media/soft-delete/list-soft-deleted-images.png" alt-text="Screenshot that lists all soft deleted images in a gallery.":::
 
 ---
 
@@ -164,8 +158,6 @@ Go to the image definition in the Azure portal to recover a soft deleted image.
 
 1. Select the image version to recover and click on **Undelete**.
 
-   :::image type="content" source="media/soft-delete/recover-soft-deleted-image.png" alt-text="Screenshot that shows how to recover soft deleted images in a gallery.":::
-
 ---
 
 ## Hard Delete an image
@@ -191,8 +183,6 @@ Go to the image definition in the Azure portal to hard delete an image.
 1. Switch the toggle button to select **Show soft deleted versions** to list all the soft deleted image versions.
 
 1. Select the image version to hard delete and click on **Delete**. 
-
-   :::image type="content" source="media/soft-delete/hard-delete-an-image.png" alt-text="Screenshot that shows how to hard delete an image.":::
 
 ---
 
