@@ -69,52 +69,6 @@ Once complete, a VM owner in the consumer subscription can enumerate the shared 
 > [!NOTE]
 > There are no extra charges for using the shared Capacity Reservation Group feature. Unused reservations are charged to the subscription that owns the reservation. VM usage is charged to the subscription that uses the capacity reservation as it does today. For details on how Reserved Instance (RI) applies to the feature, see [Use of Reserved Instances with shared Capacity Reservation Groups](#use-of-reserved-instances-with-shared-capacity-reservation-groups) section.
 
-Example: 
-
-Consider this example: 
-
-User 'A' creates and manages Capacity Reservation Groups in Subscription A. 
-
-User 'B' creates and deploys Virtual Machines in Subscription B.  
-
-The goal is for User 'A' to share Capacity Reservation Group X with Subscription B such that User 'B' can deploy VMs using Capacity Reservation Group X. 
-
- 
-
-Step 1: Share Capacity Reservation Group X 
-
-1. A rights administrator in Subscription B must grant User 'A' capacity reservation group **share** permissions. The specific access required is Microsoft.Compute/capacityReservationGroups/share/action. 
-
- :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-grant-access-share.png" alt-text="A screenshot showing subscription B rights admin granting share permissions to User A in Subscription A to share a Capacity Reservation Group with Subscription B.":::
-
-
-2. User 'A' must then update the 'sharing profile' of CRG X to include Subscription B. The specific access right required by User 'A' to perform such action is Microsoft.Compute/capacityReservationGroups/write. 
-
-  :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-subscription-share.png" alt-text="A screenshot showing subscription A sharing a Capacity Reservation Group with Subscription B.":::
-
-
-At this point, CRG X and all member Capacity Reservations are visible to Subscription B. 
-
-Step 2: Grant user 'B' access to CRG X 
-
-1. A rights administrator in Subscription A must grant user 'B' read and deploy rights to CRG X.  
-
-The specific access rights are: 
-
-- Microsoft.Compute/capacityReservationGroups/read
-- Microsoft.Compute/capacityReservationGroups/deploy
-- Microsoft.Compute/capacityReservationGroups/capacityReservations/read
-- Microsoft.Compute/capacityReservationGroups/capacityReservations/deploy 
-
- :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-grant-access-read-deploy.png" alt-text="A screenshot showing subscription A rights admin granting User B read and deploy rights for making deployments in the shared Capacity Reservation Group.":::
-
-
-2. User 'B' can now add CRG X as the capacityReservationGroup property on Virtual Machines. The usual rules on the VM matching a Capacity Reservation apply. VM B must match a capacity reservation in CRG X on region, size, and zone (if zone is specified).  
-
-  :::image type="content" source="./media/capacity-reservation-group-share/capacity-reservation-group-deploy-vm-shared.png" alt-text="A screenshot showing subscription B deploying Virtual Machine in the shared Capacity Reservation Group.":::
-
-
-User 'B' wasn't granted write permissions to CRG X. User 'B' isn't allowed to create more reservations in Capacity Reservation Group X, change reserved quantities, or make any other changes to the definition of Capacity Reservation Group X. 
 
 ## Usage patterns: 
 
