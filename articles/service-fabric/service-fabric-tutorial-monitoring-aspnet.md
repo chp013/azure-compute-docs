@@ -6,13 +6,16 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-service-fabric
 services: service-fabric
-ms.date: 11/14/2024
+ms.date: 09/29/2025
 # Customer intent: As an application developer, I want to configure monitoring and diagnostics for my ASP.NET Core application using a performance management platform, so that I can collect telemetry and better diagnose issues in a Service Fabric environment.
 ---
 
 # Tutorial: Monitor and diagnose a Service Fabric application by using Application Insights
 
 This tutorial is *part five* in a series. It walks through the steps to configure monitoring and diagnostics for an ASP.NET Core application running on an Azure Service Fabric cluster by using Application Insights. You collect telemetry from the application that's developed in [part one of the tutorial series](service-fabric-tutorial-create-dotnet-app.md).
+
+> [!IMPORTANT]
+> Application Insights for the Service Fabric SDK is no longer supported.
 
 In this tutorial, you learn how to:
 
