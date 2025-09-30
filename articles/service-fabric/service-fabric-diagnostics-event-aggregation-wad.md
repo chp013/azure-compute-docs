@@ -7,23 +7,24 @@ author: tomvcassidy
 ms.service: azure-service-fabric
 ms.custom: devx-track-arm-template
 services: service-fabric
-ms.date: 07/14/2022
+ms.date: 09/29/2025
 # Customer intent: As a cloud administrator, I want to configure event aggregation and diagnostics for Azure Service Fabric clusters so that I can effectively monitor, analyze, and troubleshoot issues within the applications and services deployed in the cluster.
 ---
 
 # Event aggregation and collection using Windows Azure Diagnostics
+
 > [!div class="op_single_selector"]
 > * [Windows](service-fabric-diagnostics-event-aggregation-wad.md)
 > * [Linux](service-fabric-diagnostics-event-aggregation-lad.md)
->
->
 
 When you're running an Azure Service Fabric cluster, it's a good idea to collect the logs from all the nodes in a central location. Having the logs in a central location helps you analyze and troubleshoot issues in your cluster, or issues in the applications and services running in that cluster.
 
 One way to upload and collect logs is to use the Windows Azure Diagnostics (WAD) extension, which uploads logs to Azure Storage, and also has the option to send logs to Azure Application Insights or Event Hubs. You can also use an external process to read the events from storage and place them in an analysis platform product, such as [Azure Monitor logs](./service-fabric-diagnostics-oms-setup.md) or another log-parsing solution.
 
-
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
+
+> [!IMPORTANT]
+> Application Insights for the Service Fabric SDK is no longer supported.
 
 ## Prerequisites
 The following tools are used in this article:
@@ -309,8 +310,8 @@ If you are using an Application Insights sink, as described in the section below
 
 ### Configuring Application Insights with WAD
 
->[!NOTE]
->This is only applicable to Windows clusters at the moment.
+> [!IMPORTANT]
+> Application Insights for the Service Fabric SDK is no longer supported.
 
 There are two primary ways to send data from WAD to Azure Application Insights, which is achieved by adding an Application Insights sink to the WAD configuration, through the Azure portal or through an Azure Resource Manager template.
 
