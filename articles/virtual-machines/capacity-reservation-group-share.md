@@ -640,7 +640,7 @@ The list of all Capacity Reservation Groups that are created locally or shared w
 
 ### Capacity Reservation Groups-List by Subscription ID
 
-The Capacity Reservation Groups list by subscription ID API can be used to view the capacity reservation groups created locally or shared with the subscription. Extra parameter 'resourceIdsonly' needs to be passed to view the shared Capacity Reservation Groups.
+By default, obtaining a list of Capacity Reservation Groups returns only those owned by the subscription. To add the Capacity Reservation Groups shared to the subscription, the additional parameter of "resourceIdsOnly" must be set to "sharedwithsubscription".
 
 
 #### [API](#tab/api-6)
