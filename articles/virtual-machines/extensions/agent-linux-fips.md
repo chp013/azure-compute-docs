@@ -163,7 +163,7 @@ systemctl restart waagent
 **Option 2: Add a Keyvault Certificate**
 
 Create the keyvault/certificate then add it to the modified ARM template and deploy.
-- [Get started with Key Vault certificates | Microsoft Learn](https://learn.microsoft.com/azure/key-vault/certificates/certificate-scenarios)
+- [Get started with Key Vault certificates | Microsoft Learn](/azure/key-vault/certificates/certificate-scenarios)
 
 **Example** (“properties” section of the VM model):
 
