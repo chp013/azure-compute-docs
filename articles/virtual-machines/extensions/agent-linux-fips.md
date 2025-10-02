@@ -157,13 +157,13 @@ sed -i -E '/(.+)(self._initialize_telemetry\(\))/s//\1# \2/' /usr/lib/python3.9/
 # verify the patch (the output of grep must be "        # self._initialize_telemetry()"; the "#" characters removes the call to the problematic code
 grep self\._initialize_telemetry /usr/lib/python3.9/site-packages/azurelinuxagent/daemon/main.py
         # self._initialize_telemetry() <<<<< OUTPUT
-systemcl start waagent
+systemctl restart waagent
 ```
 
 **Option 2: Add a Keyvault Certificate**
 
 Create the keyvault/certificate then add it to the modified ARM template and deploy.
-- [Get started with Key Vault certificates | Microsoft Learn](https://learn.microsoft.com/azure/key-vault/certificates/certificate-scenarios)
+- [Get started with Key Vault certificates | Microsoft Learn](/azure/key-vault/certificates/certificate-scenarios)
 
 **Example** (“properties” section of the VM model):
 

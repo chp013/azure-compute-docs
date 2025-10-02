@@ -27,11 +27,11 @@ An allowlist consists of:
 
 ## Collect audit logs
 
-#### If you enable MSP in `audit` or `enforce` mode, you can collect log data from virtual machine client via [Azure Monitor.](https://learn.microsoft.com/azure/azure-monitor/vm/data-collection) 
+#### If you enable MSP in `audit` or `enforce` mode, you can collect log data from virtual machine client via [Azure Monitor.](/azure/azure-monitor/vm/data-collection) 
  
--	Windows: [Azure monitoring agent](https://learn.microsoft.com/azure/azure-monitor/vm/data-collection-windows-events)  collects Windows Events via Custom XPath ```Windows Azure!*[System[Provider[@Name=`GuestProxyAgent`]]]```
+-	Windows: [Azure monitoring agent](/azure/azure-monitor/vm/data-collection-windows-events)  collects Windows Events via Custom XPath ```Windows Azure!*[System[Provider[@Name=`GuestProxyAgent`]]]```
 
-- Linux: Collect Syslog events with [Azure Monitor Agent](https://learn.microsoft.com/azure/azure-monitor/vm/data-collection-syslog) by selecting `Log_DAEMON` and `LOG_DEBUG`
+- Linux: Collect Syslog events with [Azure Monitor Agent](/azure/azure-monitor/vm/data-collection-syslog) by selecting `Log_DAEMON` and `LOG_DEBUG`
 
 ## Query audit logs
 
@@ -263,7 +263,7 @@ $galleryName = "MyGallery4"
 New-AzGallery -ResourceGroupName $resourceGroup -GalleryName $galleryName -Location $location -Description "My custom image gallery" 
 ```
 
-4. Create the `InVMAccessControlProfile` artifact in the private gallery created in the previous step. [Click here](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryinvmaccesscontrolprofile?view=azps-14.3.0) to learn more about the various parameters for this artifact. 
+4. Create the `InVMAccessControlProfile` artifact in the private gallery created in the previous step. [Click here](/powershell/module/az.compute/new-azgalleryinvmaccesscontrolprofile?view=azps-14.3.0) to learn more about the various parameters for this artifact. 
 
 ```powershell
 $InVMAccessControlProfileName= "testInVMAccessControlProfileP"  
@@ -293,7 +293,7 @@ Update-AzGalleryInVMAccessControlProfile -ResourceGroupName  $resourceGroup  -Ga
 
 To create an InVMAccessControlProfileVersion, a payload is required. Since these payloads can be large, especially due to the rules property, it's not practical to use a single PowerShell command to create the entire resource in one go.
 The rules property in any version payload consists of four arrays: privileges, roles, identities, and roleAssignments. These arrays can make the payload large and complex.
-To simplify this process, we introduced the GalleryInVMAccessControlProfileVersionConfig PowerShell object. You can learn more about it [here.](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryinvmaccesscontrolprofileversionconfig?view=azps-14.3.0)
+To simplify this process, we introduced the GalleryInVMAccessControlProfileVersionConfig PowerShell object. You can learn more about it [here.](/powershell/module/az.compute/new-azgalleryinvmaccesscontrolprofileversionconfig?view=azps-14.3.0)
 
 This object allows you to incrementally build the configuration using various commands to add or remove rule properties.
 Once the configuration object is ready, you can use it to create an `InVMAccessControlProfileVersion`,  described in the upcoming sections.
@@ -511,7 +511,7 @@ az group create  --resource-group ResourceGroupForINVM  --location eastus
  ```
 
 3. Create an `InVMAccessControlProfile` under the gallery created in the prior step
-For additional details of commands: [az sig in-vm-access-control-profile | Microsoft Learn](https://learn.microsoft.com/cli/azure/sig/in-vm-access-control-profile?view=azure-cli-latest)
+For additional details of commands: [az sig in-vm-access-control-profile | Microsoft Learn](/cli/azure/sig/in-vm-access-control-profile?view=azure-cli-latest)
 
 ```cli
  az sig in-vm-access-control-profile create --resource-group ResourceGroupForINVM --gallery-name MyGallery67 --name myInVMAccessControlProfileName --location eastus --os-type Linux  --applicable-host-endpoint WireServer 
@@ -594,7 +594,7 @@ Here is an example rules.json file:
 36. } 
 ```
 
-See addtional command details here: [az sig in-vm-access-control-profile-version | Microsoft Learn](https://learn.microsoft.com/cli/azure/sig/in-vm-access-control-profile?view=azure-cli-latest)
+See addtional command details here: [az sig in-vm-access-control-profile-version | Microsoft Learn](/cli/azure/sig/in-vm-access-control-profile?view=azure-cli-latest)
 
 Once you have create your version of rules.json file, use the following command to create the `InVMAccessControlProfileVersion`
 
