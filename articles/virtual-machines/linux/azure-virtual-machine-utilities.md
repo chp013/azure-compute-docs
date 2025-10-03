@@ -60,7 +60,7 @@ The following distros and versions currently include az-vm-utils in their offici
 
 | Distribution | Version |
 |--------|---------|
-| Fedora | 41 |
+| Fedora | 42 |
 | Flatcar | 4152.2.3 |
 | Azure Linux | 2.0 |
 
