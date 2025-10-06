@@ -23,7 +23,7 @@ One way to upload and collect logs is to use the Microsoft Azure Diagnostics (WA
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
-> [!IMPORTANT]
+> [!WARNING]
 > Application Insights for the Service Fabric SDK is no longer supported.
 
 ## Prerequisites
@@ -310,7 +310,7 @@ If you're using an Application Insights sink, as described in the section below,
 
 ### Configuring Application Insights with WAD
 
-> [!IMPORTANT]
+> [!WARNING]
 > Application Insights for the Service Fabric SDK is no longer supported.
 
 There are two primary ways to send data from WAD to Azure Application Insights, which is achieved by adding an Application Insights sink to the WAD configuration, through the Azure portal or through an Azure Resource Manager template.

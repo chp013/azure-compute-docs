@@ -14,7 +14,7 @@ ms.date: 09/29/2025
 
 [Monitoring and diagnostics](monitor-service-fabric.md) are critical to developing, testing, and deploying workloads in any cloud environment. For example, you can track how your applications are used, the actions taken by the Service Fabric platform, your resource utilization with performance counters, and the overall health of your cluster. You can use this information to diagnose and correct issues, and prevent them from occurring in the future.
 
-> [!IMPORTANT]
+> [!WARNING]
 > Application Insights for the Service Fabric SDK is no longer supported.
 
 ## Application monitoring
