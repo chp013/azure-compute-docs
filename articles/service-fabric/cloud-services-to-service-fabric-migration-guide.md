@@ -580,7 +580,7 @@ You can also use [Azure Pipelines for automated deployments](how-to-managed-clus
 
 ### Monitoring and diagnostics
 
-> [!IMPORTANT]
+> [!WARNING]
 > Application Insights for the Service Fabric SDK is no longer supported.
 
 [Visualize your cluster with Service Fabric Explorer](service-fabric-visualizing-your-cluster.md)
