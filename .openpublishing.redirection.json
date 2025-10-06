@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/virtual-machine-scale-sets/whats-new.md",
+      "redirect_url": "/previous-versions/azure/virtual-machine-scale-sets/whats-new",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/virtual-machines/workloads/mainframe-rehosting/mainframe-white-papers.md",
       "redirect_url": "/previous-versions/azure/virtual-machines/workloads/mainframe-rehosting/mainframe-white-papers",
       "redirect_document_id": false
