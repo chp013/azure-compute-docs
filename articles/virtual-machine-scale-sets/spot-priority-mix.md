@@ -23,7 +23,7 @@ Spot Priority Mix allows you to run a combination of standard Virtual Machines (
 With Spot Priority Mix, you can:
 
 - **Save up to 90%** on compute costs by using Spot VMs for interruptible workloads
-- **Ensure availability** with standard VMs that won't be evictable
+- **Ensure availability** with standard VMs that aren't evicted
 - **Protect against mass evictions** by maintaining a guaranteed number of standard VMs
 - **Simplify management** with automatic orchestration of VM creation and deletion
 
@@ -136,10 +136,10 @@ az vmss create -n myScaleSet \
 ```
 
 This example creates:
-- A scale set with 4 VMs total
-- 2 base standard VMs (`--regular-priority-count 2`)
+- A scale set with four VMs total
+- Two base standard VMs (`--regular-priority-count 2`)
 - 50% standard VMs above base (`--regular-priority-percentage 50`)
-- Result: 2 standard VMs and 2 Spot VMs
+- Result: Two standard VMs and two Spot VMs
 
 ### [Azure PowerShell](#tab/powershell)
 
@@ -164,10 +164,10 @@ New-AzVmss `
 ```
 
 This example creates:
-- A scale set with 4 VMs total
-- 2 base standard VMs (`-BaseRegularPriorityCount`)
+- A scale set with four VMs total
+- Two base standard VMs (`-BaseRegularPriorityCount`)
 - 50% standard VMs above base (`-RegularPriorityPercentage`)
-- Result: 2 standard VMs and 2 Spot VMs
+- Result: Two standard VMs and two Spot VMs
 
 ---
 
@@ -326,7 +326,7 @@ No, Spot Priority Mix is only available with Flexible orchestration mode. Unifor
 
 ### Which Azure regions support Spot Priority Mix?
 
-Spot Priority Mix is available in all Azure regions that support Spot VMs. This includes all global Azure regions. For the most current region availability, see [Spot VMs documentation](../virtual-machines/spot-vms.md).
+Spot Priority Mix is available in all Azure regions that support Spot VMs. This availability includes all global Azure regions. For the most current region availability, see [Spot VMs documentation](../virtual-machines/spot-vms.md).
 
 ### Does changing the mix trigger immediate VM creation or deletion?
 
