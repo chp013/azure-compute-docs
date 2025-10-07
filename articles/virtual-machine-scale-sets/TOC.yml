@@ -145,7 +145,7 @@
     href: use-spot.md
   - name: Spot Priority Mix
     href: spot-priority-mix.md
-  - name: Spot Placement Score (Preview)
+  - name: Spot Placement Score
     href: spot-placement-score.md
   - name: Reserved instances
     href: /azure/cost-management-billing/reservations/save-compute-costs-reservations
