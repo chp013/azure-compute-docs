@@ -77,7 +77,7 @@ Find the Spot Placement Score in the Spot tab of the Virtual Machine Scale Sets 
 
 ### [REST API](#tab/rest-api)
 
-Use the following REST API to get your Spot Placement Score. The Placement Score API supports the following versions: *2025-06-05*. You need to add the Role-Based Access Control (RBAC) role "Compute Recommendations Role" and select the members to enable the subscription they want to run the API on (/azure/role-based-access-control/role-assignments-portal).
+Use the following REST API to get your Spot Placement Score. The Placement Score API supports the following version: *2025-06-05*. You need to add the Role-Based Access Control (RBAC) role "Compute Recommendations Role" and select the members to enable the subscription they want to run the API on (/azure/role-based-access-control/role-assignments-portal).
 
 ```
 POST https://management.azure.com/subscriptions/{subscription}/providers/Microsoft.Compute/locations/{region}/placementScores/spot/generate?api-version={api-version} 
