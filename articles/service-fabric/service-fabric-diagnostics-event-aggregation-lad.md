@@ -17,7 +17,7 @@ ms.date: 09/29/2025
 > * [Windows](service-fabric-diagnostics-event-aggregation-wad.md)
 > * [Linux](service-fabric-diagnostics-event-aggregation-lad.md)
 
-> [!IMPORTANT]
+> [!WARNING]
 > Application Insights for the Service Fabric SDK is no longer supported.
 
 When you're running an Azure Service Fabric cluster, it's a good idea to collect the logs from all the nodes in a central location. Having the logs in a central location helps you analyze and troubleshoot issues in your cluster, or issues in the applications and services running in that cluster.

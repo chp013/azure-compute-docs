@@ -16,7 +16,7 @@ ms.date: 09/29/2025
 > * [Azure Resource Manager](service-fabric-cluster-creation-via-arm.md)
 > * [Azure portal](service-fabric-cluster-creation-via-portal.md)
 
-> [!IMPORTANT]
+> [!WARNING]
 > Application Insights for the Service Fabric SDK is no longer supported.
 
 This article is a step-by-step guide that walks you through the steps of setting up a Service Fabric cluster (Linux or Windows) in Azure using the Azure portal. This guide walks you through the following steps:
