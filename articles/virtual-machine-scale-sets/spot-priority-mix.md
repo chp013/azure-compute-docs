@@ -44,7 +44,7 @@ Before using Spot Priority Mix, ensure you have the following:
 
 - A Virtual Machine Scale Set with **Flexible orchestration** mode
 - Understanding of [Azure Spot VMs](../virtual-machines/spot-vms.md) and their eviction behavior
-- Appropriate [quota for Spot VMs](../virtual-machines/spot-vms.md#pricing-and-eviction)
+- Appropriate **quota** for Spot VMs
 
 ## Limitations
 
