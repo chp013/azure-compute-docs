@@ -138,7 +138,7 @@ For some customers, the default NSG rules described above do not suffice to meet
 * **AllowSFRP**: Allow cluster to communicate with Service Fabric Resource Provider.
 * **AllowStorage**: Allow cluster to communicate with Storage Accounts.
 * **AllowIMS**: Allow [Azure Instance Metadata Service](../virtual-machines/instance-metadata-service.md).
-* **AllowVIP**: Allow [Azure Resource Communication](https://learn.microsoft.com/en-us/azure/virtual-network/what-is-ip-address-168-63-129-16).
+* **AllowVIP**: Allow [Azure Resource Communication](/azure/virtual-network/what-is-ip-address-168-63-129-16).
 * **AllowNTP**: Allow Network Time Protocol.
 * **AllowCRL**: Allow Cluster Certificate Revocation List Check.
 * **DenyInternet**: Block Outbound Traffic To Internet.
