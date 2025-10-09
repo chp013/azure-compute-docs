@@ -19,7 +19,7 @@ In this quickstart, you use Azure PowerShell to deploy an isolated Windows conta
 
 ![Screenshot of app deployed to Azure Container Instances viewed in browser.](./media/container-instances-quickstart/view-an-application-running-in-an-azure-container-instance.png)
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
