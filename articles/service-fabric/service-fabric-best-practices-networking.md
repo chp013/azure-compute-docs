@@ -130,10 +130,10 @@ For some customers, the default NSG rules described above do not suffice to meet
 | 1003 | AllowVIP | Any | Any | Any | 168.63.129.16/32 | Allow 
 | 1004 | AllowNTP | 123 | Any | Any | AzureCloud | Allow 
 | 1005 | AllowCRL | 80 | Any | Any | Internet | Allow 
-| 2000 | DenyInternet | Any | Any  | Any | Internet | Deny 
-| 65000 | AllowVnetOutBound | Any  | Any | VirtualNetwork | VirtualNetwork | Allow 
-| 65001 | AllowInternetOutBound  | Any | Any | Any | Internet | Allow 
-| 65500 | DenyAllOutBound | Any  | Any | Any | Any | Deny 
+| 2000 | DenyInternet | Any | Any | Any | Internet | Deny 
+| 65000 | AllowVnetOutBound | Any | Any | VirtualNetwork | VirtualNetwork | Allow 
+| 65001 | AllowInternetOutBound | Any | Any | Any | Internet | Allow 
+| 65500 | DenyAllOutBound | Any | Any | Any | Any | Deny 
 
 * **AllowSFRP**: Allow cluster to communicate with Service Fabric Resource Provider.
 * **AllowStorage**: Allow cluster to communicate with Storage Accounts.
