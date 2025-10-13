@@ -68,6 +68,9 @@ This restriction is currently accomplished with firewall rules in the guest. Thi
 
 You can set up an advanced authorization configuration (that is, authorize specific in-guest processes and users to access only specific endpoints) by defining a custom allowlist with role-based access control (RBAC) semantics.
 
+> [!WARNING]
+> Please note that on Windows, the users can enable GuestProxyAgent (GPA) from an ARM template. However, in Linux it's a two-step process. The VM/VMSS is provisioned first and only then can the GPA be configured. 
+
 ## Related content
 
 - [MSP feature configuration](./configuration.md)
