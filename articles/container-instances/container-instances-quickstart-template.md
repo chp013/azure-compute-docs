@@ -23,13 +23,13 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 ## Prerequisites
 
-If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/free/) account before you begin.
+If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) account before you begin.
 
 ## Review the template
 
 The template used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/aci-linuxcontainer-public-ip/).
 
-<! :::code language="json" source="~/quickstart-templates/quickstarts/microsoft.containerinstance/aci-linuxcontainer-public-ip/azuredeploy.json"::: >
+:::code language="json" source="~/quickstart-templates/quickstarts/microsoft.containerinstance/aci-linuxcontainer-public-ip/azuredeploy.json":::
 
 The following resource is defined in the template:
 
@@ -37,13 +37,7 @@ The following resource is defined in the template:
 
 More Azure Container Instances template samples can be found in the [quickstart template gallery](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Containerinstance&pageNumber=1&sort=Popular).
 
-To [deploy the container group into a specific availability zone](/azure/reliability/reliability-container-instances#availability-zone-support), configure the `zones` property of the container group resource. For example, to deploy it into logical zone 1, add the following to the end of the resource definition for the container group, right before the closing `}`:
-
-```json
-"zones": [
-  "1"
-]
-```
+To [deploy the container group into a specific availability zone](/azure/reliability/reliability-container-instances#availability-zone-support), set the value of the `zone` parameter to the logical availability zone you want to deploy to.
 
 > [!IMPORTANT]
 > Zonal deployments are only available in regions that support availability zones. To see if your region supports availability zones, see [Azure Regions List](/azure/reliability/regions-list).

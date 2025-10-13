@@ -16,30 +16,7 @@ Metadata Security Protocol (MSP) offers customization to maximally restrict meta
 
 If you're familiar with how your workload uses metadata services, you can harden access further by following the [guide for advanced configuration](./advanced-configuration.md).
 
-## Registration of feature flags
-
-
-You can register to use the MSP feature via Azure portal by first searching "Preview Features" in the search bar, followed by "Metadata Security Protocol" in the "Filter by Name" search bar. You can also register using CLI:
-
-To use MSP in Public Preview, register the following flag using the `az feature register` command.
-
-```azurecli-interactive
-az feature register --namespace Microsoft.Compute --name ProxyAgentPreview
-```
-
-Verify the registration status by using the `az feature show` command:
-
-```azurecli-interactive
-az feature show --namespace Microsoft.Compute --name ProxyAgentPreview
-```
-
-It takes a few minutes for the status to show `Registered`. After that status appears, refresh the registration of the `Microsoft.Compute` resource provider by using the `az provider register` command:
-
-```azurecli-interactive
-az provider register --namespace Microsoft.Compute
-```
-
-After you're registered in the feature flag, you can configure MSP via:
+You can configure MSP via:
 
 - [Azure Resource Manager templates](./other-examples/arm-templates.md)
 - REST API

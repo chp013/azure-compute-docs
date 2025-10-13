@@ -56,13 +56,14 @@ To ensure backward compatibility for disks using SCSI controllers, azure-vm-util
 
 ### Linux distribution support
 
-The following distros and versions currently include az-vm-utils in their default images:
+The following distros and versions currently include az-vm-utils in their official Azure marketplace images:
 
 | Distribution | Version |
 |--------|---------|
-| Fedora | 41 |
-| Flatcar | 4152.2.3 |
+| Fedora | 42 |
+| Kinvolk / Flatcar | 4152.2.3 |
 | Azure Linux | 2.0 |
+| Canonical / Ubuntu | 22.04, 24.04, 25.04 |
 
 ### Installation
 
