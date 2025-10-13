@@ -40,10 +40,10 @@ Linux Virtual Machine (VM) Extensions currently comply with FIPS 140-2 but updat
 
 There are four requirements to being able to use a FIPS 140-3 compliant VM in Azure:
 
-1. The Virtual Machine must be in a region where FIPS 140-3 platform changes are rolled out
-2. Your Azure Subscription must be opted-in to FIPS 140-3 enablement
-3. Each VM must be enrolled in FIPS 140-3 enablement in the Azure Resource Manager
-4. Inside of the guest OS, the operating system must be configured for FIPS 140 mode, and running a version of the Azure guest agent (waagent) which is also FIPS 140-3 compliant.
+- The Virtual Machine must be in a region where FIPS 140-3 platform changes are rolled out.
+- Your Azure Subscription must be opted-in to FIPS 140-3 enablement.
+- Each VM must be enrolled in FIPS 140-3 enablement in the Azure Resource Manager.
+- Inside of the guest OS, the operating system must be configured for FIPS 140 mode, and running a version of the Azure guest agent (waagent) which is also FIPS 140-3 compliant.
 
 Once these steps are followed, validation should be done to ensure functionality of VM extensions.
 
