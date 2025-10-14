@@ -80,7 +80,7 @@ Limitations by design:
 Limitations for Public Preview:
 - Azure portal support isn't available; API and other Azure clients are available.  
 - Reprovisioning of Virtual Machine Scale Set VMs using a shared Capacity Reservation Group isn't supported during a zone outage.
-- There is a known issue of [Capacity Reservation Groups - List by Subscription ID](#capacity-reservation-groups-list-by-subscription-id) not giving the right response if there is no CRG created by the subscription making the `GET` call to list shared CRGs in the region. To get the correct response, ensure you have a local CRG created in the subscription making the API call in the same region where you would like to enumerate the shared CRGs. Alternatively, use the [Azure Resource Graph](#azure-resource-graph) query provided to get the list of CRGs shared with your subscription.
+- There is a known issue of [Capacity Reservation Groups - List by Subscription ID](#capacity-reservation-groups---list-by-subscription-id) not giving the right response if there is no CRG created by the subscription making the `GET` call to list shared CRGs in the region. To get the correct response, ensure you have a local CRG created in the subscription making the API call in the same region where you would like to enumerate the shared CRGs. Alternatively, use the [Azure Resource Graph](#azure-resource-graph) query provided to get the list of CRGs shared with your subscription.
 
 ## Share a Capacity Reservation Group 
 
