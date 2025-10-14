@@ -20,13 +20,12 @@ ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell
 On-demand Capacity Reservation Group (CRG) can be shared with other subscriptions. Using this option can make it easier to manage some common configuration needs: 
 
 - **Reuse of capacity reserved for disaster recovery.** Reserved capacity is the primary means to obtain capacity assurance in another region or zone in the event of the primary region or zone becoming unavailable. Reservation sharing supports reuse of disaster recovery capacity by subscriptions, hosting less critical workloads such as development and testing, or subscriptions used to run job-oriented workloads. Capacity reuse can save on total capacity costs and drive more value from the reserved capacity.
-- 
-- **Central management of capacity.** Quota requests and term commitments are often administered by a central operations team as part of cost management. Now, reserved capacity needs can be assessed and managed more centrally to align on capacity and cost management.
-- 
-- **Separate security and capacity concerns.** Applications implemented with multiple subscriptions for security reasons can operate from a common pool of capacity. This pattern is common with service providers serving their own end customers.
-- 
-- **More cost-effective scale-out with capacity assurance.** Applications that scale at different rates and times can share one pool of reserved capacity.
 
+- **Central management of capacity.** Quota requests and term commitments are often administered by a central operations team as part of cost management. Now, reserved capacity needs can be assessed and managed more centrally to align on capacity and cost management.
+
+- **Separate security and capacity concerns.** Applications implemented with multiple subscriptions for security reasons can operate from a common pool of capacity. This pattern is common with service providers serving their own end customers.
+
+- **More cost-effective scale-out with capacity assurance.** Applications that scale at different rates and times can share one pool of reserved capacity.
 
 ## How to share a Capacity Reservation Group
 
