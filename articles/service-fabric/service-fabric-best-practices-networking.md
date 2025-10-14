@@ -118,9 +118,12 @@ Use Azure Firewall with [NSG flow log](/azure/network-watcher/network-watcher-ns
 
 All additional scenarios can be covered with [Azure Service Tags](/azure/virtual-network/service-tags-overview).
 
-#### Restricting Outbound Traffic
+#### Restricting outbound traffic
 
-For some customers, the default NSG rules described above do not suffice to meet their network security requirements. For example, a common requirement — which is not provided by default, is to block outbound traffic to the internet. To achieve this, customers can apply NSG rules based on the reference table below to restrict outbound traffic while maintaining essential cluster functionality. These rules can be applied to both Classic and Managed Clusters. For Managed Clusters, ensure they do not override any default rules (prefixed with 'SFMC-'). Note: The table below is intended to be used only as a reference.
+For some customers, the default NSG rules described above don't suffice to meet their network security requirements. For example, a common requirement — which is not provided by default, is to block outbound traffic to the internet. To achieve this, customers can apply NSG rules based on the reference table below to restrict outbound traffic while maintaining essential cluster functionality. These rules can be applied to both Classic and Managed Clusters. For Managed Clusters, ensure they do not override any default rules (prefixed with 'SFMC-'). 
+
+>[!Note]
+> The table below is intended to be used only as a reference.
 
 | Priority | Name | Port | Protocol | Source | Destination | Action |
 |----------|------|------|----------|--------|-------------|--------|
