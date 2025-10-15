@@ -18,8 +18,8 @@ ms.author: padmalathas
 **Applies to:** :heavy_check_mark: Linux VMs
 
 > [!IMPORTANT]
-> To align with inclusive language practices, we have replaced the term "blacklist" with "blocklist" throughout this documentation. This change reflects our commitment to avoiding terminology that may carry unintended negative connotations or perceived racial bias.
-> However, in code snippets and technical references where "blacklist" is part of established syntax or tooling (for example, configuration files, command-line parameters), the original term is retained to preserve functional accuracy. This usage is strictly technical and does not imply any discriminatory intent.
+> To align with inclusive language practices, we've replaced the term "blacklist" with "blocklist" throughout this documentation. This change reflects our commitment to avoiding terminology that might carry unintended negative connotations or perceived racial bias.
+> However, in code snippets and technical references where "blacklist" is part of established syntax or tooling (for example, configuration files, command-line parameters), the original term is retained to preserve functional accuracy. This usage is strictly technical and doesn't imply any discriminatory intent.
 
 ## NVads V710-series
 
@@ -40,9 +40,9 @@ The [marketplace image](https://azuremarketplace.microsoft.com/en-us/marketplace
 
 Install the AMD Linux Driver to leverage the full capabilities of the AMD Radeon PRO V710 GPU on an NVv5-V710 GPU Linux instance in Microsoft Azure. The sections that follow provide detailed instructions for installing the Linux driver and running inference workloads using ROCm on this instance type.
 
-## Quick Start Options
+## Quick start options
 
-### Option 1: Use the AMD GPU Driver Extension
+### Option 1: Use the AMD GPU driver extension
 
 The simplest method is using the AMD GPU Driver Extension, which automates driver installation for NVv710-series VMs. You can deploy this extension through:
 
@@ -50,53 +50,57 @@ The simplest method is using the AMD GPU Driver Extension, which automates drive
 - Azure PowerShell
 - Azure Resource Manager templates
 
-### Option 2: Use Pre-configured Marketplace Image
+### Option 2: Use pre-configured marketplace image
 
 A marketplace image is available with pre-installed AMD GPU drivers, allowing for faster VM deployment.
 
-### Option 3: Manual Installation
+### Option 3: Manual installation
 
-Follow the instructions below for manual driver installation and configuration.
+Follow these instructions for manual driver installation and configuration.
 
 ---
 
-## ROCm Driver Installation
+## ROCm driver installation
 
 ### Prerequisites
 
-**System Requirements:**
+**System requirements:**
 
 - Disk size must exceed 64GB for optimal performance
 - Supported distributions: Ubuntu 22.04 or Ubuntu 24.04
 - Virtual Function Device ID: 7461 (AMD Radeon PRO V710 GPU)
 
-### Step 1: Verify Your System
+### Step 1: Verify your system
 
-Check your Linux distribution:
+Follow these steps to verify that your GPU card is detected on your system.
 
-```bash
-cat /etc/*release
-```
+1. Check your Linux distribution:
 
-Check your kernel version:
+   ```bash
+   cat /etc/*release
+   ```
 
-```bash
-uname -srmv
-```
+1. Check your kernel version:
 
-Verify your GPU card is detected:
+   ```bash
+   uname -srmv
+   ```
 
-```bash
-sudo lspci -d 1002:7461
-```
+1. Verify your GPU card is detected:
 
-You should see output similar to:
+   ```bash
+   sudo lspci -d 1002:7461
+   ```
 
-```
-c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
-```
+   You should see output similar to:
 
-### Step 2: Install the Driver
+   ```
+   c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
+   ```
+
+### Step 2: Install the driver
+
+The driver installation commands are slightly different depending on whether you're running Ubuntu 22.04 or 24.04.
 
 #### For Ubuntu 22.04
 
@@ -113,10 +117,6 @@ sudo apt install amdgpu-dkms rocm
 
 #### For Ubuntu 24.04
 
-
-
-
-
 ```bash
 sudo apt update
 sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
@@ -128,254 +128,270 @@ sudo apt update
 sudo apt install amdgpu-dkms rocm
 ```
 
-### Step 3: Load and Verify the Driver
+### Step 3: Load and verify the driver
 
-Load the driver:
+Follow these steps to load and verify the driver.
 
-```bash
-sudo modprobe amdgpu
-```
+1. Load the driver:
 
-Check that the driver loaded successfully:
+   ```bash
+   sudo modprobe amdgpu
+   ```
 
-```bash
-sudo dmesg | grep amdgpu
-```
+1. Check that the driver loaded successfully:
 
-Verify driver status with AMD-SMI:
+   ```bash
+   sudo dmesg | grep amdgpu
+   ```
 
-```bash
-amd-smi monitor
-```
+1. Verify driver status with AMD-SMI:
 
-### Step 4: Enable Automatic Loading on Reboot
+   ```bash
+   amd-smi monitor
+   ```
 
-Search for blocklist entries:
+### Step 4: Enable automatic loading on reboot
 
-```bash
-grep amdgpu /etc/modprobe.d/* -rn
-```
+Follow these steps to enable automatic loading on reboot.
 
-If the driver is blocklisted, remove the blocklist:
+1. Search for blocklist entries:
 
-```bash
-sudo nano /etc/modprobe.d/blacklist.conf
-```
+   ```bash
+   grep amdgpu /etc/modprobe.d/* -rn
+   ```
 
-Delete the line containing `blacklist amdgpu`, then update initramfs:
+1. If the driver is blocklisted, remove the blocklist:
 
-```bash
-sudo update-initramfs -uk all
-```
+   ```bash
+   sudo nano /etc/modprobe.d/blacklist.conf
+   ```
 
-Reboot to apply changes:
+1. Delete the line containing `blacklist amdgpu`, then update initramfs:
 
-```bash
-sudo reboot
-```
+   ```bash
+   sudo update-initramfs -uk all
+   ```
+
+1. Reboot to apply changes:
+
+   ```bash
+   sudo reboot
+   ```
 
 ---
 
-## Graphics and ROCm Installation
+## Graphics and ROCm installation
 
 This section covers installing the AMD driver for graphics workloads with ROCm libraries and development tools.
 
 ### Prerequisites
 
-**System Requirements:**
+**System requirements:**
 
 - Ubuntu 22.04 with kernel 6.5
 - Disk size greater than 64GB
 - Desktop environment (for graphics workloads, use Ubuntu Desktop ISO)
 
-### Pre-Installation Steps
+### Pre-installation steps
 
-Update package list:
+Complete the following pre-installation steps.
 
-```bash
-sudo apt update
-```
+1. Update package list:
 
-Install Python packages:
+   ```bash
+   sudo apt update
+   ```
 
-```bash
-sudo apt install python3-setuptools python3-wheel
-```
+1. Install Python packages:
 
-Add user to required groups:
+   ```bash
+   sudo apt install python3-setuptools python3-wheel
+   ```
 
-```bash
-sudo usermod -a -G render,video $LOGNAME
-```
+1. Add user to required groups:
 
-Install kernel headers:
+   ```bash
+   sudo usermod -a -G render,video $LOGNAME
+   ```
 
-```bash
-sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
-```
+1. Install kernel headers:
 
-### Blocklist Default Driver
+   ```bash
+   sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
+   ```
 
-Check if the driver is already blocklisted:
+### Blocklist default driver
 
-```bash
-grep amdgpu /etc/modprobe.d/* -rn
-```
+Follow these steps to blocklist the default driver.
 
-If not blocklisted, add it:
+1. Check if the driver is already blocklisted:
 
-```bash
-sudo vim /etc/modprobe.d/blacklist.conf
-```
+   ```bash
+   grep amdgpu /etc/modprobe.d/* -rn
+   ```
 
-Add this line:
+1. If not blocklisted, add it:
 
-```
-blacklist amdgpu
-```
+   ```bash
+   sudo vim /etc/modprobe.d/blacklist.conf
+   ```
 
-Apply changes:
+1. Add this line:
 
-```bash
-sudo update-initramfs -uk all
-```
+   ```
+   blacklist amdgpu
+   ```
 
-Reboot the system:
+1. Apply changes:
 
-```bash
-sudo reboot
-```
+   ```bash
+   sudo update-initramfs -uk all
+   ```
 
-### Install AMD Driver with Graphics Support
+1. Reboot the system:
 
-Upgrade the system:
+   ```bash
+   sudo reboot
+   ```
 
-```bash
-sudo apt upgrade
-```
+### Install AMD driver with graphics support
 
-Download the installer:
+Follow these steps to install the AMD driver with graphics support.
 
-```bash
-wget -N -P /tmp/ https://repo.radeon.com/amdgpu-install/6.1.4/ubuntu/jammy/amdgpu-install_6.1.60104-1_all.deb
-```
+1. Upgrade the system:
 
-If a previous driver exists, remove it:
+   ```bash
+   sudo apt upgrade
+   ```
 
-```bash
-sudo amdgpu-uninstall
-sudo apt remove amdgpu-install --purge
-```
+1. Download the installer:
 
-Install the new driver:
+   ```bash
+   wget -N -P /tmp/ https://repo.radeon.com/amdgpu-install/6.1.4/ubuntu/jammy/amdgpu-install_6.1.60104-1_all.deb
+   ```
 
-```bash
-sudo apt-get install /tmp/amdgpu-install_6.1.60104-1_all.deb
-sudo amdgpu-install --usecase=workstation,rocm,amf --opencl=rocr --vulkan=pro --no-32 --accept-eula
-```
+1. If a previous driver exists, remove it:
 
-Load the driver:
+   ```bash
+   sudo amdgpu-uninstall
+   sudo apt remove amdgpu-install --purge
+   ```
 
-```bash
-sudo modprobe amdgpu
-```
+1. Install the new driver:
 
-Verify installation:
+   ```bash
+   sudo apt-get install /tmp/amdgpu-install_6.1.60104-1_all.deb
+   sudo amdgpu-install --usecase=workstation,rocm,amf --opencl=rocr --vulkan=pro --no-32 --accept-eula
+   ```
 
-```bash
-sudo dmesg | grep amdgpu
-```
+1. Load the driver:
 
-Remove blocklist and enable automatic loading (follow steps from previous section).
+   ```bash
+   sudo modprobe amdgpu
+   ```
+
+1. Verify installation:
+
+   ```bash
+   sudo dmesg | grep amdgpu
+   ```
+
+To remove a blocklist, see [Enable automatic loading on reboot](#step-4-enable-automatic-loading-on-reboot).
 
 ---
 
-## X11 Remote Server Configuration
+## X11 remote server configuration
 
-After installing the graphics driver, you'll need to configure a virtual display with hardware acceleration for remote access.
+After installing the graphics driver, follow these steps to configure a virtual display with hardware acceleration for remote access.
 
-### Install Required Packages
+### Step 1: Install required packages
 
 ```bash
 sudo apt install net-tools
 sudo apt install x11vnc
 ```
 
-### Configure GDM3
+### Step 2: Configure GDM3
 
-Edit the GDM3 configuration:
+Follow these steps to configure GDM3.
 
-```bash
-sudo vim /etc/gdm3/custom.conf
-```
+1. Edit the GDM3 configuration:
 
-Modify to include:
+   ```bash
+   sudo vim /etc/gdm3/custom.conf
+   ```
 
-```ini
-[daemon]
-AutomaticLoginEnable=true
-AutomaticLogin=your_username
-WaylandEnable=false
-```
+1. Modify to include:
 
-Restart GDM3:
+   ```ini
+   [daemon]
+   AutomaticLoginEnable=true
+   AutomaticLogin=your_username
+   WaylandEnable=false
+   ```
 
-```bash
-sudo systemctl restart gdm3
-```
+1. Restart GDM3:
 
-### Configure X11
+   ```bash
+   sudo systemctl restart gdm3
+   ```
 
-Get your GPU's Bus ID:
+### Step 3: Configure X11
 
-```bash
-lspci -d 1002: | awk '{print $1}'
-```
+Follow these steps to configure X11.
 
-Convert the hex Bus ID to decimal format. For example, `3a9e:00:00.0` becomes `3841536`.
+1. Get your GPU's Bus ID:
 
-Edit the X configuration file `/usr/share/X11/xorg.conf.d/00-amdgpu.conf`:
+   ```bash
+   lspci -d 1002: | awk '{print $1}'
+   ```
 
-```
-Section "Device"
-    Identifier "Card0"
-    Driver "amdgpu"
-    BusID "PCI:3841536:0:0"
-EndSection
+1. Convert the hex Bus ID to decimal format. For example, `3a9e:00:00.0` becomes `3841536`.
 
-Section "Screen"
-    Identifier "Screen0"
-    Device "Card0"
-    Monitor "Monitor0"
-EndSection
-```
+1. Edit the X configuration file `/usr/share/X11/xorg.conf.d/00-amdgpu.conf`:
 
-Edit `/usr/share/X11/xorg.conf.d/10-amdgpu.conf`:
+   ```
+   Section "Device"
+       Identifier "Card0"
+       Driver "amdgpu"
+       BusID "PCI:3841536:0:0"
+   EndSection
+   
+   Section "Screen"
+       Identifier "Screen0"
+       Device "Card0"
+       Monitor "Monitor0"
+   EndSection
+   ```
 
-```
-Section "OutputClass"
-    Identifier "Card0"
-    MatchDriver "amdgpu"
-    Driver "amdgpu"
-    Option "PrimaryGPU" "yes"
-EndSection
-```
+1. Edit `/usr/share/X11/xorg.conf.d/10-amdgpu.conf`:
 
-Reboot and load the driver:
+   ```
+   Section "OutputClass"
+       Identifier "Card0"
+       MatchDriver "amdgpu"
+       Driver "amdgpu"
+       Option "PrimaryGPU" "yes"
+   EndSection
+   ```
 
-```bash
-sudo reboot
-```
+1. Reboot and load the driver:
 
-After reboot:
+   ```bash
+   sudo reboot
+   ```
 
-```bash
-sudo systemctl stop gdm
-sudo modprobe amdgpu
-sudo systemctl start gdm
-```
+1. After reboot, run the following commands:
 
-### Start VNC Server
+   ```bash
+   sudo systemctl stop gdm
+   sudo modprobe amdgpu
+   sudo systemctl start gdm
+   ```
+
+### Step 4: Start VNC server
+
+To start the server, run the following command.
 
 ```bash
 x11vnc --forever -find
@@ -388,58 +404,58 @@ x11vnc --forever -find
 
 ## Troubleshooting
 
-### Downgrade to Kernel 6.5
+### Downgrade to kernel 6.5
 
-If you're running kernel 6.8, downgrade to 6.5 for compatibility:
+If you're running kernel 6.8, you can downgrade to 6.5 for compatibility by following these steps.
 
-Check loaded kernels:
+1. Check loaded kernels:
 
-```bash
-dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
-```
+   ```bash
+   dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
+   ```
 
-Install kernel 6.5:
+1. Install kernel 6.5:
 
-```bash
-sudo apt install linux-image-6.5.0-1025-azure
-```
+   ```bash
+   sudo apt install linux-image-6.5.0-1025-azure
+   ```
 
-Remove kernel 6.8:
+1. Remove kernel 6.8:
 
-```bash
-sudo apt purge linux-headers-6.8.0-1025-azure linux-image-6.8.0-1025-azure linux-modules-6.8.0-1025-azure
-```
+   ```bash
+   sudo apt purge linux-headers-6.8.0-1025-azure linux-image-6.8.0-1025-azure linux-modules-6.8.0-1025-azure
+   ```
 
-Set kernel 6.5 as default by editing GRUB:
+1. Edit GRUB:
 
-```bash
-sudo vim /etc/default/grub
-```
+   ```bash
+   sudo vim /etc/default/grub
+   ```
 
-Change:
+1. Set kernel 6.5 as default:
 
-```
-GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
-```
+   ```
+   GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
+   ```
 
-Update GRUB and reboot:
+1. Update GRUB and reboot:
 
-```bash
-sudo update-grub
-sudo reboot
-```
+   ```bash
+   sudo update-grub
+   sudo reboot
+   ```
 
-Verify kernel version:
+1. Verify kernel version:
 
-```bash
-uname -a
-```
+   ```bash
+   uname -a
+   ```
 
 ---
 
-## Uninstalling the Driver
+## Uninstalling the AMD GPU driver
 
-To completely remove the AMD GPU driver:
+To completely remove the AMD GPU driver, run the following commands:
 
 ```bash
 dkms status
@@ -454,5 +470,3 @@ Verify removal:
 ```bash
 dkms status
 ```
-
----
