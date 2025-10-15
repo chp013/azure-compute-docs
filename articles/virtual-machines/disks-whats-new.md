@@ -18,6 +18,7 @@ Azure Disk Storage regularly receives updates for new features and enhancements.
 
 - [What's new in 2025](#whats-new-in-2025)
     -  [Quarter 3 (July, August, September)](#quarter-3-july-august-september)
+        - [Generally available: Live Resize for Premium SSD v2 and Ultra Disks using NVMe controllers](#generally-available-live-resize-for-premium-ssd-v2-and-ultra-disks-using-nvme-controllers)
         - [Generally available: Ultra Disk price reduction in West US 2, Central US, and UK South](#generally-available-ultra-disk-price-reduction-in-west-us-2-central-us-and-uk-south)
   - [Quarter 2 (April, May, June)](#quarter-2-april-may-june)
     - [Generally available: Troubleshoot Disk Performance with Copilot in Azure](#generally-available-troubleshoot-disk-performance-with-copilot-in-azure)
@@ -41,6 +42,10 @@ Azure Disk Storage regularly receives updates for new features and enhancements.
 ## What's new in 2025
 
 ### Quarter 3 (July, August, September)
+
+#### Generally available: Live Resize for Premium SSD v2 and Ultra Disks using NVMe controllers
+
+You can dynamically expand the storage capacity of your Premium SSD v2 and Ultra Disks using [NVMe controllers](https://learn.microsoft.com/azure/virtual-machines/nvme-overview) without any disruption to your applications. To optimize costs, you can start with smaller disks and gradually increase their storage capacity as needed, without experiencing downtime. See [expand with Ultra Disks and Premium SSD v2](/azure/virtual-machines/windows/expand-disks#expand-with-ultra-disks-and-premium-ssd-v2) for details.
 
 #### Generally available: Ultra Disk price reduction in West US 2, Central US, and UK South
 

@@ -2428,25 +2428,17 @@
     - name: VM size series retirement migration guides
       items:
       - name: General-purpose sizes
-        items:
-        - name: D-series migration guide
-          href: ./migration/sizes/d-ds-dv2-dsv2-ls-series-migration-guide.md
-        - name: Ds-series migration guide
-          href: ./migration/sizes/d-ds-dv2-dsv2-ls-series-migration-guide.md
-        - name: Dsv2-series migration guide
-          href: ./migration/sizes/d-ds-dv2-dsv2-ls-series-migration-guide.md
+        href: ./migration/sizes/d-ds-dv2-dsv2-ls-series-migration-guide.md
       - name: Storage-optimized sizes
-        items:
-        - name: Ls-series migration guide
-          href: ./migration/sizes/d-ds-dv2-dsv2-ls-series-migration-guide.md
+        href: ./migration/sizes/d-ds-dv2-dsv2-ls-series-migration-guide.md
       - name: GPU-accelerated sizes
         items:
         - name: N-series migration guide
           href: ./migration/sizes/n-series-migration.md
         - name: NV-series migration guide
           href: ./migration/sizes/nv-series-migration-guide.md
-    - name: Dedicated Host migration guide
-      href: ./migration/dedicated-host-migration-guide.md
+      - name: Dedicated Host migration guide
+        href: ./migration/dedicated-host-migration-guide.md
 - name: Infrastructure automation
   items:
   - name: Overview
