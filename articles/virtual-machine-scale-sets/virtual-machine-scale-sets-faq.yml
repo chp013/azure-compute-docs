@@ -635,7 +635,7 @@ sections:
       - question: |
           Can I attach multiple NICs or custom IP configurations to VMs in a scale set?
         answer: |
-          Yes. VMSS supports multiple NICs and custom IP configurations per instance when using the flexible orchestration mode. This enables complex network topologies and service isolation..
+          Yes. Virtual Machine Scale Sets supports multiple NICs and custom IP configurations per instance when using the flexible orchestration mode. This enables complex network topologies and service isolation.
   - name: Scale
     questions:
       - question: |
