@@ -10,7 +10,7 @@ ms.custom: template-overview #Required; leave this attribute/value as-is.
 # Customer intent: As a cloud administrator, I want to use impact reporting tools to document performance issues in my Azure workloads so that I can quickly identify and address platform-related problems to maintain service reliability.
 ---
 
-# What is Azure Impact Reporting (preview)?
+# What is Azure Impact Reporting Preview?
 
 > [!IMPORTANT]
 > Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
