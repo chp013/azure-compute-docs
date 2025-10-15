@@ -35,7 +35,7 @@ The [marketplace image](https://azuremarketplace.microsoft.com/en-us/marketplace
 > - Ubuntu 24.04
 >   
 > For other Linux distributions, see:
-> - [Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html)
+> - [Quick start installation guide - ROCm installation (Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html)
 > - [ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
 
 Install the AMD Linux Driver to leverage the full capabilities of the AMD Radeon PRO V710 GPU on an NVv5-V710 GPU Linux instance in Microsoft Azure. The sections that follow provide detailed instructions for installing the Linux driver and running inference workloads using ROCm on this instance type.
@@ -46,7 +46,7 @@ Install the AMD Linux Driver to leverage the full capabilities of the AMD Radeon
 
 The simplest method is using the AMD GPU Driver Extension, which automates driver installation for NVv710-series VMs. You can deploy this extension through:
 
-- Azure Portal
+- Azure portal
 - Azure PowerShell
 - Azure Resource Manager templates
 
