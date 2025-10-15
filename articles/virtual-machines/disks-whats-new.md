@@ -43,7 +43,7 @@ Azure Disk Storage regularly receives updates for new features and enhancements.
 
 ### Quarter 3 (July, August, September)
 
-#### Generally available: Live Resize for Premium SSD v2 and Ultra NVMe Disks
+#### Generally available: Live Resize for Premium SSD v2 and Ultra Disks using NVMe controllers
 
 You can dynamically expand the storage capacity of your Premium SSD v2 and Ultra Disks using [NVMe controllers](https://learn.microsoft.com/azure/virtual-machines/nvme-overview) without any disruption to your applications. To optimize costs, you can start with smaller disks and gradually increase their storage capacity as needed, without experiencing downtime. See [expand with Ultra Disks and Premium SSD v2](/azure/virtual-machines/windows/expand-disks#expand-with-ultra-disks-and-premium-ssd-v2) for details.
 
