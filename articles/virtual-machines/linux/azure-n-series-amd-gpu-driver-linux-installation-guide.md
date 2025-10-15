@@ -8,7 +8,7 @@ ms.subservice: sizes
 ms.collection: linux
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 05/13/2025
+ms.date: 10/15/2025
 ms.author: padmalathas
 # Customer intent: As a cloud engineer managing Linux VMs with AMD GPUs, I want to install the necessary AMD GPU drivers and configure my NVv5-V710 instances, so that I can optimize performance for AI and graphics workloads.
 ---
@@ -17,20 +17,22 @@ ms.author: padmalathas
 
 **Applies to:** :heavy_check_mark: Linux VMs
 
-> [!Note]
-> Azure currently provides installation instructions for Ubuntu 22.04 and Ubuntu 24.04. For other Linux distributions and the latest updated guide on setting up ROCm drivers, please see AMDs page - [Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html), for all other ROCm versions, see [ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
+> [!IMPORTANT]
+> To align with inclusive language practices, we have replaced the term "blacklist" with "blocklist" throughout this documentation. This change reflects our commitment to avoiding terminology that may carry unintended negative connotations or perceived racial bias.
+> However, in code snippets and technical references where "blacklist" is part of established syntax or tooling (for example, configuration files, command-line parameters), the original term is retained to preserve functional accuracy. This usage is strictly technical and does not imply any discriminatory intent.
 
 ## NVads V710-series
 
-To utilize the GPU capabilities of the new Azure *NVads V710-series VMs* running Linux, you need to install the AMD GPU drivers. The [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-linux.md) simplifies the installation process for AMD GPU drivers on *NVv710-series VMs*. You can manage this extension through the Azure portal, Azure PowerShell, or Azure Resource Manager(ARM) templates. For detailed information on supported operating systems and deployment steps, see [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-linux.md) documentation.
+To leverage the GPU capabilities of Azure’s new NVads V710-series virtual machines running Linux, you’ll need to install AMD GPU drivers. The AMD GPU driver extension streamlines this process by automating driver installation for NVv710-series VMs. You can manage the extension via the Azure portal, Azure PowerShell, or Azure Resource Manager (ARM) templates. For details on supported operating systems and deployment steps, see [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-linux.md) documentation.
 
-The [marketplace image](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/amdinc1746636494855.nvv5_v710_linux_rocm_image?tab=Overview) is preloaded with the AMD GPU driver and can speed up the process when bringing up the VM. 
-
-This article outlines the supported operating systems, drivers, and provides installation and verification steps for **Ubuntu**.
+The [marketplace image](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/amdinc1746636494855.nvv5_v710_linux_rocm_image?tab=Overview) comes preloaded with the AMD GPU driver, helping accelerate VM setup. This article details the supported operating systems and drivers, and walks through installation and verification steps specifically for **Ubuntu**.
 
 ### ROCm
 
-Here are the steps for installing the AMD Linux Driver to harness the capabilities of the AMD Radeon PRO V710 GPU on an NVv5-V710 GPU Linux instance provided by Microsoft Azure. Subsequent sections provide detailed Linux driver installation instructions for users who wish to perform inference using ROCm on the NVv5-V710 GPU Linux instance.
+> [!NOTE]
+> Microsoft Azure currently provides installation instructions for Ubuntu 22.04 and Ubuntu 24.04. For other Linux distributions and the latest updated guide on setting up ROCm drivers, please see AMDs page - [Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html), for all other ROCm versions, see [ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
+
+Install the AMD Linux Driver to unlock the full capabilities of the AMD Radeon PRO V710 GPU on an NVv5-V710 GPU Linux instance in Microsoft Azure. The sections that follow provide detailed instructions for installing the Linux driver and running inference workloads using ROCm on this instance type.
 
 ## Step 1: Linux Driver Installation
 **Supported Linux Distros**
@@ -39,8 +41,7 @@ Confirm the system has a supported Linux version.
 
 To obtain the Linux distribution information, use the following command: 
 
-
-```
+```bash
 $ cat /etc/*release
 
 DISTRIB_ID=Ubuntu
@@ -56,15 +57,14 @@ Confirm that your Linux distribution matches a [supported distribution](https://
 
 To check the kernel version of your Linux system, type the following command: 
 
-
-```
+```bash
 $ uname -srmv
 
 Linux 5.XX.0-XX-generic #86-Ubuntu SMP Mon Jul 10 16:07:21 UTC 2023 x86_64
 ```
 
 ## Step 2: Pre-configuration
-> [!Note]
+> [!NOTE]
 > The disk size must be greater than 64GB to ensure optimal performance and compatibility.
 
 **Verify the GPU card**
@@ -114,11 +114,8 @@ sudo apt install ./amdgpu-install_6.4.60403-1_all.deb
 sudo apt update
 sudo apt install amdgpu-dkms rocm
 ```
-
   </details> 
 
->[!NOTE]
-> Azure currently supports Ubuntu 22.04 and Ubuntu 24.04, for all other Linux distros refer to [AMD's documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html).
 
 #### Load amdgpu driver
 
@@ -190,12 +187,12 @@ DISTRIB_DESCRIPTION="Ubuntu 22.04"
 PRETTY_NAME="Ubuntu 22.04 LTS" 
 ```
 Ensure your Linux distribution and kernel version are listed in the table above.  
->[!Note]
->Refer to the troubleshooting section at the end of the document for instructions on how to set the 
->6.5 kernel as the default (at every boot time) on the NvV5 V710 GPU instance. 
+> [!NOTE]
+> Refer to the troubleshooting section at the end of the document for instructions on how to set the 6.5 kernel as the default (at every boot time) on the NvV5 V710 GPU instance. 
 
->[!Note]
->If you plan to run the graphics workload, use the Linux distribution with graphics enabled (e.g., Ubuntu-22.04-desktop-amd64.iso).
+> [!NOTE]
+> If you plan to run the graphics workload, use the Linux distribution with graphics enabled (e.g., Ubuntu-22.04-desktop-amd64.iso).
+> 
 ### 3. Troubleshooting
 This section outlines troubleshooting techniques to address issues that may arise during the driver installation process.
 If you're using the Kernel 6.8, follow the below steps to downgrade to kernel 6.5.
@@ -234,6 +231,7 @@ linux-modules-6.5.0-1025-azure
 ```
 ##### Loading Kernel 6.5 by default on boot:
 When the NVv5-V710 GPU Linux instance is launched, the OS boots to the 6.8.0-1015-azure kernel instead of the 6.5.0-1025-azure kernel. The GRUB settings need to be modified to boot into the 6.5.0-1025-azure kernel. To check the currently installed kernels, use the following command
+
 ```bash
 $ dpkg --list | egrep -i --color 'linux-image' | awk '{ print $2 }'
 ```
@@ -259,7 +257,7 @@ uname -a
 ```
 
 ### 4. Prerequisites
->[!Note]
+> [!NOTE]
 > The disk size must be greater than 64GB to ensure optimal performance and compatibility.
 
 #### 4.1 Update the package list
@@ -268,6 +266,7 @@ To ensure you have the latest information on the newest versions of packages and
 sudo apt update
 ```
 #### 4.2 Install Python Setuptools and wheel
+
 These packages are essential for building and distributing Python packages.
 ```bash
 $ sudo apt install python3-setuptools python3-wheel
@@ -292,12 +291,12 @@ $ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 
 The output should have the GPU card.
 
-```Bash
+```bash
 $ sudo lspci -d 1002:7461
 c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
 ```
 
->[!NOTE]
+> [!NOTE]
 > 7461 is the Virtual Function Device ID. This confirmation indicates that the Virtual Machine is configured with the AMD Radeon&trade; PRO V710 GPU.
 
 #### 4.6 Virtual Machine Update
@@ -306,6 +305,7 @@ On an NVv5-V710 GPU Linux instance running Ubuntu 22.04 OS, run the update:
 ```bash
 $ sudo apt update
 ```
+
 #### 4.7 Blacklist amdgpu Driver
 
 Before installing the latest AMD Linux driver, it's important to **blacklist** the default amdgpu driver. The default driver, present in Linux distributions like Ubuntu or RHEL, isn't certified for use with the **AMD Radeon™ PRO V710 GPU** on an **NVv5-V710 GPU Linux instance**. The driver optimized for Azure NVv5-V710 GPU workloads should be used instead.
@@ -497,21 +497,19 @@ $ sudo systemctl restart gdm3
 ```
 #### 6.4 Modify X Configuration
 ##### 6.4.1 Getting Bus ID
-The BusID of the AMD Radeon™ PRO V710 GPU must be manually added to the X11 configuration file. 
-To get the BusID, follow the steps
+The BusID of the AMD Radeon™ PRO V710 GPU must be manually added to the X11 configuration file. Convert the GPU’s BusID from hexadecimal to decimal format. For example, if the BusID is "3a9e:00:00.0", extract the hexadecimal portion "3a9e00" and convert it to decimal, resulting in "3841536".
+To retrieve the BusID, follow the steps
+
 ```bash
 $ lspci -d 1002: | awk '{print $1}' 
 3a9e:00:00.0
 ```
->[!Note]
->Convert BusID of GPU from HEX to Decimal, e.g., "3a9e:00:00.0", convert HEX "3a9e00" into DEC "3841536" 
 
 ##### 6.4.2 Updating X Configuration to add Device and Screen
-Furthermore, modify the “Screen” section to incorporate this device.
+Furthermore, modify the "Screen" section to incorporate this device.
 
-To ensure the driver configuration is correct, modify /usr/share/X11/xorg.conf.d/00-amdgpu.conf to match the content.
->[!Note]
->Make sure to update BusID as per your system configuration (as shown in the previous step)
+To verify correct driver configuration, edit the file at /usr/share/X11/xorg.conf.d/00-amdgpu.conf to match the required settings. Be sure to update the BusID to reflect your system’s configuration, as identified in the previous step.
+
 ```bash
 Section "OutputClass" 
         Identifier "AMDgpu" 
@@ -561,7 +559,9 @@ Section "Screen"
 EndSubSection 
 EndSection
 ```
-Also modify /usr/share/X11/xorg.conf.d/10-amdgpu.conf to match the following section
+
+Also, modify /usr/share/X11/xorg.conf.d/10-amdgpu.conf to match the following section
+
 ```bash
 Section "OutputClass" 
 Identifier "Card0" 
@@ -570,29 +570,34 @@ Driver "amdgpu"
 Option "PrimaryGPU" "yes" 
 EndSection 
 ```
-#### 6.5 Reboot
 
+#### 6.5 Reboot
 After installation, reboot the virtual machine to apply changes:
 
 ```bash
 sudo reboot
 ```
+
 #### 6.6 Load Driver
 Once the system is backup, load the amdgpu driver using the following commands:
+
 ```bash
 $ sudo systemctl stop gdm   
 $ sudo modprobe amdgpu  
 $ sudo systemctl start gdm 
 ```
+
 > These commands temporarily stop and restart the GNOME Display Manager(gdm) to load the driver correctly. Make sure you save your work before running them
+> 
 #### 6.7 Running x11vnc
 To start the VNC server and automatically find the correct display and authentication, use the following command:
+
 ```bash
 x11vnc --forever -find
 ```
 This command searches for the active X display and user credentials (XAUTH) automatically.
->[!Note]
->This setup is only compatible with the supported Ubuntu Desktop image. These instructions do not work for Ubuntu Server images. 
+> [!NOTE]
+> This setup is only compatible with the supported Ubuntu Desktop image. These instructions do not work for Ubuntu Server images. 
 
 ### Uninstallation Steps
 If you need to uninstall the existing amdgpu driver, follow these steps:
