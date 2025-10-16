@@ -632,7 +632,10 @@ sections:
           Can I configure a scale set to work with multiple application gateways?
         answer: |
           Yes. You can add the resource IDs for multiple application gateway backend address pools to the `applicationGatewayBackendAddressPools` list in the `ipConfigurations` section of your scale set network profile.
-
+      - question: |
+          Can I attach multiple NICs or custom IP configurations to VMs in a scale set?
+        answer: |
+          Yes. Virtual Machine Scale Sets supports multiple NICs and custom IP configurations per instance when using the flexible orchestration mode. This enables complex network topologies and service isolation.
   - name: Scale
     questions:
       - question: |
