@@ -19,12 +19,12 @@ When you use the impact connector for Azure Monitor alerts, you can seamlessly r
 
 ## How connectors work
 
-[![Diagram of the architecture of impact connectors for Azure Monitor.](images/azure-monitor-connector.png)](images/azure-monitor-connector.png#lightbox)
+[![Diagram that shows the architecture of impact connectors for Azure Monitor.](images/azure-monitor-connector.png)](images/azure-monitor-connector.png#lightbox)
 
 When you create a connector, it gets associated with a subscription. When alerts whose target resources reside in the specified subscription get fired, an impact report is created through Azure Impact Reporting and sent to Microsoft intelligence systems.
 
 ## Related content
 
 * [Create a connector for Azure Monitor alerts](create-azure-monitor-connector.md)
-* [Impact Reporting connectors - Troubleshooting guide](connectors-troubleshooting-guide.md)
+* [Impact Reporting connectors: Troubleshooting guide](connectors-troubleshooting-guide.md)
 * [View reported impacts and insights](view-impact-insights.md)

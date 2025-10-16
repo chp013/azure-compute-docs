@@ -1,6 +1,6 @@
 ---
 title: 'Azure Impact Reporting: Overview' #Required; page title is displayed in search results. Include the brand.
-description: Azure Impact Reporting is a service that enables you to report observed performance and availability regressions with your Azure workloads. #Required; article description that is displayed in search results. 
+description: Azure Impact Reporting is a service that you can use to report observed performance and availability regressions with your Azure workloads. #Required; article description that is displayed in search results. 
 author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
 ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
 ms.service: azure #Required; use either service or product per approved list. 

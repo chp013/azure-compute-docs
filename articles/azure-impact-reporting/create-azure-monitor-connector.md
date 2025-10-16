@@ -21,8 +21,8 @@ You can create impact connectors through [AzCLI](/cli/azure), [PowerShell](/powe
 
 | Type     | Details      |
 | ------------- | ------------- |
-| Azure role-based access control permissions | [Owner](/azure/role-based-access-control/built-in-roles#owner) or [User Access administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator) to give the Connector Alerts Reader role. Contributor access to the subscription for provider registration and to enable connector features, create connector resources. |
-| Command-line tools | [Bash](/cli/azure) or [PowerShell](/powershell/azure) (*not needed if you use Azure Cloud Shell*).|
+| Azure role-based access control permissions | [Owner](/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator) to give the Connector Alerts Reader role. Contributor access to the subscription for provider registration and to enable connector features and create connector resources. |
+| Command-line tools | [Bash](/cli/azure) or [PowerShell](/powershell/azure). (*Not needed if you use Azure Cloud Shell.*)|
 | Subscription ID| A subscription ID or a file that contains a list of subscription IDs whose alerts are of interest.|
 
 ## Create an Azure Impact Reporting connector
@@ -108,5 +108,5 @@ Namespace registration that allows connector resource creation might take 15 to 
 ## Related content
 
 * [What is the impact connector for Azure Monitor alerts?](azure-monitor-connector.md)
-* [Impact Reporting connectors - Troubleshooting guide](connectors-troubleshooting-guide.md)
+* [Impact Reporting connectors: Troubleshooting guide](connectors-troubleshooting-guide.md)
 * [View reported impacts and insights](view-impact-insights.md)

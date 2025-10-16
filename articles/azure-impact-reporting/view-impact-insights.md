@@ -18,7 +18,7 @@ You can view previously submitted impact reports and insights through the REST A
 
 ## Permissions needed
 
-You need either the Impact Reporter role or the `read` action on `Microsoft.Impact/WorkloadImpact/*` at the right scope (root, subscription, or resource group).
+You need either the Impact Reporter role or the `read` action on `Microsoft.Impact/WorkloadImpact/*` at the appropriate scope (root, subscription, or resource group).
 
 Use the following channels to view impact reports or insights:
 

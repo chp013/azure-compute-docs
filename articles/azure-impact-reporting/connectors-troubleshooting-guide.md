@@ -1,5 +1,5 @@
 ---
-title: Azure Impact Reporting - Connectors Troubleshooting Guide #Required; page title is displayed in search results. Include the brand.
+title: 'Azure Impact Reporting: Connectors Troubleshooting Guide' #Required; page title is displayed in search results. Include the brand.
 description: Azure Impact Reporting Connectors Troubleshooting Guide #Required; article description that is displayed in search results. 
 author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
 ms.author: kezaveri #Required; microsoft alias of author; optional team alias.
@@ -17,7 +17,7 @@ ms.custom: template-overview #Required; leave this attribute/value as-is.
 
 This article outlines solutions to common errors that you might encounter when you create an Azure Impact Reporting connector.
 
-## The Bash script fails immediately after starting
+## Bash script fails immediately after starting
 
 Ensure that the script has execution permissions. Use this command to make it executable:
 

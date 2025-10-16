@@ -1,6 +1,6 @@
 ---
 title: 'Azure Impact Reporting: Create a Logic App' #Required; page title is displayed in search results. Include the brand.
-description: Learn how to onboard your workload to Azure Impact Reporting by using a Logic App. #Required; article description that is displayed in search results. 
+description: Learn how to onboard your workload to Azure Impact Reporting by using a logic app. #Required; article description that is displayed in search results. 
 author: anajib #Required; your GitHub user alias, with correct capitalization.
 ms.author: ashiknajib #Required; microsoft alias of author; optional team alias.
 ms.topic: how-to #Required; leave this attribute/value as-is.
@@ -13,7 +13,7 @@ ms.custom: template-overview #Required; leave this attribute/value as-is.
 # Report impacts by using a logic app (preview)
 
 > [!IMPORTANT]
-> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 To learn more about available impact management actions, see the [API docs](https://aka.ms/ImpactRP/APIDocs).
 
@@ -23,7 +23,7 @@ Use a logic app as a REST client for impact reporting.
 
 ## Prerequisites
 
-A managed identity with PUT access to the ImpactRP API and read access to the data source for the workload is required. In addition, you need a query with a one-minute or greater polling interval for the data source to generate the following fields:
+A managed identity with PUT access to the ImpactRP API and read access to the data source for the workload is required. You also need a query with a one-minute or greater polling interval for the data source to generate the following fields:
 
 - `ImpactName`
 - `ImpactStartTime`
@@ -42,7 +42,7 @@ ExampleTable
 > [!NOTE]
 > Replace the query with one to a datastore or source that Azure Logic Apps supports and returns the same columns. If all of these columns aren't readily available, add more steps to the workflow to generate the missing fields.
 
-## Steps
+## Create a logic app
 
 1. Create a new logic app in the Azure portal with the following settings:
 
