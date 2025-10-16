@@ -37,6 +37,9 @@ az vmss update \
 #### Change the VM sizes
 To update the VM sizes in the `skuProfile`, for example, to Standard_D2as_v4, Standard_D2as_v5, and Standard_D2s_v5:
 
+> [!NOTE]
+> When you update VM sizes, you must specify the complete list of sizes you want in the scale set. This operation replaces the entire list, not just adds or removes individual sizes.
+
 ```azurecli-interactive
 az vmss update \
   --resource-group {resourceGroupName} \
@@ -155,7 +158,7 @@ az vmss update \
   --resource-group {resourceGroupName} \
   --set sku.name=Mix sku.tier=null \
   --skuprofile-vmsizes Standard_D2as_v4 Standard_D2s_v5 Standard_D2as_v5 \
-  --sku-allocat-strat capacityOptimized
+  --set skuProfile.allocationStrategy=capacityOptimized
 ```
 
 ### [REST API](#tab/arm-2)
@@ -187,6 +190,34 @@ In the request body, set `sku.name` to `"Mix"` and include the `skuProfile` with
 ```
 
 ---
+
+## Common update scenarios
+
+### Remove a specific VM size
+
+To remove a specific VM size from the instance mix configuration, specify the complete list of VM sizes you want to keep, excluding the size you want to remove.
+
+**Example**: Remove `Standard_D2as_v4` from a scale set that has `Standard_D2as_v4`, `Standard_D2s_v4`, `Standard_D2as_v5`, and `Standard_D2s_v5`:
+
+```azurecli-interactive
+az vmss update \
+  --resource-group {resourceGroupName} \
+  --name {scaleSetName} \
+  --skuprofile-vmsizes Standard_D2s_v4 Standard_D2as_v5 Standard_D2s_v5
+```
+
+### Add a specific VM size
+
+To add a new VM size to the instance mix configuration, specify the complete list of VM sizes including both existing and new sizes.
+
+**Example**: Add `Standard_D4s_v5` to a scale set that currently has `Standard_D2s_v4`, `Standard_D2as_v5`, and `Standard_D2s_v5`:
+
+```azurecli-interactive
+az vmss update \
+  --resource-group {resourceGroupName} \
+  --name {scaleSetName} \
+  --skuprofile-vmsizes Standard_D2s_v4 Standard_D2as_v5 Standard_D2s_v5 Standard_D4s_v5
+```
 
 ## Next steps
 Learn how to [troubleshoot](instance-mix-faq-troubleshooting.md) your instance mix-enabled scale set.

@@ -48,7 +48,9 @@ az vmss create \
   --resource-group {myResourceGroup} \
   --image ubuntu2204 \
   --vm-sku Mix \
-  --skuprofile-vmsizes Standard_DS1_v2 Standard_D2s_v4
+  --skuprofile-vmsizes Standard_D2s_v5 Standard_D2as_v5 \
+  --authentication-type ssh \
+  --generate-ssh-keys
 ```
  
 To specify the allocation strategy, use the `--skuprofile-allocation-strategy` parameter, like the following command:
@@ -58,8 +60,10 @@ az vmss create \
   --resource-group {myResourceGroup} \
   --image ubuntu2204 \
   --vm-sku Mix \
-  --skuprofile-vmsizes Standard_DS1_v2 Standard_D2s_v4 \
-  --skuprofile-allocation-strategy CapacityOptimized
+  --skuprofile-vmsizes Standard_D2s_v5 Standard_D2as_v5 \
+  --skuprofile-allocation-strategy CapacityOptimized \
+  --authentication-type ssh \
+  --generate-ssh-keys
 ```
  
 ### [Azure PowerShell](#tab/powershell-1)
