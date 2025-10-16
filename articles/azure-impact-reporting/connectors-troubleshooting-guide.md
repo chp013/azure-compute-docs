@@ -30,12 +30,12 @@ Ensure that the [Azure CLI](/cli/azure) is installed and updated to the latest v
 ## Error: "Subscription ID or file path with list of subscription IDs required"
 
 - **Bash**: Make sure to provide either the `--subscription-id` or `--file-path` argument when you run the script. Don't provide both. <br>
-- **Powershell**: Make sure to provide either the `-SubscriptionId` parameter or the `-FilePath` parameter when you invoke the script. Don't provide both.
+- **PowerShell**: Make sure to provide either the `-SubscriptionId` parameter or the `-FilePath` parameter when you invoke the script. Don't provide both.
 
 ## Error: "Failed to find file: [file_path]"
 
 - **Bash**: Verify that the file path provided with `--file-path` exists and is accessible. Make sure to use the correct path. <br>
-- **Powershell**: Verify that the file path provided with `-FilePath` exists and is accessible. Make sure to use the correct path, and confirm that the file isn't locked or in use by another process.
+- **PowerShell**: Verify that the file path provided with `-FilePath` exists and is accessible. Make sure to use the correct path, and confirm that the file isn't locked or in use by another process.
 
 ## Script fails to execute with permission errors
 
