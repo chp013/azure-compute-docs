@@ -17,12 +17,12 @@ This article explains how to update the instance mix settings on a scale set, in
 The instance mix settings can be updated on your scale set via CLI, PowerShell, and REST API. You can change either the virtual machine (VM) sizes or the allocation strategy, or both, in a single call.
 
 > [!NOTE]
-> When you change the allocation strategy, the new strategy takes effect only after the scale set scales in or out. Existing VMs are not affected until a scaling action occurs.
+> When you change the allocation strategy, the new strategy takes effect only after the scale set scales in or out. Existing VMs aren't affected until a scaling action occurs.
 
-When changing from `Prioritized (preview)` to another allocation strategy, you must first nullify the priority ranks associated with the VM sizes. This will be covered in more detail in the supporting code snippets. 
+When changing from `Prioritized (preview)` to another allocation strategy, you must first nullify the priority ranks associated with the VM sizes. 
 
 ### [Azure CLI](#tab/cli-1)
-Ensure you are using Azure CLI version `2.66.0` or later.
+Ensure you're using Azure CLI version `2.66.0` or later.
 
 #### Change the allocation strategy
 To update the allocation strategy, for example, to `CapacityOptimized`:
@@ -141,7 +141,7 @@ To update only the VM sizes:
 ---
 
 ## Enable instance mix on an existing scale set
-To enable instance mix on a scale set that does not already use it, specify the `skuProfile` properties. You must set:
+To enable instance mix on a scale set that doesn't already use it, specify the `skuProfile` properties. You must set:
 - `sku.name` to `"Mix"`
 - `sku.tier` to `null`
 - At least one value in `vmSizes` under `skuProfile`
