@@ -186,5 +186,5 @@ See the following article for related information:
 [health-introduction-link]: service-fabric-health-introduction.md
 [application-model-link]: service-fabric-application-model.md
 [hosting-model-link]: service-fabric-hosting-model.md
-[tls-handshake-link]: https://learn.microsoft.com/en-us/windows/win32/secauthn/tls-handshake-protocol
+[tls-handshake-link]: /windows/win32/secauthn/tls-handshake-protocol
 
