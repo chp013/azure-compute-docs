@@ -1,5 +1,5 @@
 ---
-title: 'Azure Impact Connectors for Azure Monitor: FAQ'
+title: 'Azure Impact Reporting Connectors for Azure Monitor: FAQ'
 description: Frequently asked questions about Azure Monitor connectors. 
 author: rolandnyamo
 ms.author: ronyamo
@@ -10,7 +10,7 @@ ms.custom: template-overview
 # Customer intent: As an Azure administrator, I want to troubleshoot and configure Azure Impact Reporting connectors so that I can ensure successful integration with Azure Monitor and manage permissions effectively.
 ---
 
-# Azure Impact Reporting connectors for Azure Monitor FAQ (preview)
+# Azure Impact Reporting connectors for Azure Monitor (preview) FAQ
 
 > [!IMPORTANT]
 > Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
