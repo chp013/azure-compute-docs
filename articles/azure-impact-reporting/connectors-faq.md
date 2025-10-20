@@ -1,13 +1,13 @@
 ---
-title: 'Azure Impact Connectors for Azure Monitor: FAQ' #Required; page title is displayed in search results. Include the brand.
-description: Frequently asked questions for Azure Monitor connectors. #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
-ms.topic: faq #Required; leave this attribute/value as-is.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.date: 06/25/2024 #Required; mm/dd/yyyy format
-ms.custom: template-overview #Required; leave this attribute/value as-is.
-# Customer intent: As an Azure administrator, I want to troubleshoot and configure Azure Impact Reporting Connectors, so that I can ensure successful integration with Azure Monitor and manage permissions effectively.
+title: 'Azure Impact Connectors for Azure Monitor: FAQ'
+description: Frequently asked questions about Azure Monitor connectors. 
+author: rolandnyamo
+ms.author: ronyamo
+ms.topic: faq
+ms.service: azure 
+ms.date: 06/25/2024
+ms.custom: template-overview
+# Customer intent: As an Azure administrator, I want to troubleshoot and configure Azure Impact Reporting connectors so that I can ensure successful integration with Azure Monitor and manage permissions effectively.
 ---
 
 # Azure Impact Reporting connectors for Azure Monitor FAQ (preview)
@@ -50,5 +50,4 @@ Verify your Azure role and permissions. You might need the help of your Azure ad
 ## Related content
 
 * [File an impact report](report-impact.md)
-<!-- Add Impact Connectors TSG -->
-<!-- - [File an impact report](report-impact.md) -->
+* [Create an impact connector for Azure Monitor alerts](create-azure-monitor-connector.md)

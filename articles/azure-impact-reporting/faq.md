@@ -1,13 +1,13 @@
 ---
-title: 'Azure Impact Reporting: FAQ' #Required; page title is displayed in search results. Include the brand.
-description: Azure Impact Reporting frequently asked questions. #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
-ms.topic: faq #Required; leave this attribute/value as-is.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.date: 11/01/2022 #Required; mm/dd/yyyy format.
-ms.custom: template-overview #Required; leave this attribute/value as-is.
-# Customer intent: As an Azure user, I want to understand how to effectively use Azure Impact Reporting, so that I can communicate potential issues and enhance my service experience.
+title: 'Azure Impact Reporting: FAQ'
+description: Azure Impact Reporting frequently asked questions. 
+author: rolandnyamo
+ms.author: ronyamo
+ms.topic: faq
+ms.service: azure 
+ms.date: 11/01/2022
+ms.custom: template-overview
+# Customer intent: As an Azure user, I want to understand how to effectively use Azure Impact Reporting so that I can communicate potential issues and enhance my service experience.
 ---
 
 # Azure Impact Reporting FAQ (preview)
