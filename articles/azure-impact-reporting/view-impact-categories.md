@@ -27,9 +27,9 @@ Review the full list of categories in the [REST API reference](https://aka.ms/Im
 |`ARMOperation.Start`|To report failures in starting a resource.|
 |`ARMOperation.Stop`|To report failures in stopping a resource.|
 |`ARMOperation.Other`|To report control plane operation failures that don't fall into other `ARMOperation` categories.|
-|`Resource.Performance`|To report general performance issues. For example, high usage of CPU, IOPs, disk space, or memory.|
+|`Resource.Performance`|To report general performance issues. For example, high usage of CPU, IOPS, disk space, or memory.|
 |`Resource.Performance.Network`|To report performance issues that are networking related. For example, degraded network throughput.|
-|`Resource.Performance.Disk`|To report performance issues that are disk related. For example, degraded IOPs.|
+|`Resource.Performance.Disk`|To report performance issues that are disk related. For example, degraded IOPS.|
 |`Resource.Performance.CPU`|To report performance issues that are CPU related.|
 |`Resource.Performance.Other`|To report issues that don't fall under other `Resource.Performance` subcategories.|
 |`Resource.Connectivity`|To report general connectivity issues to or from a resource.|
@@ -48,5 +48,4 @@ Review the full list of categories in the [REST API reference](https://aka.ms/Im
 
 ## Related content
 
-> [!div class="nextstepaction"]
-> [View previously filed impact reports](view-impact-insights.md)
+- [View previously filed impact reports](view-impact-insights.md)
