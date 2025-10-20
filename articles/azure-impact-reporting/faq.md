@@ -10,7 +10,7 @@ ms.custom: template-overview
 # Customer intent: As an Azure user, I want to understand how to effectively use Azure Impact Reporting so that I can communicate potential issues and enhance my service experience.
 ---
 
-# Azure Impact Reporting FAQ (preview)
+# Azure Impact Reporting Preview FAQ
 
 > [!IMPORTANT]
 > Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
