@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 06/19/2024
 ms.service: azure 
 ms.custom: template-overview
-# Customer intent: As a cloud solutions architect, I want to implement a Logic App for Azure Impact Reporting so that I can automate the collection and reporting of workload impacts efficiently and ensure proactive management of my resources.
+# Customer intent: As a cloud solutions architect, I want to implement a logic app for Azure Impact Reporting so that I can automate the collection and reporting of workload impacts efficiently and ensure proactive management of my resources.
 ---
 
 # Report impacts by using a logic app (preview)
@@ -40,7 +40,7 @@ ExampleTable
 ```
 
 > [!NOTE]
-> Replace the query with one to a datastore or source that Azure Logic Apps supports and returns the same columns. If all of these columns aren't readily available, add more steps to the workflow to generate the missing fields.
+> Replace the query with one to a datastore or source that Azure Logic Apps supports and that returns the same columns. If all of these columns aren't readily available, add more steps to the workflow to generate the missing fields.
 
 ## Create a logic app
 
@@ -50,11 +50,11 @@ ExampleTable
     - **Region**: Set to **Central US**.
     - **Plan**: Set to **Standard**.
 
-1. (Optional) Under the **Monitoring** section, set **Enable Application Insights** to **Yes** to enable failure monitoring. More steps are at the bottom of this document.
+1. (Optional) Under the **Monitoring** section, set **Enable Application Insights** to **Yes** to enable failure monitoring.
 
-1. Review and create the logic app. After you create it, open the logic app and go to **Settings** > **Identity** in the side pane. In the **User assigned** section, select **Add**, and select the managed identity that you created in the prerequisites. Select **Save** to save the changes.
+1. Review and create the logic app. After you create it, open the logic app and go to **Settings** > **Identity** on the side pane. In the **User assigned** section, select **Add**, and select the managed identity that you created in the prerequisites. Select **Save** to save the changes.
 
-1. Go to **Workflows** > **Connections**, and select the **JSON View** tab. Create a connection for your data source. This example uses Kusto with managed identity, but you can use any data source supported by Logic Apps:
+1. Go to **Workflows** > **Connections**, and select the **JSON View** tab. Create a connection for your data source. This example uses Kusto with the managed identity, but you can use any data source that Logic Apps supports:
 
     ```json
     {
@@ -171,7 +171,9 @@ ExampleTable
 
     Select **Save** to save the changes.
 
-1. Go to **Developer** > **Designer**. Select the `Run KQL (Kusto Query Language) Query` block. Replace **Cluster URL** and **Database** with the target Kusto cluster and database. Replace **Query** with the query from the prerequisites. Next, select the blue **Change connection** link underneath the query textbox. Set **Authentication** to **Managed identity**. Set **Managed identity** to the managed identity that you created in the prerequisites with an appropriate connection name, and select **Create**.
+1. Go to **Developer** > **Designer**. Select the `Run KQL (Kusto Query Language) Query` block. Replace **Cluster URL** and **Database** with the target Kusto cluster and database. Replace **Query** with the query from the prerequisites.
+
+1. Select the blue **Change connection** link. Set **Authentication** to **Managed identity**. Set **Managed identity** to the managed identity that you created in the prerequisites with an appropriate connection name, and then select **Create**.
 
     > [!NOTE]
     > If you use a source other than Kusto, replace the `Run KQL Query` block with the appropriate block for your data source. The `For Each` block must be updated to iterate over the results of the query. The `HTTP` block must be updated to use the appropriate data from the query results.
@@ -182,4 +184,4 @@ ExampleTable
 
 1. Go to **Overview** and select **Run** to test the flow. The results appear under **Run History**.
 
-1. (Optional) Return to the Logic App screen in the Azure portal. Go to **Settings** > **Application Insights**, and select the hyperlink to the Application Insights resource. Go to **Monitoring** > **Alerts**. Select **Create** > **Alert Rule**. From here, you can create an alert rule to notify on failures.
+1. (Optional) Return to the logic app in the Azure portal. Go to **Settings** > **Application Insights**, and select the hyperlink to the Application Insights resource. Go to **Monitoring** > **Alerts**. Select **Create** > **Alert Rule**. From here, you can create an alert rule to notify on failures.
