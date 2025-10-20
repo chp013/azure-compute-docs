@@ -2,7 +2,7 @@
 title: 'Azure Impact Reporting: Overview'
 description: Azure Impact Reporting is a service that you can use to report observed performance and availability regressions with your Azure workloads. . 
 author: rolandnyamo
-ms.author: ronyamo.
+ms.author: ronyamo
 ms.service: azure 
 ms.topic: overview
 ms.date: 09/17/2025
