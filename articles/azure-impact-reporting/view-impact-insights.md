@@ -28,12 +28,12 @@ Use the following channels to view impact reports or insights:
 
 ### [Portal](#tab/portal/)
 
-1. Go to the **Azure Impact Reporting** portal. Look for your subscription, and select the date range.
+1. In the Azure portal, go to **Impact Reporting**. Look for your subscription, and select the date range.
 
-    [![Screenshot that shows the Azure Impact Reporting portal dashboard.](images/impact-reporting-portal.png)](images/impact-reporting-portal.png#lightbox)
+    :::image type="content" source="images/impact-reporting-portal.png" alt-text="Screenshot that shows the Azure Impact Reporting dashboard.":::
 1. To view the insights generated from the impacts, go to the bottom of the page. The tabular view shows the count of the insights for each resource name.
 
-    [![Screenshot that shows impact insights in the Azure portal.](images/insights.png)](images/insights.png#lightbox)
+    :::image type="content" source="images/insights.png" alt-text="Screenshot that shows impact insights in the Azure portal.":::
 1. Select the insight count to see recommended actions for each of the insights.
 
 ### [REST API](#tab/restapi/)
