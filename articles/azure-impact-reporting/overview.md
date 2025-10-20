@@ -26,7 +26,7 @@ In this context, an *impact* is any observed regression, unexpected behavior, or
 Examples of impacts include:
 
 * Unexpected virtual machine reboots.
-* Disk IO failures.
+* Disk I/O failures.
 * High data-path latency.
 
 ## Related content
