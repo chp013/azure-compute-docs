@@ -15,7 +15,7 @@ ms.custom: template-overview
 > [!IMPORTANT]
 > Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-You can create impact connectors through [AzCLI](/cli/azure), [PowerShell](/powershell/azure), or the Azure portal. This article outlines the connector creation process and requirements.
+You can create impact connectors through [AzCLI](/cli/azure), [Azure PowerShell](/powershell/azure), or the Azure portal. This article outlines the connector creation process and requirements.
 
 ## Prerequisites
 
@@ -56,39 +56,59 @@ You need to run this script in your Azure environment.
 ### [Portal](#tab/portal/)
 
 1. Search for **Impact Reporting Connectors** in the Azure portal search box.
+
 1. On the left pane, select **Create** to open the **Create Impact Reporting Connector** page.
 
     ![Screenshot that shows the Create Impact Reporting Connector page.](images/create-connector.png)
 
-1. From the **Subscription** dropdown, select the subscription for the connector.
-1. Under **Instance details**, for **Connector name**, enter **AzureMonitorConnector** . For **Connector type**, select **Azure Monitor**.
+1. In the **Subscription** dropdown list, select the subscription for the connector.
+
+1. Under **Instance details**, for **Connector name**, enter **AzureMonitorConnector**. For **Connector type**, select **Azure Monitor**.
+
 1. Select **Review + create**.
+
 1. After validation and the **Review + create** tab shows no error, create the connector.
+
 1. The deployment can take several minutes to complete. Feature flags need registration, which can take some time to propagate. Meanwhile, continue to the next section to enable alert reading from your subscription.
 
 ---
 
 ## Assign the Azure Alerts Reader role to the connector
 
-1. Go to your subscription, and on the service menu, select **Access control (IAM)**.
+1. Go to your subscription. On the service menu, select **Access control (IAM)**.
+
 1. Select **Add**, and then select **Add role assignment**.
+
 1. On the **Add role assignment** page, on the **Role** tab, enter **Azure Alerts Reader role** in the search bar. If this role doesn't exist, skip to [Create the Azure Alerts Reader role](#create-the-azure-alerts-reader-role) to create this role. After the role is created, return to this step.
+
 1. Select **Azure Alerts Reader role** and select **Next**.
+
 1. On the **Members** tab, for **Assign access to**, select **User, group, or service principal**.
+
 1. Choose **Select members** to open the **Select Members** pane on the right side.
+
 1. Enter **AzureImpactReportingConnector** in the search bar, and select the **AzureImpactReportingConnector** application.
+
 1. Select **Review + assign**.
+
 1. On the **Review + assign** tab, select **Review + assign**.
 
 ## Create the Azure Alerts Reader role
 
-1. Go to your subscription, and on the service menu, select **Access control (IAM)**.
+1. Go to your subscription. On the service menu, select **Access control (IAM)**.
+
 1. Select **Add**, and then select **Add custom role** to open the **Create a custom role** page.
+
 1. On the **Basics** tab, for **Custom role name**, enter **Azure Alerts Reader role**. Leave others as defaults, and select **Next**.
+
 1. On the **Permissions** tab, select **Add permissions**.
+
 1. Enter **Microsoft.AlertsManagement/alerts/read** in the search bar.
+
 1. Select the tile **Microsoft.AlertsManagement** to access the **Microsoft.AlertsManagement permissions** pane. Select the permission **Read: Read alerts**, and then select **Add**.
+
 1. Select **Review + create**.
+
 1. On the **Review + create** tab, select **Create**.
 
 ## Troubleshooting
