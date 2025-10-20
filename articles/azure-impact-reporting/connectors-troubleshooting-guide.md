@@ -10,7 +10,7 @@ ms.custom: template-overview
 # Customer intent: As an Azure user troubleshooting connector creation, I want guidance on solving common errors so that I can successfully create and manage Impact Reporting Connectors without delays or issues.
 ---
 
-# Impact Reporting connectors troubleshooting guide (preview)
+# Impact Reporting connectors (preview) troubleshooting guide
 
 > [!IMPORTANT]
 > Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
