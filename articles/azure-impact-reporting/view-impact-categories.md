@@ -1,19 +1,19 @@
 ---
-title: 'Get Impact Categories: Azure Impact Reporting' #Required; 
-description: Learn how to get a valid list of impact categories. #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
-ms.topic: overview #Required; leave this attribute/value as-is.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.date: 10/30/2022 #Required; mm/dd/yyyy format.
-ms.custom: template-overview #Required; leave this attribute/value as-is.
+title: 'Get Impact Categories: Azure Impact Reporting' 
+description: Learn how to get a valid list of impact categories. 
+author: rolandnyamo
+ms.author: ronyamo
+ms.topic: overview
+ms.service: azure 
+ms.date: 10/30/2022
+ms.custom: template-overview
 # Customer intent: As a cloud user, I want to access a list of impact categories for Azure services so that I can accurately report issues related to resource operations and performance.
 ---
 
 # Impact categories (preview)
 
 > [!IMPORTANT]
-> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 Review the full list of categories in the [REST API reference](https://aka.ms/ImpactRP/APIDocs).
 

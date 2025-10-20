@@ -1,19 +1,19 @@
 ---
-title: 'Azure Impact Reporting: Create a Logic App' #Required; page title is displayed in search results. Include the brand.
-description: Learn how to onboard your workload to Azure Impact Reporting by using a logic app. #Required; article description that is displayed in search results. 
-author: anajib #Required; your GitHub user alias, with correct capitalization.
-ms.author: ashiknajib #Required; microsoft alias of author; optional team alias.
-ms.topic: how-to #Required; leave this attribute/value as-is.
-ms.date: 06/19/2024 #Required; mm/dd/yyyy format.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.custom: template-overview #Required; leave this attribute/value as-is.
+title: 'Azure Impact Reporting: Create a Logic App'
+description: Learn how to onboard your workload to Azure Impact Reporting by using a logic app. 
+author: anajib
+ms.author: ashiknajib
+ms.topic: how-to
+ms.date: 06/19/2024
+ms.service: azure 
+ms.custom: template-overview
 # Customer intent: As a cloud solutions architect, I want to implement a Logic App for Azure Impact Reporting so that I can automate the collection and reporting of workload impacts efficiently and ensure proactive management of my resources.
 ---
 
 # Report impacts by using a logic app (preview)
 
 > [!IMPORTANT]
-> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 To learn more about available impact management actions, see the [API docs](https://aka.ms/ImpactRP/APIDocs).
 

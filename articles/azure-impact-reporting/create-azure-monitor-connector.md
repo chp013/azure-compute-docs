@@ -1,19 +1,19 @@
 ---
-title: 'Azure Impact Reporting: Create an Azure Monitor Alert Connector' #Required; page title is displayed in search results. Include the brand.
-description: Learn how to create an Azure Impact Reporting connector for Azure Monitor alerts. #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.topic: overview #Required; leave this attribute/value as-is.
-ms.date: 06/19/2024 #Required; mm/dd/yyyy format.
-ms.custom: template-overview #Required; leave this attribute/value as-is.
-# Customer intent: As an IT administrator, I want to create an Impact Reporting connector for Azure Monitor Alerts, so that I can efficiently manage and report on alerts across my Azure subscriptions.
+title: 'Azure Impact Reporting: Create an Azure Monitor Alert Connector'
+description: Learn how to create an Azure Impact Reporting connector for Azure Monitor alerts. 
+author: rolandnyamo
+ms.author: ronyamo
+ms.service: azure 
+ms.topic: overview
+ms.date: 06/19/2024
+ms.custom: template-overview
+# Customer intent: As an IT administrator, I want to create an Impact Reporting connector for Azure Monitor Alerts so that I can efficiently manage and report on alerts across my Azure subscriptions.
 ---
 
 # Create an impact connector for Azure Monitor alerts (preview)
 
 > [!IMPORTANT]
-> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 You can create impact connectors through [AzCLI](/cli/azure), [PowerShell](/powershell/azure), or the Azure portal. This article outlines the connector creation process and requirements.
 

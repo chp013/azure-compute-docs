@@ -1,13 +1,13 @@
 ---
-title: 'Azure Impact Reporting: Connectors Troubleshooting Guide' #Required; page title is displayed in search results. Include the brand.
-description: Azure Impact Reporting Connectors Troubleshooting Guide #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: kezaveri #Required; microsoft alias of author; optional team alias.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.topic: overview #Required; leave this attribute/value as-is.
-ms.date: 06/25/2024 #Required; mm/dd/yyyy format.
-ms.custom: template-overview #Required; leave this attribute/value as-is.
-# Customer intent: As an Azure user troubleshooting connector creation, I want guidance on solving common errors, so that I can successfully create and manage Impact Reporting Connectors without delays or issues.
+title: 'Azure Impact Reporting: Connectors Troubleshooting Guide'
+description: Azure Impact Reporting Connectors Troubleshooting Guide 
+author: rolandnyamo
+ms.author: kezaveri
+ms.service: azure 
+ms.topic: overview
+ms.date: 06/25/2024
+ms.custom: template-overview
+# Customer intent: As an Azure user troubleshooting connector creation, I want guidance on solving common errors so that I can successfully create and manage Impact Reporting Connectors without delays or issues.
 ---
 
 # Impact Reporting connectors troubleshooting guide (preview)

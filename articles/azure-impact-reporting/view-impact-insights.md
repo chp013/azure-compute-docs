@@ -1,18 +1,18 @@
 ---
-title: 'Azure Impact Reporting: View Impact Insights' #Required; page title is displayed in search results. Include the brand.
-description: View reported impacts and insights from Microsoft intelligence systems. #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
-ms.topic: how-to #Required; leave this attribute/value as-is.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.date: 09/04/2025 #Required; mm/dd/yyyy format.
-ms.custom: template-overview #Required; leave this attribute/value as-is.
+title: 'Azure Impact Reporting: View Impact Insights'
+description: View reported impacts and insights from Microsoft intelligence systems. 
+author: rolandnyamo
+ms.author: ronyamo
+ms.topic: how-to
+ms.service: azure 
+ms.date: 09/04/2025
+ms.custom: template-overview
 ---
 
 # View impact reports and insights (preview)
 
 > [!IMPORTANT]
-> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 You can view previously submitted impact reports and insights through the REST API, Azure Resource Graph Explorer, and the Azure portal.
 

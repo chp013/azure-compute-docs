@@ -1,18 +1,18 @@
 ---
-title: 'Azure Impact Reporting: Report an Impact' #Required; page title is displayed in search results. Include the brand.
-description: Learn how to provide necessary details to report an impact to your Azure workloads. #Required; article description that is displayed in search results. 
-author: rolandnyamo #Required; your GitHub user alias, with correct capitalization.
-ms.author: ronyamo #Required; microsoft alias of author; optional team alias.
-ms.topic: how-to #Required; leave this attribute/value as-is.
-ms.service: azure #Required; use either service or product per approved list. 
-ms.date: 09/04/2025 #Required; mm/dd/yyyy format.
-ms.custom: template-overview #Required; leave this attribute/value as-is.
+title: 'Azure Impact Reporting: Report an Impact'
+description: Learn how to provide necessary details to report an impact to your Azure workloads.
+author: rolandnyamo
+ms.author: ronyamo
+ms.topic: how-to
+ms.service: azure 
+ms.date: 09/04/2025
+ms.custom: template-overview
 ---
 
 # Report an impact (preview)
 
 > [!IMPORTANT]
-> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 You can use the Azure Service Health **Report an issue** pane and the REST API to report an issue. You can also use an Azure Monitor [connector](./azure-monitor-connector.md) to report an impact automatically when certain alerts get triggered.
 
