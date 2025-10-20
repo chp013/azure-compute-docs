@@ -58,7 +58,7 @@ If you get the following error, you don't have permission.
 ### [REST API](#tab/api/)
 
 > [!TIP]
-> Most workloads have monitoring in place to detect failures. When your monitoring identifies a problem that you think the platform caused, create an integration through a logic app or use Azure Function to file an impact report.
+> Most workloads have monitoring in place to detect failures. When your monitoring identifies a problem that you think the platform caused, create an integration through a logic app or use an Azure function to file an impact report.
 >
 For more examples, review the full [REST API reference](https://aka.ms/ImpactRP/APIDocs).
 
