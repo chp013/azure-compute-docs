@@ -13,7 +13,7 @@ ms.custom: template-overview #Required; leave this attribute/value as-is.
 # Azure Impact Reporting connectors for Azure Monitor FAQ (preview)
 
 > [!IMPORTANT]
-> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 Here are answers to common questions about Azure Impact Reporting connectors.
 
@@ -39,7 +39,7 @@ Verify your Azure role and permissions. You might need the help of your Azure ad
 
 ### Option 2
 
-1. From the Azure portal, go to [Azure Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade).
+1. In the Azure portal, go to [Azure Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade).
 
 1. Run this query:
 
