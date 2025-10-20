@@ -13,9 +13,9 @@ ms.custom: template-overview
 # Impact Reporting connectors troubleshooting guide (preview)
 
 > [!IMPORTANT]
-> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Azure Impact Reporting is currently in preview. For legal terms that apply to Azure features that are in beta, in preview, or otherwise not yet released into general availability, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-This article outlines solutions to common errors that you might encounter when you create an Azure Impact Reporting connector.
+This article outlines solutions to common errors that you might encounter when you create an Azure Impact Reporting connector. For issues not covered here, contact the [Impact Reporting connectors team](mailto:impactrp-preview@microsoft.com).
 
 ## Bash script fails immediately after starting
 
@@ -78,5 +78,3 @@ Namespace registration that allows connector resource creation might take 15 to 
         - `Get-AzProviderFeature -ProviderNamespace "Microsoft.Impact" -FeatureName AzureImpactReportingConnector"`
         - `Get-AzProviderFeature -ProviderNamespace "Microsoft.Impact" -FeatureName AllowImpactReporting` <br>
 1. Ensure that you have Contributor access to the subscriptions.
-
-This article covers common scenarios that you might encounter when you onboard the connector. For issues not covered here, contact the [Impact Reporting connectors team](mailto:impactrp-preview@microsoft.com).
