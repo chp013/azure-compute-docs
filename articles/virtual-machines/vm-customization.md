@@ -49,16 +49,16 @@ Once the VM is deployed, it has the specified number of vCPUs. If you set Thread
 
 To disable SMT and configure cores during instance launch
 
-To disable SMT/HT, use the Azure CLI command and specify a value of 1 for vCPUsPerCore for the --cpu-options parameter. To configure cores, specify the number of CPU cores for vCPUsAvailable. In this example, to specify the default CPU core count for a Standard_D8s_v6 instance, specify a value of 8.
-
+To disable SMT/HT, use the Azure CLI command and specify a value of 1 for vCPUsPerCore for the--cpu-options parameter. To configure cores, specify the number of CPU cores for vCPUsAvailable. In this example, to specify the default CPU core count for a Standard_D8s_v6 instance, specify a value of 8.
+```
 Az vm create --resource-group ccctest-rg-01 --name ccctestvm01 --image Ubuntu2204 --size Standard_D8s_v6 --location eastus2euap --admin-username azureuser --generate-ssh-keys --public-ip-address '""' --v-cpus-available 4 --v-cpus-per-core 1
-
+```
 ## PowerShell
 
 To disable SMT and configure cores during instance launch
 
 Use PowerShell and specify the properties on the underlying configuration object. To disable SMT/HT, specify a value of 1 for vCPUsPerCore for the --cpu-options parameter. To configure cores, specify the number of CPU cores for vCPUsAvailable. 
-
+```
 $vmConfig = New-AzVMConfig -VMName "MyVM" -VMSize "Standard_D8s_v6"
 
 $vmConfig.HardwareProfile.VmSizeProperties = New-Object Microsoft.Azure.Management.Compute.Models.VMSizeProperties
@@ -66,7 +66,7 @@ $vmConfig.HardwareProfile.VmSizeProperties = New-Object Microsoft.Azure.Manageme
 $vmConfig.HardwareProfile.VmSizeProperties.VCPUsAvailable = 4
 
 $vmConfig.HardwareProfile.VmSizeProperties.VCPUsPerCore = 1
-
+```
 Then proceed to set OS, network, etc., and use New-AzVM to create the VM. This approach uses the Azure PowerShell SDK objects directly to inject the values. 
 
 ## ARM Template (Azure Resource Manager)
@@ -86,7 +86,7 @@ Here are brief examples of ARM template snippets for different scenarios:
 This snippet shows the setting to turn off SMT on a VM (the VM uses 1 thread per core)
 
 JSON
-
+```
 "properties": {
 
 "hardwareProfile": {
@@ -104,7 +104,7 @@ JSON
 ...
 
 }
-
+```
 In this case, if Standard_D8s_v6 normally has 8 vCPUs (4 cores * 2 threads), setting vCPUsPerCore: 1 means the VM has 4 vCPUs (one per core).
 
 **Constrain vCPU Count (Customize Cores)** 
@@ -112,7 +112,7 @@ In this case, if Standard_D8s_v6 normally has 8 vCPUs (4 cores * 2 threads), set
 This snippet shows a VM configured to use a specific number of vCPUs (fewer than the default)
 
 JSON
-
+```
 "properties": {
 
 "hardwareProfile": {
@@ -130,7 +130,7 @@ JSON
 ...
 
 }
-
+```
 Here, we requested two cores. On Standard_D8s_v6 (which is hyperthreaded by default), 2 _physical_ cores are allocated, and since SMT is still on by default (2 threads per core), the VM has 4 logical vCPUs. 
 
 ## Disable SMT and Customize vCPUs 
@@ -138,7 +138,7 @@ Here, we requested two cores. On Standard_D8s_v6 (which is hyperthreaded by defa
 You can combine both settings as shown:
 
 JSON
-
+```
 "properties": {
 
 "hardwareProfile": {
@@ -158,7 +158,7 @@ JSON
 ...
 
 }
-
+```
 In this example, vCPUsPerCore: 1 disables SMT, and vCPUsAvailable: 2 then requests 2 vCPUs. With SMT off, those 2 correspond one-to-one with two physical cores (no threading). The VM has two logical processors in the OS. 
 
 Make sure to use an API version **2021-07-01 or later** for the Microsoft.Compute/virtualMachines resource in your template, as that's when these properties were introduced.
