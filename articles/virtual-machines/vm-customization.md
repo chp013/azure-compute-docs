@@ -163,24 +163,24 @@ In this example, vCPUsPerCore: 1 disables SMT, and vCPUsAvailable: 2 then reques
 
 Make sure to use an API version **2021-07-01 or later** for the Microsoft.Compute/virtualMachines resource in your template, as that's when these properties were introduced.
 
-## Supported Scenarios and Considerations
+## Considerations
 
-Most Azure VM families support these features, but there are some important rules and limitations to understand
+Most Azure VM families support these features, but there are some important rules and considerations to understand when using the feature:
 
-You can only disable hyperthreading on VM sizes that use hyperthreading by default (for example, VMs with 2 threads per core).
+- You can only disable hyperthreading on VM sizes that use hyperthreading by default (for example, VMs with 2 threads per core).
 
-You can only _reduce_ the number of vCPUs, not increase it beyond the VM's default. The vCPUsAvailable value specified must be less than or equal to the default vCPU count of the chosen VM size. 
+- You can only _reduce_ the number of vCPUs, not increase it beyond the VM's default. The vCPUsAvailable value specified must be less than or equal to the default vCPU count of the chosen VM size. 
 
-On VM sizes that are hyperthreaded (default 2 threads/core), any custom vCPU count must be an even number. 
+- On VM sizes that are hyperthreaded (default 2 threads/core), any custom vCPU count must be an even number. 
 
-You can disable hyperthreading and constrain vCPUs at the same time on the same VM. In this case, both above rules apply. 
+- You can disable hyperthreading and constrain vCPUs at the same time on the same VM. In this case, both above rules apply. 
 
-CPU options can only be specified at VM creation time or during a resize (redeploy) operation. You can't dynamically adjust the core count or SMT setting on a running VM without redeploying.
+- CPU options can only be specified at VM creation time or during a resize (redeploy) operation. You can't dynamically adjust the core count or SMT setting on a running VM without redeploying.
 
-If you move to a new VM size in the same family that also supports the feature, your settings are carried over by default. 
+- If you move to a new VM size in the same family that also supports the feature, your settings are carried over by default. 
 
-If you resize to a VM size that doesn't support the setting, the operation is blocked or error. 
+- If you resize to a VM size that doesn't support the setting, the operation is blocked or error. 
 
-Anytime you resize a VM (either within the same series or to a different series), a VM reboot occurs. Plan for downtime during the resize operation.
+- Anytime you resize a VM (either within the same series or to a different series), a VM reboot occurs. Plan for downtime during the resize operation.
 
-In preview, only first-party Azure marketplace images (Windows Server, Ubuntu, Red Hat, SUSE, etc.) and custom images are supported. 
+- In preview, only first-party Azure marketplace images (Windows Server, Ubuntu, Red Hat, SUSE, etc.) and custom images are supported. 
