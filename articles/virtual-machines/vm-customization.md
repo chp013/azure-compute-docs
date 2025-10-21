@@ -9,7 +9,7 @@ ms.date: 10/21/2025
 ms.author: eehindero
 ms.reviewer: mimckitt
 ---
-# VM Customization
+# VM Customization (Preview)
 
 VM Customization is a new Azure VM feature that gives you greater control over the CPU resources of a virtual machine. It consists of two related capabilities:
 
@@ -39,7 +39,7 @@ In the Size section of the Basics tab, select a VM size that you want to use. Un
 
 To disable SMT, set Threads per core to 1. (Leave it at 2 if you want to keep hyperthreading enabled.)
 
-To constrain the vCPU count, set vCPUs available to your desired number of vCPUs. The portal provides valid values for the chosen VM size. 
+To  the vCPU count, set vCPUs available to your desired number of vCPUs. The portal provides valid values for the chosen VM size. 
 
 Continue with the rest of the VM creation (set up disks, networking, etc.) and create the VM.
 
@@ -107,7 +107,7 @@ JSON
 ```
 In this case, if Standard_D8s_v6 normally has 8 vCPUs (4 cores * 2 threads), setting vCPUsPerCore: 1 means the VM has 4 vCPUs (one per core).
 
-**Constrain vCPU Count (Customize Cores)** 
+## Constrain vCPU Count (Customize Cores)
 
 This snippet shows a VM configured to use a specific number of vCPUs (fewer than the default)
 
