@@ -1,17 +1,15 @@
 ---
 title: VM Customization
 description: Feature that allows control over CPU resources of a virtual machine
-author: Esther Ehindero
+author: eehindero
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 10/21/2025
-ms.author:
+ms.author: eehindero
 ms.reviewer: mimckitt
 ---
-# LEARN DOCS - VM Customization Feature
-
-VM Customization Feature: Disable Simultaneous Multi-Threading (SMT/HT) and Constrained Cores for Azure Virtual Machines
+# VM Customization
 
 VM Customization is a new Azure VM feature that gives you greater control over the CPU resources of a virtual machine. It consists of two related capabilities:
 
