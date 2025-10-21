@@ -9,7 +9,7 @@ ms.date: 10/21/2025
 ms.author: eehindero
 ms.reviewer: mimckitt
 ---
-# VM Customization (Preview)
+# VM Customization Feature: Diable Simultaneous Multi-Threading (SMT/HT) and Configurable Constrained Cores (Preview)
 
 VM Customization is a new Azure VM feature that gives you greater control over the CPU resources of a virtual machine. It consists of two related capabilities:
 
