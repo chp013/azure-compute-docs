@@ -13,9 +13,9 @@ ms.reviewer: mimckitt
 
 VM Customization is a new Azure VM feature that gives you greater control over the CPU resources of a virtual machine. It consists of two related capabilities:
 
-Disable Simultaneous Multi-Threading (Threads Per Core = 1): Allows you to run a VM with only one thread per physical CPU core, effectively turning off Simultaneous Multithreading (SMT). This gives your VM full use of each physical core, which can improve performance for certain workloads (like some HPC or latency-sensitive applications) that benefit from exclusive core access.
+Disable Simultaneous Multi-Threading (Threads Per Core = 1): Allows you to run a VM with only one thread per physical CPU core, effectively turning off Simultaneous Multithreading (SMT). Disabling gives your VM full use of each physical core, which can improve performance for certain workloads (like some HPC or latency-sensitive applications) that benefit from exclusive core access.
 
-Configurable Constrained Cores (Customize vCPUs): Allows you to **choose a custom number of vCPUs** for a new VM, lower than the default count for that VM size. This lets you allocate only the CPU cores you need, for example, to reduce licensing costs for software that is licensed per core (such as databases or analytics servers) while still getting the full memory and I/O of a larger VM.
+Configurable Constrained Cores (Customize vCPUs): Allows you to **choose a custom number of vCPUs** for a new VM, lower than the default count for that VM size. It lets you allocate only the CPU cores you need, for example, to reduce licensing costs for software that is licensed per core (such as databases or analytics servers) while still getting the full memory and I/O of a larger VM.
 
 Benefits: With these features, you can optimize VMs for both performance and cost:
 
@@ -27,11 +27,11 @@ There's _no extra charge_ to use these CPU configuration options. The base VM pr
 
 ## VM Customization Settings Configuration
 
-You can configure the "Threads per core" and "vCPUs available" settings using the Azure Portal, Azure Resource Manager templates (ARM), or command-line tools. 
+You can configure the "Threads per core" and "vCPUs available" settings using the Azure portal, Azure Resource Manager templates (ARM), or command-line tools. 
 
 ## Azure Portal
 
-In the Azure Portal, the VM creation workflow has a UI for these options. 
+In the Azure portal, the VM creation workflow has a UI for these options. 
 
 Start creating a VM as usual (for example, click **Create a resource > Virtual Machine** and fill out the Basics tab).
 
@@ -51,7 +51,7 @@ To disable SMT and configure cores during instance launch
 
 To disable SMT/HT, use the Azure CLI command and specify a value of 1 for vCPUsPerCore for the --cpu-options parameter. To configure cores, specify the number of CPU cores for vCPUsAvailable. In this example, to specify the default CPU core count for a Standard_D8s_v6 instance, specify a value of 8.
 
-az vm create --resource-group ccctest-rg-01 --name ccctestvm01 --image Ubuntu2204 --size Standard_D8s_v6 --location eastus2euap --admin-username azureuser --generate-ssh-keys --public-ip-address '""' --v-cpus-available 4 --v-cpus-per-core 1
+Az vm create --resource-group ccctest-rg-01 --name ccctestvm01 --image Ubuntu2204 --size Standard_D8s_v6 --location eastus2euap --admin-username azureuser --generate-ssh-keys --public-ip-address '""' --v-cpus-available 4 --v-cpus-per-core 1
 
 ## PowerShell
 
@@ -159,7 +159,7 @@ JSON
 
 }
 
-In this example, vCPUsPerCore: 1 disables SMT, and vCPUsAvailable: 2 then requests 2 vCPUs. With SMT off, those 2 correspond one-to-one with 2 physical cores (no threading). The VM has 2 logical processors in the OS. 
+In this example, vCPUsPerCore: 1 disables SMT, and vCPUsAvailable: 2 then requests 2 vCPUs. With SMT off, those 2 correspond one-to-one with two physical cores (no threading). The VM has two logical processors in the OS. 
 
 Make sure to use an API version **2021-07-01 or later** for the Microsoft.Compute/virtualMachines resource in your template, as that's when these properties were introduced.
 
@@ -167,7 +167,7 @@ Make sure to use an API version **2021-07-01 or later** for the Microsoft.Comput
 
 Most Azure VM families support these features, but there are some important rules and limitations to understand
 
-You can only disable hyperthreading on VM sizes that use hyperthreading by default (i.e. VMs with 2 threads per core.
+You can only disable hyperthreading on VM sizes that use hyperthreading by default (for example, VMs with 2 threads per core).
 
 You can only _reduce_ the number of vCPUs, not increase it beyond the VM's default. The vCPUsAvailable value specified must be less than or equal to the default vCPU count of the chosen VM size. 
 
