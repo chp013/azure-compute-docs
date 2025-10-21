@@ -21,9 +21,9 @@ Benefits: With these features, you can optimize VMs for both performance and cos
 
 _Performance:_ Disabling hyperthreading can provide more consistent and sometimes higher single-thread performance by eliminating contention between threads on the same core.
 
-_Cost Optimization:_ Reducing the vCPU count of a VM can significantly lower costs for software that charges per CPU. You could run a memory-intensive SQL Server on a VM with fewer vCPUs active, cutting SQL licensing fees, without paying for unused CPU capacity.
+_Cost Optimization:_ Reducing the vCPU count of a VM can lower costs for software that charges per CPU. You could run a memory-intensive SQL Server on a VM with fewer vCPUs active, cutting SQL licensing fees, without paying for unused CPU capacity.
 
-There is _no additional charge_ to use these CPU configuration options. The base VM price remains the same as if you deployed the full-size VM with default settings. However, customers get reduced licensing costs for software billed per vCPU.
+There's _no extra charge_ to use these CPU configuration options. The base VM price remains the same as if you deployed the full-size VM with default settings. However, customers get reduced licensing costs for software billed per vCPU.
 
 ## VM Customization Settings Configuration
 
@@ -33,17 +33,17 @@ You can configure the "Threads per core" and "vCPUs available" settings using th
 
 In the Azure Portal, the VM creation workflow has a UI for these options. 
 
-Start creating a VM as usual (e.g., click **Create a resource > Virtual Machine** and fill out the Basics tab).
+Start creating a VM as usual (for example, click **Create a resource > Virtual Machine** and fill out the Basics tab).
 
-In the Size section of the Basics tab, select a VM size that you want to use. Under the size selection, click the "Customize cores" button. This will open additional fields for VM Customization.
+In the Size section of the Basics tab, select a VM size that you want to use. Under the size selection, click the "Customize cores" button. This opens more fields for VM Customization.
 
 To disable SMT, set Threads per core to 1. (Leave it at 2 if you want to keep hyperthreading enabled.)
 
-To constrain the vCPU count, set vCPUs available to your desired number of vCPUs. The portal will provide valid values for the chosen VM size. 
+To constrain the vCPU count, set vCPUs available to your desired number of vCPUs. The portal provides valid values for the chosen VM size. 
 
 Continue with the rest of the VM creation (set up disks, networking, etc.) and create the VM.
 
-Once the VM is deployed, it will have the specified number of vCPUs. If you set Threads per core to 1, the VM's OS will see half the usual number of processors (since hyperthreading is off). If you reduced vCPUs, it would see that lower count.
+Once the VM is deployed, it has the specified number of vCPUs. If you set Threads per core to 1, the VM's OS sees half the usual number of processors (since hyperthreading is off). If you reduced vCPUs, it would see that lower count.
 
 ## Azure CLI
 
@@ -75,15 +75,15 @@ For automation or scenarios where you need to deploy via infrastructure-as-code,
 
 In your ARM template's resource definition for the virtual machine, the CPU options are specified under the hardwareProfile property of the VM. Specifically, you use vmSizeProperties inside hardwareProfile to set the values:
 
-vCPUsPerCore - Set this to 1 to disable hyperthreading (i.e., 1 thread per core). Omit this property or set to null/2 to use the default hyperthreading (2 threads per core).
+vCPUsPerCore - Set this to 1 to disable hyperthreading (for example, 1 thread per core). Omit this property or set to null/2 to use the default hyperthreading (2 threads per core).
 
-vCPUsAvailable - Set this to the number of vCPUs you want active. If this property is not set, the VM uses the default number of vCPUs for that size.
+vCPUsAvailable - Set this to the number of vCPUs you want active. If this property isn't set, the VM uses the default number of vCPUs for that size.
 
 Here are brief examples of ARM template snippets for different scenarios:
 
 ## Disable SMT (SMT/HT Off)
 
-This snippet shows the setting to turn off SMT on a VM (the VM will use 1 thread per core)
+This snippet shows the setting to turn off SMT on a VM (the VM uses 1 thread per core)
 
 JSON
 
@@ -105,7 +105,7 @@ JSON
 
 }
 
-In this case, if Standard_D8s_v6 normally has 8 vCPUs (4 cores * 2 threads), setting vCPUsPerCore: 1 means the VM will have 4 vCPUs (one per core).
+In this case, if Standard_D8s_v6 normally has 8 vCPUs (4 cores * 2 threads), setting vCPUsPerCore: 1 means the VM has 4 vCPUs (one per core).
 
 **Constrain vCPU Count (Customize Cores)** 
 
@@ -131,7 +131,7 @@ JSON
 
 }
 
-Here, we requested 2 cores. On Standard_D8s_v6 (which is hyperthreaded by default), 2 _physical_ cores will be allocated, and since SMT is still on by default (2 threads per core), the VM will have 4 logical vCPUs. 
+Here, we requested two cores. On Standard_D8s_v6 (which is hyperthreaded by default), 2 _physical_ cores are allocated, and since SMT is still on by default (2 threads per core), the VM has 4 logical vCPUs. 
 
 ## Disable SMT and Customize vCPUs 
 
@@ -159,7 +159,7 @@ JSON
 
 }
 
-In this example, vCPUsPerCore: 1 disables SMT, and vCPUsAvailable: 2 then requests 2 vCPUs. With SMT off, those 2 correspond one-to-one with 2 physical cores (no threading). The VM will have 2 logical processors in the OS. 
+In this example, vCPUsPerCore: 1 disables SMT, and vCPUsAvailable: 2 then requests 2 vCPUs. With SMT off, those 2 correspond one-to-one with 2 physical cores (no threading). The VM has 2 logical processors in the OS. 
 
 Make sure to use an API version **2021-07-01 or later** for the Microsoft.Compute/virtualMachines resource in your template, as that's when these properties were introduced.
 
@@ -175,12 +175,12 @@ On VM sizes that are hyperthreaded (default 2 threads/core), any custom vCPU cou
 
 You can disable hyperthreading and constrain vCPUs at the same time on the same VM. In this case, both above rules apply. 
 
-CPU options can only be specified at VM creation time or during a resize (redeploy) operation. You cannot dynamically adjust the core count or SMT setting on a running VM without redeploying.
+CPU options can only be specified at VM creation time or during a resize (redeploy) operation. You can't dynamically adjust the core count or SMT setting on a running VM without redeploying.
 
 If you move to a new VM size in the same family that also supports the feature, your settings are carried over by default. 
 
-If you resize to a VM size that doesn't support the setting, the operation will be blocked or error out. 
+If you resize to a VM size that doesn't support the setting, the operation is blocked or error. 
 
-Anytime you resize a VM (either within the same series or to a different series), a VM reboot will occur. Plan for downtime during the resize operation.
+Anytime you resize a VM (either within the same series or to a different series), a VM reboot occurs. Plan for downtime during the resize operation.
 
 In preview, only first-party Azure marketplace images (Windows Server, Ubuntu, Red Hat, SUSE, etc.) and custom images are supported. 
