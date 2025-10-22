@@ -775,6 +775,8 @@
       href: quotas.md
     - name: Constrained vCPUs
       href: constrained-vcpu.md
+    - name: VM Customization
+      href: vm-customization.md
     - name: Azure VMs with no temp disk
       href: azure-vms-no-temp-disk.yml
     - name: Azure VM sizes naming conventions
