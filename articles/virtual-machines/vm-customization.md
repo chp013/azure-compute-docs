@@ -9,7 +9,7 @@ ms.date: 10/21/2025
 ms.author: eehindero
 ms.reviewer: mimckitt
 ---
-# VM Customization Feature: Diable Simultaneous Multi-Threading (SMT/HT) and Configurable Constrained Cores (Preview)
+# VM Customization Feature: Disable Simultaneous Multi-Threading (SMT/HT) and Configurable Constrained Cores (Preview)
 
 VM Customization is a new Azure VM feature that gives you greater control over the CPU resources of a virtual machine. It consists of two related capabilities:
 
@@ -29,36 +29,39 @@ There's _no extra charge_ to use these CPU configuration options. The base VM pr
 
 You can configure the "Threads per core" and "vCPUs available" settings using the Azure portal, Azure Resource Manager templates (ARM), or command-line tools. 
 
-## Azure Portal
+## Azure portal
 
 In the Azure portal, the VM creation workflow has a UI for these options. 
 
 Start creating a VM as usual (for example, click **Create a resource > Virtual Machine** and fill out the Basics tab).
 
-In the Size section of the Basics tab, select a VM size that you want to use. Under the size selection, click the "Customize cores" button. This opens more fields for VM Customization.
+1. In the Size section of the Basics tab, select a VM size that you want to use. Under the size selection, click the "Customize cores" button. This opens more fields for VM Customization.
 
-To disable SMT, set Threads per core to 1. (Leave it at 2 if you want to keep hyperthreading enabled.)
+2. To disable SMT, set Threads per core to 1. (Leave it at 2 if you want to keep hyperthreading enabled.)
 
-To  the vCPU count, set vCPUs available to your desired number of vCPUs. The portal provides valid values for the chosen VM size. 
+3. To  the vCPU count, set vCPUs available to your desired number of vCPUs. The portal provides valid values for the chosen VM size. 
 
-Continue with the rest of the VM creation (set up disks, networking, etc.) and create the VM.
+4. Continue with the rest of the VM creation (set up disks, networking, etc.) and create the VM.
 
 Once the VM is deployed, it has the specified number of vCPUs. If you set Threads per core to 1, the VM's OS sees half the usual number of processors (since hyperthreading is off). If you reduced vCPUs, it would see that lower count.
 
 ## Azure CLI
 
-To disable SMT and configure cores during instance launch
+To disable SMT and configure cores during instance launch:
 
 To disable SMT/HT, use the Azure CLI command and specify a value of 1 for vCPUsPerCore for the--cpu-options parameter. To configure cores, specify the number of CPU cores for vCPUsAvailable. In this example, to specify the default CPU core count for a Standard_D8s_v6 instance, specify a value of 8.
-```
+
+```azure cli
 Az vm create --resource-group ccctest-rg-01 --name ccctestvm01 --image Ubuntu2204 --size Standard_D8s_v6 --location eastus2euap --admin-username azureuser --generate-ssh-keys --public-ip-address '""' --v-cpus-available 4 --v-cpus-per-core 1
 ```
+
 ## PowerShell
 
 To disable SMT and configure cores during instance launch
 
 Use PowerShell and specify the properties on the underlying configuration object. To disable SMT/HT, specify a value of 1 for vCPUsPerCore for the --cpu-options parameter. To configure cores, specify the number of CPU cores for vCPUsAvailable. 
-```
+
+```powershell
 $vmConfig = New-AzVMConfig -VMName "MyVM" -VMSize "Standard_D8s_v6"
 
 $vmConfig.HardwareProfile.VmSizeProperties = New-Object Microsoft.Azure.Management.Compute.Models.VMSizeProperties
@@ -67,6 +70,7 @@ $vmConfig.HardwareProfile.VmSizeProperties.VCPUsAvailable = 4
 
 $vmConfig.HardwareProfile.VmSizeProperties.VCPUsPerCore = 1
 ```
+
 Then proceed to set OS, network, etc., and use New-AzVM to create the VM. This approach uses the Azure PowerShell SDK objects directly to inject the values. 
 
 ## ARM Template (Azure Resource Manager)
@@ -85,8 +89,8 @@ Here are brief examples of ARM template snippets for different scenarios:
 
 This snippet shows the setting to turn off SMT on a VM (the VM uses 1 thread per core)
 
-JSON
-```
+
+```json
 "properties": {
 
 "hardwareProfile": {
@@ -111,8 +115,8 @@ In this case, if Standard_D8s_v6 normally has 8 vCPUs (4 cores * 2 threads), set
 
 This snippet shows a VM configured to use a specific number of vCPUs (fewer than the default)
 
-JSON
-```
+
+```json
 "properties": {
 
 "hardwareProfile": {
@@ -137,8 +141,8 @@ Here, we requested two cores. On Standard_D8s_v6 (which is hyperthreaded by defa
 
 You can combine both settings as shown:
 
-JSON
-```
+
+```json
 "properties": {
 
 "hardwareProfile": {
@@ -183,4 +187,4 @@ Most Azure VM families support these features, but there are some important rule
 
 - Anytime you resize a VM (either within the same series or to a different series), a VM reboot occurs. Plan for downtime during the resize operation.
 
-- In preview, only first-party Azure marketplace images (Windows Server, Ubuntu, Red Hat, SUSE, etc.) and custom images are supported. 
+- In preview, only first-party Azure Marketplace images (Windows Server, Ubuntu, Red Hat, SUSE, etc.) and custom images are supported. 
