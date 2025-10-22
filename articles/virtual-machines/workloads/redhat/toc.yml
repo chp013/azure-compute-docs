@@ -4,26 +4,26 @@ items:
     - name: Overview
       href: overview.md
     - name: Azure Hybrid Benefit for RHEL 
-      href: /azure/virtual-machines/linux/azure-hybrid-benefit-linux.md
+      href: /azure/virtual-machines/linux/azure-hybrid-benefit-linux
     - name: Red Hat Update Infrastructure in Azure
-      href: /azure/virtual-machines/workloads/redhat/redhat-rhui.md
+      href: /azure/virtual-machines/workloads/redhat/redhat-rhui
     - name: RHEL BYOS Offers 
-      href: /azure/virtual-machines/workloads/redhat/byos.md
+      href: /azure/virtual-machines/workloads/redhat/byos
     - name: RHEL Extended Lifecycle Support
-      href: /azure/virtual-machines/workloads/redhat/redhat-extended-lifecycle-support.md
+      href: /azure/virtual-machines/workloads/redhat/redhat-extended-lifecycle-support
     - name: RHEL Image Overview
-      href: /azure/virtual-machines/workloads/redhat/redhat-images.md
+      href: /azure/virtual-machines/workloads/redhat/redhat-images
     - name: Red Hat JBoss EAP
-      href: /azure/developer/java/ee/jboss-on-azure.md
+      href: /azure/developer/java/ee/jboss-on-azure
   - name: How-to guides
     items:
     - name: RHEL in-place upgrades
-      href: /azure/virtual-machines/workloads/redhat/redhat-in-place-upgrade.md
+      href: /azure/virtual-machines/workloads/redhat/redhat-in-place-upgrade
   - name: Support and troubleshooting
     items: 
     - name: RHUI Certificate Issues
-      href: /troubleshoot/azure/virtual-machines/linux/troubleshoot-linux-rhui-certificate-issues.md
+      href: /troubleshoot/azure/virtual-machines/linux/troubleshoot-linux-rhui-certificate-issues
     - name: RHUI Connectivity Issues
-      href: /troubleshoot/azure/virtual-machines/linux/linux-rhui-connectivity-issues.md
+      href: /troubleshoot/azure/virtual-machines/linux/linux-rhui-connectivity-issues
     - name: YUM & DNF Issues
-      href: /troubleshoot/azure/virtual-machines/linux/yum-dnf-common-issues.md
+      href: /troubleshoot/azure/virtual-machines/linux/yum-dnf-common-issues
