@@ -19,10 +19,11 @@ This article walks you through removing a virtual machine scale set association 
 
 Because both the virtual machine (VM) and the underlying capacity reservation logically occupy capacity, Azure imposes some constraints on this process to avoid ambiguous allocation states and unexpected errors.
 
-There are two ways to change an association:
+There are three ways to change an association:
 
 - Deallocate the virtual machine scale set, change the capacity reservation group property at the scale set level, and then update the underlying VMs.
 - Update the reserved quantity to zero and then change the capacity reservation group property.
+- Delete the virtual machine scale set
 
 ## Deallocate the virtual machine scale set
 
@@ -240,6 +241,13 @@ To learn more, see the Azure PowerShell commands [New-AzCapacityReservation](/po
 
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
+
+
+## Delete the virtual machine scale set
+
+Deletion process of the scale set and its instances will remove its association from a capacity reservation. To confirm that a scale set and its instances are no longer associated to a capacity reservation after its deletion, check the [Instance View of capacity Reservation](/azure/virtual-machines/capacity-reservation-associate-vm?tabs=api1%2Capi2%2Capi3#view-vm-allocation-with-the-instance-view).
+> [!NOTE]
+> There can be possibilities of delete latency where capacity reservation slot that was occupied by the deleted VM might not be immediately freed up. For more information, see [Delete a VM](/azure/virtual-machines/delete?tabs=portal2%2Ccli3%2Cportal4%2Cportal5)
 
 ## Upgrade policies
 
