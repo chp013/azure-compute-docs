@@ -1,5 +1,4 @@
 ---
-author: rwike77
 ms.service: azure-service-fabric
 ms.topic: include
 ms.date: 11/25/2018
