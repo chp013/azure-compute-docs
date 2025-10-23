@@ -245,7 +245,7 @@ To learn more, see the Azure PowerShell commands [New-AzCapacityReservation](/po
 
 ## Delete the virtual machine scale set
 
-Deletion process of the scale set and its instances will remove its association from a capacity reservation. To confirm that a scale set and its instances are no longer associated to a capacity reservation after its deletion, check the [Instance View of capacity Reservation](/azure/virtual-machines/capacity-reservation-associate-vm?tabs=api1%2Capi2%2Capi3#view-vm-allocation-with-the-instance-view).
+Deletion process of the scale set and its instances will remove its association from a capacity reservation. To confirm that a scale set and its instances are no longer associated to a capacity reservation after its deletion, check the [Instance View of Capacity Reservation](/azure/virtual-machines/capacity-reservation-associate-vm?tabs=api1%2Capi2%2Capi3#view-vm-allocation-with-the-instance-view).
 > [!NOTE]
 > There can be possibilities of delete latency where capacity reservation slot that was occupied by the deleted VM might not be immediately freed up. For more information, see [Delete a VM](/azure/virtual-machines/delete?tabs=portal2%2Ccli3%2Cportal4%2Cportal5)
 
