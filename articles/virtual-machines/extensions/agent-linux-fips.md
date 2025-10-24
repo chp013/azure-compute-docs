@@ -204,7 +204,8 @@ AutoUpdate.Enabled=y
 
 ##### RedHat 9 Workaround
 
-Updating the Azure guest agent outside of the RedHat repositories, such as downloading the agent code from GitHub, is not advised. Doing an 'out-of-band' update in this way will cause inconsistent behavior with future package updates. Instead use the following code modification to remove a single function call and restore functionality
+> [!NOTE]
+> This workaround is intended for testing purposes only and does not support all VM deployment scenarios. After enabling FIPS on a running VM, execute the following commands to proceed.
 
 ```
 systemctl stop waagent
