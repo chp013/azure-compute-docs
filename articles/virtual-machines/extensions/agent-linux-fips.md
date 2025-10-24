@@ -96,7 +96,7 @@ az feature list | jq '.[] | select(.name=="Microsoft.Compute/OptInToFips1403Comp
 There are different methods available for opting-in each VM. The changes can be made at deployment for a new VM, or an existing VM can be altered to add the FIPS 140-3 enablement on the Azure platform.
 
 > [!WARNING]
-> We do not recommend using the below Opt-In methods on RedHat 9.5 and 9.6 using version 2.7.0.6 of WALinuxAgent. This is due to an issue that will surface after rebooting, after the FIPS enablement and subsequent reboot. In these VMs the `waagent.service` will enter an internal loop and never come to a "Ready" state, and because of this error, no extensions are able to function.  For testing you can try the below "RedHat 9 Workaround".
+> We do not recommend using the below Opt-In methods on RedHat 9.5 and 9.6 using version 2.7.0.6 of WALinuxAgent on production systems. This is due to an issue that will surface after rebooting, after the FIPS enablement and subsequent reboot. In these VMs the `waagent.service` will enter an internal loop and never come to a "Ready" state, and because of this error, no extensions are able to function. For testing you can try the below "RedHat 9 Workaround".
 
 #### Deploying a new VM
 
